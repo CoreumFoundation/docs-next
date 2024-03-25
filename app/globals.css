@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.bg-footer {
+  background: linear-gradient(180deg, rgba(8, 9, 8, 0.65) 0%, #080908 97%);
+}
