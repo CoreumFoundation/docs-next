@@ -26,7 +26,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, navigation }) => {
                           href={item.href}
                           className={classNames(
                             // item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
-                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-700'
+                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-white'
                           )}
                         >
                           {/* <item.icon className="h-6 w-6 shrink-0 text-gray-400" aria-hidden="true" /> */}
@@ -39,7 +39,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, navigation }) => {
                               <Disclosure.Button
                                 className={classNames(
                                   // item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
-                                  'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-gray-700'
+                                  'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-white'
                                 )}
                               >
                                 {/* <item.icon className="h-6 w-6 shrink-0 text-gray-400" aria-hidden="true" /> */}
@@ -61,7 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, navigation }) => {
                                       href={subItem.href}
                                       className={classNames(
                                         // subItem.current ? 'bg-gray-50' : 'hover:bg-gray-50',
-                                        'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700'
+                                        'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-white'
                                       )}
                                     >
                                       {subItem.name}
