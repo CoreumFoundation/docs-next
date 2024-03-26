@@ -11,7 +11,7 @@ const navigation = {
   ],
   social: [
     {
-      name: 'twitter',
+      name: 'Twitter',
       href: '#',
       icon: (props: any) => (
         <Image
@@ -81,7 +81,7 @@ const navigation = {
       ),
     },
     {
-      name: 'YouTube',
+      name: 'Medium',
       href: '#',
       icon: (props: any) => (
         <Image
@@ -99,7 +99,7 @@ const navigation = {
 
 export const Footer = () => {
   return (
-    <footer className="bg-footer w-full mt-auto" aria-labelledby="footer-heading">
+    <footer className="bg-footer w-full" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
