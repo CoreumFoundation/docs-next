@@ -1,10 +1,8 @@
-'use client';
+import Cored from './cored.mdx';
 
 const CoredPage = () => {
   return (
-    <div>
-      Cored
-    </div>
+    <Cored />
   );
 };
 
