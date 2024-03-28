@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Noto_Sans, Space_Grotesk } from "next/font/google";
 import { Layout } from "@/components/Layout";
 import classNames from "classnames";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const notoSans = Noto_Sans({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={classNames(inter.className, 'h-full m-0')}>
+      <body className={classNames(notoSans.className, spaceGrotesk.className, 'h-full m-0')}>
         <Layout>
           {children}
         </Layout>

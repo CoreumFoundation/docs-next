@@ -38,7 +38,7 @@ const convertMapToNavigation = async (map: Map<string, Directory>, basePath: str
     const href = basePath ? `${basePath}/${name}` : `/${name}`;
 
     const item: NavigationItem = {
-      name,
+      name: name.includes('_') ? name.replace('_', ' ') : name,
       href: href.replace(/^\.\/app\//, '/'),
     };
 

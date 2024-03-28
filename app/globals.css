@@ -39,3 +39,50 @@ body {
 .bg-main {
   background: rgba(16, 18, 22, 1);
 }
+
+.text-grey-gradient {
+  background: linear-gradient(180deg, #FFF 0%, #5E6773 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  margin-bottom: 40px;
+
+  tr {
+    th,
+    td {
+      &:first-child {
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+    }
+  }
+
+  td {
+    code {
+      color: #9FA2AC;
+      /* font-family: "Fira Code"; */
+      font-size: 16px !important;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 28px; /* 175% */
+      letter-spacing: -0.16px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      background-color: #17191E;
+    }
+
+    a {
+      font-weight: 400;
+    }
+  }
+}

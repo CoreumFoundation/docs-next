@@ -3,7 +3,7 @@
 const MainDocsPage = () => {
   return (
     <div>
-      Main docs page
+      <h1>Main docs page</h1>
     </div>
   );
 };
