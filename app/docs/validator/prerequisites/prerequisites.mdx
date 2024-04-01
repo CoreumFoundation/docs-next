@@ -1,0 +1,20 @@
+# Node prerequisites
+
+This document contains common information for any type of node.
+
+* Check the current "ulimit -n"
+```
+ulimit -n
+```
+
+If the limit < 2048, then increase it. We recommend to set "65536" as limit. Make it permanent(store to config file)
+
+**Attention!** *This setting is critical for the node, without it the node will crash as soon as it reach the limit.*
+
+* Node must have public ip to be discoverable by other nodes.
+
+## Install required utils
+- crudini
+- curl
+- jq
+- tar

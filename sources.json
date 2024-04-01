@@ -1,8 +1,2 @@
 {
-  "api": [
-    {
-      "page": "protobuf",
-      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum/6f317f0eab490c5b2860a6464f4d467f94ade998/docs/api.md"
-    }
-  ]
 }

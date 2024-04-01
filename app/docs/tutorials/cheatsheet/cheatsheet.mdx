@@ -1,0 +1,44 @@
+## Cheatsheet
+
+- Coreum has three networks: `Mainnet`, `Testnet`, and `Devnet`.
+- Each network has its own native token.
+  The precision of the native token is 6 and the smallest fraction is called `denom`, and it has a `u` prefix, which stands for Micro(1e-6).
+- For instance, in the `Mainnet` `1CORE is equal to 1_000_000ucore`, where:
+- - `ucore` is a denom. An example of a denom is satoshi.
+- - `CORE` is a display name of a token used mostly for UI purposes. An example of a display name is BTC.
+- For the `Testnet` denom is `utestcore` and the display name is `TESTCORE`. Precision remains the same.
+- For the `Devnet` denom is `udevcore` and the display name is `DEVCORE`. Precision remains the same.
+- Pay attention, that all on-chain operations are made using subunits.
+- You can run Devnet network on your local machine using [crust](https://github.com/CoreumFoundation/crust)
+- You can get testnet/devnet tokens at the [faucet page](../tools-ecosystem/faucet.md)
+
+### How to interact with the network
+#### CLI
+You should [install CLI client first](cored.md)
+
+To target a specific network, you should export two environment variables for further use. For the testnet access do the following:
+```bash
+# CHAIN_ID we are going to use as a value for the --chain-id flag to target specific network
+export CHAIN_ID="coreum-testnet-1"
+# RPC_URL we are going to use as a value for the --node flag to target specific node within the given network
+export RPC_URL="https://full-node.testnet-1.coreum.dev:26657"
+```
+\* If you want to use other network, find CHAIN_ID and RPC_URL values on the [network variables](network-variables.md) page.
+
+You can run the next query to get the network status:
+```bash
+cored status # You can find the network ID and latest block height there
+```
+
+To see all available commands you can use `--help` flag.
+```bash
+cored --help
+```
+#### GRPC
+You can find proto files [here](https://github.com/CoreumFoundation/coreum/tree/master/proto/coreum)
+
+#### OpenAPI
+
+OpenAPI is accessible at port `1317`. The host for the specific network can be found on the [network variables page](network-variables.md)
+
+Testnet address is [https://full-node.testnet-1.coreum.dev:1317](https://full-node.testnet-1.coreum.dev:1317)

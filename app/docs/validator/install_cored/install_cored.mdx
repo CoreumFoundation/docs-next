@@ -1,0 +1,153 @@
+# Install cored
+
+This document provides the instruction on how to install the release binaries of the `cored`.
+
+Choose preferred way to install `cored`:
+
+1. [Install **cored** and **cosmovisor**(for linux OS only)](#install-cored-and-cosmovisor)
+2. [Install prebuilt **cored**(for linux OS only)](#install-prebuilt-cored)
+3. [Build from sources](#build-from-sources)
+
+## Install **cored** and **cosmovisor**
+
+Note: this option supports linux OS only
+
+In case you want to run any type of node, it's strongly recommended to run it with `cosmovisor`.
+It allows automatically upgrading `cored` on the "chain upgrade".
+
+* Verify that [network variables](network-variables.md) are set up correctly.
+
+* Create proper folder structure for `cosmovisor` and `cored`.
+
+    ```bash
+    mkdir -p $COREUM_HOME/bin
+    mkdir -p $COREUM_HOME/cosmovisor/genesis/bin
+    mkdir -p $COREUM_HOME/cosmovisor/upgrades
+    mkdir -p $COREUM_HOME/data
+    ```
+
+* Download `cored` and make it executable:
+    * For Mainnet and Testnet:
+      ```bash
+      curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$COREUM_VERSION/$COREUM_BINARY_NAME
+      chmod +x ./cored-linux-amd64
+      ```
+      If you are getting 404 error at this step, run:
+      ```bash
+      echo https://github.com/CoreumFoundation/coreum/releases/download/$COREUM_VERSION/$COREUM_BINARY_NAME
+      ```
+      And check if it generates right link. It should lead to one of our [releases](https://github.com/CoreumFoundation/coreum/releases).
+      If it doesn't - double-check your network variables.
+
+    * For Devnet:
+      ```bash
+      curl -LOf https://storage.googleapis.com/dev-cored-binaries/cored-linux-amd64
+      chmod +x ./cored-linux-amd64
+      ```
+
+* Put `cored` to the right place:
+  ```bash
+  if [ "$UPGRADE_NAME" == "genesis" ]
+    then
+    export DESTINATION=$COREUM_HOME/cosmovisor/genesis/bin
+  else
+    mkdir -p $COREUM_HOME/cosmovisor/upgrades/$UPGRADE_NAME/bin
+    export DESTINATION=$COREUM_HOME/cosmovisor/upgrades/$UPGRADE_NAME/bin
+    ln -s $COREUM_HOME/cosmovisor/upgrades/$UPGRADE_NAME $COREUM_HOME/cosmovisor/current
+  fi
+  mv $COREUM_BINARY_NAME $DESTINATION/cored
+  ```
+  Explanation: if there was the network upgrade after the genesis, the proper destination for binary 
+  should be at cosmovisor/upgrades directory, not the cosmovisor/genesis.
+  Also, we create the symlink for the cosmovisor, so it will start with the right binary.
+
+* Finish downloading binaries and put them in the required folders.
+    ```bash
+    curl -LOf https://github.com/cosmos/cosmos-sdk/releases/download/cosmovisor%2F$COREUM_COSMOVISOR_VERSION/$COSMOVISOR_TAR_NAME
+    mkdir cosmovisor-binaries
+    tar -xvf "$COSMOVISOR_TAR_NAME" -C cosmovisor-binaries
+    mv "cosmovisor-binaries/cosmovisor" $COREUM_HOME/bin/cosmovisor
+    rm "$COSMOVISOR_TAR_NAME"
+    rm -r cosmovisor-binaries
+    ```
+
+* Set the binaries PATH and the required environment variables.
+
+    ```bash
+    export PATH=$PATH:$COREUM_HOME/bin
+    export PATH=$PATH:$DESTINATION
+    export DAEMON_HOME="$COREUM_HOME/"
+    export DAEMON_NAME="cored"
+    ```
+  
+
+* Test the binaries
+
+    ```bash
+    cored version
+    ```
+
+    ```bash
+    cosmovisor version
+    ```
+
+That's it, you have `cored` and `cosmovisor` installed! You can return to previous Readme.
+
+## Install prebuilt `cored`
+
+Note: this option supports linux OS only. Also, it should be used in case you interact with the chain with the CLI only.
+
+* Verify that [network variables](network-variables.md) are set up correctly.
+
+* Create a proper folder structure for `cored`.
+
+    ```bash
+    mkdir -p $COREUM_HOME/bin
+    ```
+
+* Download `cored`:
+  * For Mainnet and Testnet:
+    ```bash
+    curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$COREUM_VERSION/$COREUM_BINARY_NAME
+    ```
+    If you are getting 404 error at this step, run:
+    ```bash
+    echo https://github.com/CoreumFoundation/coreum/releases/download/$COREUM_VERSION/$COREUM_BINARY_NAME
+    ```
+    And check if it generates right link. It should lead to one of our [releases](https://github.com/CoreumFoundation/coreum/releases).
+    If it doesn't - double-check your network variables.
+  
+  * For Devnet:
+    ```bash
+    curl -LOf https://storage.googleapis.com/dev-cored-binaries/cored-linux-amd64
+    chmod +x ./cored-linux-amd64
+    ```
+    
+* Put it in the required folder.
+```bash
+mv $COREUM_BINARY_NAME $COREUM_HOME/bin/cored
+```
+
+* Add `cored` to PATH and make it executable.
+
+    ```bash
+    export PATH=$PATH:$COREUM_HOME/bin
+    chmod +x $COREUM_HOME/bin/*
+    ```
+
+  **Attention!** *Set this variable globally so it will be automatically set after starting a new terminal session.*
+
+* Test `cored`.
+
+    ```bash
+    cored version
+    ```
+
+That's it, you have cored installed! You can return to previous Readme.
+
+## Build from sources
+
+The [Build and Play](https://github.com/CoreumFoundation/coreum/blob/master/README.md#build-and-play) doc describes the
+process of building and installation the `cored` binary from sources.
+
+That's it, you have cored installed! You can return to previous Readme.

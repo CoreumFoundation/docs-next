@@ -1,0 +1,26 @@
+# How to unjail the validator
+
+## Check the reason for jailing:
+- `cored q slashing signing-infos`  will show us the status of all validators,
+  where you can see the jailed one and check the reason.
+- If the validator is jailed for being offline, there is reasonable `jailed_until`  time, and `tombstoned`  is set to false. You can unjail it.
+- If the validator is jailed for double signing, it means there are two replicas with the same `priv_validator_key.json` file.
+  In this case, one will be tombstoned with`jailed_until` 9999-12-31T23:59:59Z, and `tombstoned`  is set to true.
+  It means that [**there is no way to unjail the tombstoned validator**](https://forum.cosmos.network/t/can-i-unjail-validator-who-jailed-by-doublesign/7830)
+  Another replica is jailed with reasonable `jailed_until`  time and `tombstoned`  is set to false. You can unjail it.
+
+## Unjail validator
+If the validator is jailed but not tombstoned, the next steps will unjail it:
+1. Fix the reason for jailing.
+2. Send unjail transaction on behalf of the stalker account who owns the validator:
+```
+cored tx slashing unjail --from {VALIDATOR_ONWER_ACCOUNT}
+# where VALIDATOR_ONWER_ACCOUNT - Name or address of the account to sign the transaction
+```
+
+* (Optional) Check the validator's state
+  If your validator is up and running, you can check its state by sending the next command:
+    ```bash
+    cored status --node={YOUR_RPC_ADDRESS}
+    # where YOUR_RPC_ADDRESS is your validator public http address
+    ```

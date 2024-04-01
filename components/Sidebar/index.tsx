@@ -53,7 +53,7 @@ const renderNavigationItems = (items: NavigationItem[]) => {
 export const Sidebar: React.FC<SidebarProps> = ({ children, navigation }) => {
   return (
     <div className="flex flex-row w-full h-auto min-h-full flex-1 font-['space grotesk'] ">
-      <div className="flex w-72">
+      <div className="flex flex-none w-72">
         <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#101216] p-6">
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">

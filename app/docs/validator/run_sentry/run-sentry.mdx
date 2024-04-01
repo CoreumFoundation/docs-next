@@ -1,0 +1,117 @@
+# Run sentry node
+
+This document describes the procedure of creating and running a sentry node.
+
+[Here](https://docs.tendermint.com/v0.34/tendermint-core/validators.html) you can find additional information about this node type.
+
+* [Check requirements](hardware-requirements.md).
+
+* [Install cored binary](cored.md).
+
+* Verify that [network variables](network-variables.md) are set up correctly.
+
+* [Set up node prerequisites](node-prerequisites.md)
+
+* Set the moniker variable to reuse it in the following instructions.
+  ```bash
+  export MONIKER="sentry1"
+  ```
+
+* Init the node.
+
+  ```bash
+  cored init $MONIKER $COREUM_CHAIN_ID_ARGS
+  ```
+  The command will create a default node configuration
+
+* Install the required util: `crudini`.
+
+* Set the common connection config using the [doc](set-connection-config.md).
+
+* Capture the validator peer and ip that this node will connect to.
+
+  **Attention!** *This command must be executed on the validator node.
+  The "$COREUM_EXTERNAL_IP" is configured in the [doc](set-connection-config.md)",
+  If it isn't set, set it for the node.*
+
+  ```bash
+  echo "COREUM_VALIDATOR_PEER=$(cored tendermint show-node-id)@$COREUM_EXTERNAL_IP:26656"
+  echo "COREUM_VALIDATOR_ID=$(cored tendermint show-node-id)"
+  ```
+
+
+
+* Set the validator peer variable
+  ```
+  COREUM_VALIDATOR_PEER={Validator peer from prev step}
+  COREUM_VALIDATOR_ID=={Validator id from prev step}
+  ```
+
+* Update the sentry node config.
+
+  ```bash
+  COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
+  ```
+
+  ```bash
+  crudini --set $COREUM_NODE_CONFIG p2p pex true
+  crudini --set $COREUM_NODE_CONFIG p2p persistent_peers "\"$COREUM_VALIDATOR_PEER\""
+  crudini --set $COREUM_NODE_CONFIG p2p private_peer_ids "\"$COREUM_VALIDATOR_ID\""
+  crudini --set $COREUM_NODE_CONFIG p2p unconditional_peer_ids "\"$COREUM_VALIDATOR_ID\""
+  ```
+
+* Capture the sentry peer that other nodes will use to connect to this sentry.
+
+  **Attention!** *This command must be executed on the sentry node.
+  The "$COREUM_EXTERNAL_IP" is configured in the [doc](set-connection-config.md)",
+  If it isn't set, set it for the node.*
+
+  ```bash
+  echo "$(cored tendermint show-node-id)@$COREUM_EXTERNAL_IP:26656"
+  ```
+
+* Capture the sentry ID.
+  ```bash
+  echo "$(cored tendermint show-node-id)"
+  ```
+
+* Start the node.
+
+  * Start with `cosmovisor` (recommended)
+  ```bash
+  cosmovisor run start $COREUM_CHAIN_ID_ARGS
+  ```
+
+  * Start with `cored`
+   ```bash
+  cored start $COREUM_CHAIN_ID_ARGS
+  ```
+
+  **Attention!** *Be sure that the node will be automatically started after a node restart. Add it as an OS "service",
+  or schedule the start using the tools you prefer.*
+
+* Repeat the operation for all sentry nodes and capture the peers of them.
+
+  Example of peers:
+  ```
+  86c5be788da1ebd1c5a7f52d5e2f159039ee218c@172.19.0.6:26656,095f7e0a462cf749027ee22913d77619fe1c2267@172.29.0.8:26656
+  ```
+
+  Example of ids:
+  ```
+  86c5be788da1ebd1c5a7f52d5e2f159039ee218c,095f7e0a462cf749027ee22913d77619fe1c2267
+  ```
+
+* Go to the validator node and connect it to the sentries.
+  ```bash
+  COREUM_SENTRY_PEERS="{Sentry peers}"
+  COREUM_SENTRY_IDS="{Sentry ids}"
+  ```
+
+  ```bash
+  crudini --set $COREUM_NODE_CONFIG p2p pex false
+  crudini --set $COREUM_NODE_CONFIG p2p persistent_peers "\"$COREUM_SENTRY_PEERS\""
+  crudini --set $COREUM_NODE_CONFIG p2p private_peer_ids "\"$COREUM_SENTRY_IDS"\"
+  crudini --set $COREUM_NODE_CONFIG p2p unconditional_peer_ids "\"$COREUM_SENTRY_IDS"\"
+  crudini --set $COREUM_NODE_CONFIG p2p addr_book_strict false
+  ```

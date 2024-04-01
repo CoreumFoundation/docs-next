@@ -1,0 +1,430 @@
+# How to Upgrade my node
+
+This guide describes instructions specific to each planned Upgrade of the `cored` binary.
+
+## Before the Upgrade
+
+### Prerequisites
+
+You should run the node with cosmovisor(not with the `cored` binary directly),
+since the cosmovisor takes care of stopping the node and replacing the binary version automatically when an Upgrade
+should be applied.
+
+If you run a validator using `cored`, you should rerun it with `cosmovisor` by
+following [this instruction](run-full.md).
+
+### Proposal
+
+When a new version of the binary is released, a proposal is created using governance.
+
+You can check all proposals in two ways:
+
+1. At the `proposal` section at the [block explorer](../tools-ecosystem/block-explorer.md)
+2. By using CLI `cored q gov proposals` query.
+
+### Voting
+
+All the stakeholders and delegators may vote to support or decline the Upgrade proposal.
+If the delegator doesn't vote, its voting power supports the vote made by the validator.
+
+Vote command usage:
+
+```bash
+cored tx gov vote [proposal-id] [option] [flags]
+# where
+# proposal-id is a `proposal_id` field from the `cored q gov proposals` query
+# option values are yes/no/no_with_veto/abstain
+```
+
+### Getting the Upgrade plan info
+
+If more than 50% of the voting power votes "yes"(and "no with veto" is less than 30%), a new Upgrade plan is created.
+
+You may query the pending Upgrade plan by issuing the command:
+
+```bash
+cored q upgrade plan
+```
+
+The result is like this:
+
+```bash
+height: "30012" # denotes the height when the Upgrade will be applied
+info: "binary version" # provides more details, especially the version of the binary to install for that Upgrade
+name: vX # is the name of the Upgrade
+time: "0001-01-01T00:00:00Z"
+upgraded_client_state: null
+```
+
+::: warning
+Your node must be prepared for the Upgrade before the specified `height`.
+
+Otherwise, after reaching that height, your validator will stop and risk to be slashed for being offline.
+:::
+
+## Upgrades
+
+### Mainnet v3 upgrade
+
+#### Please upgrade your cosmovisor version to [v1.5.0](https://github.com/cosmos/cosmos-sdk/releases/tag/cosmovisor%2Fv1.5.0) before preparing for the upgrade.
+
+#### Steps
+
+* Let's set the next environment variables:
+
+```bash
+export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+export COREUM_CHAIN_ID="coreum-mainnet-1"
+export NEW_CORED_VERSION="v3.0.2"
+export UPGRADE="v3"
+
+# If you used your custom path to coreum, change it correspondingly
+export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
+
+export COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
+```
+
+* Let's download and verify the binary:
+
+```bash
+cd $HOME
+curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$NEW_CORED_VERSION/$COREUM_BINARY_NAME
+
+# make it an executable.
+# NOTE: This is super important to set binary's executable permission to everyone (`a+x`), not only for the owner (`u+x`).
+# Otherwise `cosmovisor` will refuse to start the binary.
+chmod a+x $HOME/$COREUM_BINARY_NAME
+
+# Then verify the version:
+$HOME/$COREUM_BINARY_NAME version
+```
+
+The printed version should match `v3.0.2`. If the version doesn't match stop following this tutorial immediately!
+Continuing will lead to serious problems.
+
+[//]: # (The printed version should match the one specified in the `cored q upgrade plan` `info` field.)
+
+[//]: # (WARNING: If the version doesn't match stop following this tutorial immediately! Continuing will lead to serious problems.)
+
+* Verify that the `cored` binary is executable by the user you used to run cosmovisor.
+
+* Moving the `cored` binary to the right place:
+
+```bash
+# Cosmovisor requires a new binary to be placed in the precise location. Create appropriate directory:
+mkdir -p "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin"
+
+# Move/Replace the new binary there
+mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored"
+```
+
+* Before the upgrade happens set `double_sign_check_height` to 0 in the `config.toml`:
+
+```bash
+crudini --set $COREUM_NODE_CONFIG consensus double_sign_check_height 0
+```
+
+NOTE: You can return it back to appropriate value based on your requirements after the upgrade.
+
+#### Applying the Upgrade
+
+* Once the block specified in the Upgrade plan comes,
+  the old `cored` process will exit, and `cosmovisor` will automatically start the new binary. No manual action is
+  required.
+
+:::
+
+### Mainnet v3.0.3 patch upgrade
+
+#### Steps
+
+* Let's set the next environment variables:
+
+```bash
+export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+export COREUM_CHAIN_ID="coreum-mainnet-1"
+export NEW_CORED_VERSION="v3.0.3"
+export UPGRADE="v3"
+
+# If you used your custom path to coreum, change it correspondingly
+export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
+
+export COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
+```
+
+* Let's download and verify the binary:
+
+```bash
+cd $HOME
+curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$NEW_CORED_VERSION/$COREUM_BINARY_NAME
+
+# make it an executable.
+# NOTE: This is super important to set binary's executable permission to everyone (`a+x`), not only for the owner (`u+x`).
+# Otherwise `cosmovisor` will refuse to start the binary.
+chmod a+x $HOME/$COREUM_BINARY_NAME
+
+# Then verify the version:
+$HOME/$COREUM_BINARY_NAME version
+```
+
+The printed version should match `v3.0.3`. If the version doesn't match, go to previous step and make sure you have 
+downloaded the correct binary! Continuing will lead to serious problems.
+
+* Verify that the `cored` binary is executable by the user you used to run cosmovisor.
+
+* Make sure that old binary version is correct, the following command should print `v3.0.2`
+```bash
+$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored version
+```
+
+* Stop your cosmovisor
+
+* Replacing the old `cored` binary the new one:
+
+```bash
+# Move/Replace the new binary there
+mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored"
+```
+
+* Start cosmovisor
+
+### Testnet v3 upgrade
+
+#### Please upgrade your cosmovisor version to [v1.5.0](https://github.com/cosmos/cosmos-sdk/releases/tag/cosmovisor%2Fv1.5.0) before preparing for the upgrade.
+
+#### Steps
+
+* Stop the `core` or `cosmovisor` if you use the `cosmovisor`.
+
+* Set the next environment variables:
+
+```bash
+export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+export COREUM_CHAIN_ID="coreum-testnet-1"
+export NEW_CORED_VERSION="v3.0.0"
+export UPGRADE="v3"
+
+# If you used your custom path to coreum, change it correspondingly
+export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
+
+export COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
+```
+
+* Download and verify the binary:
+
+```bash
+cd $HOME
+curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$NEW_CORED_VERSION/$COREUM_BINARY_NAME
+
+# make it an executable.
+# NOTE: This is super important to set binary's executable permission to everyone (`a+x`), not only for the owner (`u+x`).
+# Otherwise `cosmovisor` will refuse to start the binary.
+chmod a+x $HOME/$COREUM_BINARY_NAME
+
+# Then verify the version:
+$HOME/$COREUM_BINARY_NAME version
+```
+
+The printed version should match `v3.0.0`. If the version doesn't match stop following this tutorial immediately!
+Continuing will lead to serious problems.
+
+[//]: # (The printed version should match the one specified in the `cored q upgrade plan` `info` field.)
+
+[//]: # (WARNING: If the version doesn't match stop following this tutorial immediately! Continuing will lead to serious problems.)
+
+* Verify that the `cored` binary is executable by the user you used to run cosmovisor.
+
+* Replace the `cored` binary:
+
+```bash
+# Cosmovisor requires a new binary to be placed in the precise location. Create appropriate directory:
+mkdir -p "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin"
+
+# Replace the new binary there
+mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored"
+```
+
+* Start the `cored` or `cosmovisor` if you use the `cosmovisor`.
+
+:::
+
+### Testnet v3patch1 upgrade
+
+#### Steps
+
+* Stop the `core` or `cosmovisor` if you use the `cosmovisor`.
+
+* Set the next environment variables:
+
+```bash
+export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+export COREUM_CHAIN_ID="coreum-testnet-1"
+export NEW_CORED_VERSION="v3.0.1"
+export UPGRADE="v3patch1"
+
+# If you used your custom path to coreum, change it correspondingly
+export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
+
+export COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
+```
+
+* Download and verify the binary:
+
+```bash
+cd $HOME
+curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$NEW_CORED_VERSION/$COREUM_BINARY_NAME
+
+# make it an executable.
+# NOTE: This is super important to set binary's executable permission to everyone (`a+x`), not only for the owner (`u+x`).
+# Otherwise `cosmovisor` will refuse to start the binary.
+chmod a+x $HOME/$COREUM_BINARY_NAME
+
+# Then verify the version:
+$HOME/$COREUM_BINARY_NAME version
+```
+
+The printed version should match `v3.0.1`. If the version doesn't match stop following this tutorial immediately!
+Continuing will lead to serious problems.
+
+[//]: # (The printed version should match the one specified in the `cored q upgrade plan` `info` field.)
+
+[//]: # (WARNING: If the version doesn't match stop following this tutorial immediately! Continuing will lead to serious problems.)
+
+* Verify that the `cored` binary is executable by the user you used to run cosmovisor.
+
+* Replace the `cored` binary:
+
+```bash
+# Cosmovisor requires a new binary to be placed in the precise location. Create appropriate directory:
+mkdir -p "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin"
+
+# Replace the new binary there
+mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored"
+```
+
+* Start the `cored` or `cosmovisor` if you use the `cosmovisor`.
+
+:::
+
+### Testnet v3patch2 upgrade
+
+#### Steps
+
+* Stop the `core` or `cosmovisor` if you use the `cosmovisor`.
+
+* Set the next environment variables:
+
+```bash
+export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+export COREUM_CHAIN_ID="coreum-testnet-1"
+export NEW_CORED_VERSION="v3.0.2"
+export UPGRADE="v3patch2"
+
+# If you used your custom path to coreum, change it correspondingly
+export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
+
+export COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
+```
+
+* Download and verify the binary:
+
+```bash
+cd $HOME
+curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$NEW_CORED_VERSION/$COREUM_BINARY_NAME
+
+# make it an executable.
+# NOTE: This is super important to set binary's executable permission to everyone (`a+x`), not only for the owner (`u+x`).
+# Otherwise `cosmovisor` will refuse to start the binary.
+chmod a+x $HOME/$COREUM_BINARY_NAME
+
+# Then verify the version:
+$HOME/$COREUM_BINARY_NAME version
+```
+
+The printed version should match `v3.0.2`. If the version doesn't match stop following this tutorial immediately!
+Continuing will lead to serious problems.
+
+[//]: # (The printed version should match the one specified in the `cored q upgrade plan` `info` field.)
+
+[//]: # (WARNING: If the version doesn't match stop following this tutorial immediately! Continuing will lead to serious problems.)
+
+* Verify that the `cored` binary is executable by the user you used to run cosmovisor.
+
+* Replace the `cored` binary:
+
+```bash
+# Cosmovisor requires a new binary to be placed in the precise location. Create appropriate directory:
+mkdir -p "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin"
+
+# Replace the new binary there
+mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored"
+```
+
+* Start the `cored` or `cosmovisor` if you use the `cosmovisor`.
+
+:::
+
+## After the Upgrade
+
+* (Optional) You may verify that the right binary is running by executing this command:
+
+```bash
+ps aux | grep cored
+```
+
+
+### Testnet v3.0.3 patch upgrade
+
+#### Steps
+
+* Stop the `cored` or `cosmovisor` if you use the `cosmovisor`.
+
+* Set the next environment variables:
+
+```bash
+export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+export COREUM_CHAIN_ID="coreum-testnet-1"
+export NEW_CORED_VERSION="v3.0.3"
+export UPGRADE="v3patch2"
+
+# If you used your custom path to coreum, change it correspondingly
+export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
+
+export COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
+```
+
+* Download and verify the binary:
+
+```bash
+cd $HOME
+curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$NEW_CORED_VERSION/$COREUM_BINARY_NAME
+
+# make it an executable.
+# NOTE: This is super important to set binary's executable permission to everyone (`a+x`), not only for the owner (`u+x`).
+# Otherwise `cosmovisor` will refuse to start the binary.
+chmod a+x $HOME/$COREUM_BINARY_NAME
+
+# Then verify the version:
+$HOME/$COREUM_BINARY_NAME version
+```
+
+The printed version should match `v3.0.3`. If the version doesn't match stop following this tutorial immediately!
+Continuing will lead to serious problems.
+
+* Verify that the `cored` binary is executable by the user you used to run cosmovisor.
+
+* Make sure that old binary version is correct, the following command should print `v3.0.2`
+```bash
+$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored version
+```
+
+* Stop your cosmovisor
+
+* Replace the old `cored` binary the new one:
+
+```bash
+# Move/Replace the new binary there
+mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored"
+```
+
+* Start cosmovisor

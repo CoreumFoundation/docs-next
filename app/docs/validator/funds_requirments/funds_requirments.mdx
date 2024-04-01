@@ -1,0 +1,18 @@
+# How much fund do I need to create a validator?
+
+We recommend you to have at least **20300 CORE** tokens to become a validator, and here is the reasoning behind it. You
+can have less or more but you should do your math and understand the process.
+
+One of the variables that you specify when creating a validator, is `min-self-delegation`, which indicates the minimum
+funds that you must stake with yourself so your validator might be active. The minimum value for `min-self-delegation` 
+is 20k core tokens. If you set that value higher when creating the validator, it means that you must always have that
+amount staked with yourself, and if your validator gets slashed, and your self delegation goes below `min-self-delegation`
+your validator will not be active unless you stake some more tokens. Given that, we suggest you stake some extra amount
+with yourself (e.g 1%) to cover the possible slashing of your validator.
+
+Having said all that, we recommend that you have at least 20300 core tokens, if you set the `min-self-delegation` to 20k,
+20k will go to self delegation, around 200 will stay there to cover possible timeout slashing (currently 0.5%), and you 
+will have 100 extra to cover for fees of transactions.
+
+As a side note, it should be mentioned that creating a validator with `min-self-delegation` does not guarantee you will 
+in the active set. In order to go to the active set, the total delegation of your validator should be in the top 32.

@@ -1,0 +1,47 @@
+# Coreum upgrade history
+
+## Run from genesis
+
+To run a node with full block history you should:
+
+1. Run it with cosmovisor
+2. Provide all the binaries the chain used from the genesis and place it in the right place.
+   For example, the network was upgraded two times with v1 and v2 upgrade,
+   and if you want to run node from the scratch, the dir structure should be next:
+
+```
+cosmovisor:
+---- genesis/bin/cored
+---- upgrades:
+-------- v1/bin/cored
+-------- v2/bin/cored
+```
+
+::: warning
+Please note, that each cored should have its own version, corresponding to the tables below.
+:::
+
+You can find needed `cored` version at [cored releases](https://github.com/CoreumFoundation/coreum/releases) page.
+
+All other steps are the same to [run full node flow](run-full.md), except state sync, which you should replace by steps
+mentioned in current section.
+
+### Mainnet
+
+| Name                                                 | Height     | Cored  | Cosmovisor |
+|------------------------------------------------------|------------|--------|------------|
+| genesis                                              | 0          | v1.0.0 | v1.3.0     |
+| [v2](https://explorer.coreum.com/coreum/proposals/5) | 6,947,500  | v2.0.2 | v1.3.0     |
+| [v3](https://explorer.coreum.com/coreum/proposals/8) | 13,480,000 | v3.0.3 | v1.5.0     |
+
+### Testnet
+
+| Name                                                                  | Height     | Cored  | Cosmovisor |
+|-----------------------------------------------------------------------|------------|--------|------------|
+| genesis                                                               | 0          | v0.1.1 | v1.3.0     |
+| [v1](https://explorer.testnet-1.coreum.dev/coreum/proposals/3)        | 3,233,700  | v1.0.0 | v1.3.0     |
+| [v2](https://explorer.testnet-1.coreum.dev/coreum/proposals/13)       | 8,728,400  | v2.0.0 | v1.3.0     |
+| [v2patch1](https://explorer.testnet-1.coreum.dev/coreum/proposals/15) | 9,122,200  | v2.0.2 | v1.3.0     |
+| [v3](https://explorer.testnet-1.coreum.dev/coreum/proposals/23)       | 14,980,000 | v3.0.0 | v1.5.0     |
+| [v3patch1](https://explorer.testnet-1.coreum.dev/coreum/proposals/24) | 15,385,000 | v3.0.1 | v1.5.0     |
+| [v3patch2](https://explorer.testnet-1.coreum.dev/coreum/proposals/25) | 15,684,437 | v3.0.3 | v1.5.0     |

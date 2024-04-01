@@ -1,0 +1,33 @@
+# Set connection config
+
+This document describes the common connection configuration for any type of node.
+
+* If you use your own or custom config, please set a `consensus.timeout_commit` to `1s`.
+
+* Set Node config
+```bash
+COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
+```
+
+* Your Node should have public IP, which you should set there:
+```bash
+COREUM_EXTERNAL_IP={YOUR_VM_PUBLIC_IP}
+```
+* Have you put your actual public ip in previous command?
+
+* (Optional) You can check if IP is public by sending ping command to its address from your local machine.
+
+* Update node config with COREUM_EXTERNAL_IP
+```bash
+crudini --set $COREUM_NODE_CONFIG p2p addr_book_strict false
+crudini --set $COREUM_NODE_CONFIG p2p external_address "\"tcp://$COREUM_EXTERNAL_IP:26656\""
+crudini --set $COREUM_NODE_CONFIG rpc laddr "\"tcp://0.0.0.0:26657\""
+```
+
+* To enable rpc and p2p connections, apply the following command in config.toml
+```bash
+crudini --set $COREUM_NODE_CONFIG rpc laddr "\"tcp://0.0.0.0:26657\""
+crudini --set $COREUM_NODE_CONFIG p2p laddr "\"tcp://0.0.0.0:26656\""
+```
+Pay attention that ports need to be properly exposed on the instance settings to allow outbound traffic to rpc, p2p, rest and grpc ports
+

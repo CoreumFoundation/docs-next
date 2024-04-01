@@ -1,0 +1,59 @@
+# Install cored
+
+This document provides the instruction on how to install the release binaries of the `cored`.
+
+Choose preferred way to install `cored`:
+
+1. [Install prebuilt **cored** (for linux OS only)](#install-prebuilt-cored)
+2. [Build from sources](#build-from-sources)
+
+## Install prebuilt `cored`
+
+Note: this option supports linux OS only. Also, it should be used in case you interact with the chain with the CLI only.
+
+* Verify that [network variables](network-variables.md) are set up correctly.
+
+* Create a proper folder structure for `cored`.
+
+    ```bash
+    mkdir -p $COREUM_HOME/bin
+    ```
+
+* Install the required util: `curl`.
+
+* Download `cored` and put it in the required folder.
+
+    ```bash
+    curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$COREUM_VERSION/$COREUM_BINARY_NAME
+    mv $COREUM_BINARY_NAME $COREUM_HOME/bin/cored
+    ```
+* * If you are getting 404 error at this step, run:
+    ```bash
+    echo https://github.com/CoreumFoundation/coreum/releases/download/$COREUM_VERSION/$COREUM_BINARY_NAME
+    ```
+    And check if it generates a right link. It should lead to one of our [releases](https://github.com/CoreumFoundation/coreum/releases).
+    If it doesn't - double-check your network variables.
+
+* Add `cored` to PATH and make it executable.
+
+    ```bash
+    export PATH=$PATH:$COREUM_HOME/bin
+    chmod +x $COREUM_HOME/bin/*
+    ```
+
+  **Attention!** *Set this variable globally so it will be automatically set after starting a new terminal session.*
+
+* Test `cored`.
+
+    ```bash
+    cored version
+    ```
+
+That's it, you have cored installed! You can return to previous Readme.
+
+## Build from sources
+
+The [Build and Play](https://github.com/CoreumFoundation/coreum/blob/master/README.md#build-and-play) doc describes the
+process of building and installation the `cored` binary from sources.
+
+That's it, you have cored installed! You can return to previous Readme.

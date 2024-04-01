@@ -1,0 +1,96 @@
+# Get started with Coreum
+
+- [Set up CLI Network Variables](network-variables.md)
+- [Install cored](cored.md)
+- [Send Multisig Transaction](multisig.md)
+- [Smart FT with Access Control List (ACL)](ft-acl.md)
+- **With CLI:**
+- - [Transfer funds with CLI](transfer-funds/cli.md)
+- **With Golang:**
+- - [Transfer funds with Golang](transfer-funds/go.md)
+- - [Create and manage my first FT with Golang](smart-tokens/asset-ft-go.md)
+- **With Typescript:**
+- - [Transfer funds with Typescript](transfer-funds/ts.md)
+- - [Using CosmJS](cosmjs.md)
+- - [Using coreum-js - js sdk to interact with the Coreum network](coreum-js.md)
+- **WASM:**
+- - [Deploy first WASM contract](wasm-first.md)
+- - [Smart FT with WASM](wasm-ft.md)
+- - [Testing multiple contracts](wasm-multitest.md)
+- - [Using CosmJS with WASM contracts](wasm-cosmjs.md)
+
+###### Use tokens
+- [Create and manage my first FT with CLI](smart-tokens/asset-ft.md)
+- [Create and manage my first FT with Golang](smart-tokens/asset-ft-go.md)
+- [Create and manage my first NFT with CLI](smart-tokens/asset-nft.md)
+- [Create and manage my first NFT with Golang](smart-tokens/asset-nft-go.md)
+- [Smart FT with WASM](wasm-ft.md)
+
+###### Integrate Coreum
+- [CEX integration](cex-integration.md)
+- [Wallet integration](wallet-integration.md)
+- [Explorer API](explorer-api.md)
+- [Gas price](gas-price.md)
+
+###### Build Apps
+- [Web app](web-app.md)
+- [AMM](amm.md)
+
+###### IBC
+- [IBC Channels](IBC/ibc-channels.md)
+- [IBC User Tutorial](IBC/ibc-tutorial-user.md)
+- [IBC WASM Transfer Tutorial](IBC/ibc-tutorial-wasm-transfer.md)
+- [IBC CLI Tutorial](IBC/ibc-tutorial-cli.md)
+- [IBC Contracts Tutorial](IBC/ibc-tutorial-contracts.md)
+
+## Useful links
+
+- You can ask questions at `#developers` channel at [this discord server](https://discord.gg/VgkhYeWmTd)
+- [Coreum Github](https://github.com/CoreumFoundation)
+
+## Cheatsheet
+
+- Coreum has three networks: `Mainnet`, `Testnet`, and `Devnet`.
+- Each network has its own native token.
+  The precision of the native token is 6 and the smallest fraction is called `denom`, and it has a `u` prefix, which stands for Micro(10^(-6)).
+- For instance, in the `Mainnet` `1CORE is equal to 1_000_000ucore`, where:
+- - `ucore` is a denom. An example of a denom is satoshi.
+- - `CORE` is a display name of a token used mostly for UI purposes. An example of a display name is BTC.
+- For the `Testnet` denom is `utestcore` and the display name is `TESTCORE`. Precision remains the same.
+- For the `Devnet` denom is `udevcore` and the display name is `DEVCORE`. Precision remains the same.
+- Pay attention, that all on-chain operations are made using subunits.
+- You can run Devnet network on your local machine using [crust](https://github.com/CoreumFoundation/crust)
+- You can get testnet/devnet tokens at the [faucet page](../tools-ecosystem/faucet.md)
+
+### How to interact with the network
+#### CLI
+You should [install CLI client first](cored.md)
+
+To target a specific network, you should export two environment variables for further use. For the testnet access do the following:
+```bash
+# CHAIN_ID we are going to use as a value for the --chain-id flag to target specific network
+export CHAIN_ID="coreum-testnet-1"
+# RPC_URL we are going to use as a value for the --node flag to target specific node within the given network
+export RPC_URL="https://full-node.testnet-1.coreum.dev:26657"
+```
+\* If you want to use other network, find CHAIN_ID and RPC_URL values on the [network variables](network-variables.md) page.
+
+You can run the next query to get the network status:
+```bash
+cored status # You can find the network ID and latest block height there
+```
+
+To see all available commands you can use `--help` flag.
+```bash
+cored --help
+```
+#### GRPC
+You can find proto files [here](https://github.com/CoreumFoundation/coreum/tree/master/proto/coreum)
+
+#### OpenAPI
+
+Note: we recommend using GRPC or CLI, since OpenAPI is deprecated by CosmosSDK.
+
+OpenAPI is accessible at port `1317`. The host for the specific network can be found on the [network variables page](network-variables.md)
+
+Testnet address is [https://full-node.testnet-1.coreum.dev:1317](https://full-node.testnet-1.coreum.dev:1317)
