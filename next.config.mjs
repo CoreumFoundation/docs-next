@@ -38,6 +38,7 @@ const nextConfig = {
   // Configure `pageExtensions`` to include MDX files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   reactStrictMode: true,
+  output: "standalone",
 };
 
 // Merge MDX config with Next.js config
