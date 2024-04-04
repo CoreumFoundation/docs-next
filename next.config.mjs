@@ -19,6 +19,7 @@ const nextConfig = {
     appDir: true,
     mdxRs: true,
   },
+  output: "standalone",
 };
 
 // Merge MDX config with Next.js config
