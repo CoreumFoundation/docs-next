@@ -205,6 +205,18 @@ export const SIDEBAR_ITEMS = [
             href: '/docs/tutorials/ibc/ibc-transfer-using-cli',
           },
         ],
+      },
+      {
+        name: 'Coreum WASM SDK',
+        href: '/docs/tutorials/coreum-wasm-sdk',
+      },
+      {
+        name: 'Coreum TS Protobuf',
+        href: '/docs/tutorials/coreum-ts-protobuf',
+      },
+      {
+        name: 'Crust for Development',
+        href: '/docs/tutorials/crust-for-development',
       }
     ],
   },

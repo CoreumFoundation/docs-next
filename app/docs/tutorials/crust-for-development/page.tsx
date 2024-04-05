@@ -1,5 +1,5 @@
 
-import Component from './protobuf.mdx';
+import Component from './crust-for-development.mdx';
 
 const Page = () => {
   return (

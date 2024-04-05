@@ -23,25 +23,25 @@ export const CardImage: React.FC<CardImageProps> = ({ type }) => {
             <ellipse cx="41.3993" cy="41.3996" rx="4.35" ry="4.35" fill="url(#paint5_linear_11942_64430)"/>
           </g>
           <defs>
-            <filter id="filter0_b_11942_64430" x="-29.75" y="-29.75" width="72.7002" height="72.7" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter0_b_11942_64430" x="-29.75" y="-29.75" width="72.7002" height="72.7" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="16"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64430"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_11942_64430" result="shape"/>
             </filter>
-            <filter id="filter1_b_11942_64430" x="-29.75" y="5.04956" width="72.7002" height="72.7" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter1_b_11942_64430" x="-29.75" y="5.04956" width="72.7002" height="72.7" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="16"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64430"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_11942_64430" result="shape"/>
             </filter>
-            <filter id="filter2_b_11942_64430" x="5.04932" y="-29.75" width="72.7002" height="72.7" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter2_b_11942_64430" x="5.04932" y="-29.75" width="72.7002" height="72.7" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="16"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64430"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_11942_64430" result="shape"/>
             </filter>
-            <filter id="filter3_b_11942_64430" x="5.04932" y="5.04956" width="72.7002" height="72.7" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter3_b_11942_64430" x="5.04932" y="5.04956" width="72.7002" height="72.7" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="16"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64430"/>
@@ -93,25 +93,25 @@ export const CardImage: React.FC<CardImageProps> = ({ type }) => {
             <ellipse cx="10.3713" cy="5.14283" rx="3.14283" ry="3.14283" fill="url(#paint5_linear_11942_64439)"/>
           </g>
           <defs>
-            <filter id="filter0_b_11942_64439" x="-9.19596" y="-40.038" width="92.8763" height="92.8761" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter0_b_11942_64439" x="-9.19596" y="-40.038" width="92.8763" height="92.8761" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="21.3333"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64439"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_11942_64439" result="shape"/>
             </filter>
-            <filter id="filter1_b_11942_64439" x="-7.6237" y="-13.6383" width="95.3905" height="95.3905" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter1_b_11942_64439" x="-7.6237" y="-13.6383" width="95.3905" height="95.3905" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="21.3333"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64439"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_11942_64439" result="shape"/>
             </filter>
-            <filter id="filter2_b_11942_64439" x="-37.1667" y="-9.23771" width="97.9046" height="97.9046" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter2_b_11942_64439" x="-37.1667" y="-9.23771" width="97.9046" height="97.9046" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="21.3333"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64439"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_11942_64439" result="shape"/>
             </filter>
-            <filter id="filter3_b_11942_64439" x="-35.4382" y="-40.6667" width="91.619" height="91.619" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter3_b_11942_64439" x="-35.4382" y="-40.6667" width="91.619" height="91.619" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="21.3333"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64439"/>
@@ -156,13 +156,13 @@ export const CardImage: React.FC<CardImageProps> = ({ type }) => {
           <ellipse cx="13.125" cy="18.375" rx="10.875" ry="10.875" fill="#336955"/>
           <circle cx="13.1256" cy="18.375" r="7.6125" transform="rotate(-45 13.1256 18.375)" fill="url(#paint2_linear_11942_64448)"/>
           <defs>
-            <filter id="filter0_b_11942_64448" x="-13.4375" y="-21.0386" width="91.1875" height="94.1533" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter0_b_11942_64448" x="-13.4375" y="-21.0386" width="91.1875" height="94.1533" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="16"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64448"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_11942_64448" result="shape"/>
             </filter>
-            <filter id="filter1_b_11942_64448" x="-12.9443" y="-9.67017" width="79.8184" height="67.4602" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter1_b_11942_64448" x="-12.9443" y="-9.67017" width="79.8184" height="67.4602" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="16"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64448"/>
@@ -201,25 +201,25 @@ export const CardImage: React.FC<CardImageProps> = ({ type }) => {
             <circle cx="39.3098" cy="39.8779" r="3.024" transform="rotate(-45 39.3098 39.8779)" fill="url(#paint4_linear_11942_64457)"/>
           </g>
           <defs>
-            <filter id="filter0_b_11942_64457" x="-29.6504" y="-28.5989" width="107.2" height="107.2" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter0_b_11942_64457" x="-29.6504" y="-28.5989" width="107.2" height="107.2" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="16"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64457"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_11942_64457" result="shape"/>
             </filter>
-            <filter id="filter1_b_11942_64457" x="-30.8501" y="-2.43848" width="74.0801" height="74.0801" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter1_b_11942_64457" x="-30.8501" y="-2.43848" width="74.0801" height="74.0801" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="16"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64457"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_11942_64457" result="shape"/>
             </filter>
-            <filter id="filter2_b_11942_64457" x="-12.0811" y="-31.6704" width="72.064" height="72.064" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter2_b_11942_64457" x="-12.0811" y="-31.6704" width="72.064" height="72.064" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="16"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64457"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_11942_64457" result="shape"/>
             </filter>
-            <filter id="filter3_b_11942_64457" x="4.28564" y="4.854" width="70.0483" height="70.0479" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter3_b_11942_64457" x="4.28564" y="4.854" width="70.0483" height="70.0479" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="16"/>
               <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_11942_64457"/>

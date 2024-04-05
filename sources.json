@@ -33,6 +33,18 @@
     {
       "page": "ibc",
       "source": ""
+    },
+    {
+      "page": "coreum-wasm-sdk",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum-wasm-sdk/main/README.md"
+    },
+    {
+      "page": "coreum-ts-protobuf",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum-ts-protobuf/main/README.md"
+    },
+    {
+      "page": "crust-for-development",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/crust/master/README.md"
     }
   ],
   "tutorials/get-started": [
@@ -341,6 +353,12 @@
     {
       "page": "blockchain-explorers",
       "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tools-ecosystem/block-explorer.md?token=GHSAT0AAAAAACMG5Y3ZPUAXLA4HFCUGSNQ6ZQO4MPQ"
+    }
+  ],
+  "coreum-rust-protobuf": [
+    {
+      "page": "rust-protobuf",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum-rust-protobuf/main/README.md"
     }
   ]
 }
