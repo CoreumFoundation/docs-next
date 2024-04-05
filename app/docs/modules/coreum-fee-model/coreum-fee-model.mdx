@@ -21,7 +21,9 @@ TERMS:
 The chart below presents the dependency between _short average block gas_ and minimum gas price
 required by the network on next block.
 
-{/* ![Fee model curve](./assets/curve.png) */}
+<center className="my-10">
+    <img src="/images/modules/coreum-fee-model/curve.png" alt="Fee model curve" />
+</center>
 
 There are four regions on the fee model curve:
 
@@ -38,9 +40,11 @@ value) being an output of the fee model is used as the minimum gas price for the
 
 The second chart presents the model behavior over time, presenting how changes in gas consumed by
 blocks affect the minimum gas price required by the network. The chart was calculated using fixed
-\*long average block gas` equal to 5 millions.
+`long average block gas` equal to 5 millions.
 
-{/* ![Fee model time series](./assets/time_series.png) */}
+<center className="my-10">
+    <img src="/images/modules/coreum-fee-model/time_series.png" alt="Fee model curve" />
+</center>
 
 -   x axis represents block number
 -   left y axis is related to `ShortEMA` (red line) and `LongEMA` (orange line),

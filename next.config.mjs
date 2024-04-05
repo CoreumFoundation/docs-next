@@ -9,6 +9,7 @@ import langJs from 'highlight.js/lib/languages/javascript';
 import langBash from 'highlight.js/lib/languages/bash';
 import langGolang from 'highlight.js/lib/languages/go';
 import langTs from 'highlight.js/lib/languages/typescript';
+import langJson from 'highlight.js/lib/languages/json';
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
@@ -24,6 +25,7 @@ const withMDX = createMDX({
           nginx: langNginx,
           go: langGolang,
           ts: langTs,
+          json: langJson,
         },
       }],
       rehypeIgnore,
