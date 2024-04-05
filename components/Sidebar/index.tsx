@@ -5,26 +5,45 @@ import classNames from 'classnames';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { NavigationItem } from '@/utils/types';
 import { SIDEBAR_ITEMS } from './constants';
+import Link from 'next/link';
 
 interface SidebarProps {
   children: React.ReactNode;
 }
 
+const renderLink = (item: NavigationItem) => {
+  if (item.external) {
+    return (
+      <a
+        href={item.href}
+        className={classNames(
+          'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-white capitalize'
+        )}
+        target='blank'
+      >
+        {item.name}
+      </a>
+    );
+  }
+
+  return (
+    <Link
+      href={item.href}
+      className={classNames(
+        'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-white capitalize'
+      )}
+    >
+      {item.name}
+    </Link>
+  );
+};
+
 const renderNavigationItems = (items: NavigationItem[]) => {
   if (!items) return null;
 
-  return items.map((item) => (
+  return items.map((item: NavigationItem) => (
     <li key={item.name}>
-      {!item.children ? (
-        <a
-          href={item.href}
-          className={classNames(
-            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-white capitalize'
-          )}
-        >
-          {item.name}
-        </a>
-      ) : (
+      {!item.children?.length ? renderLink(item) : (
         <Disclosure>
           {({ open }) => (
             <>
@@ -34,7 +53,7 @@ const renderNavigationItems = (items: NavigationItem[]) => {
                   'flex items-center w-full rounded-lg p-3 pr-2 gap-x-6 text-base font-normal text-[#868991] capitalize'
                 )}
               >
-                {item.href.length ? <a href={item.href}>{item.name}</a> : item.name}
+                {item.name}
                 <ChevronRightIcon
                   className={`w-3 h-3 ml-auto ${open ? 'transform rotate-90' : 'transform rotate-0'}`}
                 />
