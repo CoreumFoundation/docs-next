@@ -1,11 +1,11 @@
 
 import Component from './Introduction.mdx';
 
-const IntroductionPage = () => {
+const Page = () => {
   return (
     <Component />
   );
 };
 
-export default IntroductionPage;
+export default Page;
         

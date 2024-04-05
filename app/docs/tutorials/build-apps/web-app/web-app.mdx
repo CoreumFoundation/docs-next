@@ -1,0 +1,1391 @@
+# Web app
+
+This tutorial explains how to construct a web application for Coreum using the TS programming language and different
+libraries.
+This application can be used as a starter for a larger project with extended Coreum integration.
+
+## Prerequisites
+
+To complete this tutorial, you need to:
+
+* Install [yarn](https://yarnpkg.com/) package manager.
+* Be familiar with the TypeScript programming language and React framework.
+* Have a general understanding of how the Coreum blockchain works.
+
+## Used tools and frameworks
+
+* [Next.js](https://nextjs.org/) - react based framework for the web-applications.
+* [React](https://react.dev/) - a web framework for the component's rendering.
+* **cosmwasm-stargate** - the extension of [CosmJS](https://github.com/cosmos/cosmjs/), used for the interaction with
+  the Coreum chain.
+* [Daisyui](https://daisyui.com/) - UI styles and components.
+* [Keplr](https://www.keplr.app/) - wallet used for the transactions signing.
+
+## Source Code
+
+The complete app source code is located [here](https://github.com/CoreumFoundation/tutorials/tree/main/ts/web-app).
+You can use the README.md instruction to build and run the application.
+
+## Getting Started
+
+* Clone tutorials and keep the web-app only
+
+```bash
+git clone https://github.com/CoreumFoundation/tutorials.git coreum-tutorials
+cp -r coreum-tutorials/ts/web-app my-webapp
+rm -rf coreum-tutorials
+```
+
+* Open to the `my-webapp` with your favorite IDE to start the tutorial exploration.
+
+## Setting up the chain config
+
+By default, the application settings are set for the `testnet`, for development purpose, and located in
+the `.env.development` file.
+
+```
+PORT=3000
+NEXT_PUBLIC_CHAIN_ID=coreum-testnet-1
+NEXT_PUBLIC_CHAIN_NAME=Coreum Testnet
+NEXT_PUBLIC_CHAIN_BECH32_PREFIX=testcore
+NEXT_PUBLIC_CHAIN_RPC_ENDPOINT=https://full-node.testnet-1.coreum.dev:26657/
+NEXT_PUBLIC_CHAIN_REST_ENDPOINT=https://full-node.testnet-1.coreum.dev:1317/
+NEXT_PUBLIC_CHAIN_EXPLORER=https://explorer.testnet-1.coreum.dev/
+NEXT_PUBLIC_STAKING_DENOM=utestcore
+NEXT_PUBLIC_CHAIN_COIN_TYPE=990
+NEXT_PUBLIC_SITE_TITLE=Coreum starter
+NEXT_PUBLIC_SITE_ICON_URL="/coreum.svg"
+NEXT_PUBLIC_GAS_PRICE=0.0625utestcore
+```
+
+Parameters for other networks are available on the [network variables](network-variables.md) page.
+
+## Components
+
+### Root components
+
+Now we have the application, and are ready to start understanding its components.
+The first 2 components we need are `pages/_document.tsx` and `pages/_app.tsx`.
+
+* `pages/_document.tsx`
+
+```typescript jsx
+import Document, { Head, Html, Main, NextScript } from 'next/document'
+import daisyuiThemes from 'styles/daisyui-themes.json'
+
+const themes = Object.keys(daisyuiThemes) || ['']
+export const defaultTheme = themes[0]
+
+class MyDocument extends Document {
+    static async getInitialProps(ctx: any) {
+        const initialProps = await Document.getInitialProps(ctx)
+        return { ...initialProps }
+    }
+
+    render() {
+        return (
+            <Html data-theme={defaultTheme}>
+                <Head />
+                <body>
+                <Main />
+                <NextScript />
+                </body>
+            </Html>
+        )
+    }
+}
+
+export default MyDocument
+```
+
+* `pages/_app.tsx`:
+
+```typescript jsx
+import 'styles/globals.css'
+import type { AppProps } from 'next/app'
+import Layout from 'components/Layout'
+import { SigningClientProvider } from 'contexts/client'
+
+function MyApp({ Component, pageProps }: AppProps) {
+    return (
+        <SigningClientProvider>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </SigningClientProvider>
+    )
+}
+
+export default MyApp
+```
+
+Those components are the entry points for the application to start with.
+
+The `_document.tsx` file lets you overwrite the basic HTML structure on your app.
+
+The `_app.tsx` file lets you add a global layout component on all your project pages like Navbars and Footers etc.
+
+In our case the `_document.tsx` applies the `data-theme={defaultTheme}` for the application.
+And `_app.tsx` wraps all pages in the `SigningClientProvider` for the clients and wallets initialization and `Layout`,
+for the Header, Footer, etc.
+
+### SigningClientProvider
+
+The main responsibility of the component is to initialize all required application helpers which are in
+the `IClientContext` interface. The `useClientContext` returns its implementation.
+The primary subcomponents here are:
+
+* `connectWallet` - function to connect your keplr wallet.
+* `signingClient` - the RPC client which we use to interact with the node.
+* `coreumQueryClient` - the adapter to simplify the interaction with Coreum chain custom queries.
+
+`hooks/client.tsx` file:
+
+```typescript jsx
+export interface IClientContext {
+    walletAddress: string
+    signingClient: SigningCosmWasmClient | null
+    coreumQueryClient: CoreumQueryClient | null
+    loading: boolean
+    error: any
+    connectWallet: any
+    disconnect: Function
+}
+
+const PUBLIC_RPC_ENDPOINT = process.env.NEXT_PUBLIC_CHAIN_RPC_ENDPOINT || ''
+const PUBLIC_CHAIN_ID = process.env.NEXT_PUBLIC_CHAIN_ID
+const GAS_PRICE = process.env.NEXT_PUBLIC_GAS_PRICE || ''
+
+export const useClientContext = (): IClientContext => {
+    const [walletAddress, setWalletAddress] = useState('')
+    const [signingClient, setSigningClient] =
+        useState<SigningCosmWasmClient | null>(null)
+    const [tmClient, setTmClient] =
+        useState<Tendermint34Client | null>(null)
+    const [coreumQueryClient, setCoreumQueryClient] =
+        useState<CoreumQueryClient | null>(null)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+
+    const connectWallet = async () => {
+        setLoading(true)
+
+        try {
+            await connectKeplr()
+
+            // enable website to access keplr
+            await (window as any).keplr.enable(PUBLIC_CHAIN_ID)
+
+            // get offline signer for signing txs
+            const offlineSigner = await (window as any).getOfflineSigner(
+                PUBLIC_CHAIN_ID
+            )
+
+            // register default and custom messages
+            let registryTypes: ReadonlyArray<[string, GeneratedType]> = [
+                ...defaultRegistryTypes,
+                ...coreumRegistryTypes,
+            ]
+            const registry = new Registry(registryTypes)
+
+            // signing client
+            const client = await SigningCosmWasmClient.connectWithSigner(
+                PUBLIC_RPC_ENDPOINT,
+                offlineSigner,
+                {
+                    registry: registry,
+                    gasPrice: GasPrice.fromString(GAS_PRICE),
+                },
+            )
+            setSigningClient(client)
+
+            // rpc client
+            const tendermintClient = await Tendermint34Client.connect(PUBLIC_RPC_ENDPOINT);
+            setTmClient(tendermintClient)
+            const queryClient = new QueryClient(tendermintClient);
+            setCoreumQueryClient(new CoreumQueryClient(createProtobufRpcClient(queryClient)))
+
+            // get user address
+            const [{ address }] = await offlineSigner.getAccounts()
+            setWalletAddress(address)
+            setLoading(false)
+        } catch (error: any) {
+            console.error(error)
+            setError(error)
+        }
+    }
+
+    const disconnect = () => {
+        if (signingClient) {
+            signingClient.disconnect()
+        }
+        if (tmClient) {
+            tmClient.disconnect()
+        }
+        setWalletAddress('')
+        setSigningClient(null)
+        setLoading(false)
+    }
+
+    return {
+        walletAddress,
+        signingClient,
+        coreumQueryClient: coreumQueryClient,
+        loading,
+        error,
+        connectWallet,
+        disconnect,
+    }
+}
+
+```
+
+#### Connect Keplr
+
+The [Keplr](https://www.keplr.app/) wallet is used for the transaction signing. If you don't have it, install it for
+your browser. Once, it's installed, we can start the connection. The `connectKeplr` is initialized in the
+`IClientContext` implementation. We call that function to start communication of the web-app and the `Keplr` extension.
+As a first step, the `connectKeplr` checks whether you already have the chain settings in your extension, and if yes,
+it will just connect the wallet, if not it will provide the pop-up with the proposed settings for the chain. Those
+settings are static for the extension and if for some reason you want to update them, you need to manually remove the
+chain config from the `Keplr` and call `connectKeplr` one more time.
+
+`services/keplr.tsx` file:
+
+```typescript jsx
+export const connectKeplr = async () => {
+    // Keplr extension injects the offline signer that is compatible with cosmJS.
+    // You can get this offline signer from `window.getOfflineSigner(chainId:string)` after load event.
+    // And it also injects the helper function to `window.keplr`.
+    // If `window.getOfflineSigner` or `window.keplr` is null, Keplr extension may be not installed on browser.
+    if (!window.getOfflineSigner || !window.keplr) {
+        alert('Please install keplr extension')
+    } else {
+        if (window.keplr.experimentalSuggestChain) {
+            const stakingDenom = convertFromMicroDenom(
+                process.env.NEXT_PUBLIC_STAKING_DENOM || ''
+            )
+            const gasPrice = Number((process.env.NEXT_PUBLIC_GAS_PRICE || '').replace(process.env.NEXT_PUBLIC_STAKING_DENOM || '', ''));
+
+            try {
+                // Keplr v0.6.4 introduces an experimental feature that supports the feature to suggests the chain from a webpage.
+                // cosmoshub-3 is integrated to Keplr so the code should return without errors.
+                // The code below is not needed for cosmoshub-3, but may be helpful if you’re adding a custom chain.
+                // If the user approves, the chain will be added to the user's Keplr extension.
+                // If the user rejects it or the suggested chain information doesn't include the required fields, it will throw an error.
+                // If the same chain id is already registered, it will resolve and not require the user interactions.
+                await window.keplr.experimentalSuggestChain({
+                    // Chain-id of the Cosmos SDK chain.
+                    chainId: process.env.NEXT_PUBLIC_CHAIN_ID,
+                    // The name of the chain to be displayed to the user.
+                    chainName: process.env.NEXT_PUBLIC_CHAIN_NAME,
+                    // RPC endpoint of the chain.
+                    rpc: process.env.NEXT_PUBLIC_CHAIN_RPC_ENDPOINT,
+                    // REST endpoint of the chain.
+                    rest: process.env.NEXT_PUBLIC_CHAIN_REST_ENDPOINT,
+                    // Staking coin information
+                    stakeCurrency: {
+                        // Coin denomination to be displayed to the user.
+                        coinDenom: stakingDenom,
+                        // Actual denom (i.e. uatom, uscrt) used by the blockchain.
+                        coinMinimalDenom: process.env.NEXT_PUBLIC_STAKING_DENOM,
+                        // # of decimal points to convert minimal denomination to user-facing denomination.
+                        coinDecimals: 6,
+                        // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
+                        // You can get id from https://api.coingecko.com/api/v3/coins/list if it is listed.
+                        // coinGeckoId: ""
+                    },
+                    // (Optional) If you have a wallet webpage used to stake the coin then provide the url to the website in `walletUrlForStaking`.
+                    // The 'stake' button in Keplr extension will link to the webpage.
+                    // walletUrlForStaking: "",
+                    // The BIP44 path.
+                    bip44: {
+                        // You can only set the coin type of BIP44.
+                        // 'Purpose' is fixed to 44.
+                        coinType: Number(process.env.NEXT_PUBLIC_CHAIN_COIN_TYPE),
+                    },
+                    // Bech32 configuration to show the address to user.
+                    bech32Config: {
+                        bech32PrefixAccAddr: process.env.NEXT_PUBLIC_CHAIN_BECH32_PREFIX,
+                        bech32PrefixAccPub: `${process.env.NEXT_PUBLIC_CHAIN_BECH32_PREFIX}pub`,
+                        bech32PrefixValAddr: `${process.env.NEXT_PUBLIC_CHAIN_BECH32_PREFIX}valoper`,
+                        bech32PrefixValPub: `${process.env.NEXT_PUBLIC_CHAIN_BECH32_PREFIX}valoperpub`,
+                        bech32PrefixConsAddr: `${process.env.NEXT_PUBLIC_CHAIN_BECH32_PREFIX}valcons`,
+                        bech32PrefixConsPub: `${process.env.NEXT_PUBLIC_CHAIN_BECH32_PREFIX}valconspub`,
+                    },
+                    // List of all coin/tokens used in this chain.
+                    currencies: [
+                        {
+                            // Coin denomination to be displayed to the user.
+                            coinDenom: stakingDenom,
+                            // Actual denom (i.e. uatom, uscrt) used by the blockchain.
+                            coinMinimalDenom: process.env.NEXT_PUBLIC_STAKING_DENOM,
+                            // # of decimal points to convert minimal denomination to user-facing denomination.
+                            coinDecimals: 6,
+                            // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
+                            // You can get id from https://api.coingecko.com/api/v3/coins/list if it is listed.
+                            // coinGeckoId: ""
+                        },
+                    ],
+                    // List of coin/tokens used as a fee token in this chain.
+                    feeCurrencies: [
+                        {
+                            // Coin denomination to be displayed to the user.
+                            coinDenom: stakingDenom,
+                            // Actual denom (i.e. uatom, uscrt) used by the blockchain.
+                            coinMinimalDenom: process.env.NEXT_PUBLIC_STAKING_DENOM,
+                            // # of decimal points to convert minimal denomination to user-facing denomination.
+                            coinDecimals: 6,
+                            // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
+                            // You can get id from https://api.coingecko.com/api/v3/coins/list if it is listed.
+                            // coinGeckoId: ""
+                        },
+                    ],
+                    // (Optional) The number of the coin type.
+                    // This field is only used to fetch the address from ENS.
+                    // Ideally, it is recommended to be the same with BIP44 path's coin type.
+                    // However, some early chains may choose to use the Cosmos Hub BIP44 path of '118'.
+                    // So, this is separated to support such chains.
+                    coinType: Number(process.env.NEXT_PUBLIC_CHAIN_COIN_TYPE),
+                    // (Optional) This is used to set the fee of the transaction.
+                    // If this field is not provided, Keplr extension will set the default gas price as (low: 0.01, average: 0.025, high: 0.04).
+                    // Currently, Keplr doesn't support dynamic calculation of the gas prices based on on-chain data.
+                    // Make sure that the gas prices are higher than the minimum gas prices accepted by chain validators and RPC/REST endpoint.
+                    gasPriceStep: {
+                        low: gasPrice,
+                        average: gasPrice,
+                        high: gasPrice,
+                    },
+                })
+            } catch {
+                alert('Failed to suggest the chain')
+            }
+        } else {
+            alert('Please use the recent version of keplr extension')
+        }
+    }
+}
+```
+
+#### Initialize signingClient
+
+The `signingClient` for the application is the `SigningCosmWasmClient`. The client is used for interacting with the
+node.
+It builds transactions, estimates the gas, and additionally provides some default queries. The default queries
+are the cosmos-sdk standard queries, such as get balance, get delegation reward etc. The `SigningCosmWasmClient` is
+extended `@cosmjs/stargate` client, with additional functions to interact with the `wasm` contracts deployed on the
+Coreum chain.
+
+```typescript jsx
+// register default and custom messages
+let registryTypes: ReadonlyArray<[string, GeneratedType]> = [
+    ...defaultRegistryTypes,
+    ...coreumRegistryTypes,
+]
+const registry = new Registry(registryTypes)
+
+// signing client
+const client = await SigningCosmWasmClient.connectWithSigner(
+    PUBLIC_RPC_ENDPOINT,
+    offlineSigner,
+    {
+        registry: registry,
+        gasPrice: GasPrice.fromString(GAS_PRICE),
+    },
+)
+```
+
+In this code snippet, we initialize the `SigningCosmWasmClient`. We use the `SigningCosmWasmClient.connectWithSigner`
+function and pass the additional none standard option `registry`, where the `registry` is the combination of two
+registries
+`defaultRegistryTypes` which provides the registry for the cosmos-sdk default transactions such as sending coins,
+delegate, etc. And `coreumRegistryTypes` for the Coreum custom transactions, such as creating NFT class, mint NFT etc.
+Use the [API page](../api/api.md) to get the list of all supported transactions (the transactions are started from `Msg`
+and located in the `tx.proto` files).
+
+#### Initialize coreumQueryClient
+
+The `coreumQueryClient` is the adapter to query the Coreum models using the RPC requests. You can use it to get the
+minted NFTs or the NFT owner, for example. Use the [API page](../api/api.md) to get the list of all supported queries
+(the queries are in the `Query` proto services and located in the `query.proto` files).
+
+#### Extend Coreum transactions and queries.
+
+The [Using CosmJS#](cosmjs.md) explains how to generate the TypeScript code from the protos, here for the simplicity
+we use the `coreum/proto-ts` files, which are already generated.
+
+The `coreum/tx.ts` is responsible for simplifying the transaction creation by wrapping them into the namespaces
+and helper functions. Additionally, it provides the transactions registry used in the `signingClient`. If you need
+additional Coreum transactions for your application, register them here.
+
+`coreum/tx.ts` file:
+
+```typescript jsx
+import {
+    DeepPartial,
+    Exact,
+    MsgIssueClass as AssetNFTMsgIssueClass,
+    MsgMint as AssetNFTMsgMint,
+} from "./proto-ts/coreum/asset/nft/v1/tx";
+import { MsgSend as NFTMsgSend } from "./proto-ts/coreum/nft/v1beta1/tx";
+import { GeneratedType } from "@cosmjs/proto-signing";
+
+export const coreumRegistryTypes: ReadonlyArray<[string, GeneratedType]> = [
+    ["/coreum.asset.nft.v1.MsgIssueClass", AssetNFTMsgIssueClass],
+    ["/coreum.asset.nft.v1.MsgMint", AssetNFTMsgMint],
+    ["/coreum.nft.v1beta1.MsgSend", NFTMsgSend],
+];
+
+export namespace AssetNFT {
+    export const MsgIssueClass = function <I extends Exact<DeepPartial<AssetNFTMsgIssueClass>, I>>(object: I) {
+        return {
+            typeUrl: "/coreum.asset.nft.v1.MsgIssueClass",
+            value: AssetNFTMsgIssueClass.fromPartial(object),
+        };
+    };
+
+    export const MsgMint = function <I extends Exact<DeepPartial<AssetNFTMsgMint>, I>>(object: I) {
+        return {
+            typeUrl: "/coreum.asset.nft.v1.MsgMint",
+            value: AssetNFTMsgMint.fromPartial(object),
+        };
+    };
+}
+
+export namespace NFT {
+    export const MsgSend = function <I extends Exact<DeepPartial<NFTMsgSend>, I>>(object: I) {
+        return {
+            typeUrl: "/coreum.nft.v1beta1.MsgSend",
+            value: NFTMsgSend.fromPartial(object),
+        };
+    };
+}
+```
+
+The `coreum/query.ts` is responsible for simplifying the Coreum queries execution. If you need
+additional Coreum queries, and them here.
+
+`coreum/query.ts` file:
+
+```typescript jsx
+import { QueryClientImpl as NFTQueryClient } from "./proto-ts/coreum/nft/v1beta1/query";
+
+interface Rpc {
+    request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
+}
+
+export class QueryClient {
+    private readonly nftClient: NFTQueryClient;
+
+    constructor(rpc: Rpc) {
+        this.nftClient = new NFTQueryClient(rpc)
+    }
+
+    public NFTClient(): NFTQueryClient {
+        return this.nftClient
+    }
+}
+```
+
+### Nav
+
+The `Nav` is the top navbar. It contains the references to root page and `Connect Wallet` button, which calls the
+`connectWallet` or `disconnect` depending on the page state.
+
+`components/Nav.tsx` file:
+
+```typescript jsx
+import { useSigningClient } from 'contexts/client'
+import Link from 'next/link'
+import Image from 'next/image'
+import Router from 'next/router'
+
+function Nav() {
+    const { walletAddress, connectWallet, disconnect } = useSigningClient()
+    const handleConnect = () => {
+        if (walletAddress.length === 0) {
+            connectWallet()
+        } else {
+            disconnect()
+            Router.push('/')
+        }
+    }
+
+    const PUBLIC_SITE_ICON_URL = process.env.NEXT_PUBLIC_SITE_ICON_URL || ''
+
+    return (
+        <div className="border-b w-screen px-2 md:px-16">
+            <nav
+                className="flex flex-wrap text-center md:text-left md:flex flex-row w-full justify-between items-center py-4 ">
+                <div className="flex items-center">
+                    <Link href="/">
+                        <a>
+                            {PUBLIC_SITE_ICON_URL.length > 0 ? (
+                                <Image
+                                    src={PUBLIC_SITE_ICON_URL}
+                                    height={32}
+                                    width={32}
+                                    alt="Logo"
+                                />
+                            ) : (
+                                <span className="text-2xl">⚛️ </span>
+                            )}
+                        </a>
+                    </Link>
+                    <Link href="/">
+                        <a className="ml-1 md:ml-2 link link-hover font-semibold text-xl md:text-2xl align-top">
+                            {process.env.NEXT_PUBLIC_SITE_TITLE}
+                        </a>
+                    </Link>
+                </div>
+                <div className="flex flex-grow lg:flex-grow-0 max-w-full">
+                    <button
+                        className="block btn btn-outline btn-primary w-full max-w-full truncate"
+                        onClick={handleConnect}
+                    >
+                        {walletAddress || 'Connect Wallet'}
+                    </button>
+                </div>
+            </nav>
+        </div>
+    )
+}
+
+export default Nav
+
+```
+
+### WalletLoader
+
+The `WalletLoader` is the component for the pages which require the `Keplr` wallet to be connected.
+In case the `Keplr` is connected it will show the child page content, if not, then will propose to connect to
+the `Keplr`.
+
+`components/Nav.tsx` file:
+
+```typescript jsx
+import { ReactNode } from 'react'
+import { useSigningClient } from 'contexts/client'
+import Loader from './Loader'
+
+function WalletLoader({
+                          children,
+                          loading = false,
+                      }: {
+    children: ReactNode
+    loading?: boolean
+}) {
+    const {
+        walletAddress,
+        loading: clientLoading,
+        error,
+        connectWallet,
+    } = useSigningClient()
+
+    if (loading || clientLoading) {
+        return (
+            <div className="justify-center">
+                <Loader />
+            </div>
+        )
+    }
+
+    if (walletAddress === '') {
+        return (
+            <div className="max-w-full">
+                <h1 className="text-6xl font-bold">
+                    Welcome to{' '}
+                    <a className="link link-primary link-hover" href="https://coreum.com/">
+                        Coreum!
+                    </a>
+                </h1>
+
+                <p className="mt-3 text-2xl">
+                    Get started by installing{' '}
+                    <a
+                        className="pl-1 link link-primary link-hover"
+                        href="https://keplr.app/"
+                    >
+                        Keplr wallet
+                    </a>
+                </p>
+
+                <div className="flex flex-wrap items-center justify-around md:max-w-4xl mt-6 sm:w-full">
+                    <button
+                        className="p-6 mt-6 text-left border border-secondary hover:border-primary w-96 rounded-xl hover:text-primary focus:text-primary-focus"
+                        onClick={connectWallet}
+                    >
+                        <h3 className="text-2xl font-bold">Connect your wallet &rarr;</h3>
+                        <p className="mt-4 text-xl">
+                            Get your Keplr wallet connected now and start using it.
+                        </p>
+                    </button>
+                </div>
+            </div>
+        )
+    }
+
+    if (error) {
+        return <code>{JSON.stringify(error)}</code>
+    }
+
+    return <>{children}</>
+}
+
+export default WalletLoader
+
+```
+
+## Pages
+
+In our `next.js` application, all pages are located in the `pages` directory. The `next.js` handles the routing for us
+and by default the rote is equal to page name. For example `/nft` to render the `nft.tsx`. The exception is `index.tsx`
+in it will be rendered on the `/` route.
+
+#### Index
+
+The index page is an entry point for the examples, it contains the links to all examples, provided by the application,
+and link to the Coreum faucet, which you can use to fund your testing account.
+
+`pages/index.tsx` file.
+
+```typescript jsx
+import type { NextPage } from 'next'
+import Link from 'next/link'
+import WalletLoader from 'components/WalletLoader'
+import { useSigningClient } from 'contexts/client'
+
+const Home: NextPage = () => {
+    const { walletAddress } = useSigningClient()
+
+    return (
+        <WalletLoader>
+            <h1 className="text-6xl font-bold">
+                Welcome to {process.env.NEXT_PUBLIC_CHAIN_NAME} !
+            </h1>
+
+            <div className="mt-3 text-2xl">
+                Your wallet address is:{' '}
+                <pre></pre>
+                <Link href={process.env.NEXT_PUBLIC_CHAIN_EXPLORER + "coreum/accounts/" + walletAddress} passHref>
+                    <a target="_blank" rel="noreferrer"
+                       className="font-mono break-all whitespace-pre-wrap link link-primary">
+                        {walletAddress}
+                    </a>
+                </Link>
+
+            </div>
+
+            <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 max-w-full sm:w-full">
+                <Link href="https://docs.coreum.dev/tools-ecosystem/faucet.html" passHref>
+                    <a target="_blank" rel="noreferrer"
+                       className="p-6 mt-6 text-left border border-secondary hover:border-primary w-96 rounded-xl hover:text-primary focus:text-primary-focus">
+                        <h3 className="text-2xl font-bold">Fund wallet &rarr;</h3>
+                        <p className="mt-4 text-xl">
+                            Fund you wallet for the {process.env.NEXT_PUBLIC_CHAIN_NAME}.
+                        </p>
+                    </a>
+                </Link>
+                <Link href="/send" passHref>
+                    <a
+                        className="p-6 mt-6 text-left border border-secondary hover:border-primary w-96 rounded-xl hover:text-primary focus:text-primary-focus">
+                        <h3 className="text-2xl font-bold">Send to wallet &rarr;</h3>
+                        <p className="mt-4 text-xl">
+                            Execute a transaction to send funds to a wallet address.
+                        </p>
+                    </a>
+                </Link>
+                <Link href="/nft" passHref>
+                    <a
+                        className="p-6 mt-6 text-left border border-secondary hover:border-primary w-96 rounded-xl hover:text-primary focus:text-primary-focus">
+                        <h3 className="text-2xl font-bold">NFT &rarr;</h3>
+                        <p className="mt-4 text-xl">
+                            Create you NFT class and mint NFTs for it.
+                        </p>
+                    </a>
+                </Link>
+            </div>
+
+
+        </WalletLoader>
+    )
+}
+
+export default Home
+```
+
+#### Send
+
+The send page is an example that shows how to use the default `signingClient` and standard built-in queries and
+transactions.
+
+`pages/send.tsx` file.
+
+```typescript jsx
+import { useEffect, useState } from 'react'
+import type { NextPage } from 'next'
+import { Coin } from '@cosmjs/amino'
+import WalletLoader from 'components/WalletLoader'
+import { useSigningClient } from 'contexts/client'
+import { convertDenomToMicroDenom, convertFromMicroDenom, convertMicroDenomToDenom, } from 'util/conversion'
+
+const PUBLIC_CHAIN_NAME = process.env.NEXT_PUBLIC_CHAIN_NAME
+const PUBLIC_STAKING_DENOM = process.env.NEXT_PUBLIC_STAKING_DENOM || ''
+
+const Send: NextPage = () => {
+    const { walletAddress, signingClient } = useSigningClient()
+    const [balance, setBalance] = useState('')
+    const [loadedAt, setLoadedAt] = useState(new Date())
+    const [loading, setLoading] = useState(false)
+    const [recipientAddress, setRecipientAddress] = useState('')
+    const [sendAmount, setSendAmount] = useState('')
+    const [success, setSuccess] = useState('')
+    const [error, setError] = useState('')
+
+    useEffect(() => {
+        if (!signingClient || walletAddress.length === 0) {
+            return
+        }
+        setError('')
+        setSuccess('')
+
+        signingClient
+            .getBalance(walletAddress, PUBLIC_STAKING_DENOM)
+            .then((response: any) => {
+                const { amount, denom }: { amount: number; denom: string } = response
+                setBalance(
+                    `${convertMicroDenomToDenom(amount)} ${convertFromMicroDenom(denom)}`
+                )
+            })
+            .catch((error) => {
+                setError(`Error! ${error.message}`)
+            })
+    }, [signingClient, walletAddress, loadedAt])
+
+    const handleSend = () => {
+        setError('')
+        setSuccess('')
+        setLoading(true)
+        const amount: Coin[] = [
+            {
+                amount: convertDenomToMicroDenom(sendAmount),
+                denom: PUBLIC_STAKING_DENOM,
+            },
+        ]
+
+        signingClient
+            ?.sendTokens(walletAddress, recipientAddress, amount, 'auto')
+            .then(() => {
+                const message = `Success! Sent ${sendAmount}  ${convertFromMicroDenom(
+                    PUBLIC_STAKING_DENOM
+                )} to ${recipientAddress}.`
+
+                setLoadedAt(new Date())
+                setLoading(false)
+                setSendAmount('')
+                setSuccess(message)
+            })
+            .catch((error) => {
+                setLoading(false)
+                setError(`Error! ${error.message}`)
+            })
+    }
+    return (
+        <WalletLoader loading={loading}>
+            <p className="text-2xl">Your wallet has {balance}</p>
+
+            <h1 className="text-5xl font-bold my-8">
+                Send to {PUBLIC_CHAIN_NAME} recipient wallet address:
+            </h1>
+            <div className="flex w-full max-w-xl">
+                <input
+                    type="text"
+                    id="recipient-address"
+                    className="input input-bordered focus:input-primary input-lg rounded-full flex-grow font-mono text-center text-lg"
+                    placeholder={`${PUBLIC_CHAIN_NAME} recipient wallet address...`}
+                    onChange={(event) => setRecipientAddress(event.target.value)}
+                    value={recipientAddress}
+                />
+            </div>
+            <div className="flex flex-col md:flex-row mt-4 text-2xl w-full max-w-xl justify-between">
+                <div className="relative rounded-full shadow-sm md:mr-2">
+                    <input
+                        type="number"
+                        id="send-amount"
+                        className="input input-bordered focus:input-primary input-lg w-full pr-24 rounded-full text-center font-mono text-lg "
+                        placeholder="Amount..."
+                        step="0.1"
+                        onChange={(event) => setSendAmount(event.target.value)}
+                        value={sendAmount}
+                    />
+                    <span
+                        className="absolute top-0 right-0 bottom-0 px-4 py-5 rounded-r-full bg-secondary text-base-100 text-sm">
+            {convertFromMicroDenom(PUBLIC_STAKING_DENOM)}
+          </span>
+                </div>
+                <button
+                    className="mt-4 md:mt-0 btn btn-primary btn-lg font-semibold hover:text-base-100 text-2xl rounded-full flex-grow"
+                    onClick={handleSend}
+                >
+                    SEND
+                </button>
+            </div>
+            <div className="mt-4 flex flex-col w-full max-w-xl">
+                {success.length > 0 && (
+                    <div className="alert alert-success">
+                        <div className="flex-1 items-center">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                className="flex-shrink-0 w-6 h-6 mx-2 stroke-current flex-shrink-0"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                                ></path>
+                            </svg>
+                            <label className="flex-grow break-all">{success}</label>
+                        </div>
+                    </div>
+                )}
+                {error.length > 0 && (
+                    <div className="alert alert-error">
+                        <div className="flex-1 items-center">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                className="w-6 h-6 mx-2 stroke-current flex-shrink-0"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
+                                ></path>
+                            </svg>
+                            <label className="flex-grow break-all">{error}</label>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </WalletLoader>
+    )
+}
+
+export default Send
+```
+
+There are 2 most interesting parts for us:
+
+* `getBalance`
+
+```typescript jsx
+signingClient
+    .getBalance(walletAddress, PUBLIC_STAKING_DENOM)
+    .then((response: any) => {
+        const { amount, denom }: { amount: number; denom: string } = response
+        setBalance(
+            `${convertMicroDenomToDenom(amount)} ${convertFromMicroDenom(denom)}`
+        )
+    })
+    .catch((error) => {
+        setError(`Error! ${error.message}`)
+    })
+```
+
+In this code snippet, we query for the user's connected wallet balance and show it using the `balance` variable.
+The `convertMicroDenomToDenom` and `convertFromMicroDenom` functions are used here to convert the six decimals
+int `amount` to float and `utestcore` prefix to `testcore`, because the `u` means the micro.
+
+* `sendTokens`
+
+```typescript jsx
+signingClient
+    ?.sendTokens(walletAddress, recipientAddress, amount, 'auto')
+    .then(() => {
+        const message = `Success! Sent ${sendAmount}  ${convertFromMicroDenom(
+            PUBLIC_STAKING_DENOM
+        )} to ${recipientAddress}.`
+
+        setLoadedAt(new Date())
+        setLoading(false)
+        setSendAmount('')
+        setSuccess(message)
+    })
+    .catch((error) => {
+        setLoading(false)
+        setError(`Error! ${error.message}`)
+    })
+```
+
+In this code snippet, we send the tokens from the connected wallet to the wallet from the input. Under the hood the
+signing client will build, cosmos-sdk `bank.Send` transaction, estimate it, because we use `gas = auto` and propose
+your keplr wallet to sign it. If you accept it, the transaction will be broadcast.
+
+#### NFT
+
+The NFT page is an example that shows how to use custom Coreum queries and transactions. On this page, we create a new
+NFT class, allow to mint new NFT tokens and change the tokens' ownership, by transferring them to other accounts.
+
+`pages/nft.tsx` file.
+
+```typescript jsx
+import { useEffect, useState } from 'react'
+import type { NextPage } from 'next'
+import { sha256 } from 'js-sha256'
+
+import WalletLoader from 'components/WalletLoader'
+import { useSigningClient } from 'contexts/client'
+import { QueryNFTsResponse } from "../coreum/proto-ts/coreum/nft/v1beta1/query";
+import { AssetNFT as AssetNFTTx, NFT as NFTTx } from "../coreum/tx";
+import { EncodeObject } from "@cosmjs/proto-signing";
+
+const nftClassSymbol = `kittens${Date.now()}`
+
+const generateKittenURL = () => {
+    return `https://placekitten.com/${200 + Math.floor(Math.random() * 100)`}/${200 + Math.floor(Math.random() * 100)}`
+}
+
+const NFT: NextPage = () => {
+    const { walletAddress, signingClient, coreumQueryClient } = useSigningClient()
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
+    const [classCreated, setClassCreated] = useState(false)
+    const [nftClassDescription, setNFTClassDescription] = useState('')
+    const [nfts, setNfts] = useState<{ classId: string; id: string, uri: string, uriHash: string, owner: string }[]>([])
+    const [kittenURI, setKittenURI] = useState(generateKittenURL())
+    const [transferID, setTransferID] = useState("")
+    const [recipientAddress, setRecipientAddress] = useState('')
+    const nftClassID = `${nftClassSymbol}-${walletAddress}`
+
+    useEffect(() => {
+        if (!signingClient || walletAddress.length === 0) {
+            return
+        }
+        setError('')
+        setLoading(true)
+        queryClass()
+
+    }, [signingClient, walletAddress])
+
+    const queryNFTs = () => {
+        setLoading(true)
+        coreumQueryClient?.NFTClient().NFTs({
+            classId: nftClassID,
+            owner: "",
+        }).then(async (res: QueryNFTsResponse) => {
+            const nfts = await Promise.all(
+                res.nfts.map(async (nft) => {
+                    const resOwner = await coreumQueryClient?.NFTClient().Owner({
+                        classId: nft.classId,
+                        id: nft.id
+                    })
+                    return {
+                        classId: nft.classId,
+                        id: nft.id,
+                        uri: nft.uri,
+                        uriHash: nft.uriHash,
+                        owner: resOwner.owner,
+                    }
+                })
+            )
+            nfts.sort((a, b) => a.id.localeCompare(b.id))
+            setNfts(nfts)
+            setLoading(false)
+        })
+            .catch((error) => {
+                setLoading(false)
+                setError(`Error! ${error.message}`)
+            })
+    }
+
+    const queryClass = () => {
+        // check that class is already created
+        coreumQueryClient?.NFTClient().Class({ classId: nftClassID }).then(() => {
+            queryNFTs()
+            setClassCreated(true)
+        }).catch((error) => {
+            setLoading(false)
+            if (error.message.includes("not found class")) {
+                setClassCreated(false)
+                return
+            }
+            setError(`Error! ${error.message}`)
+        })
+    }
+
+    const createNFTClass = () => {
+        setError('')
+        setLoading(true)
+
+        sendTx([AssetNFTTx.MsgIssueClass({
+            issuer: walletAddress,
+            symbol: nftClassSymbol,
+            description: nftClassDescription,
+        })]).then((passed) => {
+            setClassCreated(passed)
+        })
+    }
+
+    const changeKitten = () => {
+        setKittenURI(generateKittenURL())
+    }
+
+    const mintKitten = () => {
+        setError('')
+        setLoading(true)
+        sendTx([AssetNFTTx.MsgMint({
+            sender: walletAddress,
+            classId: nftClassID,
+            id: `kitten-${Date.now()}`,
+            uri: kittenURI,
+            uriHash: sha256.create().update(kittenURI).hex()
+        })]).then((passed) => {
+            if (passed) {
+                queryNFTs()
+            }
+        })
+    }
+
+    const cancelTransferOwnership = () => {
+        setError('')
+        setTransferID('')
+        setRecipientAddress('')
+    }
+
+    const transferOwnership = () => {
+        setError('')
+        setLoading(true)
+        sendTx([NFTTx.MsgSend({
+            sender: walletAddress,
+            classId: nftClassID,
+            id: transferID,
+            receiver: recipientAddress,
+        })]).then((passed) => {
+            if (passed) {
+                cancelTransferOwnership()
+                queryNFTs()
+            }
+        })
+    }
+
+    const sendTx = async (msgs: readonly EncodeObject[]) => {
+        try {
+            const resp = await signingClient
+                ?.signAndBroadcast(walletAddress, msgs, 'auto')
+            console.log(`Tx hash: ${resp?.transactionHash}`)
+            setLoading(false)
+            return true
+        } catch (error: any) {
+            console.error(error)
+            setLoading(false)
+            setError(`Error! ${error}`)
+            return false
+        }
+    }
+
+    return (
+        <WalletLoader loading={loading}>
+            {error.length > 0 && (
+                <div className="alert alert-error">
+                    <label className="flex-grow break-all">{error}</label>
+                </div>
+            )}
+            {transferID == "" && !classCreated && (
+                <div>
+                    <h1 className="text-3xl font-bold my-8">
+                        Create your {nftClassSymbol} NFT class
+                    </h1>
+                    <div className="flex w-full max-w-xl">
+                        <input
+                            type="text"
+                            id="description"
+                            className="input input-bordered focus:input-primary input-lg rounded-full flex-grow font-mono text-center text-lg"
+                            placeholder={`Class description`}
+                            onChange={(event) => setNFTClassDescription(event.target.value)}
+                            value={nftClassDescription}
+                        />
+                        <button
+                            className="mt-4 md:mt-0 btn btn-primary btn-lg font-semibold hover:text-base-100 text-2xl rounded-full flex-grow"
+                            onClick={createNFTClass}
+                        >
+                            Create
+                        </button>
+                    </div>
+
+                </div>
+
+            )}
+            {transferID == "" && classCreated && (
+                <div>
+                    <h1 className="text-3xl font-bold py-4">
+                        Welcome to your {nftClassSymbol} collection!
+                    </h1>
+                    <h1 className="text-m italic pb-4">
+                        {nftClassDescription}
+                    </h1>
+                    <div className="grid grid-flow-col auto-cols-max">
+                        <div>
+                            <table className="table">
+                                <thead>
+                                <tr>
+                                    <th className="w-24">Image</th>
+                                    <th className="w-40">ID</th>
+                                    <th className="w-40">Owner</th>
+                                    <th className="w-96">Hash</th>
+                                    <th className="w-24"></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    nfts.map((l, k) => {
+                                        return (
+                                            <tr key={k}>
+                                                <td>
+                                                    <div className="flex items-center space-x-3 w-24">
+                                                        <div className="avatar">
+                                                            <div className="mask mask-squircle w-12 h-12">
+                                                                <img src={l.uri} alt="Images" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td className="font-bold">{l.id}</td>
+                                                <td className="truncate w-40">{l.owner}</td>
+                                                <td><p className="truncate w-96">{l.uriHash}</p></td>
+                                                <td className="w-24">
+                                                    {walletAddress == l.owner && (
+                                                        <button className="btn btn-primary rounded-full"
+                                                                onClick={() => setTransferID(l.id)}>Transfer</button>
+                                                    )
+                                                    }
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="ml-8">
+                            <img className="rounded-full object-cover h-48 w-48" src={kittenURI} alt="" />
+                            <div className="py-8">
+                                <button className="btn btn-primary float-left btn-accent rounded-full"
+                                        onClick={changeKitten}>Change
+                                </button>
+                                <button className="btn btn-primary float-right rounded-full" onClick={mintKitten}>Mint
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>)}
+            {transferID != "" && classCreated && (
+                <div>
+                    <h1 className="text-3xl font-bold py-4">
+                        Transfer {transferID} NFT ownership.
+                    </h1>
+                    <div className="flex w-full max-w-xl">
+                        <input
+                            type="text"
+                            id="recipient-address"
+                            className="input input-bordered focus:input-primary input-lg rounded-full flex-grow font-mono text-center text-lg"
+                            placeholder="Recipient address"
+                            onChange={(event) => setRecipientAddress(event.target.value)}
+                            value={recipientAddress}
+                        />
+                    </div>
+                    <div>
+                        <div className="flex flex-col md:flex-row mt-4 text-2xl w-full max-w-xl justify-between">
+                            <button
+                                className="mt-4 md:mt-0 btn btn-secondary btn-lg font-semibold hover:text-base-100 text-2xl rounded-full flex-grow"
+                                onClick={cancelTransferOwnership}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className="mt-4 md:mt-0 btn btn-primary btn-lg font-semibold hover:text-base-100 text-2xl rounded-full flex-grow"
+                                onClick={transferOwnership}
+                            >
+                                Transfer
+                            </button>
+                        </div>
+                    </div>
+                </div>)}
+        </WalletLoader>
+    )
+}
+
+export default NFT
+```
+
+To understand the page let's understand the states of it.
+
+##### The NFT class isn't create yet.
+
+For development simplicity we use the `nftClassSymbol` equal to  `kittens${Date.now()}`, hence it will be set to a new
+value every time you refresh the page. For production usage, it shouldn't be a random symbol, because this symbol is
+used to build the `classId` which will be the identifier for your NFT collection. The pattern for the `classId` is
+`${nftClassSymbol}-${walletAddress}`, that's why we know the `classId` before hands can query for it, to understand
+whether the class is already created or not.
+
+Query class snippet:
+
+```typescript jsx
+    const queryClass = () => {
+    // check that class is already created
+    coreumQueryClient?.NFTClient().Class({ classId: nftClassID }).then(() => {
+        queryNFTs()
+        setClassCreated(true)
+    }).catch((error) => {
+        setLoading(false)
+        if (error.message.includes("not found class")) {
+            setClassCreated(false)
+            return
+        }
+        setError(`Error! ${error.message}`)
+    })
+}
+```
+
+The `if (error.message.includes("not found class"))` check is here to understand that error is expected. You receive
+such error in case you try to query for the class which isn't created.
+
+In that state of the page, you will be able to create a new NFT class.
+
+Create NFT class snippet:
+
+```typescript jsx
+    const createNFTClass = () => {
+    setError('')
+    setLoading(true)
+
+    sendTx([AssetNFTTx.MsgIssueClass({
+        issuer: walletAddress,
+        symbol: nftClassSymbol,
+        description: nftClassDescription,
+    })]).then((passed) => {
+        setClassCreated(passed)
+    })
+}
+
+```
+
+In that function we use the connected `walletAddress` - as the issuer, generated `nftClassSymbol` - as symbol
+and `description` - which we take from the user's input.
+
+##### The NFT class is created.
+
+###### NFTs list
+
+Once the NFT class is created, we query for the NFTs minted under that class.
+
+```typescript jsx
+    const queryNFTs = () => {
+    setLoading(true)
+    coreumQueryClient?.NFTClient().NFTs({
+        classId: nftClassID,
+        owner: "",
+    }).then(async (res: QueryNFTsResponse) => {
+        const nfts = await Promise.all(
+            res.nfts.map(async (nft) => {
+                const resOwner = await coreumQueryClient?.NFTClient().Owner({
+                    classId: nft.classId,
+                    id: nft.id
+                })
+                return {
+                    classId: nft.classId,
+                    id: nft.id,
+                    uri: nft.uri,
+                    uriHash: nft.uriHash,
+                    owner: resOwner.owner,
+                }
+            })
+        )
+        nfts.sort((a, b) => a.id.localeCompare(b.id))
+        setNfts(nfts)
+        setLoading(false)
+    })
+        .catch((error) => {
+            setLoading(false)
+            setError(`Error! ${error.message}`)
+        })
+}
+```
+
+Here we query all NFT and additionally, for each NFT we get the owner.
+
+###### NFT minting
+
+Additional, part of the `The NFT class created` state is minting. We use the `generateKittenURL` function to randomly
+generate a URL for a kitten. And then use it as NFT URI.
+
+In order to mint and NFT we use the `mintKitten` function.
+
+Mint kitten code snippet:
+
+```typescript jsx
+  const mintKitten = () => {
+    setError('')
+    setLoading(true)
+    sendTx([AssetNFTTx.MsgMint({
+        sender: walletAddress,
+        classId: nftClassID,
+        id: `kitten-${Date.now()}`,
+        uri: kittenURI,
+        uriHash: sha256.create().update(kittenURI).hex()
+    })]).then((passed) => {
+        if (passed) {
+            queryNFTs()
+        }
+    })
+}
+```
+
+Here we use the `walletAddress` - as the signer address, which will become the owner after the NFT minting, `classId` -
+the same as we used for the class creation, `id` - generated id (you can define your own strategy here), `uri` - chosen
+kitten URI and `uriHash` - kitten URL sha256 hash.
+
+###### NFT sending
+
+When the NFT is minted, we will be able to send it (transfer the ownership). In order to do it we use the
+`transferOwnership` function.
+
+Transfer ownership code snippet:
+
+```typescript jsx
+
+const transferOwnership = () => {
+    setError('')
+    setLoading(true)
+    sendTx([NFTTx.MsgSend({
+        sender: walletAddress,
+        classId: nftClassID,
+        id: transferID,
+        receiver: recipientAddress,
+    })]).then((passed) => {
+        if (passed) {
+            cancelTransferOwnership()
+            queryNFTs()
+        }
+    })
+}
+```
+
+Here we use the `walletAddress` - as the signer address which is the current NFT owner, `classId` the same as we used
+for the class creation, `id` - chosen ID for the sending, `receiver` - the new owner of the NFT.
+
+## Next steps
+
+* Read Coreum [modules](../modules/main.md) specification, to be familiar with the custom Coreum functionality you can
+  use for your
+  application.
+* Read [cosmos-sdk modules docs](https://docs.cosmos.network/v0.47/build/modules).
+* In some cases you might need the data that the node doesn't return, in that case, you can check the
+  [Explorer API](explorer-api.md) to understand what additionally you can get from the indexed data.
+* Check other [tutorials](main.md) to find something you might be interested in additionally. 
+

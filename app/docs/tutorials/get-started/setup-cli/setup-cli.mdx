@@ -1,0 +1,42 @@
+# Setup CLI Network variables
+
+If you are looking for Validator Network Variables, go to [this page](../validator/network-variables.md)
+
+This document describes the command to set up the environment depending on the type of network you want to use.
+
+{/* markdown-link-check-disable */}
+
+| \-                    | mainnet                                        | testnet                                        | devnet                                        | znet (localnet)                  |
+|-----------------------|------------------------------------------------|------------------------------------------------|-----------------------------------------------|----------------------------------|
+| **Chain ID**          | coreum-mainnet-1                               | coreum-testnet-1                               | coreum-devnet-1                               | coreum-devnet-1                  |
+| **Denom**             | ucore                                          | utestcore                                      | udevcore                                      | udevcore                         |
+| **RPC URL**           | https://full-node.mainnet-1.coreum.dev:26657   | https://full-node.testnet-1.coreum.dev:26657   | https://full-node.devnet-1.coreum.dev:26657   | http://localhost:26657           |
+| **GRPC URL**          | full-node.mainnet-1.coreum.dev:9090            | full-node.testnet-1.coreum.dev:9090            | full-node.devnet-1.coreum.dev:9090            | localhost:9090                   |
+| **REST URL**          | https://full-node.mainnet-1.coreum.dev:1317    | https://full-node.testnet-1.coreum.dev:1317    | https://full-node.devnet-1.coreum.dev:1317    | http://localhost:1317            |
+| **Cored version**     | v2.0.2                                         | v2.0.2                                         | check the latest devnet release               | already installed via crust      |
+| **Explorer API Beta** | https://hasura.mainnet-1.coreum.dev/v1/graphql | https://hasura.testnet-1.coreum.dev/v1/graphql | https://hasura.devnet-1.coreum.dev/v1/graphql | http://localhost:8080/v1/graphql |
+
+{/* markdown-link-check-enable */}
+
+* ⚠️ Keep in mind, that our Public RPC Node is stable, but there is always a risk of DDoS attacks,
+  and if you build your own product(wallet, etc), it is recommended to rely on your own RPC Node.
+* ⚠️ Also, having own RPC node is recommended if you frequently query the Node(for instance, for indexing),
+  since we have rate limiting there.
+
+* Set the chain env variables with the values corresponding to the network you want to connect to, from the table above.
+    ```
+    export COREUM_CHAIN_ID="{Chain ID}"
+    export COREUM_DENOM="{Denom}"
+    export COREUM_NODE="{RPC URL}"
+    export COREUM_VERSION="{Cored version}"
+    
+    export COREUM_CHAIN_ID_ARGS="--chain-id=$COREUM_CHAIN_ID"
+    export COREUM_NODE_ARGS="--node=$COREUM_NODE"
+    
+    export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
+  
+    export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+    ```
+
+**Attention!** *Set those variables globally so it is automatically set after starting a new terminal session.*
+

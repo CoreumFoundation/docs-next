@@ -1,0 +1,163 @@
+# Create Non-Fungible Token with Golang
+
+This document gives instructions and examples on how to use our `pkg/client` package to create and
+manage non-fungible token.
+
+## Complete code
+
+Complete code with `go.mod` file you can find
+[here](https://github.com/CoreumFoundation/tutorials/tree/main/go/create-non-fungible-token)
+
+P.S. If you have issues with `go mod tidy` command, just copy `go.mod` file from the example above.
+
+[//]: # '## Skeleton'
+
+!!!include(./src/tutorials/go-skeleton.md)!!!
+
+## Creating NFT class
+
+First we create class which is a container for a set of NFTs having the same purpose:
+
+```go
+senderAddress, err := senderInfo.GetAddress()
+if err != nil {
+	panic(err)
+}
+const classSymbol = "NFTClass"
+msgIssueClass := &assetnfttypes.MsgIssueClass{
+	Issuer:      senderAddress.String(),
+	Symbol:      classSymbol,
+	Name:        "NFT Class",
+	Description: "NFT Class",
+	Features:    []assetnfttypes.ClassFeature{assetnfttypes.ClassFeature_freezing},
+}
+
+ctx := context.Background()
+_, err = client.BroadcastTx(
+	ctx,
+	clientCtx.WithFromAddress(senderAddress),
+	txFactory,
+	msgIssueClass,
+)
+if err != nil {
+	panic(err)
+}
+```
+
+## Minting NFT
+
+Then we mint new NFT for that class:
+
+```go
+classID := assetnfttypes.BuildClassID(classSymbol, senderAddress)
+const nftID = "myNFT"
+msgMint := &assetnfttypes.MsgMint{
+	Sender:  senderAddress.String(),
+	ClassID: classID,
+	ID:      nftID,
+}
+
+_, err = client.BroadcastTx(
+	ctx,
+	clientCtx.WithFromAddress(senderAddress),
+	txFactory,
+	msgMint,
+)
+if err != nil {
+	panic(err)
+}
+```
+
+## Querying the owner
+
+We query the owner of the NFT to verify that it is owned by the creator:
+
+```go
+nftClient := nft.NewQueryClient(clientCtx)
+resp, err := nftClient.Owner(ctx, &nft.QueryOwnerRequest{
+	ClassId: classID,
+	Id:      nftID,
+})
+if err != nil {
+	panic(err)
+}
+fmt.Printf("Owner: %s\n", resp.Owner)
+```
+
+## Sending NFT
+
+Now we send NFT to someone else:
+
+```go
+recipientInfo, _, err := clientCtx.Keyring().NewMnemonic(
+	"recipient",
+	keyring.English,
+	sdk.GetConfig().GetFullBIP44Path(),
+	"",
+	hd.Secp256k1,
+)
+if err != nil {
+	panic(err)
+}
+
+recipientAddress, err := recipientInfo.GetAddress()
+if err != nil {
+	panic(err)
+}
+msgSend := &nft.MsgSend{
+	Sender:   senderAddress.String(),
+	Receiver: recipientAddress.String(),
+	Id:       nftID,
+	ClassId:  classID,
+}
+
+_, err = client.BroadcastTx(
+	ctx,
+	clientCtx.WithFromAddress(senderAddress),
+	txFactory,
+	msgSend,
+)
+if err != nil {
+	panic(err)
+}
+```
+
+Let's verify that recipient is the owner now:
+
+```go
+resp, err = nftClient.Owner(ctx, &nft.QueryOwnerRequest{
+	ClassId: classID,
+	Id:      nftID,
+})
+if err != nil {
+	panic(err)
+}
+fmt.Printf("Owner: %s\n", resp.Owner)
+```
+
+## Freezing
+
+Because issuer enabled `freezing` feature during class issuance, he/she might freeze the NFT:
+
+```go
+msgFreeze := &assetnfttypes.MsgFreeze{
+	Sender:  senderAddress.String(),
+	ClassID: classID,
+	ID:      nftID,
+}
+
+_, err = client.BroadcastTx(
+	ctx,
+	clientCtx.WithFromAddress(senderAddress),
+	txFactory,
+	msgFreeze,
+)
+if err != nil {
+	panic(err)
+}
+```
+
+After doing this, recipient is not allowed to transfer the NFT from its account.
+
+All the other features may be used in a similar fashion. More info is available in
+[the documentation](https://docs.coreum.dev/modules/assetnft.html)

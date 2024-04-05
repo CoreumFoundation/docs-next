@@ -26,22 +26,31 @@ const generatePages = async () => {
         const pageDir = `./app/docs/${categoryName}/${pageName}`;
         const pagePath = `${pageDir}/${pageName}.mdx`;
         const pageComponentPath = `${pageDir}/page.tsx`;
-        const pageContentResponse = await axios.get(source);
-        let pageContent = pageContentResponse.data;
 
-        // Replace <!-- to {/*
-        pageContent = pageContent.replace(/<!--/g, '{/*');
-        // Replace --> to */}
-        pageContent = pageContent.replace(/-->/g, '*/}');
+        let pageContent = '';
 
-        pageContent = pageContent.replace(/\/{/g, '/{`');
+        if (source.length) {
+          try {
+            const pageContentResponse = await axios.get(source);
+            pageContent = pageContentResponse.data;
 
-        pageContent = pageContent.replace(/}\//g, '`}/');
-        // pageContent = pageContent.replace('}/', '`}/');
-        pageContent = pageContent.replace(/} \|/g, '`} |');
+            // Replace <!-- to {/*
+            pageContent = pageContent.replace(/<!--/g, '{/*');
+            // Replace --> to */}
+            pageContent = pageContent.replace(/-->/g, '*/}');
 
-        pageContent = pageContent.replace(/<=/g, '{\<\=}');
-        pageContent = pageContent.replace('<this-command>', '\<this-command\>');
+            pageContent = pageContent.replace(/\/{/g, '/{`');
+
+            pageContent = pageContent.replace(/}\//g, '`}/');
+            // pageContent = pageContent.replace('}/', '`}/');
+            pageContent = pageContent.replace(/} \|/g, '`} |');
+
+            pageContent = pageContent.replace(/<=/g, '{\<\=}');
+            pageContent = pageContent.replace('<this-command>', '\<this-command\>');
+          } catch (err) {
+            console.log('err');
+          }
+        }
 
         // Check if the page already exists
         if (fs.existsSync(pagePath) || fs.existsSync(pageComponentPath)) {
@@ -59,13 +68,13 @@ const generatePages = async () => {
         const pageTSXContent = `
 import Component from './${pageName}.mdx';
 
-const ${pageName}Page = () => {
+const Page = () => {
   return (
     <Component />
   );
 };
 
-export default ${pageName}Page;
+export default Page;
         `;
         fs.writeFileSync(pageComponentPath, pageTSXContent);
 

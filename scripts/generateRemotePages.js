@@ -39,11 +39,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var axios_1 = require("axios");
 var generatePages = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var sourcesData, categories, _a, _b, _c, _i, categoryName, pages, _d, pages_1, page, pageName, source, pageDir, pagePath, pageComponentPath, pageContentResponse, pageContent, pageTSXContent, error_1;
+    var sourcesData, categories, _a, _b, _c, _i, categoryName, pages, _d, pages_1, page, pageName, source, pageDir, pagePath, pageComponentPath, pageContent, pageContentResponse, err_1, pageTSXContent, error_1;
     return __generator(this, function (_e) {
         switch (_e.label) {
             case 0:
-                _e.trys.push([0, 7, , 8]);
+                _e.trys.push([0, 10, , 11]);
                 sourcesData = fs.readFileSync('./sources.json', 'utf-8');
                 categories = JSON.parse(sourcesData);
                 _a = categories;
@@ -53,22 +53,27 @@ var generatePages = function () { return __awaiter(void 0, void 0, void 0, funct
                 _i = 0;
                 _e.label = 1;
             case 1:
-                if (!(_i < _b.length)) return [3 /*break*/, 6];
+                if (!(_i < _b.length)) return [3 /*break*/, 9];
                 _c = _b[_i];
-                if (!(_c in _a)) return [3 /*break*/, 5];
+                if (!(_c in _a)) return [3 /*break*/, 8];
                 categoryName = _c;
                 pages = categories[categoryName];
                 _d = 0, pages_1 = pages;
                 _e.label = 2;
             case 2:
-                if (!(_d < pages_1.length)) return [3 /*break*/, 5];
+                if (!(_d < pages_1.length)) return [3 /*break*/, 8];
                 page = pages_1[_d];
                 pageName = page.page, source = page.source;
                 pageDir = "./app/docs/".concat(categoryName, "/").concat(pageName);
                 pagePath = "".concat(pageDir, "/").concat(pageName, ".mdx");
                 pageComponentPath = "".concat(pageDir, "/page.tsx");
-                return [4 /*yield*/, axios_1.default.get(source)];
+                pageContent = '';
+                if (!source.length) return [3 /*break*/, 6];
+                _e.label = 3;
             case 3:
+                _e.trys.push([3, 5, , 6]);
+                return [4 /*yield*/, axios_1.default.get(source)];
+            case 4:
                 pageContentResponse = _e.sent();
                 pageContent = pageContentResponse.data;
                 // Replace <!-- to {/*
@@ -81,31 +86,37 @@ var generatePages = function () { return __awaiter(void 0, void 0, void 0, funct
                 pageContent = pageContent.replace(/} \|/g, '`} |');
                 pageContent = pageContent.replace(/<=/g, '{\<\=}');
                 pageContent = pageContent.replace('<this-command>', '\<this-command\>');
+                return [3 /*break*/, 6];
+            case 5:
+                err_1 = _e.sent();
+                console.log('err');
+                return [3 /*break*/, 6];
+            case 6:
                 // Check if the page already exists
                 if (fs.existsSync(pagePath) || fs.existsSync(pageComponentPath)) {
                     console.error("Error: Page with name '".concat(pageName, "' already exists in category '").concat(categoryName, "'"));
-                    return [3 /*break*/, 4];
+                    return [3 /*break*/, 7];
                 }
                 // Create page directory
                 fs.mkdirSync(pageDir, { recursive: true });
                 // Create MDX file
                 fs.writeFileSync(pagePath, pageContent);
-                pageTSXContent = "\nimport Component from './".concat(pageName, ".mdx';\n\nconst ").concat(pageName, "Page = () => {\n  return (\n    <Component />\n  );\n};\n\nexport default ").concat(pageName, "Page;\n        ");
+                pageTSXContent = "\nimport Component from './".concat(pageName, ".mdx';\n\nconst Page = () => {\n  return (\n    <Component />\n  );\n};\n\nexport default Page;\n        ");
                 fs.writeFileSync(pageComponentPath, pageTSXContent);
                 console.log("Page '".concat(pageName, "' created successfully in category '").concat(categoryName, "'"));
-                _e.label = 4;
-            case 4:
+                _e.label = 7;
+            case 7:
                 _d++;
                 return [3 /*break*/, 2];
-            case 5:
+            case 8:
                 _i++;
                 return [3 /*break*/, 1];
-            case 6: return [3 /*break*/, 8];
-            case 7:
+            case 9: return [3 /*break*/, 11];
+            case 10:
                 error_1 = _e.sent();
                 console.error('An error occurred:', error_1.message);
-                return [3 /*break*/, 8];
-            case 8: return [2 /*return*/];
+                return [3 /*break*/, 11];
+            case 11: return [2 /*return*/];
         }
     });
 }); };

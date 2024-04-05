@@ -2,12 +2,12 @@
 
 import { Disclosure } from '@headlessui/react'
 import classNames from 'classnames';
-import { NavigationItem } from '@/app/docs/layout';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
+import { NavigationItem } from '@/utils/types';
+import { SIDEBAR_ITEMS } from './constants';
 
 interface SidebarProps {
   children: React.ReactNode;
-  navigation: NavigationItem[];
 }
 
 const renderNavigationItems = (items: NavigationItem[]) => {
@@ -34,7 +34,7 @@ const renderNavigationItems = (items: NavigationItem[]) => {
                   'flex items-center w-full rounded-lg p-3 pr-2 gap-x-6 text-base font-normal text-[#868991] capitalize'
                 )}
               >
-                {item.name}
+                {item.href.length ? <a href={item.href}>{item.name}</a> : item.name}
                 <ChevronRightIcon
                   className={`w-3 h-3 ml-auto ${open ? 'transform rotate-90' : 'transform rotate-0'}`}
                 />
@@ -50,7 +50,7 @@ const renderNavigationItems = (items: NavigationItem[]) => {
   ));
 };
 
-export const Sidebar: React.FC<SidebarProps> = ({ children, navigation }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   return (
     <div className="flex flex-row w-full h-auto min-h-full flex-1 font-['space grotesk'] ">
       <div className="flex flex-none w-72">
@@ -59,7 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, navigation }) => {
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul role="list" className="-mx-2 space-y-1">
-                  {renderNavigationItems(navigation)}
+                  {renderNavigationItems(SIDEBAR_ITEMS)}
                 </ul>
               </li>
             </ul>

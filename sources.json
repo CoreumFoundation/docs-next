@@ -1,2 +1,346 @@
 {
+  "overview": [
+    {
+      "page": "introduction",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/overview/introduction.md?token=GHSAT0AAAAAACMG5Y3ZNPM5IE2SK7B4YW6EZQOUTTA"
+    },
+    {
+      "page": "smart-contracts",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/overview/smart-contracts.md?token=GHSAT0AAAAAACMG5Y3YEPLUUWSGWMXZMNCEZQOUTZQ"
+    },
+    {
+      "page": "smart-tokens",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/overview/smart-tokens.md?token=GHSAT0AAAAAACMG5Y3YB7YQFXH4PH4LUJ2IZQOUUAQ"
+    }
+  ],
+  "tutorials": [
+    {
+      "page": "get-started",
+      "source": ""
+    },
+    {
+      "page": "use-tokens",
+      "source": ""
+    },
+    {
+      "page": "integrate-coreum",
+      "source": ""
+    },
+    {
+      "page": "build-apps",
+      "source": ""
+    },
+    {
+      "page": "ibc",
+      "source": ""
+    }
+  ],
+  "tutorials/get-started": [
+    {
+      "page": "setup-cli",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/network-variables.md?token=GHSAT0AAAAAACMG5Y3Y677YG57TJJORN4DGZQO6C6A"
+    },
+    {
+      "page": "install-cored",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/cored.md?token=GHSAT0AAAAAACMG5Y3YWQUAYFWL4PCG2SEAZQO6DDQ"
+    },
+    {
+      "page": "cli",
+      "source": ""
+    },
+    {
+      "page": "golang",
+      "source": ""
+    },
+    {
+      "page": "typescript",
+      "source": ""
+    },
+    {
+      "page": "wasm",
+      "source": ""
+    }
+  ],
+  "tutorials/get-started/cli": [
+    {
+      "page": "transfer-funds-cli",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/transfer-funds/cli.md?token=GHSAT0AAAAAACMG5Y3ZY2W7PFIIJRSP26ZOZQO6D5A"
+    },
+    {
+      "page": "send-multisig-transaction",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/multisig.md?token=GHSAT0AAAAAACMG5Y3Y4LTRCTJCUJLPIRXYZQO6EWQ"
+    },
+    {
+      "page": "smart-ft-with-acl",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/ft-acl.md?token=GHSAT0AAAAAACMG5Y3ZKGQ7V4S3Y44DCW4YZQO6FBA"
+    },
+    {
+      "page": "ledger-nano",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/ledger-integration.md?token=GHSAT0AAAAAACMG5Y3Z7R2WEUCX2B4FYZC2ZQO6FKQ"
+    }
+  ],
+  "tutorials/get-started/golang": [
+    {
+      "page": "transfer-funds",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/transfer-funds/go.md?token=GHSAT0AAAAAACMG5Y3ZKHGY3P6UB6M74MNAZQO6FWA"
+    },
+    {
+      "page": "create-ft",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/smart-tokens/asset-ft-go.md?token=GHSAT0AAAAAACMG5Y3YMN4I2LPP5JJM3ZMAZQO6GDQ"
+    },
+    {
+      "page": "create-nft",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/smart-tokens/asset-nft-go.md?token=GHSAT0AAAAAACMG5Y3ZTVYQN3G73ND3RBBIZQO6GJA"
+    }
+  ],
+  "tutorials/get-started/typescript": [
+    {
+      "page": "transfer-funds",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/transfer-funds/ts.md?token=GHSAT0AAAAAACMG5Y3ZVZNIOPCMPLCNHNMYZQO6GTQ"
+    },
+    {
+      "page": "cosmjs",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/cosmjs.md?token=GHSAT0AAAAAACMG5Y3ZYBIMB6WJXFXBWRJWZQO6HBA"
+    },
+    {
+      "page": "coreum-js",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/coreum-js.md?token=GHSAT0AAAAAACMG5Y3ZFD7UEQV4JFASFO7OZQO6HGA"
+    }
+  ],
+  "tutorials/get-started/wasm": [
+    {
+      "page": "deploy-wasm-contract",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/wasm-first.md?token=GHSAT0AAAAAACMG5Y3Y5XR2O5NFPJ76I3R4ZQO6HYA"
+    },
+    {
+      "page": "smart-ft-with-wasm",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/wasm-ft.md?token=GHSAT0AAAAAACMG5Y3YCFFQ2XM2VRWQYNXWZQO6IKQ"
+    },
+    {
+      "page": "testing-multiple-contracts",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/wasm-multitest.md?token=GHSAT0AAAAAACMG5Y3Y2QYQZS3VDENE4CPKZQO6IPQ"
+    },
+    {
+      "page": "using-cosmjs-with-wasm-contracts",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/wasm-cosmjs.md?token=GHSAT0AAAAAACMG5Y3Y7ZKUW7O5EOWMQNRWZQO6IVA"
+    }
+  ],
+  "tutorials/use-tokens": [
+    {
+      "page": "create-and-manage-ft-with-cli",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/smart-tokens/asset-ft.md?token=GHSAT0AAAAAACMG5Y3ZWW64QZMQQ42WHNMQZQO6JHA"
+    },
+    {
+      "page": "create-and-manage-ft-with-golang",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/smart-tokens/asset-ft-go.md?token=GHSAT0AAAAAACMG5Y3YAJG2AP2QEZRKBT32ZQO6JQA"
+    },
+    {
+      "page": "create-and-manage-nft-with-cli",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/smart-tokens/asset-nft.md?token=GHSAT0AAAAAACMG5Y3ZVHQM6W4LZOH5XZA2ZQO6JVQ"
+    },
+    {
+      "page": "create-and-manage-nft-with-golang",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/smart-tokens/asset-nft-go.md?token=GHSAT0AAAAAACMG5Y3ZJAIMJGVTPBTZC5JCZQO6J2Q"
+    },
+    {
+      "page": "smart-ft-with-wasm",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/wasm-ft.md?token=GHSAT0AAAAAACMG5Y3ZNIZUFFVIHZM6W2XGZQO6KDA"
+    }
+  ],
+  "tutorials/integrate-coreum": [
+    {
+      "page": "cex-integrations",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/cex-integration.md?token=GHSAT0AAAAAACMG5Y3YZ3QB4ICEUW7SFDLCZQO6KNQ"
+    },
+    {
+      "page": "wallet-integration",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/wallet-integration.md?token=GHSAT0AAAAAACMG5Y3Y3TD6Y3YYTXFQZWDQZQO6KXA"
+    },
+    {
+      "page": "explorer-api",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/explorer-api.md?token=GHSAT0AAAAAACMG5Y3ZRJUFZ2Y7QYCQFNYSZQO6K3Q"
+    }
+  ],
+  "tutorials/build-apps": [
+    {
+      "page": "web-app",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/web-app.md?token=GHSAT0AAAAAACMG5Y3ZVHVS42DZK4S5MWPWZQO6LCQ"
+    },
+    {
+      "page": "amm",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/amm.md?token=GHSAT0AAAAAACMG5Y3YDIYXWHUBMFAT5MMEZQO6LJA"
+    }
+  ],
+  "tutorials/ibc": [
+    {
+      "page": "ibc-channels",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/IBC/ibc-channels.md?token=GHSAT0AAAAAACMG5Y3ZWLR2W4G3KDOGU6RAZQO6LOQ"
+    },
+    {
+      "page": "ibc-transfer-to-osmosis",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/IBC/ibc-tutorial-user.md?token=GHSAT0AAAAAACMG5Y3YDCOK2PMFI5XYXBQCZQO6L4A"
+    },
+    {
+      "page": "ibc-smart-contract-call",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/IBC/ibc-tutorial-contracts.md?token=GHSAT0AAAAAACMG5Y3YQM3ZEKMGSFDLBCP2ZQO6MIQ"
+    },
+    {
+      "page": "ibc-wasm-transfer",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/IBC/ibc-tutorial-wasm-transfer.md?token=GHSAT0AAAAAACMG5Y3Y7VNJCQEDDKUD7CDUZQO6MNQ"
+    },
+    {
+      "page": "ibc-transfer-using-cli",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/IBC/ibc-tutorial-cli.md?token=GHSAT0AAAAAACMG5Y3ZIIGU4EJX7XWHIR5YZQO6M7A"
+    }
+  ],
+  "modules": [
+    {
+      "page": "coreum-fungible-token",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/modules/assetft.md?token=GHSAT0AAAAAACMG5Y3Y4YCZG6RT4MAEKWCAZQO65FQ"
+    },
+    {
+      "page": "coreum-non-fungible-token",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/modules/assetnft.md?token=GHSAT0AAAAAACMG5Y3ZH6VLC2E6KVKSEYWGZQO65LQ"
+    },
+    {
+      "page": "coreum-deterministic-gas",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/modules/deterministicgas.md?token=GHSAT0AAAAAACMG5Y3YXJVV4UIFEPHP3BNEZQO65RQ"
+    },
+    {
+      "page": "coreum-fee-model",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/modules/feemodel.md?token=GHSAT0AAAAAACMG5Y3Y66SAZDHHIFOQOKRIZQO65XQ"
+    },
+    {
+      "page": "cosmos-non-fungible-token",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/modules/nft.md?token=GHSAT0AAAAAACMG5Y3YO7BFNASP6OYAVV5EZQO657A"
+    }
+  ],
+  "xrpl-bridge": [
+    {
+      "page": "install-relayer",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/xrpl-bridge/install-relayer.md?token=GHSAT0AAAAAACMG5Y3YXN6WCDODGMPAPAJYZQO66SA"
+    },
+    {
+      "page": "run-relayer",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/xrpl-bridge/run-relayer.md?token=GHSAT0AAAAAACMG5Y3YLAYA2EFEVT3HX54YZQO66YQ"
+    },
+    {
+      "page": "asset-flow",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/xrpl-bridge/asset-flow.md?token=GHSAT0AAAAAACMG5Y3ZNTAU3GP27SOYK2A6ZQO666A"
+    },
+    {
+      "page": "register-new-token",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/xrpl-bridge/register-new-token.md?token=GHSAT0AAAAAACMG5Y3YXCTGBZ666CQIM4VEZQO67EQ"
+    },
+    {
+      "page": "fees",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/xrpl-bridge/fees.md?token=GHSAT0AAAAAACMG5Y3Z334W3N3GS34WAR3MZQO67LQ"
+    },
+    {
+      "page": "update-relayer",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/xrpl-bridge/update-relayer.md?token=GHSAT0AAAAAACMG5Y3ZYQPGZVHPTKMCBHPQZQO67SA"
+    }
+  ],
+  "become-validator": [
+    {
+      "page": "run-full-node",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/run-full.md?token=GHSAT0AAAAAACMG5Y3YYV6CJMA7AEKYXDOOZQO7AJQ"
+    },
+    {
+      "page": "validator",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/run-validator.md?token=GHSAT0AAAAAACMG5Y3Z7Z5FEIUAG4MHZGXSZQO7ARA"
+    },
+    {
+      "page": "essentials",
+      "source": ""
+    },
+    {
+      "page": "troubleshooting",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/troubleshooting.md?token=GHSAT0AAAAAACMG5Y3ZIMGKJWPHZ2LOOFHYZQO7AWQ"
+    },
+    {
+      "page": "upgrades",
+      "source": ""
+    }
+  ],
+  "become-validator/validator": [
+    {
+      "page": "run-validator",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/run-validator.md?token=GHSAT0AAAAAACMG5Y3YXFDEKA6SVFBVKNEOZQPASFA"
+    },
+    {
+      "page": "run-sentry",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/run-sentry.md?token=GHSAT0AAAAAACMG5Y3ZLEZWLUCCX6ZTCXACZQPASKQ"
+    },
+    {
+      "page": "unjail-validator",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/how-to-unjail.md?token=GHSAT0AAAAAACMG5Y3ZPQUII5B7KAQZ4HBSZQPASRA"
+    }
+  ],
+  "become-validator/essentials": [
+    {
+      "page": "system-requirements",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/hardware-requirements.md?token=GHSAT0AAAAAACMG5Y3ZIIDCTBYN3AFD5TEIZQPASYQ"
+    },
+    {
+      "page": "how-much-fund-to-create-validator",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/how-much-fund-is-needed.md?token=GHSAT0AAAAAACMG5Y3Y5J44TTGLBEH7CDRSZQPAS6A"
+    },
+    {
+      "page": "node-prerequisites",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/node-prerequisites.md?token=GHSAT0AAAAAACMG5Y3Y5J44TTGLBEH7CDRSZQPAS6A"
+    },
+    {
+      "page": "install-cored",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/cored.md?token=GHSAT0AAAAAACMG5Y3Y5J44TTGLBEH7CDRSZQPAS6A"
+    },
+    {
+      "page": "network-variables",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/network-variables.md?token=GHSAT0AAAAAACMG5Y3Y5J44TTGLBEH7CDRSZQPAS6A"
+    },
+    {
+      "page": "connection-config",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/set-connection-config.md?token=GHSAT0AAAAAACMG5Y3Y5J44TTGLBEH7CDRSZQPAS6A"
+    }
+  ],
+  "become-validator/upgrades": [
+    {
+      "page": "main-info",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/upgrade.md?token=GHSAT0AAAAAACMG5Y3YIQYST5H7YT4N2AMEZQPBDGA"
+    },
+    {
+      "page": "history",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/upgrade-history.md?token=GHSAT0AAAAAACMG5Y3ZMDXD2XJ3NXOXYV6IZQPBDMQ"
+    }
+  ],
+  "api": [
+    {
+      "page": "protobuf",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum/5adfcc2d93e81b9344f0abaca7eab68fbca2ecba/docs/api.md"
+    }
+  ],
+  "help": [
+    {
+      "page": "faq",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/help/faq.md?token=GHSAT0AAAAAACMG5Y3YNWE35E6HYRQ5WGGQZQO4LSA"
+    },
+    {
+      "page": "useful-links",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/help/useful-links.md?token=GHSAT0AAAAAACMG5Y3ZRFKUFLUYSBJZVAECZQO4LWQ"
+    }
+  ],
+  "tools": [
+    {
+      "page": "wallets",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tools-ecosystem/wallet.md?token=GHSAT0AAAAAACMG5Y3YCFS2F3XIQIHVZYBWZQO4MFA"
+    },
+    {
+      "page": "faucet",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tools-ecosystem/faucet.md?token=GHSAT0AAAAAACMG5Y3YYURVOHCQO46Q4D6IZQO4MKQ"
+    },
+    {
+      "page": "blockchain-explorers",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tools-ecosystem/block-explorer.md?token=GHSAT0AAAAAACMG5Y3ZPUAXLA4HFCUGSNQ6ZQO4MPQ"
+    }
+  ]
 }
