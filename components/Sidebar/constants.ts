@@ -1,7 +1,7 @@
 export const SIDEBAR_ITEMS = [
   {
     name: 'Overview',
-    href: '/docs/overview/introduction',
+    href: '/docs/overview',
     children: [
       {
         name: 'Introduction',
@@ -355,6 +355,12 @@ export const SIDEBAR_ITEMS = [
   {
     name: 'API',
     href: '/docs/api',
+    children: [
+      {
+        name: 'Protobuf',
+        href: '/docs/api/protobuf',
+      }
+    ]
   },
   {
     name: 'Tools/Ecosystem',
