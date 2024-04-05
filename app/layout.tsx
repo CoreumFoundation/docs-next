@@ -3,7 +3,8 @@ import { Noto_Sans, Space_Grotesk } from "next/font/google";
 import { Layout } from "@/components/Layout";
 import classNames from "classnames";
 import "./globals.css";
-import "prismjs/themes/prism-solarizedlight.min.css";
+
+import "highlight.js/styles/github-dark.css";
 
 const notoSans = Noto_Sans({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });

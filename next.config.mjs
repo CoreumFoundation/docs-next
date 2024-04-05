@@ -2,19 +2,32 @@ import remarkGfm from "remark-gfm";
 import createMDX from "@next/mdx";
 import rehypeHighlight from 'rehype-highlight';
 import rehypeIgnore from 'rehype-ignore';
-// import remarkParse from 'remark-parse';
-// import remarkRehype from 'remark-rehype';
-// import rehypeFormat from 'rehype-format';
-// import rehypeStringify from 'rehype-stringify';
-// import remarkPrism from 'remark-prism';
-// import rehypeRaw from 'rehype-raw';
+
+import langHttp from 'highlight.js/lib/languages/http';
+import langNginx from 'highlight.js/lib/languages/nginx';
+import langJs from 'highlight.js/lib/languages/javascript';
+import langBash from 'highlight.js/lib/languages/bash';
+import langGolang from 'highlight.js/lib/languages/go';
+import langTs from 'highlight.js/lib/languages/typescript';
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   // Add markdown plugins here, as desired
   options: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight, rehypeIgnore],
+    rehypePlugins: [
+      [rehypeHighlight, {
+        languages: {
+          bash: langBash,
+          js: langJs,
+          http: langHttp,
+          nginx: langNginx,
+          go: langGolang,
+          ts: langTs,
+        },
+      }],
+      rehypeIgnore,
+    ],
   },
 });
 
