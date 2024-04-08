@@ -105,8 +105,6 @@ body {
   backdrop-filter: blur(5px);
 }
 
-.bg-chains {
-  /* background-image: url('/images/chains.png') lightgray 50% / cover no-repeat; */
-  /* width: 300px; */
-  /* background: linear-gradient(203deg, transparent 0%, rgba(217, 217, 217, 0.00) 100%%); */
+.bg-sidebar-active {
+  background: rgba(37, 214, 149, 0.05);
 }
