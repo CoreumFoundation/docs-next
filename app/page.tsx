@@ -1,5 +1,6 @@
 import { CardImage } from "@/components/CardImage";
 import Image from "next/image";
+import Link from 'next/link';
 
 interface CardItem {
   image: React.ReactNode;
@@ -31,7 +32,6 @@ const CARDS: CardItem[] = [
 ]
 
 export default function Home() {
-
   return (
     <div className="flex min-h-max flex-col items-center justify-between p-20 w-full gap-20">
       <div className="flex flex-row w-full">
@@ -48,7 +48,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex">
-            <div className="flex items-center py-2 pl-6 pr-5 rounded-lg text-[#1B1D23] text-sm bg-green-gradient">
+            <Link href="/docs/overview/introduction" className="flex items-center py-2 pl-6 pr-5 rounded-lg text-[#1B1D23] text-sm bg-green-gradient">
               Get Started
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -58,7 +58,7 @@ export default function Home() {
                   fill="#1B1D23"
                 />
               </svg>
-            </div>
+            </Link>
           </div>
         </div>
         <div className="">
