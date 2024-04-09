@@ -1,10 +1,6 @@
-'use client';
-
 import { DocLinkItem, DocLinkItemProps } from "@/components/DocLinkItem";
 import { NavigatonItem, NavigatonItemMode } from "@/components/NavigationItem";
-import classNames from "classnames";
 import React from "react";
-import Image from 'next/image';
 
 const TUTORIALS_ITEMS = {
   section_1: {

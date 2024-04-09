@@ -1,5 +1,3 @@
-'use client';
-
 import { DocLinkItem, DocLinkItemProps } from "@/components/DocLinkItem";
 import { NavigatonItem, NavigatonItemMode } from "@/components/NavigationItem";
 import classNames from "classnames";

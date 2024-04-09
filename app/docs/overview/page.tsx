@@ -1,9 +1,7 @@
-'use client';
-
 import { DocLinkItem, DocLinkItemProps } from "@/components/DocLinkItem";
 import { NavigatonItem, NavigatonItemMode } from "@/components/NavigationItem";
 
-export const OVERVIEW_ITEMS: DocLinkItemProps[] = [
+const OVERVIEW_ITEMS: DocLinkItemProps[] = [
   {
     label: 'Introduction',
     href: '/docs/overview/introduction',
