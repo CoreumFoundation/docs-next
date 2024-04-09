@@ -1,4 +1,3 @@
-
 import Component from './protobuf.mdx';
 
 const Page = () => {
@@ -8,4 +7,3 @@ const Page = () => {
 };
 
 export default Page;
-        

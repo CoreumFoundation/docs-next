@@ -1,11 +1,16 @@
 'use client';
 
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 const MainDocsPage = () => {
-  return (
-    <div>
-      <h1>Main docs page</h1>
-    </div>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/docs/overview');
+  }, []);
+
+  return null;
 };
 
 export default MainDocsPage;

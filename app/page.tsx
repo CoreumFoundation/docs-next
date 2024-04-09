@@ -48,7 +48,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex">
-            <Link href="/docs/overview/introduction" className="flex items-center py-2 pl-6 pr-5 rounded-lg text-[#1B1D23] text-sm bg-green-gradient">
+            <Link href="/docs" className="flex items-center py-2 pl-6 pr-5 rounded-lg text-[#1B1D23] text-sm bg-green-gradient">
               Get Started
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path

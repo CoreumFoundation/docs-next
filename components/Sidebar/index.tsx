@@ -49,6 +49,10 @@ const renderNavigationItems = (items: NavigationItem[], pathname: string) => {
   return items.map((item: NavigationItem) => {
     const isActive = pathname === item.href;
 
+    const cx = classNames('flex items-center w-full rounded-lg p-3 pr-2 gap-x-6 text-base font-normal capitalize', {
+      'text-[#25D695] font-medium bg-sidebar-active': isActive,
+    });
+
     return (
       <li key={item.name}>
         {!item.children?.length ? renderLink(item, isActive) : (
@@ -56,10 +60,10 @@ const renderNavigationItems = (items: NavigationItem[], pathname: string) => {
             {({ open }) => (
               <>
                 <Disclosure.Button
-                  className={classNames(
-                    open ? 'bg-[#17191E] text-[#eeeeee]' : 'text-[#868991]',
-                    isActive ? 'text-red-700' : '',
-                    'flex items-center w-full rounded-lg p-3 pr-2 gap-x-6 text-base font-normal text-[#868991] capitalize'
+                  className={classNames(cx,
+                    isActive ? 'text-[#25D695] font-medium bg-sidebar-active' : 'text-[#868991]',
+                    open && !isActive ? 'bg-[#17191E] text-[#eeeeee]' : '',
+                    'flex items-center w-full rounded-lg p-3 pr-2 gap-x-6 text-base font-normal capitalize'
                   )}
                 >
                   {item.name}
@@ -98,7 +102,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           </nav>
         </div>
       </div>
-      <main className="px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] flex-1">
+      <main className="px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] flex-1 max-w-full">
         {children}
       </main>
     </div>
