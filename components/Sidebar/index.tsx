@@ -27,7 +27,7 @@ const renderLink = (item: NavigationItem, isActive: boolean) => {
           <path fillRule="evenodd" clipRule="evenodd" d="M14.492 9.46915H8.43281V8H17.0029V16.5701H15.5337V10.5051L8.03885 18L7 16.9612L14.492 9.46915Z" fill="#5E6773"/>
         </svg>
       </a>
-    );q
+    );
   }
 
   return (
