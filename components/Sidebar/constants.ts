@@ -4,6 +4,10 @@ export const SIDEBAR_ITEMS = [
     href: '/docs/overview',
     children: [
       {
+        name: 'General Overview',
+        href: '/docs/overview/general',
+      },
+      {
         name: 'Introduction',
         href: '/docs/overview/introduction',
       },
@@ -14,6 +18,30 @@ export const SIDEBAR_ITEMS = [
       {
         name: 'Smart Tokens',
         href: '/docs/overview/smart-tokens'
+      },
+      {
+        name: 'Modules',
+        href: '/docs/overview/modules',
+      },
+      {
+        name: 'Tutorials',
+        href: '/docs/overview/tutorials',
+      },
+      {
+        name: 'Become Validator',
+        href: '/docs/overview/validator',
+      },
+      {
+        name: 'Tools/Ecosystem',
+        href: '/docs/overview/tools',
+      },
+      {
+        name: 'XRPL Bridge',
+        href: '/docs/overview/xrpl-bridge',
+      },
+      {
+        name: 'Help',
+        href: '/docs/overview/help',
       },
       {
         name: 'Technical White Paper',

@@ -3,14 +3,14 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-const ValidatorPage = () => {
+const ApiPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/docs/overview/validator');
+    router.replace('/docs/api/protobuf');
   }, []);
 
   return null;
 };
 
-export default ValidatorPage;
+export default ApiPage;

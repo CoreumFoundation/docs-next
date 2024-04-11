@@ -7,7 +7,7 @@ const MainDocsPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/docs/overview');
+    router.replace('/docs/overview/general');
   }, []);
 
   return null;
