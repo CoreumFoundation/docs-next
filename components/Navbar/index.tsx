@@ -4,8 +4,57 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image';
 import Link from 'next/link';
+import { Dropdown } from '../Dropdown';
 
 export const Navbar = () => {
+  const dropdownItems = [
+    {
+      label: 'Overview',
+      href: '/docs/overview/general',
+      external: false,
+    },
+    {
+      label: 'Tutorials',
+      href: '/docs/overview/tutorials',
+      external: false,
+    },
+    {
+      label: 'Modules',
+      href: '/docs/overview/modules',
+      external: false,
+    },
+    {
+      label: 'Validator',
+      href: '/docs/overview/validator',
+      external: false,
+    },
+    {
+      label: 'API',
+      href: '/docs/api/protobuf',
+      external: false,
+    },
+    {
+      label: 'Tools/Ecosystem',
+      href: '/docs/overview/tools',
+      external: false,
+    },
+    // {
+    //   label: 'Apps',
+    //   href: '/docs/overview/apps',
+    //   external: false,
+    // },
+    {
+      label: 'Help',
+      href: '/docs/overview/help',
+      external: false,
+    },
+    {
+      label: 'Bug Bounty',
+      href: 'https://skynet.certik.com/projects/coreum#bug-bounty',
+      external: true,
+    },
+  ];
+
   return (
     <Disclosure as="nav" className="bg-white shadow w-full">
       {({ open }) => (
@@ -26,7 +75,10 @@ export const Navbar = () => {
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
               >
-                Join Coreum
+                <Dropdown
+                  label="Join Coreum"
+                  items={dropdownItems}
+                />
               </div>
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
