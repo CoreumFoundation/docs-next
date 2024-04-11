@@ -1,11 +1,16 @@
+'use client';
 
-import Component from './upgrades.mdx';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const Page = () => {
-  return (
-    <Component />
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/docs/become-validator/upgrades/main-info');
+  }, []);
+
+  return null;
 };
 
 export default Page;
-        
