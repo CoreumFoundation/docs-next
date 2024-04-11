@@ -3,6 +3,7 @@
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const Navbar = () => {
   return (
@@ -11,13 +12,15 @@ export const Navbar = () => {
         <>
           <div className="flex py-3 px-6 justify-between w-full bg-[#080908]">
             <div className="flex flex-shrink-0 items-center">
-              <Image
-                className="h-5 w-auto"
-                src="/images/logo.svg"
-                alt="Your Company"
-                width={200}
-                height={20}
-              />
+              <Link href="/">
+                <Image
+                  className="h-5 w-auto"
+                  src="/images/logo.svg"
+                  alt="Your Company"
+                  width={200}
+                  height={20}
+                />
+              </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:items-center gap-3">
               <div
@@ -28,68 +31,80 @@ export const Navbar = () => {
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Image
-                  className="h-8 w-8"
-                  src="/images/github-navbar.svg"
-                  alt="Coreum Github"
-                  width={32}
-                  height={32}
-                />
+                <Link href="/" target="_blank">
+                  <Image
+                    className="h-8 w-8"
+                    src="/images/github-navbar.svg"
+                    alt="Coreum Github"
+                    width={32}
+                    height={32}
+                  />
+                </Link>
               </div>
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Image
-                  className="h-8 w-8"
-                  src="/images/twitter-navbar.svg"
-                  alt="Coreum Twitter"
-                  width={32}
-                  height={32}
-                />
+                <Link href="/" target="_blank">
+                  <Image
+                    className="h-8 w-8"
+                    src="/images/twitter-navbar.svg"
+                    alt="Coreum Twitter"
+                    width={32}
+                    height={32}
+                  />
+                </Link>
               </div>
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Image
-                  className="h-8 w-8"
-                  src="/images/instagram-navbar.svg"
-                  alt="Coreum Instagram"
-                  width={32}
-                  height={32}
-                />
+                <Link href="/" target="_blank">
+                  <Image
+                    className="h-8 w-8"
+                    src="/images/instagram-navbar.svg"
+                    alt="Coreum Instagram"
+                    width={32}
+                    height={32}
+                  />
+                </Link>
               </div>
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Image
-                  className="h-8 w-8"
-                  src="/images/telegram-navbar.svg"
-                  alt="Coreum Telegram"
-                  width={32}
-                  height={32}
-                />
+                <Link href="/" target="_blank">
+                  <Image
+                    className="h-8 w-8"
+                    src="/images/telegram-navbar.svg"
+                    alt="Coreum Telegram"
+                    width={32}
+                    height={32}
+                  />
+                </Link>
               </div>
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Image
-                  className="h-8 w-8"
-                  src="/images/discord-navbar.svg"
-                  alt="Coreum Discord"
-                  width={32}
-                  height={32}
-                />
+                <Link href="/" target="_blank">
+                  <Image
+                    className="h-8 w-8"
+                    src="/images/discord-navbar.svg"
+                    alt="Coreum Discord"
+                    width={32}
+                    height={32}
+                  />
+                </Link>
               </div>
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Image
-                  className="h-8 w-8"
-                  src="/images/youtube-navbar.svg"
-                  alt="Coreum Youtube"
-                  width={32}
-                  height={32}
-                />
+                <Link href="/" target="_blank">
+                  <Image
+                    className="h-8 w-8"
+                    src="/images/youtube-navbar.svg"
+                    alt="Coreum Youtube"
+                    width={32}
+                    height={32}
+                  />
+                </Link>
               </div>
               <div className="flex flex-1 justify-center px-2">
                 <div className="w-full max-w-lg lg:max-w-xs">
@@ -115,7 +130,7 @@ export const Navbar = () => {
             </div>
             <div className="-mr-2 flex items-center sm:hidden">
               {/* Mobile menu button */}
-              <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+              <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 bg-[#080908]  focus:outline-none ">
                 <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open main menu</span>
                 {open ? (
@@ -130,7 +145,7 @@ export const Navbar = () => {
             <div className="space-y-1 pb-3 pt-2 bg-[#080908]">
               <Disclosure.Button
                 as="a"
-                href="#"
+                href="/"
                 className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
               >
                 Join Coreum
@@ -142,7 +157,7 @@ export const Navbar = () => {
               >
                 <Image
                   className="h-8 w-8"
-                  src="/images/github.png"
+                  src="/images/github-navbar.svg"
                   alt="Coreum Github"
                   width={32}
                   height={32}
@@ -156,7 +171,7 @@ export const Navbar = () => {
               >
                 <Image
                   className="h-8 w-8"
-                  src="/images/twitter.png"
+                  src="/images/twitter-navbar.svg"
                   alt="Coreum Twitter"
                   width={32}
                   height={32}
@@ -170,7 +185,7 @@ export const Navbar = () => {
               >
                 <Image
                   className="h-8 w-8"
-                  src="/images/instagram.png"
+                  src="/images/instagram-navbar.svg"
                   alt="Coreum Instagram"
                   width={32}
                   height={32}
@@ -184,7 +199,7 @@ export const Navbar = () => {
               >
                 <Image
                   className="h-8 w-8"
-                  src="/images/telegram.png"
+                  src="/images/telegram-navbar.svg"
                   alt="Coreum Telegram"
                   width={32}
                   height={32}
@@ -198,7 +213,7 @@ export const Navbar = () => {
               >
                 <Image
                   className="h-8 w-8"
-                  src="/images/discord.png"
+                  src="/images/discord-navbar.svg"
                   alt="Coreum Discord"
                   width={32}
                   height={32}
@@ -212,7 +227,7 @@ export const Navbar = () => {
               >
                 <Image
                   className="h-8 w-8"
-                  src="/images/youtube.png"
+                  src="/images/youtube-navbar.svg"
                   alt="Coreum Youtube"
                   width={32}
                   height={32}

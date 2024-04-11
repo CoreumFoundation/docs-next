@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "Coreum Docs",
   description: "Discover Coreum, a layer-1 enterprise-grade blockchain with ISO20022, IBC interoperability, and Smart Tokens. Learn about $CORE token, smart contracts, DEX, and cross-chain bridges.",
   keywords: ['Coreum blockchain', 'enterprise-grade blockchain', 'decentralized applications', 'smart contracts', 'smart tokens', '$CORE token', 'BPoS consensus', 'ISO20022 compatibility', 'IBC interoperability', 'Coreum DEX', 'crypto bridges', 'Sologenic ecosystem', 'blockchain scalability'],
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
