@@ -2,6 +2,23 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './system-requirements.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum Node System Requirements for Mainnet, Testnet, and Devnet | Coreum Docs",
+  description: "Discover the system requirements for running Coreum nodes on Mainnet, Testnet, and Devnet. Learn about the recommended hardware specifications for validators, full nodes, and default nodes.",
+  keywords: [
+    'Coreum System Requirements',
+    'Coreum Node Setup',
+    'Blockchain Node Hardware',
+    'Coreum Mainnet',
+    'Coreum Testnet',
+    'Coreum Devnet',
+    'Validator Node Requirements',
+    'Full Node Specifications'
+  ]
+};
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Run Sentry Node',

@@ -1,6 +1,21 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './run-validator.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Setting Up a Validator Node | Coreum Blockchain Network Guide",
+  description: "Learn how to set up and run a validator node on the Coreum blockchain network. This guide covers everything from initial setup to advanced configuration options.",
+  keywords: [
+    'Coreum Validator Setup',
+    'Blockchain Validator Node',
+    'Coreum Blockchain Documentation',
+    'Validator Node Configuration',
+    'Staking Coreum',
+    'Blockchain Node Pruning'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

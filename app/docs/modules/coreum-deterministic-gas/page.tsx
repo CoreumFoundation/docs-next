@@ -1,6 +1,22 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-deterministic-gas.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Understanding Coreum's Deterministic Gas Model for Efficient Blockchain Transactions | Coreum Developers",
+  description: "Dive into the deterministic gas model of Coreum for precise transaction cost estimation. Learn how it enhances blockchain development with fixed gas costs for specific transaction types.",
+  keywords: [
+    'Coreum deterministic gas',
+    'Blockchain transaction costs',
+    'Coreum gas model',
+    'Efficient blockchain transactions',
+    'Coreum blockchain development',
+    'Smart contract gas estimation',
+    'Coreum transaction fees',
+    'Blockchain gas optimization'
+  ]
+};
 
 const Page = () => {
   const prevNavigationItem = {

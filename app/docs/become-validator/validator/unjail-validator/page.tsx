@@ -2,6 +2,24 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './unjail-validator.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Unjailing Your Validator Node on Coreum Network",
+  description: "Master the setup and optimization of a validator node in the Coreum blockchain network. Learn how to secure your node, optimize storage, and unjail your validator.",
+  keywords: [
+    'Coreum Validator Node',
+    'Validator Node Optimization',
+    'Coreum Unjail Validator',
+    'Blockchain Node Optimization',
+    'Secure Validator Node',
+    'Blockchain Storage Management',
+    'Coreum Node Setup',
+    'Blockchain Network Security'
+  ]
+};
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'How much fund do I need to create a validator?',

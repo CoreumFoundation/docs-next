@@ -2,6 +2,22 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './faq.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum Blockchain FAQ: Common Issues and Solutions",
+  description: "Find answers to frequently asked questions about Coreum blockchain, including how to connect `cored` to specific networks, resolve account errors, and more.",
+  keywords: [
+    'Coreum blockchain FAQ',
+    'Cored network connection',
+    'Account not found error',
+    'Key not found error',
+    'Coreum blockchain solutions',
+    'Blockchain troubleshooting'
+  ]
+};
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Help Overview',

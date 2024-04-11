@@ -2,6 +2,26 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-fee-model.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum Fee Model: Dynamic Gas Pricing for Blockchain Transactions | Coreum Developers",
+  description: "Discover Coreum's Fee Model, a dynamic approach to blockchain transaction gas pricing. Understand the mechanisms behind minimum gas price calculations and how it impacts your transactions.",
+  keywords: [
+    'Coreum Fee Model',
+    'Blockchain gas pricing',
+    'Dynamic gas price',
+    'Coreum blockchain transactions',
+    'Blockchain fee calculation',
+    'EMA block gas average',
+    'Coreum gas price adjustment',
+    'Blockchain transaction fees',
+    'Gas price model',
+    'Coreum development'
+  ]
+};
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Coreum Deterministic Gas',

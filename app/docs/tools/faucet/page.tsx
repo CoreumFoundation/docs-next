@@ -2,6 +2,22 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './faucet.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Access Coreum Faucet: Fund Your Testnet and Devnet Accounts",
+  description: "Learn how to use the Coreum faucet to fund your testnet or devnet accounts. Discover methods to generate a funded wallet for testing and development on Coreum blockchain.",
+  keywords: [
+    'Coreum faucet',
+    'Fund testnet account',
+    'Coreum devnet funding',
+    'Blockchain testing',
+    'Coreum wallet generation',
+    'Blockchain development resources'
+  ]
+};
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Wallets',
