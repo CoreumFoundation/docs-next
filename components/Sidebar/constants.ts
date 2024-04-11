@@ -41,6 +41,16 @@ export const SIDEBAR_ITEMS = [
             children: [],
           },
           {
+            name: 'Install prebuild macOS',
+            href: '/docs/tutorials/get-started/install-prebuild-macos',
+            children: [],
+          },
+          {
+            name: 'Install prebuild windows',
+            href: '/docs/tutorials/get-started/install-prebuild-windows',
+            children: [],
+          },
+          {
             name: 'CLI',
             href: '/docs/tutorials/get-started/cli',
             children: [
