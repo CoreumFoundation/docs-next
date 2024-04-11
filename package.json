@@ -11,6 +11,7 @@
     "generate-pages": "tsc scripts/generateRemotePages.ts && node scripts/generateRemotePages.js"
   },
   "dependencies": {
+    "@cookbookdev/docsbot": "^4.8.8",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.3",
     "@mdx-js/loader": "^3.0.1",
