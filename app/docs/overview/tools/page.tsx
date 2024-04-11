@@ -19,11 +19,11 @@ const TOOLS_ITEMS: DocLinkItemProps[] = [
     href: '/docs/tools/blockchain-explorers',
     external: false,
   },
-  {
-    label: 'Github',
-    href: '',
-    external: true,
-  },
+  // {
+  //   label: 'Github',
+  //   href: '',
+  //   external: true,
+  // },
 ];
 
 const ToolsEcosystemMainPage = () => {

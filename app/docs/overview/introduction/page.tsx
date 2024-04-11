@@ -4,8 +4,8 @@ import Component from './Introduction.mdx';
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Coreum Tutorials',
-    href: '/docs/overview',
+    label: 'General Overview',
+    href: '/docs/overview/general',
   };
   const nextNavigationItem = {
     label: 'Smart Contracts',
