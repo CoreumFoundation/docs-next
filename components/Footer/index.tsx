@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 const navigation = {
   products: [
@@ -12,7 +13,7 @@ const navigation = {
   social: [
     {
       name: 'Twitter',
-      href: '#',
+      href: 'https://x.com/CoreumOfficial',
       icon: (props: any) => (
         <Image
           className="w-6"
@@ -26,7 +27,7 @@ const navigation = {
     },
     {
       name: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com/coreum.official/',
       icon: (props: any) => (
         <Image
           className="w-6"
@@ -40,7 +41,7 @@ const navigation = {
     },
     {
       name: 'X',
-      href: '#',
+      href: 'https://x.com/CoreumOfficial',
       icon: (props: any) => (
         <Image
           className="w-6"
@@ -53,8 +54,8 @@ const navigation = {
       ),
     },
     {
-      name: 'GitHub',
-      href: '#',
+      name: 'Discord',
+      href: 'https://discord.com/invite/XdVAGKXEhg',
       icon: (props: any) => (
         <Image
           className="w-6"
@@ -68,7 +69,7 @@ const navigation = {
     },
     {
       name: 'YouTube',
-      href: '#',
+      href: 'https://www.youtube.com/@coreumofficial',
       icon: (props: any) => (
         <Image
           className="w-6"
@@ -82,7 +83,7 @@ const navigation = {
     },
     {
       name: 'Medium',
-      href: '#',
+      href: 'https://coreum.medium.com/',
       icon: (props: any) => (
         <Image
           className="w-6"
@@ -115,10 +116,10 @@ export const Footer = () => {
             />
             <div className="flex items-center gap-x-6">
               {navigation.social.map((item) => (
-                <a key={item.name} href={item.href} className="text-gray-500 hover:text-gray-400">
+                <Link key={item.name} href={item.href} target="_blank" className="text-gray-500 hover:text-gray-400">
                   <span className="sr-only">{item.name}</span>
                   <item.icon className="h-6 w-6" aria-hidden="true" />
-                </a>
+                </Link>
               ))}
             </div>
           </div>

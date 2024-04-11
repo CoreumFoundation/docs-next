@@ -31,7 +31,7 @@ export const Navbar = () => {
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Link href="/" target="_blank">
+                <Link href="https://github.com/CoreumFoundation" target="_blank">
                   <Image
                     className="h-8 w-8"
                     src="/images/github-navbar.svg"
@@ -44,7 +44,7 @@ export const Navbar = () => {
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Link href="/" target="_blank">
+                <Link href="https://x.com/CoreumOfficial" target="_blank">
                   <Image
                     className="h-8 w-8"
                     src="/images/twitter-navbar.svg"
@@ -57,7 +57,7 @@ export const Navbar = () => {
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Link href="/" target="_blank">
+                <Link href="https://www.instagram.com/coreum.official/" target="_blank">
                   <Image
                     className="h-8 w-8"
                     src="/images/instagram-navbar.svg"
@@ -70,7 +70,7 @@ export const Navbar = () => {
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Link href="/" target="_blank">
+                <Link href="https://t.me/CoreumOfficial" target="_blank">
                   <Image
                     className="h-8 w-8"
                     src="/images/telegram-navbar.svg"
@@ -83,7 +83,7 @@ export const Navbar = () => {
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Link href="/" target="_blank">
+                <Link href="https://discord.com/invite/XdVAGKXEhg" target="_blank">
                   <Image
                     className="h-8 w-8"
                     src="/images/discord-navbar.svg"
@@ -96,7 +96,7 @@ export const Navbar = () => {
               <div
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                <Link href="/" target="_blank">
+                <Link href="https://www.youtube.com/@coreumofficial" target="_blank">
                   <Image
                     className="h-8 w-8"
                     src="/images/youtube-navbar.svg"
@@ -152,7 +152,8 @@ export const Navbar = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                href="#"
+                href="https://github.com/CoreumFoundation"
+                target="_blank"
                 className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
               >
                 <Image
@@ -166,7 +167,8 @@ export const Navbar = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                href="#"
+                href="https://x.com/CoreumOfficial"
+                target="_blank"
                 className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
               >
                 <Image
@@ -180,7 +182,8 @@ export const Navbar = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                href="#"
+                href="https://www.instagram.com/coreum.official/"
+                target="_blank"
                 className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
               >
                 <Image
@@ -194,7 +197,8 @@ export const Navbar = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                href="#"
+                href="https://t.me/CoreumOfficial"
+                target="_blank"
                 className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
               >
                 <Image
@@ -208,7 +212,8 @@ export const Navbar = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                href="#"
+                href="https://discord.com/invite/XdVAGKXEhg"
+                target="_blank"
                 className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
               >
                 <Image
@@ -222,7 +227,8 @@ export const Navbar = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                href="#"
+                href="https://www.youtube.com/@coreumofficial"
+                target="_blank"
                 className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
               >
                 <Image
