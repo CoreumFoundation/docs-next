@@ -2,7 +2,7 @@
 
 The tutorial provides example on how to use the `CosmJS` package to instantiate, execute and query CosmWASM Smart Contracts deployed on the Coreum blockchain.
 
-## What Is CosmWasm?
+# What Is CosmWasm?
 
 CosmWasm is a smart contract platform that allows for the development and execution of smart contracts on blockchains that are built using the Cosmos SDK. It is designed to enhance the Cosmos ecosystem by providing a powerful and flexible way to create decentralized applications (dApps) that can interact across different blockchains within the Cosmos network. Here's an in-depth look at its features, architecture, and how it works:
 
@@ -14,7 +14,7 @@ CosmWasm is a smart contract platform that allows for the development and execut
 
 4. Customizable: Blockchains can customize the CosmWasm module to fit their specific needs, making it a flexible solution for a wide range of applications.
 
-## Prerequisites
+# Prerequisites
 
 To complete this tutorial, you need to:
 
@@ -25,12 +25,12 @@ To complete this tutorial, you need to:
 * Install the required util: `jq`.
 * Set the [network variables](network-variables.md) for the development (testnet is preferable).
 
-## Source Code
+# Source Code
 
 The complete source code is
 located [here](https://github.com/CoreumFoundation/cw-contracts/tree/main/contracts/nameservice).
 
-## Getting Started
+# Getting Started
 
 * Generate a new wallet for testing.
 
@@ -52,7 +52,7 @@ git clone https://github.com/CoreumFoundation/cw-contracts.git
 cd cw-contracts/contracts/nameservice
 ```
 
-## Build contract
+# Build contract
 
 * Build optimized WASM smart contract:
 
@@ -74,7 +74,7 @@ error: could not find `Cargo.toml` in `/code` or any parent directory
 
 Check if you are in a right directory (should be `cw-contracts/contracts/nameservice`)
 
-## Deploy contract
+# Deploy contract
 
 * List the already deployed contract codes.
 
@@ -100,7 +100,7 @@ echo $CODE_ID
 cored q wasm code-info $CODE_ID $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 ```
 
-## Instantiate contract
+# Instantiate contract
 
 * Instantiating the contract.
 
@@ -117,7 +117,7 @@ CONTRACT_ADDRESS=$(cored q wasm list-contract-by-code $CODE_ID --output json $CO
 echo $CONTRACT_ADDRESS
 ```
 
-## Interact with the contract
+# Interact with the contract
 
 * Register a name for the wallet address on the contract.
 
@@ -152,7 +152,7 @@ NAME_QUERY='{"resolve_record": {"name": "fred"}}'
 cored q wasm contract-state smart $CONTRACT_ADDRESS "$NAME_QUERY" --output json $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 ```
 
-## Next steps
+# Next steps
 
 * Read Coreum [modules](../modules/main.md) specification, to be familiar with the custom Coreum functionality you can
   use for your application.
