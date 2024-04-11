@@ -2,6 +2,25 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-js.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Issuing and Managing Tokens on Coreum with JavaScript | Coreum Docs",
+  description: "Learn how to issue, mint, and send fungible tokens and create non-fungible tokens on the Coreum blockchain using the coreum-js library. Complete examples included.",
+  keywords: [
+    'Coreum Blockchain',
+    'JavaScript Development',
+    'coreum-js Library',
+    'Fungible Tokens',
+    'Non-Fungible Tokens',
+    'Blockchain Tokenization',
+    'JavaScript Blockchain Programming',
+    'Coreum Token Management'
+  ]
+};
+
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Using CosmJS',

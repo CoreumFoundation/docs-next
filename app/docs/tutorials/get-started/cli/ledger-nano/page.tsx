@@ -1,6 +1,24 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './ledger-nano.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Using Ledger Nano with Coreum CLI and Keplr Wallet | Coreum Docs",
+  description: "Learn how to enhance the security of your Coreum digital assets using Ledger Nano with cored CLI and Keplr Wallet. Complete guide for setup and transaction signing.",
+  keywords: [
+    'Coreum Blockchain',
+    'Ledger Nano',
+    'Keplr Wallet',
+    'cored CLI',
+    'Cosmos App',
+    'Hardware Wallet',
+    'Crypto Security',
+    'Digital Assets',
+    'Transaction Signing',
+    'Coreum Testnet'
+  ]
+};
 
 const Page = () => {
   const prevNavigationItem = {

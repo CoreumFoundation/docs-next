@@ -1,6 +1,23 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './send-multisig-transaction.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Creating and Broadcasting Multisig Transactions with Coreum CLI | Coreum Docs",
+  description: "Step-by-step guide on creating a multisig account and sending a multisig transaction using the Coreum cored CLI. Learn how to securely manage multisig transactions on the Coreum blockchain.",
+  keywords: [
+    'Coreum Multisig Transaction',
+    'cored CLI Tutorial',
+    'Multisig Account Setup',
+    'Coreum CLI Multisig',
+    'Blockchain Multisig',
+    'Coreum Blockchain Transactions',
+    'Multisig Transaction Broadcast',
+    'Coreum CLI Guide'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

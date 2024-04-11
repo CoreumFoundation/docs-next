@@ -1,6 +1,23 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './transfer-funds.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Transferring Funds on Coreum Blockchain with Go | Coreum Docs",
+  description: "Learn how to use the Go programming language to broadcast transactions and query the Coreum blockchain. A complete guide with examples and a full code snippet.",
+  keywords: [
+    'Coreum Blockchain',
+    'Go Programming',
+    'Blockchain Transactions',
+    'Coreum SDK',
+    'Go Blockchain Development',
+    'Coreum Query',
+    'Golang Coreum',
+    'Broadcast Transactions Go'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

@@ -1,6 +1,24 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './web-app.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Building a Coreum Web Application with TypeScript | Coreum Development Tutorial",
+  description: "Master the art of building a Coreum web application using TypeScript. This tutorial covers essential tools like Next.js, React, CosmWasm, and Keplr integration.",
+  keywords: [
+    'Coreum Web Application',
+    'TypeScript Blockchain Development',
+    'Coreum Blockchain Tutorial',
+    'Next.js Blockchain App',
+    'React Blockchain Integration',
+    'CosmWasm Coreum',
+    'Keplr Wallet Integration',
+    'Decentralized Application Development',
+    'Coreum dApp Tutorial'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

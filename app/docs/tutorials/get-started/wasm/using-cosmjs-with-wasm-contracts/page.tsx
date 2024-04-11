@@ -2,6 +2,25 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './using-cosmjs-with-wasm-contracts.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Interact with CosmWASM Contracts on Coreum using CosmJS | Coreum Docs",
+  description: "Explore how to use CosmJS to instantiate, execute, and query CosmWASM smart contracts on the Coreum blockchain. A complete guide for developers.",
+  keywords: [
+    'Coreum Blockchain',
+    'CosmJS',
+    'CosmWASM Contracts',
+    'Smart Contract Interaction',
+    'Blockchain Development',
+    'WASM Contract Execution',
+    'Smart Contract Instantiation',
+    'CosmWASM Query',
+    'Blockchain Programming Tutorial',
+    'Coreum Development Guide'
+  ]
+};
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Testing Multiple Contracts',

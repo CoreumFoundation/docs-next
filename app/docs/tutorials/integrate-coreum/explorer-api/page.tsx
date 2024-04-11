@@ -1,6 +1,23 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './explorer-api.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Using Explorer API for Coreum Blockchain | Coreum Documentation",
+  description: "Explore the step-by-step tutorial on utilizing the Explorer API for Coreum Blockchain. Learn how to access GraphQL Query endpoints and leverage the API for development.",
+  keywords: [
+    'Coreum Explorer API', 
+    'GraphQL API for Coreum', 
+    'Coreum Blockchain Development', 
+    'Blockchain Explorer API', 
+    'Coreum API Tutorial', 
+    'Blockchain Data Query', 
+    'Coreum GraphQL Schema', 
+    'Blockchain API Endpoints'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

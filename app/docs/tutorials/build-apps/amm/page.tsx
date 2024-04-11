@@ -1,6 +1,24 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './amm.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Setting Up an AMM on Coreum with Astroport | Coreum Development Guide",
+  description: "Learn how to set up an Automated Market Maker (AMM) on the Coreum blockchain using the Astroport protocol with our comprehensive development guide.",
+  keywords: [
+    'Automated Market Maker',
+    'Coreum Blockchain AMM',
+    'Astroport Protocol',
+    'Coreum AMM Setup',
+    'DeFi on Coreum',
+    'Liquidity Pool Creation',
+    'Coreum Smart Contracts',
+    'Blockchain Development',
+    'Coreum Astroport Guide'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

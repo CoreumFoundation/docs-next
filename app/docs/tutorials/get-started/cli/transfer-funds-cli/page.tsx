@@ -1,6 +1,23 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './transfer-funds-cli.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Transferring Funds and Staking with Coreum CLI | Coreum Docs",
+  description: "Learn how to transfer funds and stake tokens on the Coreum blockchain using the cored CLI. Follow our step-by-step guide for testnet transactions and staking operations.",
+  keywords: [
+    'Coreum CLI Guide',
+    'Transferring Funds Coreum',
+    'Staking Tokens Coreum',
+    'cored CLI Tutorial',
+    'Coreum Testnet Transactions',
+    'Blockchain CLI Operations',
+    'Coreum Staking Commands',
+    'Coreum Bank Module',
+    'Coreum Staking Module'
+  ]
+};
 
 const Page = () => {
   const prevNavigationItem = {

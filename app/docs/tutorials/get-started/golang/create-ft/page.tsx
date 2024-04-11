@@ -1,6 +1,23 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-ft.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Create and Manage Fungible Tokens on Coreum with Go | Coreum Docs",
+  description: "Discover how to create and manage fungible tokens on the Coreum blockchain using Go. Includes complete code examples and detailed instructions for a smooth start.",
+  keywords: [
+    'Coreum Blockchain',
+    'Go Programming',
+    'Fungible Tokens',
+    'Coreum SDK',
+    'Blockchain Token Creation',
+    'Go Blockchain Development',
+    'Digital Assets Management',
+    'Coreum Token Issuance'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {
