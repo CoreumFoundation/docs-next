@@ -102,7 +102,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           </nav>
         </div>
       </div>
-      <main className="px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] flex-1 max-w-full">
+      <main className="px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] grow max-w-full overflow-hidden">
         {children}
       </main>
     </div>
