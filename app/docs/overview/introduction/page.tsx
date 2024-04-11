@@ -1,6 +1,13 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './Introduction.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum: Advanced Layer-1 Blockchain for Decentralized Applications | Coreum Docs",
+  description: "Discover Coreum, a layer-1 enterprise-grade blockchain with ISO20022, IBC interoperability, and Smart Tokens. Learn about $CORE token, smart contracts, DEX, and cross-chain bridges.",
+  keywords: ['Coreum blockchain', 'enterprise-grade blockchain', 'decentralized applications', 'smart contracts', 'smart tokens', '$CORE token', 'BPoS consensus', 'ISO20022 compatibility', 'IBC interoperability', 'Coreum DEX', 'crypto bridges', 'Sologenic ecosystem', 'blockchain scalability'],
+};
 
 const Page = () => {
   const prevNavigationItem = {

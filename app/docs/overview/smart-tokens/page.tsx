@@ -1,6 +1,13 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './smart-tokens.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum Smart Tokens: Customizable & Secure On-Chain Assets | Coreum Docs",
+  description: "Learn about Coreum's Smart Tokens, the flexible and secure on-chain assets wrapped around Smart Contracts. Discover their unique features like IBC compatibility, minting, and ACL for superior asset management.",
+  keywords: ['Coreum', 'Smart Tokens', 'blockchain assets', 'on-chain tokens', 'token minting', 'token burning', 'asset management', 'IBC compatibility', 'Smart Contract integration', 'token issuance', 'WASM', 'access control list', 'DeFi tokens'],
+};
 
 const Page = () => {
   const prevNavigationItem = {

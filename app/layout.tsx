@@ -11,8 +11,8 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "Coreum Docs",
-  description: "Learn about Coreum with our official documentation. Developers and blockchain can discover more about the super ledger, layer 1 built on Cosmos SDK. Coreum smart contracts are built with Rust prioritizing  security, scalability and efficiency for your projects. Your gateway to the next-generation blockchain technology starts here.",
-  keywords: [],
+  description: "Discover Coreum, a layer-1 enterprise-grade blockchain with ISO20022, IBC interoperability, and Smart Tokens. Learn about $CORE token, smart contracts, DEX, and cross-chain bridges.",
+  keywords: ['Coreum blockchain', 'enterprise-grade blockchain', 'decentralized applications', 'smart contracts', 'smart tokens', '$CORE token', 'BPoS consensus', 'ISO20022 compatibility', 'IBC interoperability', 'Coreum DEX', 'crypto bridges', 'Sologenic ecosystem', 'blockchain scalability'],
 };
 
 export default function RootLayout({

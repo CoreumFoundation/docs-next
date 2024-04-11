@@ -1,5 +1,12 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './smart-contracts.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Smart Contracts on Coreum: WASM-Powered Contract Execution | Coreum Docs",
+  description: "Explore the advanced Smart Contract capabilities of Coreum using WebAssembly (WASM) for enhanced security, efficiency, and cross-language compatibility. Learn how CosmWasm integrates with the Cosmos SDK.",
+  keywords: ['Coreum Smart Contracts', 'WASM Smart Contracts', 'blockchain programming', 'CosmWasm', 'Cosmos SDK', 'Smart Contract architecture', 'IBC protocol', 'blockchain security', 'Rust for blockchain', 'Smart Contract execution'],
+};
 
 const Page = () => {
   const prevNavigationItem = {
