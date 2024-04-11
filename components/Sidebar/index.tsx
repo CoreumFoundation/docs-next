@@ -89,7 +89,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
 
   return (
     <div className="flex flex-row w-full h-auto min-h-full flex-1 font-['space grotesk'] ">
-      <div className="flex flex-none w-72">
+      <div className="flex flex-none w-72 main-content">
         <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#101216] p-6">
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -102,7 +102,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           </nav>
         </div>
       </div>
-      <main className="px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] grow max-w-full overflow-hidden">
+      <main className="px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] grow max-w-full overflow-hidden main-content">
         {children}
       </main>
     </div>
