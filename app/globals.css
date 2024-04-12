@@ -43,9 +43,8 @@ body {
 .bg-landing {
   background-image: url("/images/landing-bg.png");
   background-repeat: no-repeat;
-  background-position: top;
   background-clip: border-box;
-  background-size: cover;
+  background-size: contain;
 }
 
 .text-grey-gradient {
