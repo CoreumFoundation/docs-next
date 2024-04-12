@@ -57,6 +57,14 @@
       "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/cored.md?token=GHSAT0AAAAAACMG5Y3YWQUAYFWL4PCG2SEAZQO6DDQ"
     },
     {
+      "page": "install-prebuild-macos",
+      "source": ""
+    },
+    {
+      "page": "install-prebuild-windows",
+      "source": "https://raw.githubusercontent.com/Jahanzeb9999/docs/new-branch/src/tutorials/WindowsInstallation.md?token=GHSAT0AAAAAACB2U6LNNSZVNF474GXDONDYZQX73WQ"
+    },
+    {
       "page": "cli",
       "source": ""
     },
