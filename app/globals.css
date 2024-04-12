@@ -34,10 +34,20 @@ body {
 
 .bg-footer {
   background: linear-gradient(180deg, rgba(8, 9, 8, 0.65) 0%, #080908 97%);
+
+  /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, #FFF 97%); */
 }
 
 .bg-main {
-  background: rgba(16, 18, 22, 1);
+  /* background: linear-gradient(180deg, rgba(8, 9, 8, 0.00) 20.83%, #080908 100%); */
+}
+
+.bg-landing {
+  background-image: url("/images/landing-bg.png");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-clip: border-box;
+  background-size: contain;
 }
 
 .text-grey-gradient {

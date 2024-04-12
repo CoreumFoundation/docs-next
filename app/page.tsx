@@ -33,9 +33,9 @@ const CARDS: CardItem[] = [
 
 export default function Home() {
   return (
-    <div className="flex min-h-max flex-col items-center justify-between p-20 w-full gap-20">
-      <div className="flex flex-row w-full">
-        <div className="flex flex-col w-full gap-8">
+    <div className="flex min-h-max flex-col items-center justify-between px-6 pt-2 pb-20 md:px-14 lg:px-20 xl:px-32 w-full gap-20 max-w-7xl">
+      <div className="flex flex-col md:flex-row w-full mb-10">
+        <div className="flex flex-col w-full gap-8 md:max-w-[70%] py-14 md:py-16 xl:py-24">
           <div className="flex text-[#5E6773] text-xs">
             <div className="flex py-1 px-4 bg-grey-gradient border border-[#5e6773]/25 rounded-full backdrop-blur-sm">
               Last Updated: 12/14/2023, 6:39:40 AM
@@ -61,11 +61,11 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="">
-          <Image className="rotate-[0deg]" src="/images/chains.png" alt="chains" width={300} height={420} />
+        <div className="flex justify-center md:justify-end">
+          <Image className="h-auto" src="/images/chains.png" alt="chains" width={300} height={420} />
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
         {CARDS.map((cardItem: CardItem, index: number) => {
           return (
             <div
