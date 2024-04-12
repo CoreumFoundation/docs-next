@@ -143,7 +143,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     pre: ({ children }) => (
       <pre
-        className="bg-[#0d110f] rounded-lg p-4 overflow-auto whitespace-pre-wrap break-words"
+        className="bg-[#101216] rounded-lg p-4 overflow-auto whitespace-pre-wrap break-words"
         style={{
           fontSize: '14px',
           marginTop: '12px',
