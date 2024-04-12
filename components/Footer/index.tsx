@@ -1,14 +1,12 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 
 const navigation = {
   products: [
-    { name: 'Explorer', href: '#' },
-    { name: 'ISO Simulator', href: '#' },
-    { name: 'Developer Playground', href: '#' },
-    { name: 'Whitepaper', href: '#' },
+    { name: 'Explorer', href: 'https://explorer.coreum.com/coreum' },
+    { name: 'ISO Simulator', href: 'https://www.coreum.com/iso20022' },
+    { name: 'Developer Playground', href: 'https://playground.coreum.dev/' },
+    { name: 'Whitepaper', href: 'https://www.coreum.com/assets/coreum_technical_paper.pdf' },
   ],
   social: [
     {
@@ -40,8 +38,8 @@ const navigation = {
       ),
     },
     {
-      name: 'X',
-      href: 'https://x.com/CoreumOfficial',
+      name: 'Telegram',
+      href: 'https://t.me/CoreumOfficial',
       icon: (props: any) => (
         <Image
           className="w-6"
@@ -132,7 +130,7 @@ export const Footer = () => {
           <ul role="list" className="space-y-3">
             {navigation.products.map((item) => (
               <li key={item.name}>
-                <a href={item.href} className="flex items-center text-base leading-6 text-[#9FA2AC] hover:text-white">
+                <Link href={item.href} target="_blank" className="flex items-center text-base leading-6 text-[#9FA2AC] hover:text-white">
                   {item.name}
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path fillRule="evenodd" clipRule="evenodd" d="M14.492 9.46915H8.43281V8H17.0029V16.5701H15.5337V10.5051L8.03885 18L7 16.9612L14.492 9.46915Z" fill="url(#paint0_linear_10730_29519)"/>
@@ -143,7 +141,7 @@ export const Footer = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
