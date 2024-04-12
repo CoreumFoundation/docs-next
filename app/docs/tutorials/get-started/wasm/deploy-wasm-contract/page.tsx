@@ -1,5 +1,22 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './deploy-wasm-contract.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Deploy Your First WASM Smart Contract on Coreum | Coreum Docs",
+  description: "A step-by-step guide to deploying a WASM smart contract on the Coreum blockchain. Learn from setting up Rust to interacting with your deployed contract.",
+  keywords: [
+    'Coreum Blockchain',
+    'WASM Smart Contract',
+    'Rust Programming',
+    'Blockchain Deployment',
+    'Coreum Smart Contract',
+    'Smart Contract Tutorial',
+    'Coreum Development',
+    'Blockchain Coding'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

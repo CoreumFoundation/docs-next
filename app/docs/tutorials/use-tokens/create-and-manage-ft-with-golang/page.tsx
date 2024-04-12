@@ -1,6 +1,22 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-and-manage-ft-with-golang.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Creating Fungible Tokens on Coreum with Golang | Coreum Docs",
+  description: "Step-by-step tutorial on how to create and manage fungible tokens on the Coreum blockchain using Golang. Includes examples for issuing, sending, and freezing tokens.",
+  keywords: [
+    'Coreum Blockchain Overview', 
+    'Golang Blockchain Development', 
+    'Fungible Tokens on Coreum', 
+    'Token Creation with Golang', 
+    'Token Management on Blockchain', 
+    'Coreum Token Management', 
+    'Golang Programming for Blockchain', 
+    'Blockchain Development Tutorial'
+  ]
+};
 
 const Page = () => {
   const prevNavigationItem = {

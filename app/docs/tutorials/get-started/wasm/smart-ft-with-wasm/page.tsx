@@ -1,6 +1,24 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './smart-ft-with-wasm.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Developing and Deploying Smart FT with WASM on Coreum | Coreum Docs",
+  description: "Master the art of creating and deploying a WASM-based fungible smart token with airdrop functionality on the Coreum blockchain with our comprehensive guide.",
+  keywords: [
+    'Coreum Blockchain',
+    'WASM Smart Contract',
+    'Smart FT Development',
+    'WebAssembly Coreum',
+    'Fungible Token Airdrop',
+    'Coreum Token Deployment',
+    'Rust Blockchain Development',
+    'WASM Contract Tutorial',
+    'Coreum FT Airdrop'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

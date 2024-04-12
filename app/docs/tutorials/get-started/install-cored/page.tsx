@@ -1,6 +1,23 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './install-cored.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "How to Install Coreum's cored: Prebuilt and From Sources | Coreum Docs",
+  description: "Complete guide on installing the Coreum 'cored' binary. Choose between installing a prebuilt version for Linux or building from sources. Ensure your CLI is ready for Coreum blockchain.",
+  keywords: [
+    'Coreum cored Installation',
+    'Install Coreum Binary',
+    'Coreum Blockchain Software',
+    'Build Coreum from Sources',
+    'Coreum CLI Setup',
+    'cored Linux Installation',
+    'Coreum Blockchain Development',
+    'Coreum GitHub Releases'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

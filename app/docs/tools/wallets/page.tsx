@@ -1,6 +1,22 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './wallets.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Compare Coreum Blockchain Wallets: Features and Support Guide",
+  description: "Explore the best wallets for Coreum blockchain with our detailed comparison. Find out which wallets support staking, mobile apps, browser extensions, hardware wallets, and more.",
+  keywords: [
+    'Coreum wallets',
+    'Blockchain wallets comparison',
+    'Staking wallets',
+    'Coreum mobile wallets',
+    'Coreum browser wallets',
+    'Coreum hardware wallets',
+    'Wallet features'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

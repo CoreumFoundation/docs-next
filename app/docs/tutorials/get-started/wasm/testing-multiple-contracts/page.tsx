@@ -1,6 +1,24 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './testing-multiple-contracts.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Testing Interactions Between Multiple Contracts on Coreum with CosmWasm | Coreum Docs",
+  description: "Learn how to test multiple contract interactions within a CosmWasm workspace on Coreum. A comprehensive guide for developers using Rust.",
+  keywords: [
+    'Coreum Blockchain',
+    'CosmWasm Multitest',
+    'Rust Smart Contracts',
+    'Coreum Contract Testing',
+    'Multi-Contract Interactions',
+    'Blockchain Development',
+    'WASM Contract Testing',
+    'Smart Contract Workspace',
+    'Coreum Development Tutorial'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

@@ -2,6 +2,27 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-fungible-token.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum Fungible Token Creation and Management | Coreum Developers",
+  description: "Learn how to create and manage fungible tokens on the Coreum blockchain. Explore issuing, minting, burning, and other token functionalities with Coreum's assetft module.",
+  keywords: [
+    'Coreum fungible token',
+    'Blockchain token creation',
+    'Assetft module',
+    'Minting tokens',
+    'Burning tokens',
+    'Token freezing',
+    'Coreum token management',
+    'Blockchain whitelisting',
+    'Coreum IBC transfers',
+    'Smart contract token restrictions',
+    'Coreum blockchain development'
+  ]
+};
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Modules Overview',

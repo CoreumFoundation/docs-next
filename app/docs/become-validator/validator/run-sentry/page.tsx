@@ -2,6 +2,22 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './run-sentry.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Guide to Setting Up Sentry Nodes for Coreum Blockchain | Coreum Node Configuration",
+  description: "Step-by-step guide to setting up a sentry node in the Coreum blockchain network. Learn how to enhance network security and efficiency through detailed instructions.",
+  keywords: [
+    'Coreum Sentry Node Setup',
+    'Blockchain Network Security',
+    'Node Configuration Blockchain',
+    'Coreum Documentation',
+    'Blockchain Sentry Nodes',
+    'Tendermint Node Setup'
+  ]
+};
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Run Validator Node',

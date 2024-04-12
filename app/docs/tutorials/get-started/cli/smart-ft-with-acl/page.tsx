@@ -1,6 +1,24 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './smart-ft-with-acl.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Creating Smart FT with ACL on Coreum Blockchain | Coreum Docs",
+  description: "Learn how to create a multisig account, issue a fungible token (FT), and manage permissions with the Authz module on the Coreum blockchain for enhanced asset control.",
+  keywords: [
+    'Coreum Smart FT',
+    'Access Control List',
+    'Coreum Multisig Account',
+    'Authz Module Coreum',
+    'Issuing FT on Coreum',
+    'Blockchain Asset Management',
+    'Coreum CLI Tutorial',
+    'Coreum Asset Permissions',
+    'Multisig Transactions Coreum'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

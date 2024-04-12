@@ -1,6 +1,23 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-nft.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Create and Manage Non-Fungible Tokens on Coreum with Go | Coreum Docs",
+  description: "Step-by-step guide to creating and managing non-fungible tokens (NFTs) on the Coreum blockchain using Go. Learn how to mint, transfer, and freeze NFTs with code examples.",
+  keywords: [
+    'Coreum NFTs',
+    'Go Programming',
+    'Non-Fungible Tokens',
+    'Coreum SDK',
+    'NFT Blockchain Development',
+    'Coreum NFT Creation',
+    'Golang Blockchain',
+    'NFT Management Go'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

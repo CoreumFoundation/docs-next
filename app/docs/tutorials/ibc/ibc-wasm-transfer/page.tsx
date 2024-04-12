@@ -1,5 +1,23 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './ibc-wasm-transfer.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "IBC WASM Transfer Tutorial with Coreum and CosmWasm | Coreum Developers",
+  description: "Learn how to build and execute an IBC-enabled smart contract for token transfers on Coreum using CosmWasm and Rust. Start developing cross-chain applications today.",
+  keywords: [
+    'IBC WASM Transfer',
+    'Coreum Blockchain',
+    'CosmWasm Tutorial',
+    'Rust Programming',
+    'Cross-Chain Token Transfer',
+    'Smart Contract Development',
+    'Coreum Developers',
+    'Blockchain Coding',
+    'IBC Protocol',
+    'CosmWasm Contracts'
+  ]
+};
 
 const Page = () => {
   const prevNavigationItem = {

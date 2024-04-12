@@ -2,6 +2,24 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './blockchain-explorers.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Discover Coreum Block Explorers: Mainnet, Testnet, and Devnet",
+  description: "Explore Coreum blockchain with official and community-maintained block explorers. Access detailed information on transactions, blocks, and validators on Mainnet, Testnet, and Devnet.",
+  keywords: [
+    'Coreum block explorer',
+    'Blockchain explorer',
+    'Coreum Mainnet explorer',
+    'Testnet explorer',
+    'Devnet explorer',
+    'Coreum blockchain',
+    'Transaction lookup',
+    'Validator information'
+  ]
+};
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Faucet',

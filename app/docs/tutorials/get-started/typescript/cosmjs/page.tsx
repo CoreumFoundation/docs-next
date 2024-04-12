@@ -2,6 +2,24 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './cosmjs.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Interacting with Coreum Blockchain using CosmJS and TypeScript | Coreum Docs",
+  description: "Master blockchain interactions with CosmJS and TypeScript. Learn to broadcast transactions and query the Coreum blockchain with step-by-step code examples.",
+  keywords: [
+    'Coreum Blockchain',
+    'CosmJS',
+    'TypeScript Blockchain',
+    'Blockchain Transactions',
+    'Coreum SDK',
+    'TypeScript Development',
+    'Blockchain Querying',
+    'Crypto Programming'
+  ]
+};
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Transfer Funds with Typescript',

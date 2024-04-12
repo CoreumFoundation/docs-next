@@ -1,6 +1,25 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './ibc-transfer-using-cli.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "IBC Transfer Using CLI: Coreum to Osmosis and Back | Coreum Developers",
+  description: "Master the steps for executing IBC transfers between Coreum and Osmosis using CLI tools. Learn how to send and receive tokens across blockchains efficiently.",
+  keywords: [
+    'IBC Transfer CLI',
+    'Coreum Blockchain',
+    'Osmosis Chain',
+    'CLI Tools for Blockchain',
+    'Cross-Chain Transfer',
+    'Token Transfer via IBC',
+    'Coreum to Osmosis',
+    'IBC Token Denomination',
+    'Blockchain Development',
+    'Coreum CLI Tutorial'
+  ]
+};
+
 
 const Page = () => {
   const prevNavigationItem = {

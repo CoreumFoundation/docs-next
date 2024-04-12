@@ -2,6 +2,29 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-non-fungible-token.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum Non-Fungible Token Creation and Features | Coreum Developers",
+  description: "Unlock the power of non-fungible tokens on the Coreum blockchain. Learn about creating NFTs, implementing custom features, and managing your digital assets effectively.",
+  keywords: [
+    'Coreum NFT creation',
+    'Blockchain NFTs',
+    'Assetnft module',
+    'Non-fungible tokens',
+    'NFT burning',
+    'NFT freezing',
+    'NFT whitelisting',
+    'Digital asset management',
+    'Coreum blockchain development',
+    'NFT features',
+    'Soulbound NFTs',
+    'Disable NFT sending',
+    'Coreum developers'
+  ]
+};
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'Coreum Fungible Token',

@@ -1,6 +1,23 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './how-much-fund-to-create-validator.mdx';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Understanding Funding Requirements for a Coreum Validator Node",
+  description: "Discover how much funding you need to launch a validator node on the Coreum blockchain. Learn about self-delegation, slashing risks, and how to secure your spot in the active set.",
+  keywords: [
+    'Coreum Validator Funding',
+    'Blockchain Validator Stake',
+    'Coreum Node Setup',
+    'Validator Self-delegation',
+    'Blockchain Slashing',
+    'Validator Active Set',
+    'Cost of Running a Validator',
+  ]
+};
+
+
 const Page = () => {
   const prevNavigationItem = {
     label: 'System Requirements',

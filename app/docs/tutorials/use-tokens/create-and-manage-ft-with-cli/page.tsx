@@ -1,6 +1,24 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-and-manage-ft-with-cli.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Create and Manage Fungible Tokens on Coreum Blockchain with CLI | Coreum Docs",
+  description: "Learn to create, manage, and interact with fungible tokens on the Coreum blockchain using the command-line interface. Follow our step-by-step guide.",
+  keywords: [
+    'Coreum Blockchain Essentials', 
+    'Fungible Tokens Management', 
+    'Blockchain CLI Operations', 
+    'Token Creation on Coreum', 
+    'Token Management via CLI', 
+    'Introduction to Blockchain Tokens', 
+    'Coreum Token Tutorial', 
+    'AssetFT Module Operations', 
+    'Command Line Blockchain Tools', 
+    'Coreum Token Administration'
+]
+};
 
 const Page = () => {
   const prevNavigationItem = {

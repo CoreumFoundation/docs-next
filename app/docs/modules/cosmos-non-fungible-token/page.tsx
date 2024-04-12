@@ -1,6 +1,26 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './cosmos-non-fungible-token.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Cosmos Non-Fungible Tokens: Create, Transfer, and Manage NFTs | Cosmos Developers",
+  description: "Master the Cosmos NFT module for creating, transferring, and managing non-fungible tokens on the Cosmos blockchain. Follow our guide for comprehensive insights.",
+  keywords: [
+    'Cosmos NFT module',
+    'Non-fungible tokens Cosmos',
+    'NFT creation Cosmos',
+    'Transfer NFTs Cosmos',
+    'Manage NFT Cosmos',
+    'Cosmos blockchain NFTs',
+    'Cosmos SDK NFT',
+    'ERC721 Cosmos',
+    'Cosmos NFT classification',
+    'Cosmos NFT ownership'
+  ]
+};
+
+
 
 const Page = () => {
   const prevNavigationItem = {
