@@ -43,7 +43,7 @@ export const Dropdown: FC<DropdownProps> = ({
                 <Menu.Item key={`${item.label}-${index}`}>
                   <Link
                     href={item.href}
-                    className="flex items-center text-[#5E6773] px-5 py-3 text-sm"
+                    className="flex items-center text-[#5E6773] px-5 py-3 text-sm hover:text-[#eee]"
                     target={item.external ? "_blank" : "_self"}
                   >
                     {item.label}
