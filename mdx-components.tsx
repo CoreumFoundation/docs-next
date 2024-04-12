@@ -1,6 +1,7 @@
 import type { MDXComponents } from 'mdx/types';
 import { Noto_Sans, Space_Grotesk } from 'next/font/google';
 import Image, { ImageProps } from 'next/image';
+import Link from 'next/link';
 import * as React from 'react';
 
 const notoSans = Noto_Sans({ subsets: ["latin"] });
@@ -59,7 +60,16 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </p>
     ),
-    table: ({ children }) => <table className="table">{children}</table>,
+    table: ({ children }) => (
+      <table
+        className="block mt-2 mb-10"
+        style={{
+          overflowX: 'auto'
+        }}
+      >
+        {children}
+      </table>
+    ),
     thead: ({ children }) => (
       <thead
         className="text-[#5E6773] font-normal"
@@ -111,7 +121,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     li: ({ children }) => <li style={{ fontSize: '14px' }}>{children}</li>,
     a: (props) => (
-      <a
+      <Link
+        href={props.href || '#'}
         className=" text-base font-semibold leading-7"
         style={{
           color: '#25D695',
@@ -120,7 +131,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       >
         {props.children}
-      </a>
+      </Link>
     ),
     img: (props) => (
       <Image

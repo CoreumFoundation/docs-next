@@ -33,13 +33,11 @@ body {
 }
 
 .bg-footer {
-  background: linear-gradient(180deg, rgba(8, 9, 8, 0.65) 0%, #080908 97%);
-
-  /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, #FFF 97%); */
+  background: #080908;
 }
 
 .bg-main {
-  /* background: linear-gradient(180deg, rgba(8, 9, 8, 0.00) 20.83%, #080908 100%); */
+  background: #080908;
 }
 
 .bg-landing {
@@ -47,7 +45,7 @@ body {
   background-repeat: no-repeat;
   background-position: top;
   background-clip: border-box;
-  background-size: contain;
+  background-size: cover;
 }
 
 .text-grey-gradient {
