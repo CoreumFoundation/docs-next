@@ -6,7 +6,7 @@ The tutorial provides example on how to use the `CosmJS` package to instantiate,
 
 Install the [CosmJS](https://github.com/cosmos/cosmjs) dependency.
 
-```
+```bash
 npm install @cosmjs/stargate @cosmjs/cosmwasm-stargate
 ```
 
@@ -89,7 +89,7 @@ The clients will be reused by multiple samples later.
 ```ts
 const httpClient = new HttpBatchClient(coreumRpcEndpoint);
 const tendermintClient = await Tendermint34Client.create(httpClient);
-const queryClient = QueryClient.withExtensions(tendermintClient, setupWasmExtension); 
+const queryClient = QueryClient.withExtensions(tendermintClient, setupWasmExtension);
 const rpcClient = createProtobufRpcClient(queryClient);
 const feemodelQueryClient = new FeemodelQueryClient(rpcClient)
 ```
@@ -204,5 +204,4 @@ For convenience there are already tools to integrate wallets into our applicatio
 * Read Coreum [modules](../modules/main.md) specification, to be familiar with the custom Coreum functionality you can
   use for your application.
 * Read [WASM docs](https://docs.cosmwasm.com/docs/) to understand all supported WASM features.
-* Check other [tutorials](main.md) to find something you might be interested in additionally. 
-
+* Check other [tutorials](main.md) to find something you might be interested in additionally.

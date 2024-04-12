@@ -16,19 +16,19 @@ To update your Coreum Bridge XRPL Relayer software, perform the following steps:
 
     First, stop the currently running container:
 
-```shell
+```bash
  docker stop coreumbridge-xrpl-relayer && docker rm coreumbridge-xrpl-relayer
 ```
 
 2. **Remove the old Docker image**
 
-```shell
+```bash
 docker rmi coreumfoundation/coreumbridge-xrpl-relayer:v1.1.0
 ```
 
 3. **Run the updated Coreum Bridge XRPL Relayer container**
 
-```shell
+```bash
 docker run -it --detach-keys="ctrl-c" --name coreumbridge-xrpl-relayer \
     -v $HOME/.coreumbridge-xrpl-relayer:/root/.coreumbridge-xrpl-relayer \
     coreumfoundation/coreumbridge-xrpl-relayer:v1.1.1 \

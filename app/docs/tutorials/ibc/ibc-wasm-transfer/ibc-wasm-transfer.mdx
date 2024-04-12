@@ -223,7 +223,7 @@ complex and feature-rich smart contracts for the Coreum blockchain.
 
 The Makefile provides commands for development and testing:
 
-```
+```bash
 make dev # Build project
 make test # Run tests
 
@@ -237,7 +237,6 @@ make get_timeout_count # retrieve stored timeout count value
 channels # get channels
 ibc_transfer_cli # issue IBC transfer via cli command
 ibc_transfer_wasm_timeout # execute IBC transfer using timestamp timeout
-
 ```
 
 # Makefile IBC Commands
@@ -294,7 +293,7 @@ deploy (or instantiate) our IBC Wasm contract on the blockchain.
 
 Instantiate the contract on the chain:
 
-```
+```bash
 make instantiate
 ```
 
@@ -356,7 +355,7 @@ parameters, especially the wallet address and the amount of tokens being transfe
 
 Execute contract functions:
 
-```
+```bash
 make ibc_transfer_wasm_timeout
 ```
 

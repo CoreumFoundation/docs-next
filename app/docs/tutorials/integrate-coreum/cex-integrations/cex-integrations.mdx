@@ -8,7 +8,7 @@ Golang and TypeScript on how to communicate with our chain.
 ## Questions and answers
 
 ### Contact info of technical staff
-**Reza Bashash**: 
+**Reza Bashash**:
 - Email: `reza@coreum.com`
 - Twitter: `@rezabashash`
 
@@ -153,13 +153,13 @@ func main() {
 
 Initialize new project:
 
-```
+```bash
 npm init
 ```
 
 Install required dependencies:
 
-```
+```bash
 npm install @cosmjs/proto-signing @cosmjs/stargate typescript
 ```
 
@@ -205,7 +205,7 @@ config := sdk.GetConfig()
 config.SetBech32PrefixForAccount(addressPrefix, addressPrefix+"pub")
 config.SetCoinType(constant.CoinType)
 config.Seal()
-	
+
 modules := module.NewBasicManager(
     auth.AppModuleBasic{},
 )
@@ -519,7 +519,7 @@ fmt.Println(tx.TxResponse.Code == 0)
 
 Output:
 
-```
+```bash
 true
 ```
 
@@ -533,7 +533,7 @@ console.log(tx.code === 0);
 
 Output:
 
-```
+```bash
 true
 ```
 
