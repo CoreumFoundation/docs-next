@@ -155,7 +155,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </pre>
     ),
     code: ({ children }) => (
-      <codegi
+      <code
         className="text-[#9FA2AC] text-sm font-normal"
         style={{
           fontSize: '14px',
@@ -163,7 +163,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         }}
       >
         {children}
-      </codegi>
+      </code>
     ),
     ol: ({ children }) => <ol style={{ listStyleType: 'decimal', marginLeft: '16px', marginBottom: '20px' }}>{children}</ol>,
     ul: ({ children }) => <ul style={{ listStyleType: 'disc', marginLeft: '20px', marginBottom: '20px' }}>{children}</ul>,
