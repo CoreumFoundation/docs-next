@@ -400,13 +400,13 @@ function and pass the additional none standard option `registry`, where the `reg
 registries
 `defaultRegistryTypes` which provides the registry for the cosmos-sdk default transactions such as sending coins,
 delegate, etc. And `coreumRegistryTypes` for the Coreum custom transactions, such as creating NFT class, mint NFT etc.
-Use the [API page](../api/api.md) to get the list of all supported transactions (the transactions are started from `Msg`
+Use the [API page](/docs/api/protobuf)  to get the list of all supported transactions (the transactions are started from `Msg`
 and located in the `tx.proto` files).
 
 #### Initialize coreumQueryClient
 
 The `coreumQueryClient` is the adapter to query the Coreum models using the RPC requests. You can use it to get the
-minted NFTs or the NFT owner, for example. Use the [API page](../api/api.md) to get the list of all supported queries
+minted NFTs or the NFT owner, for example. Use the [API page](/docs/api/protobuf) to get the list of all supported queries
 (the queries are in the `Query` proto services and located in the `query.proto` files).
 
 #### Extend Coreum transactions and queries.

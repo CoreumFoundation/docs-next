@@ -21,9 +21,9 @@ To complete this tutorial, you need to:
 * Install [rust and cargo](https://www.rust-lang.org/tools/install).
 * Be familiar with the Rust programming language.
 * Have a general understanding of how the Coreum blockchain works.
-* Follow the [instruction](cored.md) to install cored binary.
+* Follow the [instruction](/docs/tutorials/get-started/install-cored) to install cored binary.
 * Install the required util: `jq`.
-* Set the [network variables](network-variables.md) for the development (testnet is preferable).
+* Set the [network variables](/docs/tutorials/get-started/setup-cli) for the development (testnet is preferable).
 
 # Source Code
 
@@ -38,7 +38,7 @@ located [here](https://github.com/CoreumFoundation/cw-contracts/tree/main/contra
 cored keys add wallet $COREUM_CHAIN_ID_ARGS
 ```
 
-* Use the [faucet](../tools-ecosystem/faucet.md) to fund your account
+* Use the [faucet](/docs/tools/faucet) to fund your account
 
 * Clone the smart contract template
 
@@ -154,7 +154,7 @@ cored q wasm contract-state smart $CONTRACT_ADDRESS "$NAME_QUERY" --output json 
 
 # Next steps
 
-* Read Coreum [modules](../modules/main.md) specification, to be familiar with the custom Coreum functionality you can
+* Read Coreum [modules](/docs/overview/modules) specification, to be familiar with the custom Coreum functionality you can
   use for your application.
 * Read [WASM docs](https://docs.cosmwasm.com/docs/) to understand all supported WASM features.
 * Check other [tutorials](main.md) to find something you might be interested in additionally. 

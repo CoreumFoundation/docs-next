@@ -1,13 +1,13 @@
 # Create Non-Fungible Token with CLI
 
-This tutorial will guide you through the process of using the [assetnft](../../modules/assetnft.md)
+This tutorial will guide you through the process of using the [assetnft](/docs/modules/coreum-non-fungible-token)
 module to create and manage Non-Fungible Tokens.
 
 Please note that each subsequent section depends on the previous one.
 
 ## Prerequisites
 
--   [cored binary installed](../cored.md)
+-   [cored binary installed](/docs/tutorials/get-started/install-cored)
 
 -   We are going to interact with testnet, so we need to set `--node` and `--chain-id` flag in each
     request.
@@ -18,10 +18,10 @@ Please note that each subsequent section depends on the previous one.
     ```
 
     If you want to use other network, find relevant values at
-    [network variables](../network-variables.md) page.
+    [network variables](/docs/tutorials/get-started/setup-cli) page.
 
 -   Two accounts at your local keychain. If you don't have them, follow these steps - go to
-    [faucet page](../../tools-ecosystem/faucet.md) and generate two accounts there. Then, having the
+    [faucet page](/docs/tools/faucet) and generate two accounts there. Then, having the
     mnemonics, import them with the following commands
 
     ```bash
@@ -58,7 +58,7 @@ Please note that each subsequent section depends on the previous one.
     ```
 
     As an output, you should receive tx hash, copy it and go to
-    [Block explorer](../../tools-ecosystem/block-explorer.md) to see the tx status. Features:
+    [Block explorer](/docs/tools/blockchain-explorers) to see the tx status. Features:
     `burning`, `freezing` and `whitelisting` are explained later in this guide.
 
 -   Now, let's check what NFT classes reside on the Coreum blockchain:
@@ -291,5 +291,5 @@ No. There's no single command allowing to achieve that. It can, though, be done 
 ## What is next?
 
 You can read more about Non-Fungible Tokens at
-[Smart Token Overview](../../overview/smart-tokens.md) and
-[assetnft spec](../../modules/assetnft.md) pages
+[Smart Token Overview](/docs/overview/smart-tokens) and
+[assetnft spec](/docs/modules/coreum-non-fungible-token) pages
