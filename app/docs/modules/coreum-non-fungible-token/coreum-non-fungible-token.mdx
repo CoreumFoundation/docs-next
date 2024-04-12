@@ -12,6 +12,8 @@ NFTs, and that's where this module comes in. The interaction between the two mod
 [here](#interaction-with-nft-module-introducing-wnft-module). This module also introduces `features`
 that defines specific behavior for the nft (described [here](#token-features)).
 
+<a id="interaction-with-nft-module-introducing-wnft-module"></a>
+
 ## Interaction with nft module, introducing wnft module
 
 The Cosmos team has developed the `nft` module (which we hereby refer to as the
@@ -30,6 +32,8 @@ injecting custom logic into `wnft` module, and keeps most NFT related informatio
 This design means that some portion of data relating to NFTs will live in this module, and some will
 live in the `original nft module`, so to get the final NFT functionality one should be aware and
 understand that they should make some of the queries to the `original nft module`.
+
+<a id="token-features"></a>
 
 ## Token Features
 

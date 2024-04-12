@@ -96,6 +96,8 @@ Figure 1 displays how all Smart Tokens inherit a set of default functionalities 
 
 ## Features
 
+<a id="issuance"></a>
+
 ### Issuance
 Asset issuance is the initial phase of the asset lifecycle.
 On issuance, the issuer defines the asset settings, initial amount, allowed features, and default Access Control List.
@@ -103,8 +105,11 @@ After the creation, the initial amount will be minted for the provided recipient
 The allowed features are the asset features, which can be used with the asset but can't be changed after the issuance.
 Meaning, if you set no features, you won't be able to use any of them.
 
+
 ### Minting
 Tokens can be initially minted on asset instantiation or on the fly if the can_mint feature flag is set at the issuance level. This feature is useful for a wide variety of use cases, such as CBDCs, Stablecoins, Tokenized Securities, Wrapped Crypto Currencies and so on. If a token gives up the ability to mint at the time of issuance, it can never mint more tokens and the total supply of the token will not ever increase.
+
+<a id="access-control-list"></a>
 
 ### Access Control List
 The ACL(Access Control List) provides a flexible way for asset administration and is the relationships of the chain accounts and allowed features set on the asset issuance. The administrators might be set in the same ACL.
@@ -116,15 +121,20 @@ can_partial_freeze: account2
 can_mint: account3, account4
 can_burn: all
 ```
+<a id="burning"></a>
 
 ### Burning
 When this feature is enabled on a token, then the holders of the token who have the right permission will be able to burn some of the tokens they hold to reduce the total supply of that token. To give an example use case, if shares of a company are tokenized, then the total supply will represent the total shares of the company on the chain. And burning those tokens would mean those shares are now moved out of the blockchain and total supplies will correctly represent that fact.
+
+<a id="freezing"></a>
 
 ### Freezing
 If this feature is enabled when the token is first issued, freezing allows the administrator of the token to freeze a portion of or the balance of the token held by a user. There are many use cases that are enforced by law to freeze a token. An example use case is when the token administrator sends tokens to an address but does not want the user to spend them until some time has passed such as clearing a cheque.
 
 Token might be frozen globally. It means that it might be transferred only to the issuer. All the other transfers are rejected until it is unfrozen back.
 
+
+<a id="whitelisting"></a>
 ### Whitelisting
 Whitelisting is designed to support scenarios when, due to KYC/AML or any other policy enforced by the issuer, the Smart Token might be held by a limited scope of accounts that passed the verification procedure. Its possible use cases include tokens representing stock shares, CBDC or any other rights enforced by the legal system where the identity of the holder must be confirmed.
 
@@ -132,23 +142,32 @@ If the can_whitelist flag is enabled on the Smart Token, the issuer defines the 
 
 If an account holding the token is removed from the whitelist, its current balance stays unaffected but it cannot receive tokens anymore until whitelisted back.
 
+<a id="block-smart-contracts"></a>
 ### Block Smart Contracts
 Blocking Smart contracts is a feature that allows the issuer to block the transfer of the Smart Token to a Smart Contract. This feature is useful for tokens that are not meant to be used in Smart Contracts. For example, an issuer might want to block the transfer of a token that is not meant to be used in a DeFi application.
 
+
+<a id="burn-rate"></a>
 ### Burn Rate
 When a token is issued, it is possible to define Burn Rate. It is a number between 0 and 1, defining the portion of transferred amount to be burnt. The burnt amount is charged on the sender in addition to the original amount being transferred.
 
 Burn Rate is not applied on transfers sent or received by the token issuer.
 
+
+<a id="send-fee"></a>
 ### Send Fee
 Similarly to Burn Rate, the issuer may define a Send Fee. It is a number between 0 and 1 too, which defines the portion of transferred amount which is sent to the issuer. This tax is charged on the sender in addition to the original amount.
 
 Send Fee is not applied on transfers sent or received by the token issuer.
 
+
+<a id="ibc-compatibility"></a>
 ### IBC compatibility
 
 Assets are based on the Cosmos SDK modules and extend the Cosmos IBC (Inter Blockchain Communication) capability. Hence, they can be transferred to and from IBC-supported chains within the cosmos ecosystem or outside it given proper relayers are present. When an asset is transferred to another chain, it’s represented as a tokenized version of the underlying asset in the Coreum Blockchain.
 
+
+<a id="smart-contract-integration"></a>
 ### Smart Contract integration
 An integral part of the Coreum blockchain is to support the deployment and execution of Smart Contracts, which already bring countless possibilities. By implementing Smart Tokens, Coreum is able to extend their functionalities and flexibility through Smart Contracts.
 
