@@ -7,9 +7,10 @@ Coreum uses a deterministic gas model for its transactions. Meaning that given a
 this amount is fixed if some preconditions are met. Of course this deterministic gas does not apply
 to the type of transactions that have a complicated, nondeterministic execution path (e.g
 `/cosmwasm.wasm.v1.MsgExecuteContract`). We provide tables with all
-[deterministic gas](#deterministic-messages) & [nondeterministic gas](#nondeterministic-messages)
+[deterministic messages](#deterministic-messages) & [nondeterministic messgaes](#nondeterministic-messages)
 for all our types. For a more recent data, consult
 [this file](https://github.com/CoreumFoundation/coreum/blob/master/x/deterministicgas/config.go#L47)
+
 
 ## Formula
 
@@ -58,6 +59,8 @@ inside, also there are 2 signatures and the tx size is 2050 bytes, total will be
 `TotalGas = 65000 + max(0, (21480 - 2 * 1000 + 2050 * 10)) + 2 * 70000`
 
 ## Gas Tables
+
+<a id="deterministic-messages"></a>
 
 # Deterministic messages
 
@@ -152,7 +155,9 @@ examples of special case tests could be found
 
 `authzMsgExecOverhead` is currently equal to `1500`.
 
-### Nondeterministic messages
+<a id="nondeterministic-messages"></a>
+
+# Nondeterministic messages
 
 | Message Type                                       |
 | -------------------------------------------------- |
