@@ -161,7 +161,7 @@ export const Navbar = () => {
                     />
                   </Link>
                 </div>
-                <div className="flex flex-1 justify-center px-2">
+                {/* <div className="flex flex-1 justify-center px-2">
                   <div className="w-full max-w-lg lg:max-w-xs">
                     <label htmlFor="search" className="sr-only">
                       Search
@@ -181,7 +181,7 @@ export const Navbar = () => {
                       />
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="-mr-2 flex items-center sm:hidden">
                 {/* Mobile menu button */}
