@@ -143,12 +143,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     pre: ({ children }) => (
       <pre
-        className="overflow-auto whitespace-pre-wrap break-all"
+        className="overflow-auto whitespace-pre-wrap break-words"
         style={{
           fontSize: '14px',
           marginTop: '12px',
           marginBottom: '12px',
-
+          overflowWrap: 'break-word',
         }}
       >
         {children}
