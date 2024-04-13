@@ -40,7 +40,7 @@ cored keys add wasm-deployer $COREUM_CHAIN_ID_ARGS
 
 * Fund account
 
-Use the [faucet](../tools-ecosystem/faucet.md) to fund your account
+Use the [faucet](/docs/tools/faucet) to fund your account
 
 * Check the balance
 
@@ -137,7 +137,7 @@ with `entry_point` macro. The contract can be instantiated multiple times and wi
 installation, the contract issues an FT with the `minting` feature enabled, and `send_commission_rate` extension
 equals `10%`. After the instantiation, the contract will become the FT issuer and will be able to control it. Since we
 have set up the `minting` feature only, it will be able to `mint`. Read more
-about [Coreum Fungible Token](../modules/assetft.md). Also, on the instantiation we declare the `owner` the address of
+about [Coreum Fungible Token](/docs/modules/coreum-fungible-token). Also, on the instantiation we declare the `owner` the address of
 the instantiation, which we can use conditionally to inherit some contract/issuer permissions.
 
 CLI command:
@@ -405,8 +405,8 @@ cored q bank balances $CONTRACT_ADDRESS --denom $FT_DENOM $COREUM_NODE_ARGS $COR
 
 # Next steps
 
-* Read Coreum [modules](../modules/main.md) specification, to be familiar with the custom Coreum functionality you can
+* Read Coreum [modules](/docs/modules) specification, to be familiar with the custom Coreum functionality you can
   use for your application.
 * Read [WASM docs](https://docs.cosmwasm.com/docs/) to understand all supported WASM features.
-* Check other [tutorials](main.md) to find something you might be interested in additionally. 
+* Check other [tutorials](/docs/tutorials) to find something you might be interested in additionally. 
 

@@ -57,11 +57,11 @@ COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
 
 * Enable state-sync, so your validator can sync by snapshot. 
   With the state-sync you can ignore past network upgrades, but if you want to have a node with full block history, 
-  instead of state-sync you should visit [this section](upgrade-history.md)
+  instead of state-sync you should visit [this section](/docs/become-validator/upgrades/history)
 
   You can read [Using State Sync](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html) document to get more details.
 
-  ** Get at least two state sync servers and set them from the [doc](network-variables.md):
+  ** Get at least two state sync servers and set them from the [doc](/docs/become-validator/essentials/network-variables):
   ```bash
   export COREUM_STATE_SYNC_SERVERS="{State sync servers}" 
   ```
