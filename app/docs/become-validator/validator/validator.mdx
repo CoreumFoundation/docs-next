@@ -1,6 +1,6 @@
 # Run validator node
 
-* Follow instructions in [full node instruction](run-full.md) first, but set the following config before
+* Follow instructions in [full node instruction](/docs/become-validator/run-full-node) first, but set the following config before
 you start the node. These configurations will reduce the storage size and in turn will make
 upgrades faster, and the downside is that the node will not have historical data, and cannot be used
 as a state-sync server.
@@ -76,7 +76,7 @@ crudini --set $COREUM_NODE_CONFIG consensus double_sign_check_height 10
   ```
 
 * Fund the account.
-  * You can find the recommended amount with calculation at [this page](how-much-fund-is-needed.md).
+  * You can find the recommended amount with calculation at [this page](/docs/become-validator/essentials/how-much-fund-to-create-validator).
   * For the Testnet and Devnet you can request test tokens at [discord channel](https://discord.gg/VgkhYeWmTd)
 
 * Check that you have enough to create the validator(minimum self delegation is 20k)
@@ -144,7 +144,7 @@ crudini --set $COREUM_NODE_CONFIG consensus double_sign_check_height 10
 
 * (Optional) You will receive tx hash, the final status of which you can check at block explorer.
 
-* If you have done everything right, you can see your validator at [Block Explorer](../tools-ecosystem/block-explorer.md) validators section
+* If you have done everything right, you can see your validator at [Block Explorer](/docs/tools/blockchain-explorers) validators section
 
 ## Change Pruning Config of Running Node
 **Attention!** *It possible to be jailed doing this operation, if you run a duplicate node
@@ -161,6 +161,6 @@ If you have started a validator node with a non-optimized pruning config, you mu
 4. sync up using state-sync snapshot.
 ## What is next?
 
-- If your validator was jailed, you can find instructions how to unjail my validator [here](how-to-unjail.md)
+- If your validator was jailed, you can find instructions how to unjail my validator [here](/docs/become-validator/validator/unjail-validator)
 - If you don't want to expose your validator node to the internet, but still want to interact with the network,
-  rou can [run sentry node](run-sentry.md).
+  rou can [run sentry node](/docs/become-validator/validator/run-sentry).
