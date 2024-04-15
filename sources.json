@@ -337,7 +337,7 @@
       "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/validator/upgrade-history.md?token=GHSAT0AAAAAACMG5Y3ZMDXD2XJ3NXOXYV6IZQPBDMQ"
     }
   ],
-  "api": [
+  "api/protobuf": [
     {
       "page": "protobuf",
       "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum/5adfcc2d93e81b9344f0abaca7eab68fbca2ecba/docs/api.md"

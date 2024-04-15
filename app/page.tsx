@@ -1,5 +1,6 @@
 import { CardImage } from "@/components/CardImage";
 import Transition from "@/components/Transition";
+import classNames from "classnames";
 import Image from "next/image";
 import Link from 'next/link';
 
@@ -7,28 +8,35 @@ interface CardItem {
   image: React.ReactNode;
   title: string;
   content: string;
+  href: string;
+  external?: boolean;
 }
 
 const CARDS: CardItem[] = [
   {
     image: <CardImage type="features" />,
     title: 'Features',
-    content: 'Dive into the protocol\'s capabilities,. including Smart Tokens, CosmWasm Smart Contracts and Coreum\'s gas fee model.'
+    content: 'Dive into the protocol\'s capabilities, including Smart Tokens, CosmWasm Smart Contracts and Coreum\'s gas fee model.',
+    href: '/docs/overview/smart-tokens',
   },
   {
     image: <CardImage type="validators" />,
     title: 'Validators',
-    content: 'Guides and updates on node set up for deploying on devnet, testnet, or mainnet. '
+    content: 'Guides and updates on node set up for deploying on devnet, testnet, or mainnet.',
+    href: '/docs/become-validator/run-full-node',
   },
   {
     image: <CardImage type="developers" />,
     title: 'Developers ',
-    content: 'A full suite of development tooling: Coreum\'s CLI, Smart Contract Playground, and complete TypeScript / Go modules, and tutorials.'
+    content: 'A full suite of development tooling: Coreum\'s CLI, Smart Contract Playground, and complete TypeScript / Go modules, and tutorials.',
+    href: '/docs/overview/general',
   },
   {
     image: <CardImage type="community" />,
     title: 'Community',
-    content: 'Explore community resources and initiatives across the Coreum ecosystem. Open-source knowledge and research materials.'
+    content: 'Explore community resources and initiatives across the Coreum ecosystem. Open-source knowledge and research materials.',
+    href: 'https://www.coreum.com/community',
+    external: true,
   },
 ]
 
@@ -70,9 +78,11 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
           {CARDS.map((cardItem: CardItem, index: number) => {
             return (
-              <div
+              <Link
                 className="flex flex-col w-full p-6 card gap-2"
                 key={`${cardItem.title}-${index}`}
+                href={cardItem.href}
+                target={cardItem.external ? '_blank' : '_self'}
               >
                 <div className="flex w-full mb-4">
                   {cardItem.image}
@@ -83,7 +93,7 @@ export default function Home() {
                 <div className="text-[#9FA2AC] text-sm font-normal">
                   {cardItem.content}
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
