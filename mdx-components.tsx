@@ -160,6 +160,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         style={{
           fontSize: '14px',
           letterSpacing: '-0.14px',
+          overflowWrap: 'anywhere',
         }}
       >
         {children}
