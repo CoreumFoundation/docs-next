@@ -1,13 +1,14 @@
 'use client';
 
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
+import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import classNames from 'classnames';
-import { Bars3Icon, ChevronRightIcon, Cog6ToothIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavigationItem } from '@/utils/types';
 import { SIDEBAR_ITEMS } from './constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
+import TransitionDiv from '../Transition';
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -179,10 +180,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             </nav>
           </div>
         </div>
-
-        <main className="px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] grow max-w-full overflow-hidden main-content">
-          {children}
-        </main>
+          <main className="px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] grow max-w-full overflow-hidden main-content">
+            <TransitionDiv>
+              {children}
+            </TransitionDiv>
+          </main>
       </div>
     </>
   );

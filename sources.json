@@ -11,6 +11,10 @@
     {
       "page": "smart-tokens",
       "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/overview/smart-tokens.md?token=GHSAT0AAAAAACMG5Y3YB7YQFXH4PH4LUJ2IZQOUUAQ"
+    },
+    {
+      "page": "special-addresses",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/special-addresses.md?token=GHSAT0AAAAAACMG5Y3ZWJMWS2MENS3SQFS2ZQ5CQ5A"
     }
   ],
   "tutorials": [
@@ -363,7 +367,7 @@
       "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tools-ecosystem/block-explorer.md?token=GHSAT0AAAAAACMG5Y3ZPUAXLA4HFCUGSNQ6ZQO4MPQ"
     }
   ],
-  "coreum-rust-protobuf": [
+  "api/rust-protobuf": [
     {
       "page": "rust-protobuf",
       "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum-rust-protobuf/main/README.md"

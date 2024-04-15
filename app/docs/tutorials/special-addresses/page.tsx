@@ -1,5 +1,5 @@
 
-import Component from './ibc.mdx';
+import Component from './special-addresses.mdx';
 
 const Page = () => {
   return (

@@ -1,0 +1,54 @@
+# Special Addresses
+
+Special addresses are addresses that have a special function or purpose in the Coreum blockchain and
+are not controlled by any particular account. These addresses are used for various purposes such as
+the community pool, IBC escrow, and module accounts. Here we list the most important special
+addresses of the Coreum blockchain.
+
+## Module Accounts
+
+In the Cosmos SDK, each module has a module account with an address that has no private key and
+therefore is only controlled by the chain itself and governance. Here we list all the module
+accounts of the Coreum blockchain.
+
+{/* markdown-link-check-disable */}
+
+| Module         | Name                | Address                                       | String                     |
+| -------------- | ------------------- | --------------------------------------------- | -------------------------- |
+| x/auth         | Auth module         | `core17xpfvakm2amg962yls6f84z3kell8c5lrhmmvx` | `"fee_collector"`          |
+| x/assetft      | AssetFT module      | `core1mqaw387xfk0xuernjq9cfmmej2ucay80h4nc4h` | `"assetft"`                |
+| x/assetnft     | AssetNFT module     | `core1eqp67ulg76qc2d37ewyvlseztjpuctfxcxqvrf` | `"assetnft"`               |
+| x/distribution | Distribution module | `core1jv65s3grqf6v6jl3dp4t6c9t9rk99cd853u8wy` | `"distribution"`           |
+| x/gov          | Governance module   | `core10d07y265gmmuvt4z0w9aw880jnsr700jfvt73g` | `"gov"`                    |
+| x/ibc          | IBC Module          | `core1yl6hdjhmkf37639730gffanpzndzdpmha3wjsc` | `"transfer"`               |
+| x/nft          | NFT Module          | `core1hr93qzcjspaa32px0qqywlh9hf9a8plguk7dqu` | `"nft"`                    |
+| x/staking      | Bonded Pool         | `core1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3x4357v` | `"bonded_tokens_pool"`     |
+| x/staking      | Not-Bonded Pool     | `core1tygms3xhhs3yv487phx3dw4a95jn7t7lj4d9gc` | `"not_bonded_tokens_pool"` |
+
+{/* markdown-link-check-enable */}
+
+## Community Pool
+
+The community pool is a special account that holds funds that are not owned by any particular
+account. It is used to fund public goods and other community initiatives. The community pool is
+controlled by governance, which means that proposals must be submitted and voted on by token holders
+to spend funds from the community pool. The community pool receives a portion of the staking rewards
+and transaction fees. Currently, the commuinity tax is set to 5%.
+
+The community pool address is the same as the distribution module account address:
+`core1jv65s3grqf6v6jl3dp4t6c9t9rk99cd853u8wy`, which also contains other amounts such as uncollected
+staking rewards. To obtain the exact amount in the community pool, you can query the distribution
+module account as follows:
+
+```bash
+cored q distribution community-pool $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+```
+
+## IBC Escrow Addresses
+
+The IBC module uses an escrow address for each channel and port id that holds tokens when they are
+IBCed from the Coreum blockchain to another chain. Once these tokens are bridged back to Coreum,
+these tokens are sent back to the recipient address from this escrow address
+
+Here is an example of IBC escrow address is `core12k2pyuylm9t7ugdvz67h9pg4gmmvhn5vvgafk0`, which
+belongs to the IBC channel `channel-2` and port `transfer` that connects Coreum to Osmosis.

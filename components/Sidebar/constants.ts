@@ -255,6 +255,10 @@ export const SIDEBAR_ITEMS = [
       {
         name: 'Crust for Development',
         href: '/docs/tutorials/crust-for-development',
+      },
+      {
+        name: 'Special Addresses',
+        href: '/docs/tutorials/special-addresses',
       }
     ],
   },
@@ -397,6 +401,10 @@ export const SIDEBAR_ITEMS = [
       {
         name: 'Protobuf',
         href: '/docs/api/protobuf',
+      },
+      {
+        name: 'Rust Protobuf',
+        href: '/docs/api/rust-protobuf',
       }
     ]
   },
