@@ -120,3 +120,15 @@ body {
   height: calc(100vh - 64px);
   overflow: auto;
 }
+
+.hljs-comment {
+  opacity: 0.7;
+}
+
+.mdx-ul {
+  list-style-type: disc;
+}
+
+.mdx-ul ul {
+  list-style-type: circle;
+}

@@ -29,6 +29,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           fontSize: '24px',
           marginTop: '12px',
           marginBottom: '12px',
+          wordWrap: 'break-word',
         }}
       >
         {children}
@@ -40,6 +41,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         style={{
           fontSize: '18px',
           marginBottom: '12px',
+          wordWrap: 'break-word',
         }}
       >
         {children}
@@ -51,6 +53,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         style={{
           fontSize: '16px',
           marginBottom: '12px',
+          wordWrap: 'break-word',
         }}
       >
         {children}
@@ -62,6 +65,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         style={{
           fontSize: '14px',
           marginBottom: '12px',
+          wordWrap: 'break-word',
         }}
       >
         {children}
@@ -73,6 +77,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         style={{
           fontSize: '12px',
           marginBottom: '12px',
+          wordWrap: 'break-word',
         }}
       >
         {children}
@@ -196,7 +201,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </code>
     ),
     ol: ({ children }) => <ol style={{ listStyleType: 'decimal', marginLeft: '16px', marginBottom: '20px' }}>{children}</ol>,
-    ul: ({ children }) => <ul style={{ listStyleType: 'disc', marginLeft: '20px', marginBottom: '20px' }}>{children}</ul>,
-    li: ({ children }) => <li style={{ fontSize: '14px' }}>{children}</li>,
+    ul: ({ children }) => <ul className="mdx-ul" style={{ marginLeft: '20px', marginBottom: '20px' }}>{children}</ul>,
+    li: ({ children }) => <li style={{ fontSize: '14px', wordWrap: 'break-word' }}>{children}</li>,
   }
 }
