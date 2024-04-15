@@ -43,7 +43,7 @@ export default function Home() {
                 Last Updated: 12/14/2023, 6:39:40 AM
               </div>
             </div>
-            <div className="flex flex-col text-[4rem] font-bold leading-tight">
+            <div className="flex flex-col text-[4rem] font-bold leading-tight text-white">
               The World’s First <span className="text-green-gradient">Super Ledger</span>
               <div className="text-xl text-[#9FA2AC] font-normal leading-[1.75]">
                 Coreum is a scalable, secure, and interoperable blockchain for business, enriched with smart tokens and smart contract functionalities.
