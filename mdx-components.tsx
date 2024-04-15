@@ -45,9 +45,39 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </h3>
     ),
-    // h4: ({ children }) => <h4 className="text-[2rem]">{children}</h4>,
-    // h5: ({ children }) => <h5 className="text-[2rem]">{children}</h5>,
-    // h6: ({ children }) => <h6 className="text-[2rem]">{children}</h6>,
+    h4: ({ children }) => (
+      <h4
+        className="font-medium font-[#EEE]"
+        style={{
+          fontSize: '16px',
+          marginBottom: '12px',
+        }}
+      >
+        {children}
+      </h4>
+    ),
+    h5: ({ children }) => (
+      <h5
+        className="font-medium font-[#EEE]"
+        style={{
+          fontSize: '14px',
+          marginBottom: '12px',
+        }}
+      >
+        {children}
+      </h5>
+    ),
+    h6: ({ children }) => (
+      <h6
+        className="font-medium font-[#EEE]"
+        style={{
+          fontSize: '12px',
+          marginBottom: '12px',
+        }}
+      >
+        {children}
+      </h6>
+    ),
     p: ({ children }) => (
       <p
         className="text-base font-normal text-[#868991] leading-7"
@@ -84,7 +114,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <tr style={{
         borderRadius: '8px',
         overflow: 'hidden',
-        // borderBottom: '12px solid #101216',
       }}>
         {children}
       </tr>
@@ -156,7 +185,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     code: ({ children }) => (
       <code
-        className="text-[#9FA2AC] text-sm font-normal"
+        className="text-[#eee] text-sm font-normal"
         style={{
           fontSize: '14px',
           letterSpacing: '-0.14px',
