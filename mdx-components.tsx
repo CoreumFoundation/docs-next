@@ -156,7 +156,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     a: (props) => (
       <Link
         href={props.href || '#'}
-        className=" text-base font-semibold leading-7"
+        className="text-base font-semibold leading-7"
         style={{
           color: '#25D695',
           fontFamily: notoSans.style.fontFamily,
@@ -176,7 +176,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     pre: ({ children }) => (
       <pre
-        className="bg-[#101216] rounded-lg p-4 overflow-auto whitespace-pre-wrap break-words"
+        className="mdx-pre rounded-lg p-4 overflow-auto whitespace-pre-wrap break-words"
         style={{
           fontSize: '14px',
           marginTop: '12px',

@@ -89,7 +89,6 @@ body {
   font-weight: 400;
 }
 
-
 .bg-green-gradient {
   background: linear-gradient(180deg, #25D695 0%, #046C44 100%);
 }
@@ -131,4 +130,8 @@ body {
 
 .mdx-ul ul {
   list-style-type: circle;
+}
+
+.mdx-pre {
+  background: #1d1d1d;
 }

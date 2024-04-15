@@ -8,16 +8,15 @@ Please note that each subsequent section depends on the previous one.
 ## Prerequisites
 
 -   Since we are going to use the Testnet network in this tutorial, let's export its variables:
+    ```bash
+    # CHAIN_ID we are going to use as a value for the --chain-id flag to target specific network
+    export CHAIN_ID="coreum-testnet-1"
+    # RPC_URL we are going to use as a value for the --node flag to target specific node within the given network
+    export RPC_URL="https://full-node.testnet-1.coreum.dev:26657"
+    ```
 
-```bash
-# CHAIN_ID we are going to use as a value for the --chain-id flag to target specific network
-export CHAIN_ID="coreum-testnet-1"
-# RPC_URL we are going to use as a value for the --node flag to target specific node within the given network
-export RPC_URL="https://full-node.testnet-1.coreum.dev:26657"
-```
-
-\* If you want to use other network, find CHAIN_ID and RPC_URL values on the
-[network variables](/docs/tutorials/get-started/setup-cli) page.
+    \* If you want to use other network, find CHAIN_ID and RPC_URL values on the
+    [network variables](/docs/tutorials/get-started/setup-cli) page.
 
 -   [Install cored binary](/docs/tutorials/get-started/install-cored)
 
