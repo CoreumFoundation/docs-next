@@ -14,11 +14,8 @@ The flow of assets for the bridge incurs in a decentralized and non-custodial me
 3.  The Bridge Contract then verifies the asset with Coreum's token registry and authorizes it for
     transfer.
 
-4.  For tokens originating from Coreum and Cosmos, the Bridge Contract directly dispatches the
-    tokens to the recipient. In the case of XRPL-native tokens, the contract mints a
-    [Smart Token](https://www.coreum.com/smart-tokens) on Coreum which is a representation of the
-    original XRPL asset, equipped with Minting, Burning, and IBC functionalities. The token is then
-    sent to the recipient.
+4.  For tokens originating from Coreum and Cosmos, the Bridge Contract directly dispatches the tokens to the recipient. In the case of XRPL-native tokens, the contract mints a <a href="https://www.coreum.com/smart-tokens" target="_blank" rel="noopener noreferrer" style={{ color: '#24D494', fontWeight: 'bold' }}>Smart Token</a> on Coreum which is a representation of the original XRPL asset, equipped with Minting, Burning, and IBC functionalities. The token is then sent to the recipient.
+
 
 
 <img className="my-10" src="/images/xrpl-bridge/asset-flow/send_from_xrpl_to_coreum.png" width="100%" />

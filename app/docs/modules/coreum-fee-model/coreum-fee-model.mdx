@@ -3,7 +3,7 @@
 ## Abstract
 
 This document specifies the `feemodel` module. The module is responsible for calculating minimum gas
-price required by the chain based on the [parameters](/docs/modules/coreum-fee-model) of fee model.
+price required by the chain based on the [parameters](#parameters) of fee model.
 
 Two charts are presented below, showing how the implemented fee model behaves. Keep in mind that
 data presented on those charts were generated using `MaxGasPrice` set to `0.15` for better
@@ -128,6 +128,8 @@ SetMinGasPrice(ctx sdk.Context, minGasPrice sdk.DecCoin)
 
 From all of these methods only `GetMinGasPrice` should be used by other modules. All the other ones
 serve internal needs of feemodel module.
+
+<a id="parameters"></a>
 
 ## Parameters
 
