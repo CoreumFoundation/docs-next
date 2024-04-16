@@ -1,9 +1,4 @@
-'use client';
-
-import dynamic from "next/dynamic";
-import { useEffect } from "react";
-
-const Component = dynamic(() => import('./protobuf.mdx'), { ssr: false });
+import Component from './protobuf.mdx';
 
 const Page = () => {
   return (

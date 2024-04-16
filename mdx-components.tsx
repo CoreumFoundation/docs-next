@@ -8,10 +8,9 @@ const notoSans = Noto_Sans({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 function getAnchor(text: string) {
-  console.log({text});
   const value = typeof text === 'string' ? text : text[0];
 
-  return value
+  return (value || '')
     .toLowerCase()
     .replace(/[^a-z0-9 ]/g, '')
     .replace(/[ ]/g, '-');
