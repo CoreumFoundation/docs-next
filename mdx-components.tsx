@@ -90,6 +90,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           letterSpacing: '-0.16px',
           fontFamily: notoSans.style.fontFamily,
           marginBottom: '24px',
+          overflowWrap: 'anywhere',
         }}
       >
         {children}

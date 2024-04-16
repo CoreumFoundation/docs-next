@@ -22,7 +22,7 @@ OWNER=$(echo $RES | jq -r '.address')
 echo $OWNER
 ```
 
-Output example: 
+Output example:
 
 ```bash
 testcore1hpgxerhcnzjqpxpt4qpncrr7sdyzvuekzendeh
@@ -229,7 +229,7 @@ Output example:
 ```bash
 145
 ```
-Now we instantiate the contract 
+Now we instantiate the contract
 
 ```bash
 INIT='{"astroport_factory": '\""$CONTRACT_ADDRESS_FACTORY"\"'}'
@@ -319,6 +319,7 @@ Output example:
 ```bash
 {"contracts":["testcore1jj99qm2de8eqdyfzzqdny7cj40gt0c84j3wesatlrx4gl98hzq5qx76mf4"],"pagination":{"next_key":null,"total":"0"}}
 testcore1jj99qm2de8eqdyfzzqdny7cj40gt0c84j3wesatlrx4gl98hzq5qx76mf4
+
 ```
 
 Now that we have set up our generator and vesting contract, users that provide liquidity to the pool can interact with the generator contract to claim rewards from the vesting contract that have been previously sent by the admin/owner of the AMM.
@@ -333,6 +334,7 @@ RES=$(cored tx wasm store artifacts/astroport_staking.wasm \
 CODE_ID_STAKING=$(echo $RES | jq -r '.logs[0].events[-1].attributes[-1].value')
 echo $CODE_ID_STAKING
 ```
+
 Output example:
 
 ```bash
@@ -436,6 +438,7 @@ Output example:
 testcore1kk95dde8e5793ztnzve66gqnxj39x7j3736nkxt6xxdevugqwndq2jv3cv
 testcore1e27xcswyzjf88d9uc634lh9u5vu8mgl94xue6f54p7g930lkjvfsxvay3c
 ```
+
 This created a liquidity pool of 2 tokens. The first one is the AMM token that we created at the start of this tutorial, which is a CW20 implementation (hence the contract_addr field), and the second one is the native testnet token. Also, in this case and as shown in the output above, the address of this liquidity pool contract is testcore1kk95dde8e5793ztnzve66gqnxj39x7j3736nkxt6xxdevugqwndq2jv3cv and the token that will be minted and given to liquidity pool providers is testcore1e27xcswyzjf88d9uc634lh9u5vu8mgl94xue6f54p7g930lkjvfsxvay3c (which will be used later to incentivize the pool through the generator contract).
 
 Now that this liquidity pool is created, we can add the initial liquidity to it.
