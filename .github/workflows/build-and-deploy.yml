@@ -7,7 +7,7 @@ on:
 
 env:
   GKE_ZONE: us-central1-c
-  IMAGE: docs-next
+  IMAGE: docs
 
 jobs:
   bump_version:
