@@ -7,82 +7,122 @@ import * as React from 'react';
 const notoSans = Noto_Sans({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
+function getAnchor(text: string) {
+  console.log({text});
+  const value = typeof text === 'string' ? text : text[0];
+
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, '')
+    .replace(/[ ]/g, '-');
+}
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    h1: ({ children }) => (
-      <h1
-        className="font-medium capitalize text-grey-gradient !text-[2rem]"
-        style={{
-          fontSize: '32px',
-          marginTop: '40px',
-          marginBottom: '40px',
-        }}
-      >
-        {children}
-      </h1>
-    ),
-    h2: ({ children }) => (
-      <h2
-        className="font-medium font-[#EEE]"
-        style={{
-          fontSize: '24px',
-          marginTop: '12px',
-          marginBottom: '12px',
-          wordWrap: 'break-word',
-        }}
-      >
-        {children}
-      </h2>
-    ),
-    h3: ({ children }) => (
-      <h3
-        className="font-medium font-[#EEE]"
-        style={{
-          fontSize: '18px',
-          marginBottom: '12px',
-          wordWrap: 'break-word',
-        }}
-      >
-        {children}
-      </h3>
-    ),
-    h4: ({ children }) => (
-      <h4
-        className="font-medium font-[#EEE]"
-        style={{
-          fontSize: '16px',
-          marginBottom: '12px',
-          wordWrap: 'break-word',
-        }}
-      >
-        {children}
-      </h4>
-    ),
-    h5: ({ children }) => (
-      <h5
-        className="font-medium font-[#EEE]"
-        style={{
-          fontSize: '14px',
-          marginBottom: '12px',
-          wordWrap: 'break-word',
-        }}
-      >
-        {children}
-      </h5>
-    ),
-    h6: ({ children }) => (
-      <h6
-        className="font-medium font-[#EEE]"
-        style={{
-          fontSize: '12px',
-          marginBottom: '12px',
-          wordWrap: 'break-word',
-        }}
-      >
-        {children}
-      </h6>
-    ),
+    h1: ({ children }) => {
+      const anchor = getAnchor(children as string);
+
+      return (
+        <h1
+          id={anchor}
+          className="font-medium capitalize text-grey-gradient !text-[2rem]"
+          style={{
+            fontSize: '32px',
+            marginTop: '40px',
+            marginBottom: '40px',
+          }}
+        >
+          {children}
+        </h1>
+      );
+    },
+    h2: ({ children }) => {
+      const anchor = getAnchor(children as string);
+
+      return (
+        <h2
+          id={anchor}
+          className="font-medium font-[#EEE]"
+          style={{
+            fontSize: '24px',
+            marginTop: '12px',
+            marginBottom: '12px',
+            wordWrap: 'break-word',
+          }}
+        >
+          {children}
+        </h2>
+      );
+    },
+    h3: ({ children }) => {
+      const anchor = getAnchor(children as string);
+
+      return (
+        <h3
+          id={anchor}
+          className="font-medium font-[#EEE]"
+          style={{
+            fontSize: '18px',
+            marginBottom: '12px',
+            wordWrap: 'break-word',
+          }}
+        >
+          {children}
+        </h3>
+      );
+    },
+    h4: ({ children }) => {
+      const anchor = getAnchor(children as string);
+
+      return (
+        <h4
+          id={anchor}
+          className="font-medium font-[#EEE]"
+          style={{
+            fontSize: '16px',
+            marginBottom: '12px',
+            wordWrap: 'break-word',
+          }}
+        >
+          {children}
+        </h4>
+      );
+    },
+    h5: ({ children }) => {
+      const anchor = getAnchor(children as string);
+
+      return (
+        <h5
+          id={anchor}
+          className="font-medium font-[#EEE]"
+          style={{
+            fontSize: '14px',
+            marginBottom: '12px',
+            wordWrap: 'break-word',
+          }}
+        >
+          {children}
+        </h5>
+      );
+    },
+    h6: ({ children }) => {
+      const anchor = getAnchor(children as string);
+
+      return (
+        <h6
+          id={anchor}
+          className="font-medium font-[#EEE]"
+          style={{
+            fontSize: '12px',
+            marginBottom: '12px',
+            wordWrap: 'break-word',
+          }}
+        >
+          {children}
+        </h6>
+      );
+    },
     p: ({ children }) => (
       <p
         className="text-base font-normal text-[#868991] leading-7"
