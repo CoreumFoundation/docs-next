@@ -2,7 +2,8 @@
 
 This document provides information required by exchanges to integrate trading of CORE.
 
-First we answer common questions coming from exchanges. Then we present [code examples](/docs/tutorials/integrate-coreum/cex-integrations) written in
+First we answer common questions coming from exchanges. Then we present <a href="https://github.com/CoreumFoundation/coreum.git" target = "_blank" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">code examples</a>
+ written in
 Golang and TypeScript on how to communicate with our chain.
 
 ## Questions and answers
@@ -13,11 +14,11 @@ Golang and TypeScript on how to communicate with our chain.
 - Twitter: `@rezabashash`
 
 ### Links
-- [Official website](https://www.coreum.com)
-- [Source code](https://github.com/CoreumFoundation/coreum)
-- [Block explorers](/docs/tools/blockchain-explorers)
-- [Documentation](https://docs.coreum.dev)
-- [Faucet](/docs/tools/faucet)
+- <a href="https://www.coreum.com" target="_blank" rel="noopener noreferrer">Official website</a>
+- <a href="https://github.com/CoreumFoundation/coreum" target="_blank" rel="noopener noreferrer">Source code</a>
+- <a href="/docs/tools/blockchain-explorers" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Block explorers</a>
+- <a href="https://docs.coreum.dev" target="_blank" rel="noopener noreferrer">Documentation</a>
+- <a href="/docs/tools/faucet" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Faucet</a>
 
 ### Project information
 - Project name: `Coreum`
@@ -97,7 +98,7 @@ The transaction included in a block might fail. It is indicated by a non-zero st
 
 ### Fees
 
-To understand Coreum chain fees read about the [coreum gas price](gas-price.md).
+To understand Coreum chain fees read about the <a href="/docs/modules/coreum-deterministic-gas" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">coreum gas price</a>.
 
 ### Coinbase transactions
 Blocks don't start with BTC-like coinbase transaction.
@@ -316,7 +317,8 @@ Tx hash: 8C694A92A2208DB8CE733D54C22A3C7F945D54867B9078D08686DC7DBF0F44DC
 console.log(`sending ${amount.amount} to recipient:`);
 // Initial gas price is hardcoded for now here, because client doesn't support querying for current gas price.
 const gasPrice = GasPrice.fromString(`0.0625${coreumDenom}`);
-// TODO: USe gas estimation once https://github.com/CoreumFoundation/coreum/pull/403 is merged and released to testnet
+// TODO: USe gas estimation once <a href="https://github.com/CoreumFoundation/coreum/pull/403" target="_blank" rel="noopener noreferrer">https://github.com/CoreumFoundation/coreum/pull/403</a>
+ is merged and released to testnet
 const singleBankSendGas = 111_000;
 const bankSendFee: StdFee = calculateFee(singleBankSendGas, gasPrice);
 const bankSendResult = await senderClient.sendTokens(
