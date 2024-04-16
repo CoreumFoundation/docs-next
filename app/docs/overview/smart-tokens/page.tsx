@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   title: "Coreum Smart Tokens: Customizable & Secure On-Chain Assets | Coreum Docs",
   description: "Learn about Coreum's Smart Tokens, the flexible and secure on-chain assets wrapped around Smart Contracts. Discover their unique features like IBC compatibility, minting, and ACL for superior asset management.",
   keywords: ['Coreum', 'Smart Tokens', 'blockchain assets', 'on-chain tokens', 'token minting', 'token burning', 'asset management', 'IBC compatibility', 'Smart Contract integration', 'token issuance', 'WASM', 'access control list', 'DeFi tokens'],
+  openGraph: {
+    type: 'website',
+    description: "Learn about Coreum's Smart Tokens, the flexible and secure on-chain assets wrapped around Smart Contracts. Discover their unique features like IBC compatibility, minting, and ACL for superior asset management.",
+    siteName: "Coreum Smart Tokens: Customizable & Secure On-Chain Assets | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 const Page = () => {

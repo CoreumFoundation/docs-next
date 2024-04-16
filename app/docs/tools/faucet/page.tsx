@@ -14,7 +14,15 @@ export const metadata: Metadata = {
     'Blockchain testing',
     'Coreum wallet generation',
     'Blockchain development resources'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Learn how to use the Coreum faucet to fund your testnet or devnet accounts. Discover methods to generate a funded wallet for testing and development on Coreum blockchain.",
+    siteName: "Access Coreum Faucet: Fund Your Testnet and Devnet Accounts",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

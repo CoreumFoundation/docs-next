@@ -17,7 +17,15 @@ export const metadata: Metadata = {
     'ERC721 Cosmos',
     'Cosmos NFT classification',
     'Cosmos NFT ownership'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: 'Master the Cosmos NFT module for creating, transferring, and managing non-fungible tokens on the Cosmos blockchain. Follow our guide for comprehensive insights.',
+    siteName: 'Cosmos Non-Fungible Tokens: Create, Transfer, and Manage NFTs | Cosmos Developers',
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

@@ -19,7 +19,15 @@ export const metadata: Metadata = {
     'Coreum IBC transfers',
     'Smart contract token restrictions',
     'Coreum blockchain development'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Learn how to create and manage fungible tokens on the Coreum blockchain. Explore issuing, minting, burning, and other token functionalities with Coreum's assetft module.",
+    siteName: "Coreum Fungible Token Creation and Management | Coreum Developers",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

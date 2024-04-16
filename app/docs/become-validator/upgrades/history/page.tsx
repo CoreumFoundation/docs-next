@@ -4,7 +4,7 @@ import Component from './history.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Coreum Blockchain Upgrade History: Detailed Guide",
+  title: "Coreum Blockchain Upgrade History: Detailed Guide | Coreum Docs",
   description: "Explore the comprehensive history of Coreum blockchain upgrades. Understand the key milestones, including genesis and major version updates, for Mainnet and Testnet.",
   keywords: [
     'Coreum upgrade history',
@@ -13,7 +13,15 @@ export const metadata: Metadata = {
     'Testnet version history',
     'Coreum cosmovisor',
     'Coreum releases'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Explore the comprehensive history of Coreum blockchain upgrades. Understand the key milestones, including genesis and major version updates, for Mainnet and Testnet.",
+    siteName: "Coreum Blockchain Upgrade History: Detailed Guide | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

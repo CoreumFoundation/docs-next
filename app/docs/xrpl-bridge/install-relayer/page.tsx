@@ -17,7 +17,15 @@ export const metadata: Metadata = {
     'Blockchain Relayer Coreum',
     'XRPL Blockchain Development',
     'XRPL Relayer Installation'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Master XRPL-Coreum relayer setup for cross-chain functionality. Our guide covers CLI network variables and Docker configuration for seamless XRPL bridge intallation.",
+    siteName: "XRPL-Coreum Relayer Setup: A Developer's Guide | Coreum and XRP Ledger Integration",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 const Page = () => {
@@ -27,4 +35,3 @@ const Page = () => {
 };
 
 export default Page;
-        

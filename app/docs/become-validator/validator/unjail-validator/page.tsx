@@ -5,7 +5,7 @@ import Component from './unjail-validator.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Unjailing Your Validator Node on Coreum Network",
+  title: "Unjailing Your Validator Node on Coreum Network | Coreum Docs",
   description: "Master the setup and optimization of a validator node in the Coreum blockchain network. Learn how to secure your node, optimize storage, and unjail your validator.",
   keywords: [
     'Coreum Validator Node',
@@ -16,7 +16,15 @@ export const metadata: Metadata = {
     'Blockchain Storage Management',
     'Coreum Node Setup',
     'Blockchain Network Security'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Master the setup and optimization of a validator node in the Coreum blockchain network. Learn how to secure your node, optimize storage, and unjail your validator.",
+    siteName: "Unjailing Your Validator Node on Coreum Network | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

@@ -16,7 +16,15 @@ export const metadata: Metadata = {
     'Blockchain SDK',
     'Rust Protobuf',
     'Coreum Developer Tools'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Explore Coreum WASM SDK for Rust developers. Utilize Rust data types for building WASM smart contracts on Coreum blockchain. Learn more about interacting with Smart Tokens.",
+    siteName: "Coreum WASM SDK: Rust Data Types for Smart Contract Development | Coreum Developers",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 
@@ -27,4 +35,3 @@ const Page = () => {
 };
 
 export default Page;
-        

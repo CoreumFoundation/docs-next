@@ -16,10 +16,16 @@ export const metadata: Metadata = {
     'Blockchain Tokenization',
     'JavaScript Blockchain Programming',
     'Coreum Token Management'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Learn how to issue, mint, and send fungible tokens and create non-fungible tokens on the Coreum blockchain using the coreum-js library. Complete examples included.",
+    siteName: "Issuing and Managing Tokens on Coreum with JavaScript | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
-
-
 
 const Page = () => {
   const prevNavigationItem = {

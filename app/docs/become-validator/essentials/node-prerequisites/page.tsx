@@ -14,7 +14,15 @@ export const metadata: Metadata = {
     'Ulimit Configuration',
     'Coreum Network',
     'Node Public IP'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Prepare your system for Coreum node setup with these prerequisites. Learn how to configure system limits and install necessary utilities for optimal node operation.",
+    siteName: "Coreum Node Setup Prerequisites | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 
@@ -25,4 +33,3 @@ const Page = () => {
 };
 
 export default Page;
-        

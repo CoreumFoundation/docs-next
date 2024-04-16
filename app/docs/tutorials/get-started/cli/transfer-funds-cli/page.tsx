@@ -16,7 +16,15 @@ export const metadata: Metadata = {
     'Coreum Staking Commands',
     'Coreum Bank Module',
     'Coreum Staking Module'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Learn how to transfer funds and stake tokens on the Coreum blockchain using the cored CLI. Follow our step-by-step guide for testnet transactions and staking operations.",
+    siteName: "Transferring Funds and Staking with Coreum CLI | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 const Page = () => {

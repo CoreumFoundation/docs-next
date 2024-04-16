@@ -16,7 +16,15 @@ export const metadata: Metadata = {
     'Coreum blockchain',
     'Transaction lookup',
     'Validator information'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Explore Coreum blockchain with official and community-maintained block explorers. Access detailed information on transactions, blocks, and validators on Mainnet, Testnet, and Devnet.",
+    siteName: "Discover Coreum Block Explorers: Mainnet, Testnet, and Devnet",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

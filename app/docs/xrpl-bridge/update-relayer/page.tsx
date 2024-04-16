@@ -14,7 +14,15 @@ export const metadata: Metadata = {
     'Secure Relayer Operation',
     'Coreum XRPL Integration',
     'Blockchain Relayer Software'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Step-by-step guide on updating the Coreum Bridge XRPL Relayer software. Ensure your relayer operations remain efficient and secure with the latest software version.",
+    siteName: "How to Update Coreum Bridge XRPL Relayer Software | Coreum Tutorials",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 
@@ -25,4 +33,3 @@ const Page = () => {
 };
 
 export default Page;
-        

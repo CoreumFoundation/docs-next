@@ -16,7 +16,15 @@ export const metadata: Metadata = {
     'TypeScript Development',
     'Blockchain Querying',
     'Crypto Programming'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Master blockchain interactions with CosmJS and TypeScript. Learn to broadcast transactions and query the Coreum blockchain with step-by-step code examples.",
+    siteName: "Interacting with Coreum Blockchain using CosmJS and TypeScript | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

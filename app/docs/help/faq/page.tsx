@@ -5,7 +5,7 @@ import Component from './faq.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Coreum Blockchain FAQ: Common Issues and Solutions",
+  title: "Coreum Blockchain FAQ: Common Issues and Solutions | Coreum Docs",
   description: "Find answers to frequently asked questions about Coreum blockchain, including how to connect `cored` to specific networks, resolve account errors, and more.",
   keywords: [
     'Coreum blockchain FAQ',
@@ -14,7 +14,15 @@ export const metadata: Metadata = {
     'Key not found error',
     'Coreum blockchain solutions',
     'Blockchain troubleshooting'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Find answers to frequently asked questions about Coreum blockchain, including how to connect `cored` to specific networks, resolve account errors, and more.",
+    siteName: "Coreum Blockchain FAQ: Common Issues and Solutions | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

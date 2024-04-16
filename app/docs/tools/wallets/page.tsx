@@ -14,7 +14,15 @@ export const metadata: Metadata = {
     'Coreum browser wallets',
     'Coreum hardware wallets',
     'Wallet features'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Explore the best wallets for Coreum blockchain with our detailed comparison. Find out which wallets support staking, mobile apps, browser extensions, hardware wallets, and more.",
+    siteName: "Compare Coreum Blockchain Wallets: Features and Support Guide",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

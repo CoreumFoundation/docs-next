@@ -14,7 +14,15 @@ export const metadata: Metadata = {
     'Coreum Documentation',
     'Blockchain Sentry Nodes',
     'Tendermint Node Setup'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Step-by-step guide to setting up a sentry node in the Coreum blockchain network. Learn how to enhance network security and efficiency through detailed instructions.",
+    siteName: "Guide to Setting Up Sentry Nodes for Coreum Blockchain | Coreum Node Configuration",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

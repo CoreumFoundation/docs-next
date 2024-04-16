@@ -16,7 +16,15 @@ export const metadata: Metadata = {
     'Coreum Devnet',
     'Validator Node Requirements',
     'Full Node Specifications'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Discover the system requirements for running Coreum nodes on Mainnet, Testnet, and Devnet. Learn about the recommended hardware specifications for validators, full nodes, and default nodes.",
+    siteName: "Coreum Node System Requirements for Mainnet, Testnet, and Devnet | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 const Page = () => {

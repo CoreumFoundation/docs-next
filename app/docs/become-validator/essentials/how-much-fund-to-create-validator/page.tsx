@@ -4,7 +4,7 @@ import Component from './how-much-fund-to-create-validator.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Understanding Funding Requirements for a Coreum Validator Node",
+  title: "Understanding Funding Requirements for a Coreum Validator Node | Coreum Docs",
   description: "Discover how much funding you need to launch a validator node on the Coreum blockchain. Learn about self-delegation, slashing risks, and how to secure your spot in the active set.",
   keywords: [
     'Coreum Validator Funding',
@@ -14,7 +14,15 @@ export const metadata: Metadata = {
     'Blockchain Slashing',
     'Validator Active Set',
     'Cost of Running a Validator',
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: 'Discover how much funding you need to launch a validator node on the Coreum blockchain. Learn about self-delegation, slashing risks, and how to secure your spot in the active set.',
+    siteName: 'Understanding Funding Requirements for a Coreum Validator Node | Coreum Docs',
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

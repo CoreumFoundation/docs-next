@@ -13,7 +13,15 @@ export const metadata: Metadata = {
     'Validator Node Configuration',
     'Staking Coreum',
     'Blockchain Node Pruning'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Learn how to set up and run a validator node on the Coreum blockchain network. This guide covers everything from initial setup to advanced configuration options.",
+    siteName: "Setting Up a Validator Node | Coreum Blockchain Network Guide",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 

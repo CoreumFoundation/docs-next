@@ -17,7 +17,15 @@ export const metadata: Metadata = {
     'Coreum Validator Node',
     'Blockchain Technology',
     'Cryptocurrency Nodes'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Learn the step-by-step process of running a full node on the Coreum blockchain. Join the network and contribute to the decentralization and security of Coreum.",
+    siteName: "How to Run a Full Node on Coreum Blockchain | Coreum Network Participation",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 const Page = () => {

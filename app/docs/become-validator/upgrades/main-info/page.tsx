@@ -5,7 +5,7 @@ import Component from './main-info.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "How to Upgrade Your Coreum Node: A Complete Guide",
+  title: "How to Upgrade Your Coreum Node: A Complete Guide | Coreum Docs",
   description: "Follow our step-by-step guide to upgrade your Coreum node seamlessly. Learn about prerequisites, downloading binaries, and verifying upgrades for Mainnet and Testnet.",
   keywords: [
     'Coreum node upgrade',
@@ -14,7 +14,15 @@ export const metadata: Metadata = {
     'Coreum binary download',
     'Verify node upgrade',
     'Coreum blockchain maintenance'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Follow our step-by-step guide to upgrade your Coreum node seamlessly. Learn about prerequisites, downloading binaries, and verifying upgrades for Mainnet and Testnet.",
+    siteName: "How to Upgrade Your Coreum Node: A Complete Guide | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 
