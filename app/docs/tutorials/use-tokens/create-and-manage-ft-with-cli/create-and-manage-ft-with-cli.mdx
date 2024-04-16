@@ -263,14 +263,13 @@ cored tx assetft globally-unfreeze $FT_DENOM --from $FT_ISSUER --node=$RPC_URL -
 Note that even after the global freeze, the issuer of the tokens will still be able to perform
 operations with their tokens.
 
-## Send-commission-rate
+## Send commission rate
 
-The send-commission-rate determines the commission applied to tokens transferred between accounts,
+The send commission rate determines the commission applied to tokens transferred between accounts,
 except when one of the participants is the token issuer. To illustrate how this works, follow the
 steps below:
 
--   First, we need a third account to transfer tokens to, let's
-    [generate](../../tools-ecosystem/faucet.md) it and prepare:
+-   First, we need a third account to transfer tokens to, let's [generate](/docs/tools/faucet) it and prepare:
     ```bash
     # import the third account
     cored keys add ft-receiver-2 --recover --chain-id=$CHAIN_ID
@@ -312,7 +311,7 @@ steps below:
 
 ## Burn-rate
 
-The `burn-rate` works similarly to the [send-commission-rate](/docs/overview/smart-tokens). The
+The `burn-rate` works similarly to the [Send Commission Rate](#send-commission-rate). The
 only difference is that when the `burn-rate` is applied, the token issuer does not receive any
 tokens. Instead, a certain amount of tokens is burned and removed from circulation.
 

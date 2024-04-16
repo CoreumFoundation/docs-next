@@ -49,6 +49,10 @@
     {
       "page": "crust-for-development",
       "source": "https://raw.githubusercontent.com/CoreumFoundation/crust/master/README.md"
+    },
+    {
+      "page": "gas-price",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/docs/master/src/tutorials/gas-price.md?token=GHSAT0AAAAAACMG5Y3YUJOBGVML25HWNYG6ZQ6WIGA"
     }
   ],
   "tutorials/get-started": [

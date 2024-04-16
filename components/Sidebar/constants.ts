@@ -245,6 +245,10 @@ export const SIDEBAR_ITEMS = [
         ],
       },
       {
+        name: 'Gas Price',
+        href: '/docs/tutorials/gas-price',
+      },
+      {
         name: 'Coreum WASM SDK',
         href: '/docs/tutorials/coreum-wasm-sdk',
       },
