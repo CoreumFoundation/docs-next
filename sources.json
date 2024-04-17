@@ -19,26 +19,6 @@
   ],
   "tutorials": [
     {
-      "page": "get-started",
-      "source": ""
-    },
-    {
-      "page": "use-tokens",
-      "source": ""
-    },
-    {
-      "page": "integrate-coreum",
-      "source": ""
-    },
-    {
-      "page": "build-apps",
-      "source": ""
-    },
-    {
-      "page": "ibc",
-      "source": ""
-    },
-    {
       "page": "coreum-wasm-sdk",
       "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum-wasm-sdk/main/README.md"
     },
