@@ -1,3 +1,5 @@
+import { Faucets } from '../../../../components/Faucets';
+
 # Faucet
 
 You can fund your account here.
@@ -17,17 +19,6 @@ cored keys add <name-of-the-key> --chain-id=$COREUM_CHAIN_ID
 `{Chain ID}` depends on the Network, you can find value at
 [network variables page](/docs/tutorials/get-started/setup-cli)
 
-## Mainnet
-
-You can generate your address at [wallet page](/docs/tools/wallets), and you can find the list of Coreum
-Markets <a className="text-[#24D494] font-bold" href="https://coinmarketcap.com/currencies/coreum/markets" target="_blank">here</a>.
-
-Note: Check if CEX supports withdrawal into Coreum Network beforehand.
-
-## Testnet
-
-{/* <Faucet chainId="coreum-testnet-1"/> */}
-
-## Devnet
-
-{/* <Faucet chainId="coreum-devnet-1"/> */}
+<div className="mt-10">
+    <Faucets />
+</div>

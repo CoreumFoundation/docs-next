@@ -1,0 +1,143 @@
+'use client';
+
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { TabItem, Tabs } from "../Tabs";
+import Link from "next/link";
+import { Input } from "../Input";
+import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing';
+import { stringToPath } from '@cosmjs/crypto';
+import axios from "axios";
+
+const tabs = [
+  { label: 'Mainnet', id: 'mainnet' },
+  { label: 'Testnet', id: 'testnet' },
+  { label: 'Devnet', id: 'devnet' },
+];
+
+const CONFIG = {
+  devnet: {
+    denom: 'udevcore',
+    tokenPrefix: 'devcore',
+    fundWalletURL: 'https://api.devnet-1.coreum.dev/api/faucet/v1/fund',
+    coreumHDPath: "m/44'/990'/0'/0/0",
+    explorerLink: 'https://explorer.devnet-1.coreum.dev/coreum/transactions',
+  },
+  testnet: {
+    denom: 'utestcore',
+    tokenPrefix: 'testcore',
+    fundWalletURL: 'https://api.testnet-1.coreum.dev/api/faucet/v1/fund',
+    coreumHDPath: "m/44'/990'/0'/0/0",
+    explorerLink: 'https://explorer.testnet-1.coreum.dev/coreum/transactions',
+  },
+};
+
+export const Faucets = () => {
+  const [currentTab, setCurrentTab] = useState<TabItem>(tabs[0]);
+  const [walletAddress, setWalletAddress] = useState<string>('');
+  const [txHash, setTxHash] = useState<string>('');
+
+  const currentConfig = useMemo(() => {
+    return CONFIG[currentTab.id as ('testnet' | 'devnet')] || {};
+  }, [currentTab.id]);
+
+  const fundWallet = useCallback(async (address: string) => {
+    try {
+      const response = await axios.post(currentConfig.fundWalletURL, {
+        address: address,
+      });
+
+      setTxHash(response.data.txHash);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [currentConfig?.fundWalletURL]);
+
+  const handleRequestFunds = useCallback(async () => {
+    if (walletAddress.length) {
+      await fundWallet(walletAddress);
+    }
+  }, [fundWallet, walletAddress]);
+
+  const handleGenerateWallet = useCallback(async () => {
+    const wallet = await DirectSecp256k1HdWallet.generate(24, {
+      prefix: currentConfig.tokenPrefix,
+      hdPaths: [stringToPath(currentConfig.coreumHDPath)],
+    });
+
+    const [{ address }] = await wallet.getAccounts();
+
+    setWalletAddress(address);
+    await fundWallet(address);
+  }, [currentConfig.coreumHDPath, currentConfig.tokenPrefix, fundWallet]);
+
+  const handleChangeWalletAddress = useCallback((value: string | number) => {
+    setWalletAddress(typeof value === 'string' ? value : String(value));
+  }, []);
+
+  useEffect(() => {
+    setWalletAddress('');
+    setTxHash('');
+  }, [currentTab.id]);
+
+  const renderContent = useMemo(() => {
+    switch (currentTab.id) {
+      case 'mainnet':
+        return (
+          <div className="flex flex-col w-full gap-8">
+            <div className="text-base font-normal text-[#868991]">
+              You can generate your address at <Link className="text-[#25D695] font-semibold" href="#">wallet page</Link>, and you can find the list of Coreum Markets <Link className="text-[#25D695] font-semibold" href="#">here</Link>.
+            </div>
+            <div className="text-base font-normal text-[#868991]">
+              Note: Check if EX supports withdrawal into Coreum Network beforehand.
+            </div>
+          </div>
+        );
+      case 'testnet':
+      case 'devnet':
+        return (
+          <div className="flex flex-col w-full gap-4">
+            <div className="flex w-full items-center gap-6">
+              <div
+                className="flex overflow-hidden py-4 px-6 bg-[#0E0F10] text-base font-medium font-['space grotesk'] rounded-xl w-[280px] cursor-pointer"
+                onClick={handleGenerateWallet}
+              >
+                Generate Funded Wallet
+              </div>
+              <div className="flex-none text-[#9FA2AC] text-base font-['space grotesk'] font-normal">
+                Or
+              </div>
+              <div className="flex-1">
+                <Input
+                  buttonLabel="Request Fund"
+                  onButtonClick={handleRequestFunds}
+                  inputName={"wallet_address"}
+                  inputId={"wallet_address"}
+                  inputType={"text"}
+                  value={walletAddress}
+                  onChange={handleChangeWalletAddress}
+                  placeholder="Enter wallet address"
+                />
+              </div>
+            </div>
+            {txHash.length ? (
+              <div className="flex w-full items-center gap-2 bg-[#0E0F10] py-4 px-6 rounded-xl text-[#5E6773] text-sm text-nowrap overflow-auto">
+                Tx Hash: <Link target="_blank" className="text-[#25D695] text-base" href={`${currentConfig.explorerLink}/${txHash}`}>{txHash}</Link>
+              </div>
+            ) : ''}
+          </div>
+        );
+      default:
+    }
+  }, [currentConfig?.explorerLink, currentTab.id, handleChangeWalletAddress, handleGenerateWallet, handleRequestFunds, txHash, walletAddress]);
+
+  return (
+    <div className="flex flex-col w-full gap-10 overflow-hidden">
+      <Tabs
+        currentTab={currentTab}
+        tabs={tabs}
+        setCurrentTab={setCurrentTab}
+      />
+      {renderContent}
+    </div>
+  );
+};
