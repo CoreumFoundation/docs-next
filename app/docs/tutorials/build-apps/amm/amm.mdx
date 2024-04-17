@@ -10,7 +10,7 @@ To complete this tutorial, you need to:
 * Install <a href="https://www.rust-lang.org/tools/install" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold" target="_blank" rel="noopener noreferrer">rust and cargo</a>.
 * Have a general understanding of how the Coreum blockchain works.
 * Follow the [instruction](/docs/tutorials/get-started/install-cored) to install cored binary.
-* Install the required util: \`jq\`.
+* Install the required util: \jq`.`
 * Set the [network variables](/docs/tutorials/get-started/setup-cli) for the development (testnet is preferable).
 
 ## Getting Started
@@ -22,15 +22,13 @@ RES=$(cored keys add wallet $COREUM_CHAIN_ID_ARGS --output json)
 OWNER=$(echo $RES | jq -r '.address')
 echo $OWNER
 ```
-
 Output example: 
 
 ```bash
 testcore1hpgxerhcnzjqpxpt4qpncrr7sdyzvuekzendeh
 ```
 
-* Use the <a href="/docs/tools/faucet" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold"  rel="noopener noreferrer">faucet</a>
- to fund your account
+* Use the <a href="/docs/tools/faucet" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold" rel="noopener noreferrer">faucet</a> to fund your account
 
 * Clone the astroport repository with all the smart contracts.
 
@@ -231,7 +229,7 @@ Output example:
 ```bash
 145
 ```
-Now we instantiate the contract 
+Now we instantiate the contract
 
 ```bash
 INIT='{"astroport_factory": '\""$CONTRACT_ADDRESS_FACTORY"\"'}'
@@ -438,6 +436,7 @@ Output example:
 testcore1kk95dde8e5793ztnzve66gqnxj39x7j3736nkxt6xxdevugqwndq2jv3cv
 testcore1e27xcswyzjf88d9uc634lh9u5vu8mgl94xue6f54p7g930lkjvfsxvay3c
 ```
+
 This created a liquidity pool of 2 tokens. The first one is the AMM token that we created at the start of this tutorial, which is a CW20 implementation (hence the contract_addr field), and the second one is the native testnet token. Also, in this case and as shown in the output above, the address of this liquidity pool contract is testcore1kk95dde8e5793ztnzve66gqnxj39x7j3736nkxt6xxdevugqwndq2jv3cv and the token that will be minted and given to liquidity pool providers is testcore1e27xcswyzjf88d9uc634lh9u5vu8mgl94xue6f54p7g930lkjvfsxvay3c (which will be used later to incentivize the pool through the generator contract).
 
 Now that this liquidity pool is created, we can add the initial liquidity to it.
