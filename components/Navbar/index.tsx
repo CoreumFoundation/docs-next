@@ -197,104 +197,110 @@ export const Navbar = () => {
               </div>
             </div>
             <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-1 pb-3 pt-2 bg-[#080908]">
-                <Disclosure.Button
-                  as="a"
-                  href="/"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  Join Coreum
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="a"
-                  href="https://github.com/CoreumFoundation"
-                  target="_blank"
-                  className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  <Image
-                    className="h-8 w-8"
-                    src="/images/github-navbar.svg"
-                    alt="Coreum Github"
-                    width={32}
-                    height={32}
+              <div className="space-y-1 px-6 bg-[#080908]">
+                <div className="flex items-center w-full justify-between gap-4">
+                  <Dropdown
+                    label="Join Coreum"
+                    items={dropdownItems}
                   />
-                  Coreum Github
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="a"
-                  href="https://x.com/CoreumOfficial"
-                  target="_blank"
-                  className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  <Image
-                    className="h-8 w-8"
-                    src="/images/twitter-navbar.svg"
-                    alt="Coreum Twitter"
-                    width={32}
-                    height={32}
-                  />
-                  Coreum Twitter
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="a"
-                  href="https://www.instagram.com/coreum.official/"
-                  target="_blank"
-                  className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  <Image
-                    className="h-8 w-8"
-                    src="/images/instagram-navbar.svg"
-                    alt="Coreum Instagram"
-                    width={32}
-                    height={32}
-                  />
-                  Coreum Instagram
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="a"
-                  href="https://t.me/CoreumOfficial"
-                  target="_blank"
-                  className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  <Image
-                    className="h-8 w-8"
-                    src="/images/telegram-navbar.svg"
-                    alt="Coreum Telegram"
-                    width={32}
-                    height={32}
-                  />
-                  Coreum Telegram
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="a"
-                  href="https://discord.com/invite/XdVAGKXEhg"
-                  target="_blank"
-                  className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  <Image
-                    className="h-8 w-8"
-                    src="/images/discord-navbar.svg"
-                    alt="Coreum Discord"
-                    width={32}
-                    height={32}
-                  />
-                  Coreum Discord
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="a"
-                  href="https://www.youtube.com/@coreumofficial"
-                  target="_blank"
-                  className="flex items-center w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  <Image
-                    className="h-8 w-8"
-                    src="/images/youtube-navbar.svg"
-                    alt="Coreum Youtube"
-                    width={32}
-                    height={32}
-                  />
-                  Coreum Youtube
-                </Disclosure.Button>
+                  <Link href="/docs" className="flex items-center justify-between gap-2 px-2 py-1 text-nowrap rounded-lg text-[#1B1D23] text-sm bg-green-gradient">
+                    Get Started
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M12.8434 13.0714V8.19407L6.72266 14.3148L5.68018 13.2723L11.7985 7.15398H6.92596V5.67969H14.3177V13.0714H12.8434Z"
+                        fill="#1B1D23"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+                <div className="flex items-center w-full gap-2">
+                  <Disclosure.Button
+                    as="a"
+                    href="https://github.com/CoreumFoundation"
+                    target="_blank"
+                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  >
+                    <Image
+                      className="h-8 w-8"
+                      src="/images/github-navbar.svg"
+                      alt="Coreum Github"
+                      width={32}
+                      height={32}
+                    />
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    as="a"
+                    href="https://x.com/CoreumOfficial"
+                    target="_blank"
+                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  >
+                    <Image
+                      className="h-8 w-8"
+                      src="/images/twitter-navbar.svg"
+                      alt="Coreum Twitter"
+                      width={32}
+                      height={32}
+                    />
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    as="a"
+                    href="https://www.instagram.com/coreum.official/"
+                    target="_blank"
+                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  >
+                    <Image
+                      className="h-8 w-8"
+                      src="/images/instagram-navbar.svg"
+                      alt="Coreum Instagram"
+                      width={32}
+                      height={32}
+                    />
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    as="a"
+                    href="https://t.me/CoreumOfficial"
+                    target="_blank"
+                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  >
+                    <Image
+                      className="h-8 w-8"
+                      src="/images/telegram-navbar.svg"
+                      alt="Coreum Telegram"
+                      width={32}
+                      height={32}
+                    />
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    as="a"
+                    href="https://discord.com/invite/XdVAGKXEhg"
+                    target="_blank"
+                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  >
+                    <Image
+                      className="h-8 w-8"
+                      src="/images/discord-navbar.svg"
+                      alt="Coreum Discord"
+                      width={32}
+                      height={32}
+                    />
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    as="a"
+                    href="https://www.youtube.com/@coreumofficial"
+                    target="_blank"
+                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  >
+                    <Image
+                      className="h-8 w-8"
+                      src="/images/youtube-navbar.svg"
+                      alt="Coreum Youtube"
+                      width={32}
+                      height={32}
+                    />
+                  </Disclosure.Button>
+                </div>
               </div>
             </Disclosure.Panel>
           </>

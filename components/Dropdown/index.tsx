@@ -19,9 +19,9 @@ export const Dropdown: FC<DropdownProps> = ({
   items,
 }) => {
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className="relative inline-block text-left w-full">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-[#080908] px-3 py-2 text-sm font-medium text-[#9FA2AC] shadow-sm ring-0">
+        <Menu.Button className="inline-flex w-full sm:justify-center gap-x-1.5 rounded-md bg-[#080908] px-3 py-2 text-sm font-medium text-[#9FA2AC] shadow-sm ring-0">
           {label}
           <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
         </Menu.Button>
@@ -36,7 +36,7 @@ export const Dropdown: FC<DropdownProps> = ({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-[#0d110f] shadow-lg ring-0 outline-none">
+        <Menu.Items className="relative w-full sm:absolute sm:right-0 sm:z-10 sm:mt-2 sm:w-56 origin-top-right rounded-md bg-[#0d110f] shadow-lg ring-0 outline-none">
           <div className="py-1">
             {items.map((item: DropdownItem, index: number) => {
               return (
