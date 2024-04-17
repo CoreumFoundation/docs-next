@@ -59,7 +59,7 @@ NEXT_PUBLIC_SITE_ICON_URL="/coreum.svg"
 NEXT_PUBLIC_GAS_PRICE=0.0625utestcore
 ```
 
-Parameters for other networks are available on the <a href="/docs/become-validator/essentials/network-variables" className="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">network variables</a>
+Parameters for other networks are available on the <a href="/docs/become-validator/essentials/network-variables"  className="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">network variables</a>
  page.
 
 ## Components
@@ -402,14 +402,14 @@ function and pass the additional none standard option `registry`, where the `reg
 registries
 `defaultRegistryTypes` which provides the registry for the cosmos-sdk default transactions such as sending coins,
 delegate, etc. And `coreumRegistryTypes` for the Coreum custom transactions, such as creating NFT class, mint NFT etc.
-Use the <a href="/docs/api/protobuf" className="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">API page</a>
+Use the <a href="/docs/api/protobuf" target="_blank" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold" rel="noopener noreferrer">API page</a>
   to get the list of all supported transactions (the transactions are started from `Msg`
 and located in the `tx.proto` files).
 
 #### Initialize coreumQueryClient
 
 The `coreumQueryClient` is the adapter to query the Coreum models using the RPC requests. You can use it to get the
-minted NFTs or the NFT owner, for example. Use the <a href="/docs/api/protobuf" className="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">API page</a>
+minted NFTs or the NFT owner, for example. Use the <a href="/docs/api/protobuf" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold" rel="noopener noreferrer">API page</a>
  to get the list of all supported queries
 (the queries are in the `Query` proto services and located in the `query.proto` files).
 
@@ -1386,13 +1386,8 @@ for the class creation, `id` - chosen ID for the sending, `receiver` - the new o
 
 ## Next steps
 
-* Read Coreum <a href="/docs/modules" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">modules</a>
- specification, to be familiar with the custom Coreum functionality you can
-  use for your
-  application.
-* Read <a href="https://docs.cosmos.network/v0.47/build/modules" target="_blank" rel="noopener noreferrer" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">cosmos-sdk modules docs</a>
-* In some cases you might need the data that the node doesn't return, in that case, you can check the
-* <a href="/docs/tools/blockchain-explorers" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">Explorer API</a>
- to understand what additionally you can get from the indexed data.
-* Check other<a href="/docs/tutorials" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">tutorials</a>
- to find something you might be interested in additionally.
+* Read Coreum <a href="/docs/modules"  rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">modules</a> specification, to be familiar with the custom Coreum functionality you can use for your application.
+* Read <a href="https://docs.cosmos.network/v0.47/build/modules" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">cosmos-sdk modules docs</a>.
+* In some cases you might need the data that the node doesn't return, in that case, you can check the <a href="/docs/tools/blockchain-explorers" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">Explorer API</a> to understand what additionally you can get from the indexed data.
+* Check other <a href="/docs/tutorials"  rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">tutorials</a> to find something you might be interested in additionally.
+

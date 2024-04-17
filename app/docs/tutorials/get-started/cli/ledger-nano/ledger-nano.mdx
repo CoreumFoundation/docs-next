@@ -16,7 +16,7 @@ Since Ledger limits HD paths, CORE `--coin-type=990` is currently not supported,
 * The Cosmos(ATOM) application must be installed on your Ledger device, for more information click <a href="https://support.ledger.com/hc/en-us/articles/360013713840-Cosmos-ATOM-?support=true" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">here</a>
 . (Make sure that Cosmos(ATOM) app version is v2.34.12 or above)
 
-* `cored` (<a href="/docs/tutorials/get-started/install-cored" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">Coreum CLI</a>
+* `cored` ([Coreum CLI](/docs/become-validator/essentials/install-cored)
 ) installed on your local machine (install cored binary version v1.0.0 or above)
 
 ## Instructions
@@ -39,7 +39,7 @@ cored keys add ledger-1 --chain-id=coreum-testnet-1  --ledger --coin-type=118
 
 ::: tip NOTE:
 - You can use the `--keyring-backend` flag to increase the security of your keys.
-- If you want to target other network than testnet, replace it with values at <a href="/docs/tutorials/get-started/setup-cli" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">network variables page</a>
+- If you want to target other network than testnet, replace it with values at [network variables page](/docs/become-validator/essentials/network-variables)
 
 :::
 
@@ -63,7 +63,7 @@ cored keys show ledger-1 -d --chain-id=coreum-testnet-1
 
 * Fund your account address
 
-  * Navigate <a href="/docs/tools/faucet" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">faucet</a>
+  * Navigate <a href="/docs/tools/faucet"  rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">faucet</a>
  designed specifically for this purpose.
   * On the faucet page, you will find a designated section for requesting testnet funds.
   * Enter the wallet address generated earlier into the `wallet address` field.
@@ -124,7 +124,7 @@ Before proceeding with this section, make sure to install the Cosmos app on your
   :::warning TIP
   To establish a connection with various networks like Mainnet, Testnet, or Devnet, you can initiate the connection by clicking on the corresponding network buttons 
   
-  listed on <a href="/docs/tools/wallets" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Coreum Docs page</a>.
+  listed on <a href="/docs/tools/wallets"  class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Coreum Docs page</a>.
 
   :::
 
@@ -142,7 +142,7 @@ By following these steps, you can easily connect to the Coreum testnet chain in 
 * To fund the test account:
   * Start by clicking the  `Deposit` button.
   * Next, click the `Copy` button located next to the address of the `Coreum Testnet 1`.
-  * Open the <a href="/docs/tools/faucet" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">faucet</a>
+  * Open the [faucet page](/docs/tools/faucet)
  and paste the copied address into the designated address field.
   * Finally, click the `Request Funds` button to initiate the request for funds.
 
