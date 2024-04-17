@@ -42,7 +42,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h2
           id={anchor}
-          className="font-medium font-[#EEE]"
+          className="font-medium text-[#EEE]"
           style={{
             fontSize: '24px',
             marginTop: '12px',
@@ -60,7 +60,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h3
           id={anchor}
-          className="font-medium font-[#EEE]"
+          className="font-medium text-[#EEE]"
           style={{
             fontSize: '18px',
             marginBottom: '12px',
@@ -77,7 +77,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h4
           id={anchor}
-          className="font-medium font-[#EEE]"
+          className="font-medium text-[#EEE]"
           style={{
             fontSize: '16px',
             marginBottom: '12px',
@@ -94,7 +94,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h5
           id={anchor}
-          className="font-medium font-[#EEE]"
+          className="font-medium text-[#EEE]"
           style={{
             fontSize: '14px',
             marginBottom: '12px',
@@ -111,7 +111,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h6
           id={anchor}
-          className="font-medium font-[#EEE]"
+          className="font-medium text-[#EEE]"
           style={{
             fontSize: '12px',
             marginBottom: '12px',
