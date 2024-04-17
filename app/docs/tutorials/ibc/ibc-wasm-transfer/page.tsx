@@ -16,15 +16,7 @@ export const metadata: Metadata = {
     'Blockchain Coding',
     'IBC Protocol',
     'CosmWasm Contracts'
-  ],
-  openGraph: {
-    type: 'website',
-    description: "Learn how to build and execute an IBC-enabled smart contract for token transfers on Coreum using CosmWasm and Rust. Start developing cross-chain applications today.",
-    siteName: "IBC WASM Transfer Tutorial with Coreum and CosmWasm | Coreum Developers",
-    images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
-    }],
-  },
+  ]
 };
 
 const Page = () => {

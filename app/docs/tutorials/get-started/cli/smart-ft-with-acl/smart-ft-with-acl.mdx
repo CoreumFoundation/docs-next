@@ -101,7 +101,7 @@ Now, the asset is correctly issued by the multisig account.
     cored tx authz grant $(cored keys show --address minter $COREUM_CHAIN_ID_ARGS) generic --msg-type=/coreum.asset.ft.v1.MsgMint --from $(cored keys show --address k1k2k3 $COREUM_CHAIN_ID_ARGS) --generate-only $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS > authz-mint-unsigned.json
     ```
 
-In this command we are granting the address we created before the right to mint tokens on behalf of the multisig account. If we wanted to give a different kind of permission we would change the --msg-type flag with the corresponding message. Here are other messages for [AssetFT](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/ft/v1/tx.proto) and for [AssetNFT](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/nft/v1/tx.proto).
+In this command we are granting the address we created before the right to mint tokens on behalf of the multisig account. If we wanted to give a different kind of permission we would change the --msg-type flag with the corresponding message. Here are other messages for <a href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/ft/v1/tx.proto" target="_blank" rel="noopener noreferrer">AssetFT</a> and for <a href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/nft/v1/tx.proto" target="_blank" rel="noopener noreferrer">AssetNFT</a>.
 
 * We can check the tx content.
 
@@ -135,7 +135,8 @@ As we can see from the output, the authz message grants permissions to the addre
     ```
 And now the address "minter" can mint the AssetFT token "MYFT" (and any other tokens issued by the multisig) on behalf of the multisig by itself without limits. Let's test it.
 
-* Use [faucet](/docs/tools/faucet) to fund `minter` account
+* Use <a href="/docs/tools/faucet" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">faucet</a>
+ to fund `minter` account
 
 * Mint token.
 
@@ -162,10 +163,11 @@ As we can see, our 200 tokens have been minted correctly and have been added to 
 
 ## Creating and managing a Multisig using a UI instead of CLI
 
-There are currently multiple implementations of interfaces. In the main Cosmos repository we can find [Cosmos Multisig UI](https://github.com/cosmos/cosmos-multisig-ui) which allows us to create and use multisigs more comfortably on any Cosmos SDK based chain. Therefore, it also works with the Coreum blockchain, we must simply select Coreum on the top right of the page and it will fill in all the Coreum mainnet information. If we want to adjust it for testnet we can click on the settings wheel and modify the information there to point towards our testnet or devnet. This information is in [network variables](/docs/tutorials/get-started/setup-cli).
+There are currently multiple implementations of interfaces. In the main Cosmos repository we can find <a href="https://github.com/cosmos/cosmos-multisig-ui" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Cosmos Multisig UI</a>
+ which allows us to create and use multisigs more comfortably on any Cosmos SDK based chain. Therefore, it also works with the Coreum blockchain, we must simply select Coreum on the top right of the page and it will fill in all the Coreum mainnet information. If we want to adjust it for testnet we can click on the settings wheel and modify the information there to point towards our testnet or devnet. This information is in [Network variables](/docs/tutorials/get-started/setup-cli)
+
 
 It allows us to create multisigs using both public keys (like we did in this tutorial with CLI) or our addresses. If you want to use addresses to create a multisig instead of public keys, these addresses must have been created on chain (they must have received funds before). If these addresses have never received any tokens, they can not be used to create the multisig because the Public Key can not be obtained from the chain.
-
 In general, these multisig implementions have the following workflow.
 
 1. Create the multisig.

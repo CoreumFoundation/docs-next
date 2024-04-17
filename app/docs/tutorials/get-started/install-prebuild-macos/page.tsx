@@ -26,7 +26,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 const Page = () => {
   return (
     <Component />

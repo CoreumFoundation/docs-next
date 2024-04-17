@@ -8,19 +8,19 @@ incrementing a counter stored on each contract.
 
 To complete this tutorial, you need to:
 
--   Install [rust and cargo](https://www.rust-lang.org/tools/install).
+-   Install <a href="https://www.rust-lang.org/tools/install" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">rust and cargo</a>
 -   Be familiar with the Rust programming language.
 -   Have a general understanding of how the Coreum blockchain works.
--   Follow the [instruction](/docs/tutorials/get-started/install-cored) to install cored binary.
--   Set the [network variables](/docs/tutorials/get-started/setup-cli). We will use both the mainnet and the
-    testnet.
--   Have a general understanding of [IBC](https://ibc.cosmos.network/main/ibc/overview.html) and the
-    [Hermes Relayer](https://hermes.informal.systems/index.html).
+- Follow the [instruction](/docs/tutorials/get-started/install-cored) to install cored binary.
+- Set the [network variables](/docs/tutorials/get-started/setup-cli). We will use both the mainnet and the testnet.
+-   Have a general understanding of and the
+    <a href="https://hermes.informal.systems/index.html" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Hermes Relayer</a>
+
 
 ## Source Code
 
 The complete source code is located
-[here](https://github.com/CoreumFoundation/ibc-contract-tutorial/tree/master/ibc-call).
+<a href="https://github.com/CoreumFoundation/ibc-contract-tutorial/tree/master/ibc-call" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">here</a>
 
 ## IBC Channel Overview
 
@@ -45,7 +45,7 @@ established through a four-way handshake, in which each step is initiated by a r
 Once the handshake has been completed a channel will created to send IBC messages. To be able to
 perform this handshake and receive IBC messages our contract must implement the ibc entry points. We
 define them in
-[ibc.rs](https://github.com/CoreumFoundation/ibc-contract-tutorial/tree/master/ibc-call/src/ibc.rs):
+<a href="https://github.com/CoreumFoundation/ibc-contract-tutorial/tree/master/ibc-call/src/ibc.rs" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">ibc.rs</a>:
 
 1. `ibc_channel_open`: entry point to handle IBC channel opening handshake phases: `OpenInit` and
    `OpenTry`.
@@ -120,7 +120,7 @@ on each chain.
 
 To establish a connection between the two contracts you need to set up a relayer. First, we will
 need to
-[configure Hermes](https://hermes.informal.systems/documentation/configuration/description.html).
+<a href="https://hermes.informal.systems/documentation/configuration/description.html" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">configure Hermes</a>
 After configuring Hermes, we can create a channel to establish the IBC connection between the
 contracts:
 

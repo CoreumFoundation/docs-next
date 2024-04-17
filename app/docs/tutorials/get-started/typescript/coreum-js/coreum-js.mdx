@@ -10,8 +10,8 @@ In this tutorial we are going use `coreum-js` library for issuing, minting and s
    - `npm init` to init the project;
    - `npm install coreum-js` to install `coreum-js` library;
    - `touch index.js` to create js file;
-3. Put the code from the [following section](/docs/tutorials/get-started/typescript/coreum-js) into `index.js` file. Reffer to the comments for the explanation.
-4. Generate mnemonic for the testnet network [here](/docs/tools/faucet).
+3. Put the code from the [following section](/docs/tutorials/get-started/typescript/coreum-js) into `index.js` file. Refer to the comments for explanation.
+4. Generate a mnemonic for the testnet network [here](/docs/tools/faucet).
 5. Assign the mnemonic to the `issuerMnemonic` variable in the code.
 6. Run the code: `node index.js`. Check output.
 
@@ -20,7 +20,8 @@ In this tutorial we are going use `coreum-js` library for issuing, minting and s
 ```js
 const { Client, Bank, FT } = require("coreum-js");
 
-// Replace the issuerMnemonic with your own. You can generate it at https://docs.coreum.dev/tools-ecosystem/faucet.html
+// Replace the issuerMnemonic with your own. You can generate it at [https://docs.coreum.dev/tools-ecosystem/faucet.html](https://docs.coreum.dev/tools-ecosystem/faucet.html)
+
 // Caution: do not hardcode your production mnemonic here, otherwise your funds might be stolen.
 const issuerMnemonic =
     "spend build hurdle notable lemon involve summer pudding sadness fit excite canyon flock relief unfold upgrade sure film alley chest census quiz ivory birth";
@@ -133,7 +134,8 @@ main();
 const { Client, NFT, DataBytes, convertStringToAny } = require('coreum-js');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 
-// Replace the issuerMnemonic with your own. You can generate it at https://docs.coreum.dev/tools-ecosystem/faucet.html
+// Replace the issuerMnemonic with your own. You can generate it at [https://docs.coreum.dev/tools-ecosystem/faucet.html](https://docs.coreum.dev/tools-ecosystem/faucet.html)
+
 // Caution: do not hardcode your production mnemonic here, otherwise your funds might be stolen.
 const issuerMnemonic =
     "spend build hurdle notable lemon involve summer pudding sadness fit excite canyon flock relief unfold upgrade sure film alley chest census quiz ivory birth";

@@ -17,15 +17,7 @@ export const metadata: Metadata = {
     'IBC Transaction Steps',
     'Coreum Blockchain',
     'Sending IBC Assets'
-  ],
-  openGraph: {
-    type: 'website',
-    description: "Step-by-step guide on executing IBC transfers to Osmosis using the Keplr wallet. Learn how to send assets cross-chain securely and efficiently.",
-    siteName: "IBC Transfer to Osmosis Using Keplr Wallet | Coreum Guide",
-    images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
-    }],
-  },
+  ]
 };
 
 
