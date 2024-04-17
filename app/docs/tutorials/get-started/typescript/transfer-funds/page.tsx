@@ -1,6 +1,33 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './transfer-funds.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Fund Transfer Using TypeScript and CosmJS | Coreum Developers",
+  description: "Explore how to transfer funds on the Coreum blockchain using TypeScript and CosmJS. This guide includes step-by-step instructions for setting up and executing transactions.",
+  keywords: [
+    'Coreum Fund Transfer',
+    'Blockchain Transactions TypeScript',
+    'CosmJS Tutorial',
+    'Typescript Blockchain Development',
+    'Coreum TypeScript SDK',
+    'Send Crypto with TypeScript',
+    'Coreum Transaction Guide',
+    'Programming Crypto Transactions',
+    'Blockchain Development Tutorials',
+    'Coreum Developers Guide'
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Learn to transfer funds on the Coreum blockchain using TypeScript. This tutorial covers the essentials of setting up CosmJS and executing transactions efficiently.",
+    siteName: "Fund Transfer Using TypeScript and CosmJS | Coreum Developers",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
+};
+
 
 const Page = () => {
   const prevNavigationItem = {
