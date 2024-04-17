@@ -1,4 +1,3 @@
-'use client';
 import Component from './xrpl-bridge.mdx';
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import { Metadata } from 'next';
