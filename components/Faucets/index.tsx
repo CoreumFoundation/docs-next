@@ -85,7 +85,7 @@ export const Faucets = () => {
         return (
           <div className="flex flex-col w-full gap-8">
             <div className="text-base font-normal text-[#868991]">
-              You can generate your address at <Link className="text-[#25D695] font-semibold" href="#">wallet page</Link>, and you can find the list of Coreum Markets <Link className="text-[#25D695] font-semibold" href="#">here</Link>.
+              You can generate your address at <Link className="text-[#25D695] font-semibold" href="/docs/tools/wallets">wallet page</Link>, and you can find the list of Coreum Markets <Link target="_blank" className="text-[#25D695] font-semibold" href="https://coinmarketcap.com/currencies/coreum/markets">here</Link>.
             </div>
             <div className="text-base font-normal text-[#868991]">
               Note: Check if EX supports withdrawal into Coreum Network beforehand.
