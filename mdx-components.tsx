@@ -242,6 +242,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     ol: ({ children }) => <ol style={{ listStyleType: 'decimal', marginLeft: '16px', marginBottom: '20px' }}>{children}</ol>,
     ul: ({ children }) => <ul className="mdx-ul" style={{ marginLeft: '20px', marginBottom: '20px' }}>{children}</ul>,
-    li: ({ children }) => <li style={{ fontSize: '14px', wordWrap: 'break-word' }}>{children}</li>,
+    li: ({ children }) => <li className="text-[#EEE]" style={{ fontSize: '14px', wordWrap: 'break-word' }}>{children}</li>,
   }
 }
