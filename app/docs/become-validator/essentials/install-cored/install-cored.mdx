@@ -39,7 +39,7 @@ It allows automatically upgrading `cored` on the "chain upgrade".
       ```bash
       echo https://github.com/CoreumFoundation/coreum/releases/download/$COREUM_VERSION/$COREUM_BINARY_NAME
       ```
-      And check if it generates right link. It should lead to one of our [releases](https://github.com/CoreumFoundation/coreum/releases).
+      And check if it generates right link. It should lead to one of our <a className="text-[#24D494] font-bold" href="https://github.com/CoreumFoundation/coreum/releases" target="_blank">releases</a>.
       If it doesn't - double-check your network variables.
 
     * For Devnet:
@@ -60,7 +60,7 @@ It allows automatically upgrading `cored` on the "chain upgrade".
   fi
   mv $COREUM_BINARY_NAME $DESTINATION/cored
   ```
-  Explanation: if there was the network upgrade after the genesis, the proper destination for binary 
+  Explanation: if there was the network upgrade after the genesis, the proper destination for binary
   should be at cosmovisor/upgrades directory, not the cosmovisor/genesis.
   Also, we create the symlink for the cosmovisor, so it will start with the right binary.
 
@@ -82,7 +82,7 @@ It allows automatically upgrading `cored` on the "chain upgrade".
     export DAEMON_HOME="$COREUM_HOME/"
     export DAEMON_NAME="cored"
     ```
-  
+
 
 * Test the binaries
 
@@ -122,13 +122,13 @@ Note: this option supports linux OS only. Also, it should be used in case you in
     And check if it generates right link. It should lead to one of our <a href="https://github.com/CoreumFoundation/coreum/releases" target="_blank" rel="noopener noreferrer" className="text-[#24D494] font-bold">releases</a>
 
     If it doesn't - double-check your network variables.
-  
+
   * For Devnet:
     ```bash
     curl -LOf https://storage.googleapis.com/dev-cored-binaries/cored-linux-amd64
     chmod +x ./cored-linux-amd64
     ```
-    
+
 * Put it in the required folder.
 ```bash
 mv $COREUM_BINARY_NAME $COREUM_HOME/bin/cored
