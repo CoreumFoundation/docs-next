@@ -16,9 +16,10 @@ Golang and TypeScript on how to communicate with our chain.
 ### Links
 - <a href="https://www.coreum.com" target="_blank" rel="noopener noreferrer">Official website</a>
 - <a href="https://github.com/CoreumFoundation/coreum" target="_blank" rel="noopener noreferrer">Source code</a>
-- <a href="/docs/tools/blockchain-explorers" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Block explorers</a>
+- <a href="/docs/tools/blockchain-explorers" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Block explorers</a>
 - <a href="https://docs.coreum.dev" target="_blank" rel="noopener noreferrer">Documentation</a>
-- <a href="/docs/tools/faucet" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Faucet</a>
+- <a href="/docs/tools/faucet" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Faucet</a>
+
 
 ### Project information
 - Project name: `Coreum`
@@ -98,7 +99,8 @@ The transaction included in a block might fail. It is indicated by a non-zero st
 
 ### Fees
 
-To understand Coreum chain fees read about the <a href="/docs/modules/coreum-deterministic-gas" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">coreum gas price</a>.
+To understand Coreum chain fees read about the <a href="/docs/modules/coreum-deterministic-gas" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">coreum gas price</a>
+
 
 ### Coinbase transactions
 Blocks don't start with BTC-like coinbase transaction.
@@ -317,7 +319,7 @@ Tx hash: 8C694A92A2208DB8CE733D54C22A3C7F945D54867B9078D08686DC7DBF0F44DC
 console.log(`sending ${amount.amount} to recipient:`);
 // Initial gas price is hardcoded for now here, because client doesn't support querying for current gas price.
 const gasPrice = GasPrice.fromString(`0.0625${coreumDenom}`);
-// TODO: USe gas estimation once <a href="https://github.com/CoreumFoundation/coreum/pull/403" target="_blank" rel="noopener noreferrer">https://github.com/CoreumFoundation/coreum/pull/403</a>
+// TODO: USe gas estimation once <a href="https://github.com/CoreumFoundation/coreum/pull/403" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">https://github.com/CoreumFoundation/coreum/pull/403</a>
  is merged and released to testnet
 const singleBankSendGas = 111_000;
 const bankSendFee: StdFee = calculateFee(singleBankSendGas, gasPrice);

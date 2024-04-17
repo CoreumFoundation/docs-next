@@ -167,10 +167,10 @@ As we can see, our 200 tokens have been minted correctly and have been added to 
 ## Creating and managing a Multisig using a UI instead of CLI
 
 There are currently multiple implementations of interfaces. In the main Cosmos repository we can find <a href="https://github.com/cosmos/cosmos-multisig-ui" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Cosmos Multisig UI</a>
- which allows us to create and use multisigs more comfortably on any Cosmos SDK based chain. Therefore, it also works with the Coreum blockchain, we must simply select Coreum on the top right of the page and it will fill in all the Coreum mainnet information. If we want to adjust it for testnet we can click on the settings wheel and modify the information there to point towards our testnet or devnet. This information is in [network variables](/docs/tutorials/get-started/setup-cli).
+ which allows us to create and use multisigs more comfortably on any Cosmos SDK based chain. Therefore, it also works with the Coreum blockchain, we must simply select Coreum on the top right of the page and it will fill in all the Coreum mainnet information. If we want to adjust it for testnet we can click on the settings wheel and modify the information there to point towards our testnet or devnet. This information is in <a href="/docs/tutorials/get-started/setup-cli" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">network variables</a>
+
 
 It allows us to create multisigs using both public keys (like we did in this tutorial with CLI) or our addresses. If you want to use addresses to create a multisig instead of public keys, these addresses must have been created on chain (they must have received funds before). If these addresses have never received any tokens, they can not be used to create the multisig because the Public Key can not be obtained from the chain.
-
 In general, these multisig implementions have the following workflow.
 
 1. Create the multisig.

@@ -7,13 +7,13 @@ functionality.
 
 To complete this tutorial, you need to:
 
-* Install <a href="https://www.rust-lang.org/tools/install" target="_blank" rel="noopener noreferrer">rust and cargo</a>
+* Install <a href="https://www.rust-lang.org/tools/install" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">rust and cargo</a>.
 * Be familiar with the Rust programming language.
 * Have a general understanding of how the Coreum blockchain works.
-* Follow the <a href="/docs/tutorials/get-started/install-cored" target="_blank" rel="noopener noreferrer">instruction</a>
- to install cored binary.
+* Follow the <a href="/docs/tutorials/get-started/install-cored" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">instruction</a> to install cored binary.
 * Install the required util: `jq`.
-* Set the <a href="/docs/tutorials/get-started/setup-cli" target="_blank" rel="noopener noreferrer">network variables</a> for the development (testnet is preferable).
+* Set the <a href="/docs/tutorials/get-started/setup-cli" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">network variables</a> for the development (testnet is preferable).
+
 
 ## Source Code
 
@@ -137,7 +137,8 @@ with `entry_point` macro. The contract can be instantiated multiple times and wi
 installation, the contract issues an FT with the `minting` feature enabled, and `send_commission_rate` extension
 equals `10%`. After the instantiation, the contract will become the FT issuer and will be able to control it. Since we
 have set up the `minting` feature only, it will be able to `mint`. Read more
-about [Coreum Fungible Token](/docs/modules/coreum-fungible-token). Also, on the instantiation we declare the `owner` the address of
+about <a href="/docs/modules/coreum-fungible-token" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Coreum Fungible Token</a>
+. Also, on the instantiation we declare the `owner` the address of
 the instantiation, which we can use conditionally to inherit some contract/issuer permissions.
 
 CLI command:
@@ -405,8 +406,6 @@ cored q bank balances $CONTRACT_ADDRESS --denom $FT_DENOM $COREUM_NODE_ARGS $COR
 
 ## Next steps
 
-* Read Coreum [modules](/docs/modules) specification, to be familiar with the custom Coreum functionality you can
-  use for your application.
-* Read <a href="https://docs.cosmwasm.com/docs/" target="_blank" rel="noopener noreferrer">WASM docs</a> to understand all supported WASM features.
-* Check other <a href="/docs/tutorials" target="_blank" rel="noopener noreferrer">tutorials</a> to find something you might be interested in additionally.
-
+* Read Coreum <a href="/docs/modules" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Coreum modules</a> specification, to be familiar with the custom Coreum functionality you can use for your application.
+* Read <a href="https://docs.cosmwasm.com/docs/" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">WASM docs</a> to understand all supported WASM features.
+* Check other <a href="/docs/tutorials" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">tutorials</a> to find something you might be interested in additionally.

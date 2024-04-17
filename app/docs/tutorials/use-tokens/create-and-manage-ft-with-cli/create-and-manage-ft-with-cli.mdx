@@ -16,9 +16,10 @@ Please note that each subsequent section depends on the previous one.
     ```
 
     \* If you want to use other network, find CHAIN_ID and RPC_URL values on the
-    [network variables](/docs/tutorials/get-started/setup-cli) page.
+    <a href="network-variables.md" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">network variables</a>
+ page.
 
--   [Install cored binary](/docs/tutorials/get-started/install-cored)
+-   <a href="/docs/tutorials/get-started/install-cored" target="_blank" rel="noopener noreferrer">Install cored binary</a>
 
 -   You should have two accounts on your local keychain. If you do not have them, you can go to the
     <a href="/docs/tools/faucet" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">faucet page</a>
@@ -73,7 +74,8 @@ Please note that each subsequent section depends on the previous one.
   </details>
 
   The output of the command should provide a transaction hash.
-  Copy this hash and go to the [Block explorer](../../tools-ecosystem/block-explorer.md) to see the transaction's status.
+  Copy this hash and go to the <a href="/docs/tools/blockchain-explorers" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Block explorer</a>
+ to see the transaction's status.
   Remember that your transaction may appear in block explorer with some delay since it should be indexed first.
 
   Please note that you can only issue one unique FT within one account address.
@@ -271,7 +273,8 @@ except when one of the participants is the token issuer. To illustrate how this 
 steps below:
 
 -   First, we need a third account to transfer tokens to, let's
-    [generate](../../tools-ecosystem/faucet.md) it and prepare:
+    <a href="/docs/tools/faucet" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">generate</a>
+ it and prepare:
     ```bash
     # import the third account
     cored keys add ft-receiver-2 --recover --chain-id=$CHAIN_ID
@@ -313,7 +316,7 @@ steps below:
 
 ## Burn-rate
 
-The `burn-rate` works similarly to the [send-commission-rate](/docs/overview/smart-tokens). The
+The `burn-rate` works similarly to the <a href="/docs/overview/smart-tokens" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">send-commission-rate</a>. The
 only difference is that when the `burn-rate` is applied, the token issuer does not receive any
 tokens. Instead, a certain amount of tokens is burned and removed from circulation.
 
