@@ -7,23 +7,15 @@ export const metadata: Metadata = {
   title: "Create and Manage NFTs on Coreum with Golang | Coreum Developer Guide",
   description: "Explore how to use Golang for creating and managing Non-Fungible Tokens (NFTs) on the Coreum blockchain. This guide covers everything from NFT class creation, minting, sending, to freezing NFTs.",
   keywords: [
-    'Coreum NFTs with Golang',
-    'Golang Blockchain Development',
-    'NFT Creation using Golang',
-    'Coreum NFT Management',
-    'Blockchain NFT Development with Golang',
-    'Coreum Developer Guide',
-    'Golang NFT Tutorial',
+    'Coreum NFTs with Golang', 
+    'Golang Blockchain Development', 
+    'NFT Creation using Golang', 
+    'Coreum NFT Management', 
+    'Blockchain NFT Development with Golang', 
+    'Coreum Developer Guide', 
+    'Golang NFT Tutorial', 
     'NFT Programming on Coreum'
-  ],
-  openGraph: {
-    type: 'website',
-    description: "Explore how to use Golang for creating and managing Non-Fungible Tokens (NFTs) on the Coreum blockchain. This guide covers everything from NFT class creation, minting, sending, to freezing NFTs.",
-    siteName: "Create and Manage NFTs on Coreum with Golang | Coreum Developer Guide",
-    images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
-    }],
-  },
+  ]
 };
 
 const Page = () => {

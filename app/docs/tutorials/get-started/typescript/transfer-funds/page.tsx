@@ -2,7 +2,6 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './transfer-funds.mdx';
 import { Metadata } from 'next';
-
 export const metadata: Metadata = {
   title: "Fund Transfer Using TypeScript and CosmJS | Coreum Developers",
   description: "Explore how to transfer funds on the Coreum blockchain using TypeScript and CosmJS. This guide includes step-by-step instructions for setting up and executing transactions.",

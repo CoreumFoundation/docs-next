@@ -16,15 +16,7 @@ export const metadata: Metadata = {
     'WASM Contract Testing',
     'Smart Contract Workspace',
     'Coreum Development Tutorial'
-  ],
-  openGraph: {
-    type: 'website',
-    description: "Learn how to test multiple contract interactions within a CosmWasm workspace on Coreum. A comprehensive guide for developers using Rust.",
-    siteName: "Testing Interactions Between Multiple Contracts on Coreum with CosmWasm | Coreum Docs",
-    images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
-    }],
-  },
+  ]
 };
 
 

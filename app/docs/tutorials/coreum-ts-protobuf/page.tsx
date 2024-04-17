@@ -14,15 +14,7 @@ export const metadata: Metadata = {
     'Cosmos SDK',
     'Coreum Developer Tools',
     'Protobuf Files Generation'
-  ],
-  openGraph: {
-    type: 'website',
-    description: "Learn how to generate TypeScript protobuf files for interacting with the Coreum blockchain via gRPC. Follow our guide to use Coreum TS Protobuf for streamlined blockchain communication.",
-    siteName: "Coreum TS Protobuf: TypeScript Protobuf Generation for Coreum Blockchain | Coreum Developers",
-    images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
-    }],
-  },
+  ]
 };
 
 const Page = () => {
@@ -32,3 +24,4 @@ const Page = () => {
 };
 
 export default Page;
+        

@@ -5,20 +5,25 @@ The tutorial provides the instruction on how to use the `Explorer API`.
 ## Endpoints
 
 The primary hasura API is GraphQL API. All GraphQL Query endpoints are public and available for the usage.
-The list of supported `Explorer APIs` can be found on the page [network-variables.md](/docs/tutorials/get-started/setup-cli).
-For the production usage we advise to deploy your own `Explorer Backend`. The source code can be found <a className="text-[#24D494] font-bold" href="https://github.com/CoreumFoundation/bdjuno" target="_blank">here</a>.
+The list of supported `Explorer APIs` can be found on the page <a href="/docs/tutorials/get-started/setup-cli" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold" target="_blank" rel="noopener noreferrer">network-variables</a>
+For the production usage we advise to deploy your own `Explorer Backend`. The source code can be found <a href="https://github.com/CoreumFoundation/bdjuno" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold" target="_blank" rel="noopener noreferrer">here</a>
+
 
 ## GraphQL Schema
 
-The GraphQL schema is located <a className="text-[#24D494] font-bold" href="https://github.com/CoreumFoundation/bdjuno/tree/chains/coreum/hasura/api/schema.graphql" target="_blank">here</a>. It describes
+The GraphQL schema is
+located <a href="https://github.com/CoreumFoundation/bdjuno/tree/chains/coreum/hasura/api/schema.graphql" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold" target="_blank" rel="noopener noreferrer">here</a>. It describes
 all supported queries and can be used for the client code generation.
 
 ## GraphQL Playground
 
 To run and play with the GraphQL represented as a UI you need:
 
-* Install the <a className="text-[#24D494] font-bold" href="https://github.com/graphql/graphql-playground" target="_blank">graphql-playground</a>.
-* Create a folder and copy the <a className="text-[#24D494] font-bold" href="https://github.com/CoreumFoundation/bdjuno/tree/chains/coreum/hasura/api/schema.graphql" target="_blank">schema.graphql</a> file there.
+* Install the <a href="https://github.com/graphql/graphql-playground" target="_blank" rel="noopener noreferrer">graphql-playground</a>
+* Create a folder and copy
+  the <a href="https://github.com/CoreumFoundation/bdjuno/tree/chains/coreum/hasura/api/schema.graphql" target="_blank" rel="noopener noreferrer">schema.graphql</a>
+ file
+  there.
 * Create new file `.graphqlconfig` in the same folder with the content
 
 ```

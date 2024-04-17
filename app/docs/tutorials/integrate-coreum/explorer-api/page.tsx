@@ -7,23 +7,15 @@ export const metadata: Metadata = {
   title: "Using Explorer API for Coreum Blockchain | Coreum Documentation",
   description: "Explore the step-by-step tutorial on utilizing the Explorer API for Coreum Blockchain. Learn how to access GraphQL Query endpoints and leverage the API for development.",
   keywords: [
-    'Coreum Explorer API',
-    'GraphQL API for Coreum',
-    'Coreum Blockchain Development',
-    'Blockchain Explorer API',
-    'Coreum API Tutorial',
-    'Blockchain Data Query',
-    'Coreum GraphQL Schema',
+    'Coreum Explorer API', 
+    'GraphQL API for Coreum', 
+    'Coreum Blockchain Development', 
+    'Blockchain Explorer API', 
+    'Coreum API Tutorial', 
+    'Blockchain Data Query', 
+    'Coreum GraphQL Schema', 
     'Blockchain API Endpoints'
-  ],
-  openGraph: {
-    type: 'website',
-    description: "Explore the step-by-step tutorial on utilizing the Explorer API for Coreum Blockchain. Learn how to access GraphQL Query endpoints and leverage the API for development.",
-    siteName: "Using Explorer API for Coreum Blockchain | Coreum Documentation",
-    images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
-    }],
-  },
+  ]
 };
 
 

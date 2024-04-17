@@ -1,6 +1,6 @@
 # Wallet Integration
 
-In order to integrate Coreum into a wallet, it should be noted that since Coreum
+In order to integrate Coreum into a wallet, it should be noted that since Coreum 
 is written using Cosmos SDK, the process is mostly the same to other Cosmos based chains with only 2 small differences
 relating to fees, namely gas and gas price.
 Worth considering is also handling of fungible tokens and how that differs from the standard Cosmos SDK functionality.
@@ -12,7 +12,7 @@ To understand Coreum chain gas price read about the [coreum gas price](/docs/mod
 ## How Gas is Different
 
 Gas estimation in Coreum is slightly different from default Cosmos SDK, since gas usage by
-each transaction is more deterministic.
+each transaction is more deterministic. 
 
 For example, if you construct any 2 transactions with
 a single `bank.MsgSend` message and a single signature in each, and if the transaction
@@ -22,10 +22,10 @@ You can get the gas requirement by calling the `simulate` endpoint just as you w
 the default Cosmos SDK so if you already use the simulation endpoint no modifications are
 needed.
 
-If you are not using the simulation endpoint (we strongly recommend you do) then you need to
+If you are not using the simulation endpoint (we strongly recommend you do) then you need to 
 calculate the values, consulting the table in the `deterministicgas` module linked below.
 
-However, these numbers are subject to change, and you need to keep up to date with them on every
+However, these numbers are subject to change, and you need to keep up to date with them on every 
 upgrade (this is why we recommend using the `simulate` endpoint).
 
 You can find more information about our `deterministicgas` model [here](/docs/modules/coreum-deterministic-gas).

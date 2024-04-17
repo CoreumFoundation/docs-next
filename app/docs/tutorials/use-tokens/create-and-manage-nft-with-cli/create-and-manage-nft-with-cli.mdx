@@ -1,13 +1,13 @@
 # Create Non-Fungible Token with CLI
 
-This tutorial will guide you through the process of using the [assetnft](/docs/modules/coreum-non-fungible-token)
+This tutorial will guide you through the process of using the [assetnft](/docs/modules/coreum-non-fungible-token).
 module to create and manage Non-Fungible Tokens.
 
 Please note that each subsequent section depends on the previous one.
 
 ## Prerequisites
 
--   [cored binary installed](/docs/tutorials/get-started/install-cored)
+-  [cored binary installed](/docs/tutorials/get-started/install-cored)
 
 -   We are going to interact with testnet, so we need to set `--node` and `--chain-id` flag in each
     request.
@@ -18,10 +18,12 @@ Please note that each subsequent section depends on the previous one.
     ```
 
     If you want to use other network, find relevant values at
-    [network variables](/docs/tutorials/get-started/setup-cli) page.
+    <a href="/docs/tutorials/get-started/setup-cli" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">network variables</a>
+ page.
 
 -   Two accounts at your local keychain. If you don't have them, follow these steps - go to
-    [faucet page](/docs/tools/faucet) and generate two accounts there. Then, having the
+    [faucet page](/docs/tools/faucet) 
+ and generate two accounts there. Then, having the
     mnemonics, import them with the following commands
 
     ```bash
@@ -58,7 +60,8 @@ Please note that each subsequent section depends on the previous one.
     ```
 
     As an output, you should receive tx hash, copy it and go to
-    [Block explorer](/docs/tools/blockchain-explorers) to see the tx status. Features:
+    <a href="/docs/tools/blockchain-explorers" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Block explorer</a>
+ to see the tx status. Features:
     `burning`, `freezing` and `whitelisting` are explained later in this guide.
 
 -   Now, let's check what NFT classes reside on the Coreum blockchain:
@@ -88,7 +91,8 @@ Please note that each subsequent section depends on the previous one.
     ```
 
     Again, we can check transaction status by providing transaction hashes on the
-    [Block explorer](/docs/tools/blockchain-explorers) page
+   [Block explorers](/docs/tools/blockchain-explorers)
+ page
 
 -   We can query all NFTs of a given class with the following command
 
@@ -291,5 +295,7 @@ No. There's no single command allowing to achieve that. It can, though, be done 
 ## What is next?
 
 You can read more about Non-Fungible Tokens at
-[Smart Token Overview](/docs/overview/smart-tokens) and
-[assetnft spec](/docs/modules/coreum-non-fungible-token) pages
+[Smart Token Overview](/docs/overview/smart-tokens)
+ and
+[assetnft spec](/docs/modules/coreum-non-fungible-token)
+ pages

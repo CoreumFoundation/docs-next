@@ -10,11 +10,14 @@ Since Ledger limits HD paths, CORE `--coin-type=990` is currently not supported,
 
 ## Prerequisites
 
-* Set up [Ledger Live](https://www.ledger.com/ledger-live/) on your machine.
+* Set up <a href="https://www.ledger.com/ledger-live/" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Ledger Live</a>
+ on your machine.
 
-* The Cosmos(ATOM) application must be installed on your Ledger device, for more information click [here](https://support.ledger.com/hc/en-us/articles/360013713840-Cosmos-ATOM-?support=true). (Make sure that Cosmos(ATOM) app version is v2.34.12 or above)
+* The Cosmos(ATOM) application must be installed on your Ledger device, for more information click <a href="https://support.ledger.com/hc/en-us/articles/360013713840-Cosmos-ATOM-?support=true" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">here</a>
+. (Make sure that Cosmos(ATOM) app version is v2.34.12 or above)
 
-* `cored` ([Coreum CLI](/docs/tutorials/get-started/install-cored)) installed on your local machine (install cored binary version v1.0.0 or above)
+* `cored` ([Coreum CLI](/docs/become-validator/essentials/install-cored)
+) installed on your local machine (install cored binary version v1.0.0 or above)
 
 ## Instructions
 
@@ -36,7 +39,8 @@ cored keys add ledger-1 --chain-id=coreum-testnet-1  --ledger --coin-type=118
 
 ::: tip NOTE:
 - You can use the `--keyring-backend` flag to increase the security of your keys.
-- If you want to target other network than testnet, replace it with values at [network variables page](/docs/tutorials/get-started/setup-cli)
+- If you want to target other network than testnet, replace it with values at [network variables page](/docs/become-validator/essentials/network-variables)
+
 :::
 
 ```bash
@@ -59,7 +63,8 @@ cored keys show ledger-1 -d --chain-id=coreum-testnet-1
 
 * Fund your account address
 
-  * Navigate [faucet page](/docs/tools/faucet) designed specifically for this purpose.
+  * Navigate <a href="/docs/tools/faucet"  rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">faucet</a>
+ designed specifically for this purpose.
   * On the faucet page, you will find a designated section for requesting testnet funds.
   * Enter the wallet address generated earlier into the `wallet address` field.
   * Click on the `Request Funds` button to initiate the request for testnet funds. 
@@ -96,7 +101,8 @@ Before proceeding with this section, make sure to install the Cosmos app on your
 
 * Connect your Ledger device to your computer, enter the PIN to unlock it, and open the Cosmos app.
 
-* Install the [Keplr browser extension](https://www.keplr.app/)
+* Install the <a href="https://www.keplr.app/" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Keplr browser extension</a>
+
 
 * Click the Keplr extension icon, then choose `Connect Hardware Wallet` from the options.
 
@@ -105,7 +111,7 @@ Before proceeding with this section, make sure to install the Cosmos app on your
 * Connect to the [Coreum Chain](/docs/tools/wallets) to add the Coreum account.
   :::details OPTIONAL
   Way to add `Coreum Mainnet` chain to the `Keplr` extension:
-  * Navigate to [Add Chains to Keplr](https://chains.keplr.app/).
+  * Navigate to <a href="https://chains.keplr.app/" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">Add Chains to Keplr</a>.
   * In the search field, enter `Coreum`.
   * From the search results, locate `Coreum` and click the `Add to Keplr` button.
   * A transaction prompt will appear asking you to approve the `Add Coreum to Keplr` transaction.
@@ -118,7 +124,8 @@ Before proceeding with this section, make sure to install the Cosmos app on your
   :::warning TIP
   To establish a connection with various networks like Mainnet, Testnet, or Devnet, you can initiate the connection by clicking on the corresponding network buttons 
   
-  listed on [Coreum Docs page](/docs/tools/wallets).
+  listed on <a href="/docs/tools/wallets"  class="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Coreum Docs page</a>.
+
   :::
 
 * By default, the Coreum Chain may not be visible. To change this check the `DETAILS`:
@@ -135,7 +142,8 @@ By following these steps, you can easily connect to the Coreum testnet chain in 
 * To fund the test account:
   * Start by clicking the  `Deposit` button.
   * Next, click the `Copy` button located next to the address of the `Coreum Testnet 1`.
-  * Open the [faucet](/docs/tools/faucet) and paste the copied address into the designated address field.
+  * Open the [faucet page](/docs/tools/faucet)
+ and paste the copied address into the designated address field.
   * Finally, click the `Request Funds` button to initiate the request for funds.
 
 * Now we can send the funds on `Coreum` testnet Chain: 
@@ -148,4 +156,5 @@ By following these steps, you can easily connect to the Coreum testnet chain in 
 Whenever you initiate a transaction, you will be required to confirm it on your Ledger device. The Keplr interface will provide the necessary prompts for confirmation.
 :::
 
-Great! You have successfully set up Keplr with your Ledger Nano. For more comprehensive details, you can refer to the [Ledger support page](https://support.ledger.com/hc/en-us/articles/4411149814417?docs=true) .
+Great! You have successfully set up Keplr with your Ledger Nano. For more comprehensive details, you can refer to the <a href="https://support.ledger.com/hc/en-us/articles/4411149814417?docs=true" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">Ledger support page</a>/
+

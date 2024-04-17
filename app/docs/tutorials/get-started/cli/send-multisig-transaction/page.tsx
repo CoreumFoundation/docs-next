@@ -15,16 +15,9 @@ export const metadata: Metadata = {
     'Coreum Blockchain Transactions',
     'Multisig Transaction Broadcast',
     'Coreum CLI Guide'
-  ],
-  openGraph: {
-    type: 'website',
-    description: "Step-by-step guide on creating a multisig account and sending a multisig transaction using the Coreum cored CLI. Learn how to securely manage multisig transactions on the Coreum blockchain.",
-    siteName: "Creating and Broadcasting Multisig Transactions with Coreum CLI | Coreum Docs",
-    images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
-    }],
-  },
+  ]
 };
+
 
 const Page = () => {
   const prevNavigationItem = {

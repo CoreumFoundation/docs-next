@@ -1,6 +1,7 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './smart-ft-with-wasm.mdx';
+
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -27,7 +28,6 @@ export const metadata: Metadata = {
     }],
   },
 };
-
 
 const Page = () => {
   const prevNavigationItem = {

@@ -8,22 +8,23 @@ This application can be used as a starter for a larger project with extended Cor
 
 To complete this tutorial, you need to:
 
-* Install [yarn](https://yarnpkg.com/) package manager.
+* Install<a href="https://yarnpkg.com/" target="_blank" rel="noopener noreferrer" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">yarn</a>
+ package manager.
 * Be familiar with the TypeScript programming language and React framework.
 * Have a general understanding of how the Coreum blockchain works.
 
 ## Used tools and frameworks
 
-* [Next.js](https://nextjs.org/) - react based framework for the web-applications.
-* [React](https://react.dev/) - a web framework for the component's rendering.
-* **cosmwasm-stargate** - the extension of [CosmJS](https://github.com/cosmos/cosmjs/), used for the interaction with
+* <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">Next.js</a> - react based framework for the web-applications.
+* <a href="https://react.dev/" target="_blank" rel="noopener noreferrer" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">React</a> - a web framework for the component's rendering.
+* **cosmwasm-stargate** - the extension of <a href="https://github.com/cosmos/cosmjs/" target="_blank" rel="noopener noreferrer" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">CosmJS</a>, used for the interaction with
   the Coreum chain.
-* [Daisyui](https://daisyui.com/) - UI styles and components.
-* [Keplr](https://www.keplr.app/) - wallet used for the transactions signing.
+* <a href="https://daisyui.com/" target="_blank" rel="noopener noreferrer" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">Daisyui</a>  - UI styles and components.
+* <a href="https://www.keplr.app/" target="_blank" rel="noopener noreferrer" className="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">Keplr</a> - wallet used for the transactions signing.
 
 ## Source Code
 
-The complete app source code is located [here](https://github.com/CoreumFoundation/tutorials/tree/main/ts/web-app).
+The complete app source code is located <a href="https://github.com/CoreumFoundation/tutorials/tree/main/ts/web-app" target="_blank" rel="noopener noreferrer" className="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">here</a>.
 You can use the README.md instruction to build and run the application.
 
 ## Getting Started
@@ -59,6 +60,7 @@ NEXT_PUBLIC_GAS_PRICE=0.0625utestcore
 ```
 
 Parameters for other networks are available on the [network variables](/docs/become-validator/essentials/network-variables) page.
+ page.
 
 ## Components
 
@@ -242,7 +244,7 @@ export const useClientContext = (): IClientContext => {
 
 #### Connect Keplr
 
-The [Keplr](https://www.keplr.app/) wallet is used for the transaction signing. If you don't have it, install it for
+The <a href="https://www.keplr.app/" target="_blank" rel="noopener noreferrer" className="text-[#24cc8e] hover:text-[#1db07a] text-md font-bold">Keplr</a> wallet is used for the transaction signing. If you don't have it, install it for
 your browser. Once, it's installed, we can start the connection. The `connectKeplr` is initialized in the
 `IClientContext` implementation. We call that function to start communication of the web-app and the `Keplr` extension.
 As a first step, the `connectKeplr` checks whether you already have the chain settings in your extension, and if yes,
@@ -400,18 +402,21 @@ function and pass the additional none standard option `registry`, where the `reg
 registries
 `defaultRegistryTypes` which provides the registry for the cosmos-sdk default transactions such as sending coins,
 delegate, etc. And `coreumRegistryTypes` for the Coreum custom transactions, such as creating NFT class, mint NFT etc.
-Use the [API page](/docs/api/protobuf)  to get the list of all supported transactions (the transactions are started from `Msg`
+Use the [API page](/docs/api/protobuf)
+  to get the list of all supported transactions (the transactions are started from `Msg`
 and located in the `tx.proto` files).
 
 #### Initialize coreumQueryClient
 
 The `coreumQueryClient` is the adapter to query the Coreum models using the RPC requests. You can use it to get the
-minted NFTs or the NFT owner, for example. Use the [API page](/docs/api/protobuf) to get the list of all supported queries
+minted NFTs or the NFT owner, for example. Use the The [API page](/docs/api/protobuf) provides detailed information about Coreum's Protobuf API.
+ to get the list of all supported queries
 (the queries are in the `Query` proto services and located in the `query.proto` files).
 
 #### Extend Coreum transactions and queries.
 
-The [Using CosmJS#](/docs/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts) explains how to generate the TypeScript code from the protos, here for the simplicity
+The [Using CosmJS](/docs/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts) tutorial explains how to utilize CosmJS with wasm contracts.
+ explains how to generate the TypeScript code from the protos, here for the simplicity
 we use the `coreum/proto-ts` files, which are already generated.
 
 The `coreum/tx.ts` is responsible for simplifying the transaction creation by wrapping them into the namespaces
@@ -569,9 +574,9 @@ import { useSigningClient } from 'contexts/client'
 import Loader from './Loader'
 
 function WalletLoader({
-    children,
-    loading = false,
-}: {
+                          children,
+                          loading = false,
+                      }: {
     children: ReactNode
     loading?: boolean
 }) {
@@ -593,9 +598,9 @@ function WalletLoader({
     if (walletAddress === '') {
         return (
             <div className="max-w-full">
-                <h1 className="text-6xl font-bold gap-2">
-                    Welcome to
-                    <a target="_blank" className="link link-primary link-hover" href="https://coreum.com/">
+                <h1 className="text-6xl font-bold">
+                    Welcome to{' '}
+                    <a className="link link-primary link-hover" href="https://coreum.com/">
                         Coreum!
                     </a>
                 </h1>
@@ -633,6 +638,7 @@ function WalletLoader({
 }
 
 export default WalletLoader
+
 ```
 
 ## Pages
@@ -1380,10 +1386,8 @@ for the class creation, `id` - chosen ID for the sending, `receiver` - the new o
 
 ## Next steps
 
-* Read Coreum [modules](/docs/modules) specification, to be familiar with the custom Coreum functionality you can
-  use for your
-  application.
-* Read [cosmos-sdk modules docs](https://docs.cosmos.network/v0.47/build/modules).
-* In some cases you might need the data that the node doesn't return, in that case, you can check the
-  [Explorer API](/docs/tools/blockchain-explorers) to understand what additionally you can get from the indexed data.
+* Read Coreum [modules](/docs/modules) specification, to be familiar with the custom Coreum functionality you can use for your application.
+* Read <a href="https://docs.cosmos.network/v0.47/build/modules" target="_blank" rel="noopener noreferrer" class="text-[#24cc8e] hover:text-[#1db07a] text-lg font-bold">cosmos-sdk modules docs</a>.
+* In some cases you might need the data that the node doesn't return, in that case, you can check the [Explorer API](/docs/tools/blockchain-explorers) to understand what additionally you can get from the indexed data.
 * Check other [tutorials](/docs/tutorials) to find something you might be interested in additionally.
+
