@@ -1,7 +1,7 @@
 # Run full node
 
-**Attention!** *If you are planning to run a node against the devnet (either a full node or a validator node), 
-be mindful that the devnet might be restarted without prior notice (i.e block height set to 0 and all state removed), 
+**Attention!** *If you are planning to run a node against the devnet (either a full node or a validator node),
+be mindful that the devnet might be restarted without prior notice (i.e block height set to 0 and all state removed),
 and you should be prepared to act accordingly by removing all state and start from zero.*
 
 The doc describes the procedure of creating and running the validator node.
@@ -55,15 +55,15 @@ COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
 
   That configuration is required for the state-sync servers, used as a snapshot provided for the nodes.
 
-* Enable state-sync, so your validator can sync by snapshot. 
-  With the state-sync you can ignore past network upgrades, but if you want to have a node with full block history, 
-  instead of state-sync you should visit <a href="/docs/become-validator/upgrades/history" target="_blank" rel="noopener noreferrer" className="text-[#24D494] font-bold">this section</a>
+* Enable state-sync, so your validator can sync by snapshot.
+  With the state-sync you can ignore past network upgrades, but if you want to have a node with full block history,
+  instead of state-sync you should visit <a href="/docs/become-validator/upgrades/history" className="text-[#24D494] font-bold">this section</a>
 
   You can read <a href="https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html" target="_blank" rel="noopener noreferrer" className="text-[#24D494] font-bold">Using State Sync</a> document to get more details.
 
   ** Get at least two state sync servers and set them from the [doc](/docs/become-validator/essentials/network-variables):
   ```bash
-  export COREUM_STATE_SYNC_SERVERS="{State sync servers}" 
+  export COREUM_STATE_SYNC_SERVERS="{State sync servers}"
   ```
 
   ** Get the trusted block hash and height
@@ -110,9 +110,9 @@ COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
 
 * (Optional) You can check sync status of your node by next command:
 ```bash
-echo "catching_up: $(echo  $(cored status) | jq -r '.SyncInfo.catching_up')" 
+echo "catching_up: $(echo  $(cored status) | jq -r '.SyncInfo.catching_up')"
 # if output is "false", you are ready to start your validator
-``` 
+```
 
 ## What is next?
 
