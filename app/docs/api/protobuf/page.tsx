@@ -1,4 +1,4 @@
-import Component from './protobuf.mdx';
+import Component from './protobufComponent';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -26,12 +26,9 @@ export const metadata: Metadata = {
   },
 };
 
-
 const Page = () => {
   return (
-    <div className="flex flex-col w-full">
-      <Component />
-    </div>
+    <Component />
   );
 };
 

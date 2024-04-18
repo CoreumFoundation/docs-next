@@ -35,6 +35,7 @@ const renderLink = (item: NavigationItem, isActive: boolean) => {
   return (
     <Link
       href={item.href}
+      prefetch={false}
       className={classNames(
         isActive ? 'text-[#25D695] font-medium bg-sidebar-active' : 'text-[#5E6773] font-normal hover:text-white',
         'group flex gap-x-3 rounded-md p-2 text-sm leading-6'
