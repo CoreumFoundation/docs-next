@@ -1,6 +1,32 @@
 import { DocLinkItem, DocLinkItemProps } from "@/components/DocLinkItem";
 import { NavigatonItem, NavigatonItemMode } from "@/components/NavigationItem";
 import React from "react";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Run Coreum Node | Coreum Docs",
+  description: "Learn how to run different types of Coreum nodes including full, sentry, and validator nodes. Each guide provides detailed instructions and links to all necessary dependencies.",
+  keywords: [
+    'Run Coreum Node',
+    'Coreum Full Node',
+    'Coreum Validator Node',
+    'Coreum Sentry Node',
+    'Blockchain Node Setup',
+    'Coreum Node Requirements',
+    'Validator Node Guide',
+    'Coreum Blockchain Infrastructure',
+    'Node Operation Coreum',
+    'Blockchain Network Participation'
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Learn how to run different types of Coreum nodes including full, sentry, and validator nodes. Each guide provides detailed instructions and links to all necessary dependencies.",
+    siteName: "Run Coreum Node | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
+};
 
 const TUTORIALS_ITEMS = {
   section_1: {

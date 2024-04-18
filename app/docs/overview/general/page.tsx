@@ -1,5 +1,31 @@
 import { DocLinkItem, DocLinkItemProps } from "@/components/DocLinkItem";
 import { NavigatonItem, NavigatonItemMode } from "@/components/NavigationItem";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum Overview | Coreum Docs",
+  description: "An introduction to Coreum, providing a general overview of the blockchain's capabilities, including Smart Tokens, Smart Contracts, and key technical information. Ideal for developers and enthusiasts starting with Coreum.",
+  keywords: [
+    'Coreum Overview', 
+    'Blockchain Introduction', 
+    'Smart Tokens', 
+    'Smart Contracts', 
+    'Blockchain Technology', 
+    'Coreum Features', 
+    'Blockchain Ecosystem', 
+    'Coreum Development', 
+    'Coreum Platform Capabilities', 
+    'Decentralized Technology'
+  ],
+  openGraph: {
+    type: 'website',
+    description: "An introduction to Coreum, providing a general overview of the blockchain's capabilities, including Smart Tokens, Smart Contracts, and key technical information. Ideal for developers and enthusiasts starting with Coreum.",
+    siteName: "Coreum Overview | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
+};
 
 const OVERVIEW_ITEMS: DocLinkItemProps[] = [
   {
