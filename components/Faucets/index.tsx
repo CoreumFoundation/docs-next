@@ -8,6 +8,7 @@ import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing';
 import { stringToPath } from '@cosmjs/crypto';
 import axios from "axios";
 import { Spinner } from "../Spinner";
+import Image from 'next/image';
 
 const tabs = [
   { label: 'Mainnet', id: 'mainnet' },
@@ -205,10 +206,13 @@ export const Faucets = () => {
           <div className="flex flex-col w-full gap-4">
             <div className="flex flex-col md:flex-row w-full items-center gap-6">
               <div
-                className="flex w-full md:w-[280px] overflow-hidden py-4 px-6 bg-[#0E0F10] text-base font-medium font-['space grotesk'] rounded-xl cursor-pointer"
+                className="relative flex w-full md:w-[280px] overflow-hidden py-4 px-6 bg-[#0E0F10] hover:opacity-60 hover:text-[#25D695] text-base font-medium font-['space grotesk'] rounded-xl cursor-pointer"
                 onClick={handleGenerateWallet}
               >
                 Generate Funded Wallet
+                <Image className="absolute right-5 top-0 w-12 select-none" alt="faucet-coin-left" src="/images/tools/faucet/left.svg" width={36} height={36} />
+                <Image className="absolute right-1 top-0 select-none" alt="faucet-coin-top" src="/images/tools/faucet/top.svg" width={21} height={21} />
+                <Image className="absolute right-0 bottom-0 select-none" alt="faucet-coin-bottom" src="/images/tools/faucet/bottom.svg" width={53} height={53} />
               </div>
               <div className="flex-none text-[#9FA2AC] text-base font-['space grotesk'] font-normal">
                 Or

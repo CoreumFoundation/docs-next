@@ -37,7 +37,7 @@ export const Input: FC<InputProps> = ({
       <button
         type="button"
         onClick={onButtonClick}
-        className="relative inline-flex items-center gap-x-1 rounded-r-md text-sm font-semibold text-[#25D695] text-nowrap"
+        className="relative inline-flex items-center gap-x-1 rounded-r-md text-sm font-semibold text-[#25D695] text-nowrap hover:opacity-70"
       >
         {buttonLabel}
       </button>
