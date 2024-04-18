@@ -8,22 +8,22 @@ This application can be used as a starter for a larger project with extended Cor
 
 To complete this tutorial, you need to:
 
-* Install [yarn](https://yarnpkg.com/) package manager.
+* Install <a href="https://yarnpkg.com/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">yarn</a> package manager.
 * Be familiar with the TypeScript programming language and React framework.
 * Have a general understanding of how the Coreum blockchain works.
 
 ## Used tools and frameworks
 
-* [Next.js](https://nextjs.org/) - react based framework for the web-applications.
-* [React](https://react.dev/) - a web framework for the component's rendering.
-* **cosmwasm-stargate** - the extension of [CosmJS](https://github.com/cosmos/cosmjs/), used for the interaction with
+* <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Next.js</a> - react based framework for the web-applications.
+* <a href="https://react.dev/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">React</a> - a web framework for the component's rendering.
+* **cosmwasm-stargate** - the extension of <a href="https://github.com/cosmos/cosmjs" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">CosmJS</a>, used for the interaction with
   the Coreum chain.
-* [Daisyui](https://daisyui.com/) - UI styles and components.
-* [Keplr](https://www.keplr.app/) - wallet used for the transactions signing.
+* <a href="https://daisyui.com/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Daisyui</a> - UI styles and components.
+* <a href="https://www.keplr.app/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Keplr</a> - wallet used for the transactions signing.
 
 ## Source Code
 
-The complete app source code is located [here](https://github.com/CoreumFoundation/tutorials/tree/main/ts/web-app).
+The complete app source code is located <a href="https://github.com/CoreumFoundation/tutorials/tree/main/ts/web-app" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">here</a>.
 You can use the README.md instruction to build and run the application.
 
 ## Getting Started
@@ -69,7 +69,7 @@ The first 2 components we need are `pages/_document.tsx` and `pages/_app.tsx`.
 
 * `pages/_document.tsx`
 
-```typescript jsx
+```ts
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import daisyuiThemes from 'styles/daisyui-themes.json'
 
@@ -100,7 +100,7 @@ export default MyDocument
 
 * `pages/_app.tsx`:
 
-```typescript jsx
+```ts
 import 'styles/globals.css'
 import type { AppProps } from 'next/app'
 import Layout from 'components/Layout'
@@ -141,7 +141,7 @@ The primary subcomponents here are:
 
 `hooks/client.tsx` file:
 
-```typescript jsx
+```ts
 export interface IClientContext {
     walletAddress: string
     signingClient: SigningCosmWasmClient | null
@@ -242,7 +242,7 @@ export const useClientContext = (): IClientContext => {
 
 #### Connect Keplr
 
-The [Keplr](https://www.keplr.app/) wallet is used for the transaction signing. If you don't have it, install it for
+The <a href="https://www.keplr.app/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Keplr</a> wallet is used for the transaction signing. If you don't have it, install it for
 your browser. Once, it's installed, we can start the connection. The `connectKeplr` is initialized in the
 `IClientContext` implementation. We call that function to start communication of the web-app and the `Keplr` extension.
 As a first step, the `connectKeplr` checks whether you already have the chain settings in your extension, and if yes,
@@ -252,7 +252,7 @@ chain config from the `Keplr` and call `connectKeplr` one more time.
 
 `services/keplr.tsx` file:
 
-```typescript jsx
+```ts
 export const connectKeplr = async () => {
     // Keplr extension injects the offline signer that is compatible with cosmJS.
     // You can get this offline signer from `window.getOfflineSigner(chainId:string)` after load event.
@@ -376,7 +376,7 @@ are the cosmos-sdk standard queries, such as get balance, get delegation reward 
 extended `@cosmjs/stargate` client, with additional functions to interact with the `wasm` contracts deployed on the
 Coreum chain.
 
-```typescript jsx
+```ts
 // register default and custom messages
 let registryTypes: ReadonlyArray<[string, GeneratedType]> = [
     ...defaultRegistryTypes,
@@ -420,7 +420,7 @@ additional Coreum transactions for your application, register them here.
 
 `coreum/tx.ts` file:
 
-```typescript jsx
+```ts
 import {
     DeepPartial,
     Exact,
@@ -467,7 +467,7 @@ additional Coreum queries, and them here.
 
 `coreum/query.ts` file:
 
-```typescript jsx
+```ts
 import { QueryClientImpl as NFTQueryClient } from "./proto-ts/coreum/nft/v1beta1/query";
 
 interface Rpc {
@@ -494,7 +494,7 @@ The `Nav` is the top navbar. It contains the references to root page and `Connec
 
 `components/Nav.tsx` file:
 
-```typescript jsx
+```ts
 import { useSigningClient } from 'contexts/client'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -563,7 +563,7 @@ the `Keplr`.
 
 `components/Nav.tsx` file:
 
-```typescript jsx
+```ts
 import { ReactNode } from 'react'
 import { useSigningClient } from 'contexts/client'
 import Loader from './Loader'
@@ -648,7 +648,7 @@ and link to the Coreum faucet, which you can use to fund your testing account.
 
 `pages/index.tsx` file.
 
-```typescript jsx
+```ts
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import WalletLoader from 'components/WalletLoader'
@@ -704,8 +704,6 @@ const Home: NextPage = () => {
                     </a>
                 </Link>
             </div>
-
-
         </WalletLoader>
     )
 }
@@ -720,7 +718,7 @@ transactions.
 
 `pages/send.tsx` file.
 
-```typescript jsx
+```ts
 import { useEffect, useState } from 'react'
 import type { NextPage } from 'next'
 import { Coin } from '@cosmjs/amino'
@@ -875,14 +873,14 @@ const Send: NextPage = () => {
     )
 }
 
-export default Send
+export default Send;
 ```
 
 There are 2 most interesting parts for us:
 
 * `getBalance`
 
-```typescript jsx
+```ts
 signingClient
     .getBalance(walletAddress, PUBLIC_STAKING_DENOM)
     .then((response: any) => {
@@ -902,7 +900,7 @@ int `amount` to float and `utestcore` prefix to `testcore`, because the `u` mean
 
 * `sendTokens`
 
-```typescript jsx
+```ts
 signingClient
     ?.sendTokens(walletAddress, recipientAddress, amount, 'auto')
     .then(() => {
@@ -932,7 +930,7 @@ NFT class, allow to mint new NFT tokens and change the tokens' ownership, by tra
 
 `pages/nft.tsx` file.
 
-```typescript jsx
+```ts
 import { useEffect, useState } from 'react'
 import type { NextPage } from 'next'
 import { sha256 } from 'js-sha256'
@@ -1234,7 +1232,7 @@ whether the class is already created or not.
 
 Query class snippet:
 
-```typescript jsx
+```ts
     const queryClass = () => {
     // check that class is already created
     coreumQueryClient?.NFTClient().Class({ classId: nftClassID }).then(() => {
@@ -1258,7 +1256,7 @@ In that state of the page, you will be able to create a new NFT class.
 
 Create NFT class snippet:
 
-```typescript jsx
+```ts
     const createNFTClass = () => {
     setError('')
     setLoading(true)
@@ -1283,7 +1281,7 @@ and `description` - which we take from the user's input.
 
 Once the NFT class is created, we query for the NFTs minted under that class.
 
-```typescript jsx
+```ts
     const queryNFTs = () => {
     setLoading(true)
     coreumQueryClient?.NFTClient().NFTs({
@@ -1327,7 +1325,7 @@ In order to mint and NFT we use the `mintKitten` function.
 
 Mint kitten code snippet:
 
-```typescript jsx
+```ts
   const mintKitten = () => {
     setError('')
     setLoading(true)
@@ -1356,8 +1354,7 @@ When the NFT is minted, we will be able to send it (transfer the ownership). In 
 
 Transfer ownership code snippet:
 
-```typescript jsx
-
+```ts
 const transferOwnership = () => {
     setError('')
     setLoading(true)
@@ -1383,7 +1380,7 @@ for the class creation, `id` - chosen ID for the sending, `receiver` - the new o
 * Read Coreum [modules](/docs/modules) specification, to be familiar with the custom Coreum functionality you can
   use for your
   application.
-* Read [cosmos-sdk modules docs](https://docs.cosmos.network/v0.47/build/modules).
+* Read <a href="https://docs.cosmos.network/v0.47/build/modules" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">cosmos-sdk modules docs</a>.
 * In some cases you might need the data that the node doesn't return, in that case, you can check the
   [Explorer API](/docs/tools/blockchain-explorers) to understand what additionally you can get from the indexed data.
 * Check other [tutorials](/docs/tutorials) to find something you might be interested in additionally.

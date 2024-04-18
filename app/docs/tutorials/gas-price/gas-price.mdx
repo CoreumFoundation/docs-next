@@ -13,7 +13,7 @@ The minimum gas price is a dynamic value and can be changed after each block.
 There are three ways how it can be done:
 
 ### Use recommended gas price endpoint
-<a className="text-[#24D494] font-bold" href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/feemodel/v1/query.proto" target="_blank">RecommendedGasPrice</a>
+<a className="text-[#25D695] hover:opacity-80 text-base font-bold" href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/feemodel/v1/query.proto" target="_blank">RecommendedGasPrice</a>
 endpoint returns a quite accurate gas price prediction for future blocks.
 It will return low, med and high values to determine the possible range of gas price changes. You can use
 med value with a decent certainty that your transaction will go through, but to be almost 100% sure, you
@@ -22,7 +22,7 @@ can use the high value.
 ### Use optimized gas price calculation
 
 For the optimized gas price calculation you can use
-the <a className="text-[#24D494] font-bold" href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/feemodel/v1/query.proto" target="_blank">MinGasPrice Query</a>
+the <a className="text-[#25D695] hover:opacity-80 text-base font-bold" href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/feemodel/v1/query.proto" target="_blank">MinGasPrice Query</a>
 to get the current min gas price. It is recalculated after each block, so it is recommended to use a multiplier.
 
 | Waiting time | Multiplier          |
@@ -48,9 +48,9 @@ The `initial gas price` is the gas price used in the [Coreum Fee Model](/docs/mo
 That value is a parameter, which is set initially in the genesis and can be updated by the governance. This value can be
 used as a gas price, for cases when the tools you use don't support additional queries.
 To get that value automatically you can
-use: <a className="text-[#24D494] font-bold" href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/feemodel/v1/query.proto" target="_blank">Params Query</a>
+use: <a className="text-[#25D695] hover:opacity-80 text-base font-bold" href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/feemodel/v1/query.proto" target="_blank">Params Query</a>
 and `ModelParams.initial_gas_price` in the result.
-Or you can get it manually on the <a className="text-[#24D494] font-bold" href="https://explorer.coreum.com/coreum/params" target="_blank">explorer params page (Fee Model section)</a>
+Or you can get it manually on the <a className="text-[#25D695] hover:opacity-80 text-base font-bold" href="https://explorer.coreum.com/coreum/params" target="_blank">explorer params page (Fee Model section)</a>
 Using that value the transactions will pass with most of the cases, except the cases with high chain load, in that case
 the gas price might go above the `initial gas price`.
 

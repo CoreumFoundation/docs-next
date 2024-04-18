@@ -18,7 +18,7 @@ CosmWasm is a smart contract platform that allows for the development and execut
 
 To complete this tutorial, you need to:
 
-* Install [rust and cargo](https://www.rust-lang.org/tools/install).
+* Install <a href="https://www.rust-lang.org/tools/install" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">rust and cargo</a>.
 * Be familiar with the Rust programming language.
 * Have a general understanding of how the Coreum blockchain works.
 * Follow the [instruction](/docs/tutorials/get-started/install-cored) to install cored binary.
@@ -28,7 +28,7 @@ To complete this tutorial, you need to:
 # Source Code
 
 The complete source code is
-located [here](https://github.com/CoreumFoundation/cw-contracts/tree/main/contracts/nameservice).
+located <a href="https://github.com/CoreumFoundation/cw-contracts/tree/main/contracts/nameservice" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">here</a>.
 
 # Getting Started
 
@@ -87,7 +87,7 @@ cored q wasm list-code $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 ```bash
 RES=$(cored tx wasm store artifacts/cw_nameservice.wasm \
     --from wallet --gas auto --gas-adjustment 1.3 -y -b block --output json $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS)
-echo $RES    
+echo $RES
 CODE_ID=$(echo $RES | jq -r '.logs[0].events[-1].attributes[-1].value')
 echo $CODE_ID
 ```
@@ -142,7 +142,7 @@ cored keys add new-owner $COREUM_CHAIN_ID_ARGS
 RECIPIENT_ADDRESS=$(cored keys show --address new-owner $COREUM_CHAIN_ID_ARGS)
 TRANSFER="{\"transfer\":{\"name\":\"fred\",\"to\":\"$RECIPIENT_ADDRESS\"}}"
 cored tx wasm execute $CONTRACT_ADDRESS "$TRANSFER" --amount 999$COREUM_DENOM --from wallet -b block -y $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-``` 
+```
 
 * Query the record owner again to see the new owner address.
 
@@ -156,5 +156,5 @@ cored q wasm contract-state smart $CONTRACT_ADDRESS "$NAME_QUERY" --output json 
 
 * Read Coreum [modules](/docs/overview/modules) specification, to be familiar with the custom Coreum functionality you can
   use for your application.
-* Read [WASM docs](https://docs.cosmwasm.com/docs/) to understand all supported WASM features.
-* Check other [tutorials](/docs/tutorials) to find something you might be interested in additionally. 
+* Read <a href="https://docs.cosmwasm.com/docs/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">WASM docs</a> to understand all supported WASM features.
+* Check other [tutorials](/docs/tutorials) to find something you might be interested in additionally.
