@@ -206,7 +206,7 @@ export const Faucets = () => {
           <div className="flex flex-col w-full gap-4">
             <div className="flex flex-col md:flex-row w-full items-center gap-6">
               <div
-                className="relative flex w-full md:w-[280px] overflow-hidden py-4 px-6 bg-[#0E0F10] hover:opacity-60 hover:text-[#25D695] text-base font-medium font-['space grotesk'] rounded-xl cursor-pointer"
+                className="relative flex w-full md:w-[280px] overflow-hidden py-4 px-6 bg-sidebar-active text-[#25D695] hover:opacity-60 text-base font-medium font-['space grotesk'] rounded-xl cursor-pointer"
                 onClick={handleGenerateWallet}
               >
                 Generate Funded Wallet
