@@ -2,12 +2,12 @@
 
 import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import classNames from 'classnames';
-import { Bars3Icon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ArrowUpIcon, Bars3Icon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavigationItem } from '@/utils/types';
 import { SIDEBAR_ITEMS } from './constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import TransitionDiv from '../Transition';
 
 interface SidebarProps {
@@ -89,6 +89,14 @@ const renderNavigationItems = (items: NavigationItem[], pathname: string) => {
 export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scrollToTop = useCallback(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [])
 
   useEffect(() => {
     setSidebarOpen(false);
@@ -180,11 +188,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             </nav>
           </div>
         </div>
-          <main className="px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] grow max-w-full overflow-hidden main-content">
-            <TransitionDiv>
-              {children}
-            </TransitionDiv>
-          </main>
+        <main className="relative px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] grow max-w-full overflow-hidden main-content overflow-y-scroll scroll-smooth" ref={scrollContainerRef}>
+          <TransitionDiv>
+            {children}
+          </TransitionDiv>
+        </main>
+        <div className="text-white fixed right-10 bottom-24" onClick={scrollToTop}>
+          <div className="w-10 h-10 flex items-center justify-center rounded-full p-2 border-2 border-[#25D695] bg-[#0a0a0a] cursor-pointer">
+            <ArrowUpIcon className="w-4 h-4 text-[#25D695]" />
+          </div>
+        </div>
       </div>
     </>
   );
