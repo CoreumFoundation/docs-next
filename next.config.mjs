@@ -46,6 +46,7 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   reactStrictMode: true,
   output: "standalone",
+  staticPageGenerationTimeout: 300,
 };
 
 // Merge MDX config with Next.js config
