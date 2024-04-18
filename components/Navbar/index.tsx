@@ -59,7 +59,7 @@ export const Navbar = () => {
   return (
     <>
       <AskCookbook apiKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWZiNGM1MTQ5YjZiODQ0ZDY4NWY3NjIiLCJpYXQiOjE3MTA5Njc4ODksImV4cCI6MjAyNjU0Mzg4OX0.oBQsTKgd3fsmkTG0WR3RVcigQkUFgKE5A0WA031Ju8E" />
-      <Disclosure as="nav" className="bg-white shadow w-full">
+      <Disclosure as="nav" className="shadow w-full">
         {({ open }) => (
           <>
             <div className="flex py-3 px-6 justify-between w-full bg-[#080908]">
@@ -186,12 +186,12 @@ export const Navbar = () => {
               <div className="-mr-2 flex items-center sm:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 bg-[#080908]  focus:outline-none ">
-                  <span className="absolute -inset-0.5" />
+                  <span className=" absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    <XMarkIcon className="text-[#eee] block h-6 w-6" aria-hidden="true" />
                   ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    <Bars3Icon className="text-[#eee] block h-6 w-6" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
