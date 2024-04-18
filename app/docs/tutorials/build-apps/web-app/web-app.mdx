@@ -572,8 +572,8 @@ import { useSigningClient } from 'contexts/client'
 import Loader from './Loader'
 
 function WalletLoader({
-    children: ReactNode
-    loading?: boolean
+    children,
+    loading = false,
 }) {
     const {
         walletAddress,

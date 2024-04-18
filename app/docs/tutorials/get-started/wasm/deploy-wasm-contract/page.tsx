@@ -14,9 +14,16 @@ export const metadata: Metadata = {
     'Smart Contract Tutorial',
     'Coreum Development',
     'Blockchain Coding'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "A step-by-step guide to deploying a WASM smart contract on the Coreum blockchain. Learn from setting up Rust to interacting with your deployed contract.",
+    siteName: "Deploy Your First WASM Smart Contract on Coreum | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
-
 
 const Page = () => {
   const prevNavigationItem = {

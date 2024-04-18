@@ -7,15 +7,23 @@ export const metadata: Metadata = {
   title: "Creating Fungible Tokens on Coreum with Golang | Coreum Docs",
   description: "Step-by-step tutorial on how to create and manage fungible tokens on the Coreum blockchain using Golang. Includes examples for issuing, sending, and freezing tokens.",
   keywords: [
-    'Coreum Blockchain Overview', 
-    'Golang Blockchain Development', 
-    'Fungible Tokens on Coreum', 
-    'Token Creation with Golang', 
-    'Token Management on Blockchain', 
-    'Coreum Token Management', 
-    'Golang Programming for Blockchain', 
+    'Coreum Blockchain Overview',
+    'Golang Blockchain Development',
+    'Fungible Tokens on Coreum',
+    'Token Creation with Golang',
+    'Token Management on Blockchain',
+    'Coreum Token Management',
+    'Golang Programming for Blockchain',
     'Blockchain Development Tutorial'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Step-by-step tutorial on how to create and manage fungible tokens on the Coreum blockchain using Golang. Includes examples for issuing, sending, and freezing tokens.",
+    siteName: "Creating Fungible Tokens on Coreum with Golang | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 const Page = () => {
