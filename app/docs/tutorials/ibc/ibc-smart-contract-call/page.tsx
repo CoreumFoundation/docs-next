@@ -17,9 +17,16 @@ export const metadata: Metadata = {
     'IBC Channel Setup',
     'Hermes Relayer',
     'CosmWasm IBC'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Learn how to enable smart contracts on Coreum to communicate across chains with IBC. This tutorial covers setting up CosmWasm contracts for cross-chain messaging.",
+    siteName: "IBC Smart Contract Communication Tutorial | Coreum Documentation",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
-
 
 const Page = () => {
   const prevNavigationItem = {

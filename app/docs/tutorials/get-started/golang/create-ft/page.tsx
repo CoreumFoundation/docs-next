@@ -15,9 +15,16 @@ export const metadata: Metadata = {
     'Go Blockchain Development',
     'Digital Assets Management',
     'Coreum Token Issuance'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Discover how to create and manage fungible tokens on the Coreum blockchain using Go. Includes complete code examples and detailed instructions for a smooth start.",
+    siteName: "Create and Manage Fungible Tokens on Coreum with Go | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
-
 
 const Page = () => {
   const prevNavigationItem = {

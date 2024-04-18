@@ -16,9 +16,16 @@ export const metadata: Metadata = {
     'Rust Blockchain Development',
     'WASM Contract Tutorial',
     'Coreum FT Airdrop'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Master the art of creating and deploying a WASM-based fungible smart token with airdrop functionality on the Coreum blockchain with our comprehensive guide.",
+    siteName: "Developing and Deploying Smart FT with WASM on Coreum | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
-
 
 const Page = () => {
   const prevNavigationItem = {

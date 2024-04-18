@@ -17,7 +17,15 @@ export const metadata: Metadata = {
     'Digital Assets',
     'Transaction Signing',
     'Coreum Testnet'
-  ]
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Learn how to enhance the security of your Coreum digital assets using Ledger Nano with cored CLI and Keplr Wallet. Complete guide for setup and transaction signing.",
+    siteName: "Using Ledger Nano with Coreum CLI and Keplr Wallet | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
 };
 
 const Page = () => {
