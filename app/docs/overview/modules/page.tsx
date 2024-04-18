@@ -1,5 +1,31 @@
 import { DocLinkItem, DocLinkItemProps } from "@/components/DocLinkItem";
 import { NavigatonItem, NavigatonItemMode } from "@/components/NavigationItem";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum Modules | Coreum Docs",
+  description: "Dive into the Coreum Modules, offering a variety of functionalities including Fungible Tokens, Non-Fungible Tokens, Deterministic Gas, and more. Understand how these modules form the building blocks of the Coreum ecosystem.",
+  keywords: [
+    'Coreum Modules',
+    'Blockchain Modules',
+    'Fungible Tokens Module',
+    'Non-Fungible Tokens Module',
+    'Deterministic Gas',
+    'Blockchain Ecosystem',
+    'Coreum Token Economy',
+    'Smart Contracts',
+    'Coreum Platform Features',
+    'Decentralized Application Modules'
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Dive into the Coreum Modules, offering a variety of functionalities including Fungible Tokens, Non-Fungible Tokens, Deterministic Gas, and more. Understand how these modules form the building blocks of the Coreum ecosystem.",
+    siteName: "Coreum Modules | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
+};
 
 const MODULES_ITEMS: DocLinkItemProps[] = [
   {

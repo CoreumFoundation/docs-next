@@ -1,7 +1,31 @@
-'use client';
-
 import { DocLinkItem, DocLinkItemProps } from "@/components/DocLinkItem";
 import { NavigatonItem, NavigatonItemMode } from "@/components/NavigationItem";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Tools/Ecosystem | Coreum Docs",
+  description: "Access essential tools for engaging with the Coreum ecosystem including wallets, faucets, and block explorers. Start interacting with the Coreum blockchain now.",
+  keywords: [
+    'Coreum Tools',
+    'Coreum Ecosystem',
+    'Blockchain Wallets',
+    'Coreum Faucet',
+    'Blockchain Block Explorers',
+    'Coreum Blockchain Interaction',
+    'Coreum Resources',
+    'Blockchain Utilities',
+    'Cryptocurrency Tools',
+    'Blockchain Infrastructure Tools'
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Access essential tools for engaging with the Coreum ecosystem including wallets, faucets, and block explorers. Start interacting with the Coreum blockchain now.",
+    siteName: "Tools/Ecosystem | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
+};
 
 const TOOLS_ITEMS: DocLinkItemProps[] = [
   {

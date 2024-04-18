@@ -3,6 +3,32 @@ import { NavigatonItem, NavigatonItemMode } from "@/components/NavigationItem";
 import classNames from "classnames";
 import React from "react";
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum Tutorials | Coreum Docs",
+  description: "Browse a comprehensive range of Coreum Tutorials to get started with CLI and Golang for blockchain development. Learn to set up network variables, transfer funds, work with smart contracts, and more.",
+  keywords: [
+    'Coreum Tutorials',
+    'CLI for Blockchain',
+    'Golang Blockchain Development',
+    'Coreum CLI Setup',
+    'Transfer Funds Coreum',
+    'Multisig Transactions Coreum',
+    'Blockchain Development Guides',
+    'Smart Contract Tutorials',
+    'Coreum Golang Integration',
+    'Decentralized Applications Coreum'
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Browse a comprehensive range of Coreum Tutorials to get started with CLI and Golang for blockchain development. Learn to set up network variables, transfer funds, work with smart contracts, and more.",
+    siteName: "Coreum Tutorials | Coreum Docs",
+    images: [{
+      url: 'https://test.docs.coreum.dev/images/og.jpg',
+    }],
+  },
+};
 
 const TUTORIALS_ITEMS = {
   get_started: {
