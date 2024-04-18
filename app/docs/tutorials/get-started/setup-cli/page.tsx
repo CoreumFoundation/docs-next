@@ -6,7 +6,18 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: "Setting Up Coreum CLI Network Variables for Different Environments | Coreum Docs",
   description: "Step-by-step guide on setting up Coreum CLI network variables for mainnet, testnet, devnet, and localnet environments. Learn how to configure your CLI for Coreum blockchain interactions.",
-  keywords: ['Coreum CLI setup', 'CLI network variables', 'Coreum mainnet', 'Coreum testnet', 'Coreum devnet', 'blockchain CLI configuration', 'Coreum RPC nodes', 'Coreum GRPC endpoints', 'Coreum REST API', 'Coreum network environments'],
+  keywords: [
+    'Coreum CLI setup',
+    'CLI network variables',
+    'Coreum mainnet',
+    'Coreum testnet',
+    'Coreum devnet',
+    'blockchain CLI configuration',
+    'Coreum RPC nodes',
+    'Coreum GRPC endpoints',
+    'Coreum REST API',
+    'Coreum network environments'
+  ],
   openGraph: {
     type: 'website',
     description: "Step-by-step guide on setting up Coreum CLI network variables for mainnet, testnet, devnet, and localnet environments. Learn how to configure your CLI for Coreum blockchain interactions.",
