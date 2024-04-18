@@ -40,6 +40,7 @@ export const Faucets = () => {
   const [txHash, setTxHash] = useState<string>('');
   const [fundLoading, setFundLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [isWalletGenerated, setIsWalletGenerated] = useState<boolean>(false);
 
   const currentConfig = useMemo(() => {
     return CONFIG[currentTab.id as ('testnet' | 'devnet')] || {};
@@ -77,6 +78,7 @@ export const Faucets = () => {
 
     setWalletAddress(address);
     setMnemonic(wallet.mnemonic);
+    setIsWalletGenerated(true);
 
     setFundLoading(true);
     await fundWallet(address);
@@ -90,6 +92,7 @@ export const Faucets = () => {
     setMnemonic('');
     setErrorMessage('');
     setFundLoading(false);
+    setIsWalletGenerated(false);
   }, []);
 
   useEffect(() => {
@@ -98,20 +101,31 @@ export const Faucets = () => {
     setMnemonic('');
     setErrorMessage('');
     setFundLoading(false);
+    setIsWalletGenerated(false);
   }, [currentTab.id]);
 
   const getErrorMessage = useCallback((err: string) => {
     switch (err) {
       case 'server.rate_limit':
+        if (isWalletGenerated) {
+          return (
+            <span>The Rate Limit has been surpassed, wallet was generated but funding was not successful. Please, try again in several hours. If you need more funds for specific testing purposes, please request them in the <Link href="https://discord.com/invite/VgkhYeWmTd" target="_blank" className="text-[#25D695] font-medium">Discord</Link></span>
+          );
+        }
+
         return (
-          <span>Error: The Rate Limit has been surpassed, please, try again in several hours. If you need more funds for specific testing purposes, please request them in the <Link href="https://discord.com/invite/VgkhYeWmTd" target="_blank" className="text-[#25D695] font-medium">Discord</Link></span>
+          <span>Error: The Rate Limit has been surpassed. Please, try again in several hours. If you need more funds for specific testing purposes, please request them in the <Link href="https://discord.com/invite/VgkhYeWmTd" target="_blank" className="text-[#25D695] font-medium">Discord</Link></span>
         );
       case 'server.internal_error':
-        return 'Message: unable to transfer tokens';
+        if (isWalletGenerated) {
+          return 'Wallet was generated but funding was not successful. Error: Unable to transfer tokens';
+        }
+
+        return 'Error: Unable to transfer tokens';
       default:
         return err;
     }
-  }, []);
+  }, [isWalletGenerated]);
 
   const renderErrorOrTxHash = useMemo(() => {
     if (errorMessage) {
