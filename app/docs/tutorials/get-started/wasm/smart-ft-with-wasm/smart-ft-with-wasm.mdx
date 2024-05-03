@@ -135,10 +135,10 @@ pub fn instantiate(
 In the code snippet above we `instantiate` the deployed contract using the `instantiate` function marked
 with `entry_point` macro. The contract can be instantiated multiple times and will get a new address each time. On the
 installation, the contract issues an FT with the `minting` feature enabled, and `send_commission_rate` extension
-equals `10%`. After the instantiation, the contract will become the FT issuer and will be able to control it. Since we
+equals `10%`. After the instantiation, the contract will become the FT admin and will be able to control it. Since we
 have set up the `minting` feature only, it will be able to `mint`. Read more
 about [Coreum Fungible Token](/docs/modules/coreum-fungible-token). Also, on the instantiation we declare the `owner` the address of
-the instantiation, which we can use conditionally to inherit some contract/issuer permissions.
+the instantiation, which we can use conditionally to inherit some contract/admin permissions.
 
 CLI command:
 
@@ -352,10 +352,10 @@ cored q wasm contract-state smart $CONTRACT_ADDRESS '{"minted_for_airdrop": {}}'
 
 ### Use send commission rate.
 
-The `send commission rate` is the percent of sending amount which will be sent to the issuer in addition to the
+The `send commission rate` is the percent of sending amount which will be sent to the admin in addition to the
 sending amount.
 
-* Add a new account to receive the issuer token
+* Add a new account to receive the admin token
 
 ```bash
 cored keys add recipient $COREUM_CHAIN_ID_ARGS
@@ -394,7 +394,7 @@ The `recipient` has received `1000` tokens.
 cored q bank balances $(cored keys show wasm-deployer $COREUM_CHAIN_ID_ARGS -a) --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 ```
 
-The `wasm-deployer` sent `1000` tokens to the recipient and additionally `10%` to the issuer which is the contract
+The `wasm-deployer` sent `1000` tokens to the recipient and additionally `10%` to the admin which is the contract
 address.
 
 * Check the balance of the smart contract

@@ -37,7 +37,7 @@ This structure allows reusing the code provided by Cosmos SDK, and also reuse th
 
 In a nutshell, `assetft` module interacts with `wbank` which in turn wraps the original `bank` module.
 
-The issue method implemented at Coreum, makes it possible for everyone to create a fungible token and manage its supply. When the issuer issues a token, they specify the initial total supply which will be delivered to the issuer's account address. While the token is being issued (and only then), a set of corresponding token features can be enabled: `minting`, `freezing`, `burning`, `burn rate` and/or `commission rate`.
+The issue method implemented at Coreum, makes it possible for everyone to create a fungible token and manage its supply. When the admin (issuer of the token) issues a token, they specify the initial total supply which will be delivered to the admin account address. While the token is being issued (and only then), a set of corresponding token features can be enabled: `minting`, `freezing`, `burning`, `burn rate` and/or `commission rate`.
 ### Convention Around FT Token Issuance
 A denom is the main identifier of the token. It is created by joining the subunit (provided by the issuer) and the issuer address, separated with a dash (`subunit-address`). The user also provides the token symbol and precision which will only be used for display purposes and will be stored in the bank module's metadata field.
 

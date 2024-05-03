@@ -52,7 +52,7 @@ if err != nil {
 After creating the token, initial supply is available on the issuer's account:
 
 ```go
-// Query initial balance hold by the issuer
+// Query initial balance hold by the admin (issuer of the token)
 denom := subunit + "-" + senderAddress.String()
 bankClient := banktypes.NewQueryClient(clientCtx)
 resp, err := bankClient.Balance(ctx, &banktypes.QueryBalanceRequest{
@@ -67,7 +67,7 @@ fmt.Printf("Issuer's balance: %s\n", resp.Balance)
 
 ## Sending tokens
 
-Now issuer may send those tokens to someone:
+Now admin may send those tokens to someone:
 
 ```go
 denom := subunit + "-" + senderAddress.String()
@@ -127,7 +127,7 @@ fmt.Printf("Recipient's balance: %s\n", resp.Balance)
 
 ## Freezing
 
-Because issuer enabled `freezing` feature during token issuance, he/she might freeze the portion of
+Because admin enabled `freezing` feature during token issuance, he/she might freeze the portion of
 the recipient's balance:
 
 ```go

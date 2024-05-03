@@ -20,8 +20,9 @@ Currently, the following set of features is available for all Smart Tokens:
 - [Send Fee](#send-fee)
 - [IBC (Inter Blockchain Communication) compatibility](#ibc-compatibility)
 - [Smart Contract integration](#smart-contract-integration)
+- [Clawback](#clawback)
 
-Upon token issuance, the issuer must configure the behaviour of the token and set specific flags
+Upon token issuance, the admin must configure the behaviour of the token and set specific flags
 that will determine which functions can be triggered at a later stage.
 
 These flags are set using the ACL and are as follows:
@@ -42,7 +43,7 @@ Depending on the token type, these flags can be used to customize what asset nee
 For example, Stablecoins, Crypto, NFT, Stocks, CBDCs and so on.
 
 Once a token is issued and depending on the flags,
-network participants such as issuers or users can interact with these tokens using the features provided.
+network participants such as admins or users can interact with these tokens using the features provided.
 
 It is imperative to understand the importance of natively issued tokens and default functions in terms of speed,
 cost-efficiency, predictability and security, and extendibility.
@@ -100,10 +101,10 @@ Figure 1 displays how all Smart Tokens inherit a set of default functionalities 
 
 ### Issuance
 Asset issuance is the initial phase of the asset lifecycle.
-On issuance, the issuer defines the asset settings, initial amount, allowed features, and default Access Control List.
-After the creation, the initial amount will be minted for the provided recipient and sent to the corresponding account.
-The allowed features are the asset features, which can be used with the asset but can't be changed after the issuance.
-Meaning, if you set no features, you won't be able to use any of them.
+On issuance, the admin (issuer of the token) defines the asset settings, initial amount, allowed features, and default
+Access Control List. After the creation, the initial amount will be minted for the provided recipient and sent to the
+corresponding account. The allowed features are the asset features, which can be used with the asset but can't be
+changed after the issuance. Meaning, if you set no features, you won't be able to use any of them.
 
 
 ### Minting
@@ -131,34 +132,34 @@ When this feature is enabled on a token, then the holders of the token who have 
 ### Freezing
 If this feature is enabled when the token is first issued, freezing allows the administrator of the token to freeze a portion of or the balance of the token held by a user. There are many use cases that are enforced by law to freeze a token. An example use case is when the token administrator sends tokens to an address but does not want the user to spend them until some time has passed such as clearing a cheque.
 
-Token might be frozen globally. It means that it might be transferred only to the issuer. All the other transfers are rejected until it is unfrozen back.
+Token might be frozen globally. It means that it might be transferred only to the admin. All the other transfers are rejected until it is unfrozen back.
 
 
 <a id="whitelisting"></a>
 ### Whitelisting
-Whitelisting is designed to support scenarios when, due to KYC/AML or any other policy enforced by the issuer, the Smart Token might be held by a limited scope of accounts that passed the verification procedure. Its possible use cases include tokens representing stock shares, CBDC or any other rights enforced by the legal system where the identity of the holder must be confirmed.
+Whitelisting is designed to support scenarios when, due to KYC/AML or any other policy enforced by the admin, the Smart Token might be held by a limited scope of accounts that passed the verification procedure. Its possible use cases include tokens representing stock shares, CBDC or any other rights enforced by the legal system where the identity of the holder must be confirmed.
 
-If the can_whitelist flag is enabled on the Smart Token, the issuer defines the list of accounts (addresses) that are allowed to receive that token. If an account is not on that list and someone tries to send tokens to it, the transfer is rejected. Alternatively, a special flag whitelist_everyone may be set to true to whitelist all the accounts. If whitelisting was enabled during Smart Token issuance, the issuer may update the list of whitelisted accounts and enable or disable the whitelist_everyone flag at any time.
+If the can_whitelist flag is enabled on the Smart Token, the admin defines the list of accounts (addresses) that are allowed to receive that token. If an account is not on that list and someone tries to send tokens to it, the transfer is rejected. Alternatively, a special flag whitelist_everyone may be set to true to whitelist all the accounts. If whitelisting was enabled during Smart Token issuance, the admin may update the list of whitelisted accounts and enable or disable the whitelist_everyone flag at any time.
 
 If an account holding the token is removed from the whitelist, its current balance stays unaffected but it cannot receive tokens anymore until whitelisted back.
 
 <a id="block-smart-contracts"></a>
 ### Block Smart Contracts
-Blocking Smart contracts is a feature that allows the issuer to block the transfer of the Smart Token to a Smart Contract. This feature is useful for tokens that are not meant to be used in Smart Contracts. For example, an issuer might want to block the transfer of a token that is not meant to be used in a DeFi application.
+Blocking Smart contracts is a feature that allows the admin to block the transfer of the Smart Token to a Smart Contract. This feature is useful for tokens that are not meant to be used in Smart Contracts. For example, an admin might want to block the transfer of a token that is not meant to be used in a DeFi application.
 
 
 <a id="burn-rate"></a>
 ### Burn Rate
 When a token is issued, it is possible to define Burn Rate. It is a number between 0 and 1, defining the portion of transferred amount to be burnt. The burnt amount is charged on the sender in addition to the original amount being transferred.
 
-Burn Rate is not applied on transfers sent or received by the token issuer.
+Burn Rate is not applied on transfers sent or received by the token admin.
 
 
 <a id="send-fee"></a>
 ### Send Fee
-Similarly to Burn Rate, the issuer may define a Send Fee. It is a number between 0 and 1 too, which defines the portion of transferred amount which is sent to the issuer. This tax is charged on the sender in addition to the original amount.
+Similarly to Burn Rate, the admin may define a Send Fee. It is a number between 0 and 1 too, which defines the portion of transferred amount which is sent to the admin. This tax is charged on the sender in addition to the original amount.
 
-Send Fee is not applied on transfers sent or received by the token issuer.
+Send Fee is not applied on transfers sent or received by the token admin.
 
 
 <a id="ibc-compatibility"></a>
@@ -174,3 +175,18 @@ An integral part of the Coreum blockchain is to support the deployment and execu
 Developers can deploy their own logic by writing Smart Contracts, being able to issue Smart Tokens, mint and burn them, whitelist and blacklist accounts, freeze and unfreeze their balances, and block or allow sending them to other smart contracts.
 
 Now the behavior of the Smart Token might be driven by actions taken by ordinary people, departments of your organization or even different ones cooperating together, meaning that the final action taken on the Smart Token might be the result of the process involving different actors following the transparent logic provided by the Smart Contract, leading to greater reliability.
+
+<a id="clawback"></a>
+### Clawback
+If the clawback feature is enabled on a token, then the admin of the token can confiscate up to the
+amount an account holds. The clawback amount cannot be more than what the user currently holds.
+
+Here is the description of behavior of the clawback feature:
+- The admin can clawback up to the amount an account holds if the clawback feature is enabled.
+- The admin cannot clawback from their own account
+- The admin cannot clawback from module accounts
+
+Same rules apply to sending tokens over IBC transfer protocol if IBC is enabled for the token.
+
+_**Disclaimer**: if the admin claws back from the escrow address, then it will break the IBC. admins
+should not do this if they want the IBC to work for their token._
