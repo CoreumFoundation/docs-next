@@ -13,7 +13,7 @@ The documentation below explains how to create a Multisig account and grant diff
 * Generate the json tx to issue an FT from the multisig.
 
 ```bash
-    # cored tx assetft issue [symbol] [subunit] [precision] [initial_amount] [description] --from [issuer] --features=burning,freezing,minting,whitelisting --burn-rate=0.12 --send-commission-rate=0.2 [flags]
+    # cored tx assetft issue [symbol] [subunit] [precision] [initial_amount] [description] --from [admin] --features=burning,freezing,minting,whitelisting --burn-rate=0.12 --send-commission-rate=0.2 [flags]
     cored tx assetft issue MYFT umyft 6 1000000 "Multisig token" \
     --from $(cored keys show --address k1k2k3 $COREUM_CHAIN_ID_ARGS) \
     --features=burning,freezing,minting,whitelisting --send-commission-rate=0.02 \
@@ -140,8 +140,8 @@ And now the address "minter" can mint the AssetFT token "MYFT" (and any other to
 * Mint token.
 
     ```bash
-    export FT_ISSUER=$(cored keys show k1k2k3 --address $COREUM_CHAIN_ID_ARGS)
-    export FT_DENOM=umyft-$FT_ISSUER
+    export FT_ADMIN=$(cored keys show k1k2k3 --address $COREUM_CHAIN_ID_ARGS)
+    export FT_DENOM=umyft-$FT_ADMIN
     cored tx assetft mint 200$FT_DENOM --from $(cored keys show k1k2k3 --address $COREUM_CHAIN_ID_ARGS) $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS --generate-only > tx.json && cored tx authz exec tx.json --from $(cored keys show minter --address $COREUM_CHAIN_ID_ARGS) -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
     ```
 
