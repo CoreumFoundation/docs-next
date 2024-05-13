@@ -245,6 +245,20 @@ export const SIDEBAR_ITEMS = [
         ],
       },
       {
+        name: 'IS020022',
+        href: '/docs/tutorials/ISO20022',
+        children: [
+          {
+            name: 'Intro to ISO20022',
+            href: '/docs/tutorials/ISO20022/Intro-To-ISO20022',
+          },
+          {
+            name: 'Financial Simulator',
+            href: '/docs/tutorials/ISO20022/financialSimulator',
+          },
+        ],
+      },
+      {
         name: 'Gas Price',
         href: '/docs/tutorials/gas-price',
       },

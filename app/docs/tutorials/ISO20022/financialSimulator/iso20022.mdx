@@ -1,0 +1,237 @@
+# ISO20022 Financial Simulator Guide 
+
+This guide will walk you through the steps involved in using the ISO20022 Financial Simulator
+
+## 1. Open ISO20022 App 
+
+<center className="w-full max-w-full mt-2 mb-6 mx-auto">
+    <img src="/images/tutorials/iso20022/financialSimulator.png" alt="Open Keplr Wallet" />
+</center>
+
+Start by opening ISO20022 Financial Simulator App. <a href="https://iso20022.coreum.com/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">ISO20022</a>
+
+
+## 2. How to Create Wallet, Fund Wallet, Generate Keys?
+
+<center className="w-md max-w-md mt-2 mb-6 mx-auto">
+    <img src="/images/tutorials/iso20022/HowItWorks.png" alt="Open Keplr Wallet" />
+</center>
+
+
+#### Create a New Session:
+
+You start by creating a new session for the simulation. This involves defining the parameters and scope of your transaction testing between two financial institutions.
+Setup Financial Institution A (Initiator):
+
+#### Create Wallet: 
+Begin by creating a digital wallet for the initiator on the Coreum blockchain. This wallet will store the digital currency or tokens used in the simulation.
+
+#### Fund Wallet: 
+After the wallet is created, you will need to fund it. This step might involve transferring a set amount of tokens or currency into the wallet to be used in the transactions.
+
+#### Generate Keys: 
+Generate the necessary cryptographic keys. These keys are essential for securing transactions and ensuring they are processed correctly within the blockchain.
+
+
+#### Setup Financial Institution B (Destination):
+
+#### Create Wallet: 
+Similarly, create a wallet for the destination financial institution on the Coreum blockchain.
+
+#### Fund Wallet: 
+The destination wallet also needs to be funded, although the specifics might vary depending on the simulation’s objectives.
+
+#### Generate Keys: 
+Generate cryptographic keys for the destination to secure transactions and authenticate them properly.
+
+
+
+## 2. Run ISO2 + RTGS Confirmation
+
+<center className="w-full max-w-full mt-2 mb-6 mx-auto">
+    <img src="/images/tutorials/iso20022/Confirmation.png" alt="Open Keplr Wallet" />
+</center>
+
+## Financial Institution A (Initiator)
+
+CORE and USD Balances
+
+The initiator has a balance of 89.94 CORE and $9,000 USD available for transactions.
+
+### Create Smart Token Schema
+
+A smart contract or token schema named "isopayment1715619009468-testcore1kgxrqug2c3qvf0pp8kdntc4jwhc8ym8cwxjswh" is created. This schema likely defines the rules for managing and executing transactions within the simulation.
+
+### Tokenize Asset (Encrypted ISO Payment)
+An asset is tokenized and encrypted using the ISO20022 financial messaging standard. The tokenized asset is identified as "NFT_ISOPayment1715619009468-0".
+
+### Send and Receive Messages
+Financial Institution A sends a message to Financial Institution B, likely containing transaction details or instructions related to the tokenized asset.
+Confirmation of message receipt is shown, indicating successful communication between the institutions.
+
+## Financial Institution B (Destination)
+
+### CORE and USD Balances
+The destination has a balance of 99.93 CORE and $2,000 USD.
+
+### Create Smart Token Schema
+Similarly, Financial Institution B creates a smart token schema with the same name as A's, for coordinating and validating the transaction on their end.
+
+### Tokenize Asset (Encrypted ISO Payment)
+Financial Institution B also tokenizes assets, producing two tokenized entries: "NFT_ISOPayment1715619009468-0" and "NFT_ISOPayment1715619009468-1". This suggests multiple transactions or stages in the transaction process.
+
+### Send and Receive Messages
+Financial Institution B sends messages back to Institution A, which are related to the transactions initiated. It confirms the details or acknowledges the actions taken by Institution A.
+
+## Transaction Confirmation
+Both institutions show a status of "Confirmed" for the activities undertaken. This status indicates that the actions (creation of token schemas, tokenization of assets, and the sending/receiving of messages) were successfully executed and acknowledged by both parties.
+
+## Viewing on Explorer
+"View on Explorer" links are associated with each action, allowing participants to verify transaction details on the blockchain explorer. This tool provides transparency and detailed verification of blockchain activities, such as transaction data, token details, and contract interactions.
+
+
+## 3. ISO Confirmation
+
+<center className="w-full max-w-full mt-2 mb-6 mx-auto">
+    <img src="/images/tutorials/iso20022/isoConfirm.png" alt="Open Keplr Wallet" />
+</center>
+
+
+## Financial Institution A (Initiator)
+
+### Wallet Address
+testcore1kgxrqug2c3qvf0pp8kdntc4jwhc8ym8cwxjswh
+
+### Balances
+**CORE Balance:** 89.77 CORE
+
+**USD Balance:** $9,000.00
+
+## Actions Taken by Financial Institution A
+
+#### Create Smart Token Schema
+A new smart token schema is created (`isopayment1715621258071-testcore1kgxrqug2c3qvf0pp8kdntc4jwhc8ym8cwxjswh`) to define the protocols for transactions.
+View on Explorer
+
+#### Tokenize Asset (Encrypted ISO Payment)
+- Several assets are tokenized:
+  - `NFT_ISOPayment1715621258071-0`
+  - `NFT_ISOPayment1715621258071-1`
+  - `NFT_ISOPayment1715621258071-2`
+
+Each tokenization event is logged, and details can be viewed on a blockchain explorer.
+
+#### Communication with Financial Institution B
+Messages are sent to Financial Institution B regarding each of the tokenized assets.
+
+Each message can be viewed on a blockchain explorer.
+
+-Receipt of each message sent by Financial Institution B is confirmed.
+
+## Financial Institution B (Destination)
+
+### Wallet Address
+
+testcore1assdts3xes5ml0ntwvg690k4t6gg83w5p045xj
+
+### Balances
+**CORE Balance:** 99.75 CORE
+
+**USD Balance:** $2,000.00
+
+## Actions Taken by Financial Institution B
+
+#### Create Smart Token Schema
+Echoing the action of Financial Institution A, it creates a matching smart token schema (`isopayment1715621258071-testcore1assdts3xes5ml0ntwvg690k4t6gg83w5p045xj`).
+View on Explorer
+
+#### Tokenize Asset (Encrypted ISO Payment)
+- Several assets are tokenized mirroring those of Institution A:
+  - `NFT_ISOPayment1715621258071-0`
+  - `NFT_ISOPayment1715621258071-1`
+  - `NFT_ISOPayment1715621258071-2`
+  - `NFT_ISOPayment1715621258071-3`
+
+Each tokenization is recorded, and details can be viewed on a blockchain explorer.
+
+#### Communication with Financial Institution A
+Messages are sent to Financial Institution A corresponding to the tokenization events.
+
+Receipt of each message sent by Financial Institution A is confirmed.
+
+
+
+
+## 4. ISO Rejection
+
+<center className="w-full max-w-full mt-2 mb-6 mx-auto">
+    <img src="/images/tutorials/iso20022/reject.png" alt="Open Keplr Wallet" />
+</center>
+
+## Financial Institution A (Initiator)
+
+### Wallet Address
+testcore1kgxrqug2c3qvf0pp8kdntc4jwhc8ym8cwxjswh
+
+### Balances
+**CORE Balance:** 89.68 CORE
+
+**USD Balance:** $9,000.00
+
+## Actions Performed by Institution A
+
+#### Create Smart Token Schema
+**Identifier:** isopayment1715621925801-testcore1kgxrqug2c3qvf0pp8kdntc4jwhc8ym8cwxjswh
+
+**Action:** Creates a schema for a smart token, encapsulate data related to an ISO payment.
+
+**View on Explorer:** View Transaction Details 
+
+#### Tokenize Asset (Encrypted ISO Payment)
+**Identifier:** NFT_ISOPayment1715621925801-0
+
+**Action:** Creates a non-fungible token (NFT) that represents a specific ISO payment, which is encrypted for security.
+
+**View on Explorer:** Verify tokenized asset 
+
+#### Send Message to Financial Institution B
+**View on Explorer:** View blockchain message
+
+**View Message:** An interface to view the details of the message sent, confirming what was transmitted.
+
+**Message Received Status:** Reports that the message was received but ultimately rejected by Financial Institution B.
+
+## Financial Institution B (Destination)
+
+### Wallet Address
+testcore1assdts3xes5ml0ntwvg690k4t6gg83w5p045xj
+
+### Balances
+**CORE Balance:** 99.65 CORE
+**USD Balance:** $2,000.00
+
+## Actions Performed by Institution B
+
+#### Message Received
+Acknowledges the receipt of the message from Institution A.
+
+#### Create Smart Token Schema
+**Identifier:** isopayment1715621925801-testcore1assdts3xes5ml0ntwvg690k4t6gg83w5p045xj
+
+**Action:** Similar to Institution A, Institution B creates a smart token schema, possibly as a response or for its own tracking of the transaction.
+
+#### Tokenize Asset (Encrypted ISO Payment)
+**First Instance:** NFT_ISOPayment1715621925801-0
+
+**Second Instance:** NFT_ISOPayment1715621925801-1
+
+**Action:** Tokenizes the ISO payment data into NFTs for secure storage or transfer.
+
+**View on Explorer:** Verify tokenization event
+
+#### Send Message to Financial Institution A
+**View on Explorer:** Examine blockchain message
+
+**View Message:** A functionality to inspect the details of the messages sent.
+
+**Message Received Status:** Indicates that Institution B's response or subsequent message was also rejected by Institution A.
