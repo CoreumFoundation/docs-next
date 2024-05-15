@@ -69,6 +69,11 @@ export const SIDEBAR_ITEMS = [
             children: [],
           },
           {
+            name: 'Set Up cored Using Docker',
+            href: '/docs/tutorials/get-started/setup-cored-using-docker',
+            children: [],
+          },
+          {
             name: 'Install prebuild macOS',
             href: '/docs/tutorials/get-started/install-prebuild-macos',
             children: [],
