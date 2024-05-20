@@ -69,6 +69,11 @@ export const SIDEBAR_ITEMS = [
             children: [],
           },
           {
+            name: 'Set Up cored Using Docker',
+            href: '/docs/tutorials/get-started/setup-cored-using-docker',
+            children: [],
+          },
+          {
             name: 'Install prebuild macOS',
             href: '/docs/tutorials/get-started/install-prebuild-macos',
             children: [],
@@ -241,6 +246,20 @@ export const SIDEBAR_ITEMS = [
           {
             name: 'IBC Transfer Using CLI',
             href: '/docs/tutorials/ibc/ibc-transfer-using-cli',
+          },
+        ],
+      },
+      {
+        name: 'IS020022',
+        href: '/docs/tutorials/ISO20022',
+        children: [
+          {
+            name: 'Intro to ISO20022',
+            href: '/docs/tutorials/ISO20022/Intro-To-ISO20022',
+          },
+          {
+            name: 'Financial Simulator',
+            href: '/docs/tutorials/ISO20022/financialSimulator',
           },
         ],
       },
