@@ -70,9 +70,11 @@ COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
 
   ```bash
   # Get block details from one of the state sync servers
-  TRUSTED_BLOCK_DETAILS=$(curl ${COREUM_STATE_SYNC_SERVERS#*,`}/block | jq -r '.result.block.header.height + "\n" + .result.block_id.hash')
-  TRUSTED_BLOCK_HEIGHT=$(echo $TRUSTED_BLOCK_DETAILS | cut -d$' ' -f1)
-  TRUSTED_BLOCK_HASH=$(echo $TRUSTED_BLOCK_DETAILS | cut -d$' ' -f2)
+  CURRENT_BLOCK_DETAILS=$(curl ${COREUM_STATE_SYNC_SERVERS#*,}/block | jq -r '.result.block.header.height + "\n" + .result.block_id.hash')
+  CURRENT_BLOCK_HEIGHT=$(echo $CURRENT_BLOCK_DETAILS | head -1 )
+  TRUSTED_BLOCK_HEIGHT=$(expr $CURRENT_BLOCK_HEIGHT - 500)
+  TRUSTED_BLOCK_DETAILS=$(curl "${COREUM_STATE_SYNC_SERVERS#*,}/block?height=${TRUSTED_BLOCK_HEIGHT}" | jq -r '.result.block.header.height + "\n" + .result.block_id.hash')
+  TRUSTED_BLOCK_HASH=$(echo $TRUSTED_BLOCK_DETAILS | tail -n 1 )
   ```
   If you see `Failure writing output to destination` error, check if `jq` is installed.
 ** Check if you have needed data:
