@@ -1,5 +1,4 @@
-import { ProtobufPageContent } from '@/components/ProtobufPage';
-import Component from './protobuf.mdx';
+import { ProtobufPageContent } from '@/app/docs/api/protobuf/ProtobufPageContent';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -29,11 +28,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <ProtobufPageContent>
-      <div className="flex flex-col w-full">
-        <Component />
-      </div>
-    </ProtobufPageContent>
+    <ProtobufPageContent />
   );
 };
 

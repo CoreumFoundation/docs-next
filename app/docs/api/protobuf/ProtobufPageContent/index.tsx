@@ -1,25 +1,12 @@
 'use client';
 
-import { isBrowser } from "@/helpers/isBrowser";
 import { useSetMobileDevice } from "@/helpers/isMobileDevice";
 import Link from "next/link";
-import { FC } from "react";
+import dynamic from "next/dynamic";
+const Component = dynamic(() => import('../protobuf.mdx'), { ssr: false })
 
-interface ProtobufPageContentProps {
-  children: React.ReactNode;
-}
-
-export const ProtobufPageContent: FC<ProtobufPageContentProps> = ({ children }) => {
+export const ProtobufPageContent = () => {
   const isMobile = useSetMobileDevice();
-  const isClientSideBrowser = isBrowser();
-
-  if (!isClientSideBrowser) {
-    return (
-      <div className="sr-only">
-        Protobuf documentation
-      </div>
-    );
-  }
 
   if (isMobile) {
     return (
@@ -33,7 +20,7 @@ export const ProtobufPageContent: FC<ProtobufPageContentProps> = ({ children }) 
 
   return (
     <div className="flex flex-col w-full">
-      {children}
+      <Component />
     </div>
   );
 }
