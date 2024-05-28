@@ -1,4 +1,3 @@
-// import { useSetMobileDevice } from '@/helpers/isMobileDevice';
 import { ProtobufPageContent } from '@/components/ProtobufPage';
 import Component from './protobuf.mdx';
 import { Metadata } from 'next';
@@ -32,7 +31,7 @@ const Page = () => {
   return (
     <ProtobufPageContent>
       <div className="flex flex-col w-full">
-        <Component />
+        {/* <Component /> */}
       </div>
     </ProtobufPageContent>
   );
