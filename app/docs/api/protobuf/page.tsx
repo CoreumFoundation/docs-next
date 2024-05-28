@@ -31,7 +31,7 @@ const Page = () => {
   return (
     <ProtobufPageContent>
       <div className="flex flex-col w-full">
-        {/* <Component /> */}
+        <Component />
       </div>
     </ProtobufPageContent>
   );
