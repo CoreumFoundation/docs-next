@@ -69,6 +69,11 @@ export const SIDEBAR_ITEMS = [
             children: [],
           },
           {
+            name: 'Set Up cored Using Docker',
+            href: '/docs/tutorials/get-started/setup-cored-using-docker',
+            children: [],
+          },
+          {
             name: 'Install prebuild macOS',
             href: '/docs/tutorials/get-started/install-prebuild-macos',
             children: [],
@@ -245,6 +250,20 @@ export const SIDEBAR_ITEMS = [
         ],
       },
       {
+        name: 'IS020022',
+        href: '/docs/tutorials/ISO20022',
+        children: [
+          {
+            name: 'Intro to ISO20022',
+            href: '/docs/tutorials/ISO20022/Intro-To-ISO20022',
+          },
+          {
+            name: 'Financial Simulator',
+            href: '/docs/tutorials/ISO20022/financialSimulator',
+          },
+        ],
+      },
+      {
         name: 'Gas Price',
         href: '/docs/tutorials/gas-price',
       },
@@ -367,10 +386,6 @@ export const SIDEBAR_ITEMS = [
           {
             name: 'Install cored',
             href: '/docs/become-validator/essentials/install-cored',
-          },
-          {
-            name: 'Setup network variables',
-            href: '/docs/become-validator/essentials/network-variables',
           },
           {
             name: 'Set connection config',

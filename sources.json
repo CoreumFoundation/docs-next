@@ -13,6 +13,13 @@
       "source": "https://raw.githubusercontent.com/CoreumFoundation/crust/master/README.md"
     }
   ],
+
+  "tutorials/ISO20022": [
+    {
+      
+    }
+
+  ],
   "api/protobuf": [
     {
       "page": "protobuf",
