@@ -107,7 +107,7 @@ cored tx assetft issue MYFT cmyft 2 100000000 "My FT token with extension" --fro
 * extension_code_id - CodeID of the deployed wasm contract
 * extension_label - optional label to assign to the extension
 * extension_funds - optional funds to transfer to the contract when instantiating the token
-* extension_instantiation_msg - optional json encoded data to pass to WASM on instantiation
+* extension_issuance_msg - optional json encoded data to pass to WASM on instantiation by the ft issuer
 
 * Build denom and query supply.
 
@@ -365,11 +365,11 @@ whitelisting for both coins when some account transfer some token of this new co
 We need to change our smart contract to add whitelisting feature to it. Just for demonstration purposes, let's enable the
 whitelisting assertions only of the token is issued with `--features=whitelisting`.
 
-In this special case, we want to receive denom of the parent token if there is any and also store it, so we need to add
-a expand `UserProvidedInstantiationMsg` struct and also add a new state item.
+In this special case, we want to receive denom of the parent token if there is any and also store it, so we need to
+expand `IssuanceMsg` struct and also add a new state item.
 
 ```rust
-pub struct UserProvidedInstantiationMsg {
+pub struct IssuanceMsg {
     pub parent_denom: Option<String>,
 }
 ```
@@ -383,7 +383,7 @@ We need to store the denom in the `instantiate` function.
 ```rust
 PARENT_DENOM.save(
     deps.storage,
-    &msg.user_provided_instantiation_msg
+    &msg.issuance_msg
         .parent_denom
         .unwrap_or_default(),
 )?;
@@ -495,7 +495,7 @@ the first token's whitelist first and if the account is whitelisted there, allow
 the account is not whitelisted in this token.
 
 ```bash
-cored tx assetft issue MYFT2 cmyft2 2 1000000 "My second FT token with extension" --from $FT_ADMIN --features=whitelisting,extension --extension_code_id=$CODE_ID --extension_label=my-second-extension --extension_instantiation_msg='{"parent_denom": "'$FT_DENOM'"}' $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS -y -b block --gas auto --gas-adjustment 1.4
+cored tx assetft issue MYFT2 cmyft2 2 1000000 "My second FT token with extension" --from $FT_ADMIN --features=whitelisting,extension --extension_code_id=$CODE_ID --extension_label=my-second-extension --extension_issuance_msg='{"parent_denom": "'$FT_DENOM'"}' $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS -y -b block --gas auto --gas-adjustment 1.4
 ```
 
 * Build denom
