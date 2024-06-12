@@ -54,7 +54,7 @@ Please note that each subsequent section depends on the previous one.
 -   Use the following command to issue your first FT:
 
 ```bash
-  # cored tx assetft issue [symbol] [subunit] [precision] [initial_amount] [description] --uri --uri_hash --from [admin] --features=burning,freezing,minting,whitelisting --burn-rate=0.12 --send-commission-rate=0.2 [flags]
+  # cored tx assetft issue [symbol] [subunit] [precision] [initial_amount] [description] --uri --uri_hash --from [admin] --features=burning,freezing,minting,whitelisting --burn-rate=0.12 --send-commission-rate=0.2 --extension_code_id=1 --extension_label=my-extension --extension_funds=100000ABC-testcore1adst6w4e79tddzhcgaru2l2gms8jjep6a4caa7 --extension_issuance_msg={} [flags]
   cored tx assetft issue MYFT cmyft 2 100 "My first FT token" --from $FT_ADMIN --features=burning,freezing,minting,whitelisting --send-commission-rate=0.02 --node=$RPC_URL --chain-id=$CHAIN_ID
   # where:
   # MYFT - token symbol, is the display name of a token used mostly for UI purposes. An example of a token symbol is BTC.
