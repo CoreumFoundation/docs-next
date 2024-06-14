@@ -75,7 +75,7 @@ This operation might take a significant amount of time.
 * Deploy the built artifact.
 
 ```bash
-RES=$(cored tx wasm store artifacts/ft_extension.wasm \
+RES=$(cored tx wasm store artifacts/extension.wasm \
     --from $FT_ADMIN --gas auto --gas-adjustment 1.4 -y -b block --output json $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS)
 echo $RES
 CODE_ID=$(echo $RES | jq -r '.logs[0].events[-1].attributes[-1].value')
@@ -258,7 +258,7 @@ pub fn sudo_extension_transfer(
 * Build the contract again and deploy the built artifact.
 
 ```bash
-RES=$(cored tx wasm store artifacts/ft_extension.wasm \
+RES=$(cored tx wasm store artifacts/extension.wasm \
     --from $FT_ADMIN --gas auto --gas-adjustment 1.4 -y -b block --output json $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS)
 echo $RES
 CODE_ID=$(echo $RES | jq -r '.logs[0].events[-1].attributes[-1].value')
