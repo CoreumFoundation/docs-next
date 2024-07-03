@@ -19,6 +19,8 @@ separately.
 -   IBC transfers
 -   Block smart contracts
 -   Clawback
+-   Transferring admin
+-   Clear admin
 -   Extension
 
 ## Interaction with bank module, introducing wbank module
@@ -69,6 +71,14 @@ then the denom will be `satoshi-core1tr3w86yesnj8f290l6ve02cqhae8x4ze0nk0a8` and
 chosen BTC as symbol and 8 as precision, it will follow that (1 BTC = 10^8
 `satoshi-devcore1tr3w86yesnj8f290l6ve02cqhae8x4ze0nk0a8`)
 
+### Transferring admin
+Each token has an issuer, whose address is a part of the denom forever. The initial admin of the token is the issuer, but the admin role can be transferred to another account.
+Then, all the privileges of the previous admin will be transferred to the new admin, such as the ability to mint tokens if minting is enabled. The specific privileges and features will be discussed in the next section.
+
+### Clear admin
+Tokens can also lose their admin forever by clearing admin.
+Then, no one will have any more privilege than others.
+
 #### Token Features
 
 When issuing a token, the admin must decide which features are enabled on the token. For example if
@@ -84,6 +94,8 @@ description will be provided in the dedicated section for each feature.
 -   ibc
 -   block smart contracts
 -   clawback
+-   Transferring admin
+-   Clear Admin
 -   extension
 
 #### Burn Rate
@@ -214,6 +226,14 @@ Same rules apply to sending tokens over IBC transfer protocol if IBC is enabled 
 
 _**Disclaimer**: if the admin claws back from the escrow address, then it will break the IBC. admins
 should not do this if they want the IBC to work for their token._
+
+### Transferring admin
+Each token has an issuer, whose address is a part of the denom forever. The initial admin of the token is the issuer, but the admin role can be transferred to another account.
+Then, all the privileges of the previous admin will be transferred to the new admin, such as the ability to mint tokens if minting is enabled. The specific privileges and features will be discussed in the next section.
+
+### Clearing admin
+Tokens can also lose their admin forever by clearing admin.
+Then, no one will have any more privilege than others.
 
 ### Extension
 Extension is a powerful feature which lets the admin override some functionalities of the token by attaching a smart contract to the token that can administrate it. When a bank transfer is initiated, the smart contract account receives the amount plus any commission or burn amount if they should be applied, then it is called via a sudo call with the information related to the bank transfer and the context information. The smart contract then can decide to do whatever it decides with the transfer which may include overriding of some behaviors for the features explained before.

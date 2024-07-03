@@ -42,13 +42,22 @@ and then in some cases configured on each NFT level later.
 
 Here is the list of features:
 
+-   minting
 -   burning
 -   freezing
 -   whitelisting
 -   disable sending
 -   soulbound
+-   update data 
 
 We will discuss each feature separately.
+
+### Minting
+The minting is enabled for all issued NFT classes. The minting allows to mint a token for an NFT class by the issuer of the class.
+There are two data types that can be used for NFT minting `DataBytes` and `DataDynamic`. The `DataBytes` contains immutable data bytes
+array. The `DataDynamic` contains the list of the `DataDynamicItem` which can be updated depending on item's `editors`. 
+Currently supported `DataEditors` are  `admin` and `owner`. If only one editor is set for the item, only that editor can update the 
+item's `data` using the`MsgUpdateData`. If both, both can update the `data`. If the `editors` list is empty no one can update the `data`.
 
 ### Burning
 
@@ -80,3 +89,6 @@ royalty fee.
 If this feature is enabled, then the NFT can not be sent by anyone, except the issuer. This feature
 is useful for NFTs that are created for a specific user, and the issuer wants to make sure that the
 NFT is not transferred to anyone else.
+
+## Update Data
+update the data of the specified NFT with the information provided in the data file

@@ -270,6 +270,12 @@ cored q nft nft $NFT_CLASS_ID puppysmartnft-2 --node=$RPC_URL --chain-id=$CHAIN_
 #not found nft: class: puppysmartnft1-testcore105hmczwh0tkha2h5lu9rr07xtegzsm49d3hxq7, id: puppysmartnft-2: nft does not exist: invalid request
 ```
 
+## Update Data
+update the data of the specified NFT with the information provided in the data file
+```bash
+cored tx assetnft update-data $NFT_CLASS_ID puppysmartnft-1 --from $NFT_ISSUER_ADDRESS --data-file /path/to/your/data-file.json --node=$RPC_URL --chain-id=$CHAIN_ID
+```
+
 ## FAQ
 
 ### Can a token be always burnt by an owner?
