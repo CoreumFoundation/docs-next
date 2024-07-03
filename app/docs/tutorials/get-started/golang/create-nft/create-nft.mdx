@@ -156,6 +156,99 @@ if err != nil {
 	panic(err)
 }
 ```
+## Update Data
+update the data of the specified NFT with the information provided in the data file
+
+```bash
+dataDynamic := assetnfttypes.DataDynamic{
+		Items: []assetnfttypes.DataDynamicItem{
+			{
+				Editors: []assetnfttypes.DataEditor{
+					assetnfttypes.DataEditor_owner,
+				},
+				Data: jsonData,
+			},
+		},
+	}
+	data, err = codectypes.NewAnyWithValue(&dataDynamic)
+	if err != nil {
+		panic(err)
+	}
+
+	// Broadcast transaction minting new dynamic nft
+	classID = assetnfttypes.BuildClassID(classSymbol, senderAddress)
+	const dynamicNftID = "myDynamicNFT"
+	msgMint = &assetnfttypes.MsgMint{
+		Sender:  senderAddress.String(),
+		ClassID: classID,
+		ID:      dynamicNftID,
+		Data:    data,
+	}
+
+	_, err = client.BroadcastTx(
+		ctx,
+		clientCtx.WithFromAddress(senderAddress),
+		txFactory,
+		msgMint,
+	)
+	if err != nil {
+		panic(err)
+	}
+
+	// Query the nft
+	storedNFT, err := nftClient.NFT(ctx, &nft.QueryNFTRequest{
+		ClassId: classID,
+		Id:      dynamicNftID,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	var storedDataDynamic assetnfttypes.DataDynamic
+	err = storedDataDynamic.Unmarshal(storedNFT.Nft.Data.Value)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Data: %s\n", string(storedDataDynamic.Items[0].Data))
+
+	// update stored NFT
+	msgUpdateData := &assetnfttypes.MsgUpdateData{
+		Sender:  senderAddress.String(),
+		ClassID: classID,
+		ID:      dynamicNftID,
+		Items: []assetnfttypes.DataDynamicIndexedItem{
+			{
+				Index: 0,
+				Data:  []byte(`{"name": "Updated Name", "description": "Updated Description"}`),
+			},
+		},
+	}
+
+	_, err = client.BroadcastTx(
+		ctx,
+		clientCtx.WithFromAddress(senderAddress),
+		txFactory,
+		msgUpdateData,
+	)
+	if err != nil {
+		panic(err)
+	}
+
+	storedNFT, err = nftClient.NFT(ctx, &nft.QueryNFTRequest{
+		ClassId: classID,
+		Id:      dynamicNftID,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	var storedDataDynamic2 assetnfttypes.DataDynamic
+	err = storedDataDynamic2.Unmarshal(storedNFT.Nft.Data.Value)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Data: %s\n", string(storedDataDynamic2.Items[0].Data))
+```
 
 After doing this, recipient is not allowed to transfer the NFT from its account.
 

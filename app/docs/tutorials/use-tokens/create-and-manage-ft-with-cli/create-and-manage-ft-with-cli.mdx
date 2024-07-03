@@ -337,6 +337,22 @@ cored q bank total --denom=$FT_DENOM --node=$RPC_URL
 # amount: "190"
 ```
 
+## Transfer Admin
+Transfer the administrative rights of a fungible token (FT) to another account. This allows the new admin to manage the token, including minting, burning, freezing, and other administrative actions.
+
+```bash
+cored tx assetft transfer-admin $FT_RECEIVER_1 $FT_DENOM --from $FT_ADMIN --node=$RPC_URL --chain-id=$CHAIN_ID
+```
+
+## Clear Admin 
+Tokens can also lose their admin forever by clearing admin.
+Then, no one will have any more privilege than others.
+
+```bash
+cored tx assetft clear-admin $FT_DENOM --from $FT_ADMIN --node=$RPC_URL --chain-id=$CHAIN_ID
+```
+
+
 Note that neither burn-rate nor send-commission-rate is applied in this case.
 
 ## FAQ
