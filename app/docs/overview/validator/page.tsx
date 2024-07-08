@@ -37,11 +37,6 @@ const TUTORIALS_ITEMS = {
         href: '/docs/become-validator/run-full-node',
         external: false,
       },
-      // {
-      //   label: 'Sync node from the genesis',
-      //   href: '/docs/become-validator/',
-      //   external: false,
-      // },
       {
         label: 'Run a validator node',
         href: '/docs/become-validator/validator/run-validator',
@@ -63,8 +58,18 @@ const TUTORIALS_ITEMS = {
         external: false,
       },
       {
+        label: 'Ne Requirements',
+        href: '/docs/become-validator/essentials/system-requirements',
+        external: false,
+      },
+      {
         label: 'How much fund to I need to create a validator?',
         href: '/docs/become-validator/essentials/how-much-fund-to-create-validator',
+        external: false,
+      },
+      {
+        label: 'Network Variables',
+        href: '/docs/become-validator/essentials/network-variables',
         external: false,
       },
     ],
@@ -77,11 +82,6 @@ const TUTORIALS_ITEMS = {
         href: '/docs/become-validator/validator/unjail-validator',
         external: false,
       },
-      // {
-      //   label: 'How to hide my validator behind sentry?',
-      //   href: '',
-      //   external: false,
-      // },
       {
         label: 'How to upgrade my node?',
         href: '/docs/become-validator/upgrades/main-info',
@@ -105,23 +105,18 @@ const ValidatorMainPage = () => {
         Run Coreum node
       </div>
       <div className="flex flex-col w-full gap-20 pb-20">
-        {Object.values(TUTORIALS_ITEMS).map((tutorialItem, index) => {
-          return (
-            <div key={`tutorial-map-${index}`} className="flex flex-col gap-6">
-              <div className="mt-4 text-base font-medium tracking-[-0.48px] text-[#eee]">
-                {tutorialItem.label}
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-3">
-                {tutorialItem.items.map((item: DocLinkItemProps, index: number) => (
-                  <DocLinkItem
-                    key={`tutorial-item-${index}`}
-                    {...item}
-                  />
-                ))}
-              </div>
+        {Object.values(TUTORIALS_ITEMS).map((tutorialItem, index) => (
+          <div key={`tutorial-map-${index}`} className="flex flex-col gap-6">
+            <div className="mt-4 text-base font-medium tracking-[-0.48px] text-[#eee]">
+              {tutorialItem.label}
             </div>
-          );
-        })}
+            <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-3">
+              {tutorialItem.items.map((item: DocLinkItemProps, index: number) => (
+                <DocLinkItem key={`tutorial-item-${index}`} {...item} />
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
         <div />
