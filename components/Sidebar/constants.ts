@@ -189,6 +189,10 @@ export const SIDEBAR_ITEMS = [
             name: 'Smart FT with WASM',
             href: '/docs/tutorials/use-tokens/smart-ft-with-wasm',
           },
+          {
+            name: 'Asset FT Extension',
+            href: '/docs/tutorials/use-tokens/asset-ft-extension',
+          },
         ],
       },
       {

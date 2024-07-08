@@ -1,27 +1,26 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './smart-ft-with-wasm.mdx';
+import Component from './asset-ft-extension.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Developing Smart FT with WASM on Coreum | Coreum Developers",
-  description: "Learn how to develop, deploy, and utilize a WASM-based fungible token with airdrop functionality on the Coreum blockchain. This tutorial covers all the necessary steps from environment setup to smart contract interactions.",
+  title: "Smart FT Extension on Coreum | Coreum Developers",
+  description: "Learn how to develop, deploy, and utilize a WASM-based extension for fungible tokens on the Coreum blockchain. This tutorial covers all the necessary steps from environment setup to extension interactions.",
   keywords: [
     'Coreum Smart FT',
+    'Smart FT Extension',
     'WASM Blockchain Development',
-    'Fungible Token Airdrop',
     'Coreum Blockchain Tutorial',
     'Smart Contract Development',
     'Blockchain Token Deployment',
     'Rust and WASM on Coreum',
     'Coreum WASM Tutorial',
-    'Decentralized Token Airdrop',
     'Coreum Development Environment'
   ],
   openGraph: {
     type: 'website',
-    description: "Comprehensive guide to developing, deploying, and managing WASM-based fungible tokens with airdrop functionality on the Coreum blockchain. Includes detailed instructions and code snippets.",
-    siteName: "Developing Smart FT with WASM on Coreum | Coreum Developers",
+    description: "Comprehensive guide to developing, deploying, and managing WASM-based extension for fungible tokens on the Coreum blockchain. Includes detailed instructions and code snippets.",
+    siteName: "Developing Smart FT Extension with WASM on Coreum | Coreum Developers",
     images: [{
       url: 'https://test.docs.coreum.dev/images/og.jpg',
     }],
@@ -31,12 +30,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Create and Manage NFT with Golang',
-    href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-golang',
+    label: 'Smart FT with WASM',
+    href: '/docs/tutorials/use-tokens/smart-ft-with-wasm',
   };
   const nextNavigationItem = {
-    label: 'Asset FT Extension',
-    href: '/docs/tutorials/use-tokens/asset-ft-extension',
+    label: 'CEX Integration',
+    href: '/docs/tutorials/integrate-coreum/cex-integrations',
   };
 
   return (
