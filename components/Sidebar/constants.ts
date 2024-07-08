@@ -391,6 +391,10 @@ export const SIDEBAR_ITEMS = [
             name: 'Set connection config',
             href: '/docs/become-validator/essentials/connection-config',
           },
+          {
+            name: 'Network Variables',
+            href: '/docs/become-validator/essentials/network-variables',
+          },
         ],
       },
       {
