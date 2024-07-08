@@ -69,6 +69,11 @@ export const SIDEBAR_ITEMS = [
             children: [],
           },
           {
+            name: 'Set Up cored Using Docker',
+            href: '/docs/tutorials/get-started/setup-cored-using-docker',
+            children: [],
+          },
+          {
             name: 'Install prebuild macOS',
             href: '/docs/tutorials/get-started/install-prebuild-macos',
             children: [],
@@ -183,6 +188,10 @@ export const SIDEBAR_ITEMS = [
           {
             name: 'Smart FT with WASM',
             href: '/docs/tutorials/use-tokens/smart-ft-with-wasm',
+          },
+          {
+            name: 'Asset FT Extension',
+            href: '/docs/tutorials/use-tokens/asset-ft-extension',
           },
         ],
       },
@@ -383,12 +392,12 @@ export const SIDEBAR_ITEMS = [
             href: '/docs/become-validator/essentials/install-cored',
           },
           {
-            name: 'Setup network variables',
-            href: '/docs/become-validator/essentials/network-variables',
-          },
-          {
             name: 'Set connection config',
             href: '/docs/become-validator/essentials/connection-config',
+          },
+          {
+            name: 'Network Variables',
+            href: '/docs/become-validator/essentials/network-variables',
           },
         ],
       },

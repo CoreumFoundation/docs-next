@@ -5,7 +5,7 @@ This guide will walk you through the steps involved in using the ISO20022 Financ
 ## 1. Open ISO20022 App 
 
 <center className="w-full max-w-full mt-2 mb-6 mx-auto">
-    <img src="/images/tutorials/iso20022/financialSimulator.png" alt="Open Keplr Wallet" />
+    <img src="/images/tutorials/iso20022/financialSimulator.png" alt="Open" />
 </center>
 
 Start by opening ISO20022 Financial Simulator App. <a href="https://iso20022.coreum.com/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">ISO20022</a>
@@ -14,7 +14,7 @@ Start by opening ISO20022 Financial Simulator App. <a href="https://iso20022.cor
 ## 2. How to Create Wallet, Fund Wallet, Generate Keys?
 
 <center className="w-md max-w-md mt-2 mb-6 mx-auto">
-    <img src="/images/tutorials/iso20022/HowItWorks.png" alt="Open Keplr Wallet" />
+    <img src="/images/tutorials/iso20022/HowItWorks.png" alt="Open" />
 </center>
 
 
@@ -63,11 +63,10 @@ The initiator has a balance of 89.94 CORE and $9,000 USD available for transacti
 A smart contract or token schema named "isopayment1715619009468-testcore1kgxrqug2c3qvf0pp8kdntc4jwhc8ym8cwxjswh" is created. This schema likely defines the rules for managing and executing transactions within the simulation.
 
 ### Tokenize Asset (Encrypted ISO Payment)
-An asset is tokenized and encrypted using the ISO20022 financial messaging standard. The tokenized asset is identified as "NFT_ISOPayment1715619009468-0".
+An asset is tokenized, containing an encrypted ISO20022 message. The tokenized asset is identified as "NFT_ISOPayment1715619009468-0".
 
 ### Send and Receive Messages
-Financial Institution A sends a message to Financial Institution B, likely containing transaction details or instructions related to the tokenized asset.
-Confirmation of message receipt is shown, indicating successful communication between the institutions.
+Financial Institution A sends a message to Financial Institution B, After sending and receiving messages, each of the institutions confirms the message receipt, indicating successful communication between the institutions.
 
 ## Financial Institution B (Destination)
 
@@ -84,7 +83,8 @@ Financial Institution B also tokenizes assets, producing two tokenized entries: 
 Financial Institution B sends messages back to Institution A, which are related to the transactions initiated. It confirms the details or acknowledges the actions taken by Institution A.
 
 ## Transaction Confirmation
-Both institutions show a status of "Confirmed" for the activities undertaken. This status indicates that the actions (creation of token schemas, tokenization of assets, and the sending/receiving of messages) were successfully executed and acknowledged by both parties.
+Both institutions show a status of "Confirmed" for the activities undertaken. This Confirmed status comes from the institutions sending a "confirmed" message to the contract, acknowledging the flow of actions such as the creation of token schemas, tokenization of assets, and the sending/receiving of messages.
+
 
 ## Viewing on Explorer
 "View on Explorer" links are associated with each action, allowing participants to verify transaction details on the blockchain explorer. This tool provides transparency and detailed verification of blockchain activities, such as transaction data, token details, and contract interactions.
@@ -199,7 +199,7 @@ testcore1kgxrqug2c3qvf0pp8kdntc4jwhc8ym8cwxjswh
 
 **View Message:** An interface to view the details of the message sent, confirming what was transmitted.
 
-**Message Received Status:** Reports that the message was received but ultimately rejected by Financial Institution B.
+**Message Received Status:** Reports that the message was received but ultimately rejected by Financial Institution B. It was rejected because the financial institution reported it as rejected. Additionally, if a message is rejected, any attached funds are sent back to the initiator.
 
 ## Financial Institution B (Destination)
 
