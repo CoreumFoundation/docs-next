@@ -12,7 +12,7 @@ P.S. If you have issues with `go mod tidy` command, just copy `go.mod` file from
 
 [//]: # '## Skeleton'
 
-!!!include(/docs/tutorials/get-started/golang)!!!
+[Get Started with Golang](/docs/tutorials/get-started/golang)
 
 ## Creating fungible token
 
@@ -148,6 +148,80 @@ if err != nil {
 }
 ```
 
+## Transfer Admin
+Transfer the administrative rights of a fungible token (FT) to another account. This allows the new admin to manage the token, including minting, burning, freezing, and other administrative actions.
+```go
+assetftClient := assetfttypes.NewQueryClient(clientCtx)
+	res, err := assetftClient.Token(ctx, &assetfttypes.QueryTokenRequest{
+		Denom: denom,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("Token admin: %s\n", res.Token.Admin)
+
+	// Transfer admin rights
+	msgTransferAdmin := &assetfttypes.MsgTransferAdmin{
+		Sender:  senderAddress.String(),
+		Account: recipientAddress.String(),
+		Denom:   denom,
+	}
+
+	_, err = client.BroadcastTx(
+		ctx,
+		clientCtx.WithFromAddress(senderAddress),
+		txFactory,
+		msgTransferAdmin,
+	)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Admin transfer message broadcasted successfully")
+```
+
+## Clear Admin
+Remove the administrative rights of a fungible token (FT). Once cleared, no account will have administrative control over the token, meaning no further administrative actions like minting, burning, or freezing can be performed
+```go
+res, err = assetftClient.Token(ctx, &assetfttypes.QueryTokenRequest{
+		Denom: denom,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("Token admin: %s\n", res.Token.Admin)
+
+// Transfer admin rights
+	msgClearAdmin := &assetfttypes.MsgClearAdmin{
+		Sender: recipientAddress.String(),
+		Denom:  denom,
+	}
+
+	_, err = client.BroadcastTx(
+		ctx,
+		clientCtx.WithFromAddress(recipientAddress),
+		txFactory,
+		msgClearAdmin,
+	)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Admin clear message broadcasted successfully")
+
+	res, err = assetftClient.Token(ctx, &assetfttypes.QueryTokenRequest{
+		Denom: denom,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	if res.Token.Admin == "" {
+		fmt.Print("Token admin: no one\n")
+	} else {
+		fmt.Printf("Token admin: %s\n", res.Token.Admin)
+	}
+```
 After doing this, recipient is not allowed to transfer 500_000uabc from its account.
 
 All the other features may be used in a similar fashion. More info is available in

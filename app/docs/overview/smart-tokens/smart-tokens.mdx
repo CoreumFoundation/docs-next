@@ -21,6 +21,9 @@ Currently, the following set of features is available for all Smart Tokens:
 - [IBC (Inter Blockchain Communication) compatibility](#ibc-compatibility)
 - [Smart Contract integration](#smart-contract-integration)
 - [Clawback](#clawback)
+- [Transfering Admin](#transfering-admin)
+- [Clear Admin](#clear-admin)
+- [Extension](#extension)
 
 Upon token issuance, the admin must configure the behaviour of the token and set specific flags
 that will determine which functions can be triggered at a later stage.
@@ -35,6 +38,8 @@ can_global_freeze
 can_send
 token_transferrable_using_ibc
 block_sending_to_smart_contracts
+can_clawback
+token_manged_by_extension
 ```
 
 These flags remain immutable after token issuance and cannot be changed at a later stage.
@@ -190,3 +195,50 @@ Same rules apply to sending tokens over IBC transfer protocol if IBC is enabled 
 
 _**Disclaimer**: if the admin claws back from the escrow address, then it will break the IBC. admins
 should not do this if they want the IBC to work for their token._
+
+<a id="transfering-admin"></a>
+### Transfering Admin
+Each token has an issuer, whose address is a part of the denom forever. The initial admin of the token is the issuer, but the admin role can be transferred to another account. Then, all the privileges of the previous admin will be transferred to the new admin, such as the ability to mint tokens if minting is enabled. The specific privileges and features will be discussed in the next section.
+
+<a id="clear-admin"></a>
+### Clear Admin
+Tokens can also lose their admin forever by clearing admin. Then, no one will have any more privilege than others.
+
+<a id="extension"></a>
+### Extension
+Extension is a powerful feature which lets the admin override some functionalities of the token by attaching a smart contract to the token that can administrate it. When a bank transfer is initiated, the smart contract account receives the amount plus any commission or burn amount if they should be applied, then it is called via a sudo call with the information related to the bank transfer and the context information. The smart contract then can decide to do whatever it decides with the transfer which may include overriding of some behaviors for the features explained before.
+The sudo call is received in the `pub fn sudo(deps: DepsMut<CoreumQueries>, env: Env, msg: SudoMsg)` entry point of the smart contract and the message would be a `ExtensionTransfer` which is defined as follows.
+```rust
+#[cw_serde]
+pub enum SudoMsg {
+    ExtensionTransfer {
+        recipient: String,
+        sender: String,
+        transfer_amount: Uint128,
+        commission_amount: Uint128,
+        burn_amount: Uint128,
+        context: TransferContext,
+    },
+}
+
+#[cw_serde]
+pub struct TransferContext {
+    sender_is_smart_contract: bool,
+    recipient_is_smart_contract: bool,
+    ibc_purpose: IBCPurpose,
+}
+```
+
+The fields are:
+- `recipient`: the account which receives the amount
+- `sender`: the account which sends the amount
+- `transfer_amount`: the amount to be sent
+- `commission_amount`: the amount to be sent times the commission rate of the token (if it is set)
+- `burn_amount`: the amount to be sent times the burn rate of the token (if it is set)
+- `context`: contextual information regarding the transfer which includes:
+- `sender_is_smart_contract`: indicated whether the transfer is instantiated from a smart contract
+- `recipient_is_smart_contract`: indicated whether the transfer is going to be received by a smart contract
+- `ibc_purpose`: if it is an ibc transfer, indicates whether it's an outgoing, incoming, acknowledged or timed-out transfer
+
+_**Note**: The extension feature is not compatible with ibc and block smart contract feature. It will error out if you try
+to enable those features at the same time._

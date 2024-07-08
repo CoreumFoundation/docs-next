@@ -1,8 +1,5 @@
-// import { useSetMobileDevice } from '@/helpers/isMobileDevice';
-import { ProtobufPageContent } from '@/components/ProtobufPage';
-import Component from './protobuf.mdx';
+import { ProtobufPageContent } from '@/app/docs/api/protobuf/ProtobufPageContent';
 import { Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "Coreum Protobuf Documentation | Coreum Developers",
@@ -30,13 +27,8 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-
   return (
-    <ProtobufPageContent>
-      <div className="flex flex-col w-full">
-        <Component />
-      </div>
-    </ProtobufPageContent>
+    <ProtobufPageContent />
   );
 };
 

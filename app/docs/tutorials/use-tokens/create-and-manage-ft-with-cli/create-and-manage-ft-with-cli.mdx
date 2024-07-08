@@ -54,7 +54,7 @@ Please note that each subsequent section depends on the previous one.
 -   Use the following command to issue your first FT:
 
 ```bash
-  # cored tx assetft issue [symbol] [subunit] [precision] [initial_amount] [description] --uri --uri_hash --from [admin] --features=burning,freezing,minting,whitelisting --burn-rate=0.12 --send-commission-rate=0.2 [flags]
+  # cored tx assetft issue [symbol] [subunit] [precision] [initial_amount] [description] --uri --uri_hash --from [admin] --features=burning,freezing,minting,whitelisting --burn-rate=0.12 --send-commission-rate=0.2 --extension_code_id=1 --extension_label=my-extension --extension_funds=100000ABC-testcore1adst6w4e79tddzhcgaru2l2gms8jjep6a4caa7 --extension_issuance_msg={} [flags]
   cored tx assetft issue MYFT cmyft 2 100 "My first FT token" --from $FT_ADMIN --features=burning,freezing,minting,whitelisting --send-commission-rate=0.02 --node=$RPC_URL --chain-id=$CHAIN_ID
   # where:
   # MYFT - token symbol, is the display name of a token used mostly for UI purposes. An example of a token symbol is BTC.
@@ -336,6 +336,22 @@ You can also check the total supply of the token by running the following comman
 cored q bank total --denom=$FT_DENOM --node=$RPC_URL
 # amount: "190"
 ```
+
+## Transfer Admin
+Transfer the administrative rights of a fungible token (FT) to another account. This allows the new admin to manage the token, including minting, burning, freezing, and other administrative actions.
+
+```bash
+cored tx assetft transfer-admin $FT_RECEIVER_1 $FT_DENOM --from $FT_ADMIN --node=$RPC_URL --chain-id=$CHAIN_ID
+```
+
+## Clear Admin 
+Tokens can also lose their admin forever by clearing admin.
+Then, no one will have any more privilege than others.
+
+```bash
+cored tx assetft clear-admin $FT_DENOM --from $FT_ADMIN --node=$RPC_URL --chain-id=$CHAIN_ID
+```
+
 
 Note that neither burn-rate nor send-commission-rate is applied in this case.
 

@@ -35,8 +35,8 @@ const Page = () => {
     href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-golang',
   };
   const nextNavigationItem = {
-    label: 'CEX Integration',
-    href: '/docs/tutorials/integrate-coreum/cex-integrations',
+    label: 'Asset FT Extension',
+    href: '/docs/tutorials/use-tokens/asset-ft-extension',
   };
 
   return (
