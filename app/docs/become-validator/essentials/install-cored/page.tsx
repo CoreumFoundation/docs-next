@@ -1,4 +1,3 @@
-
 import Component from './install-cored.mdx';
 
 import { Metadata } from 'next';
