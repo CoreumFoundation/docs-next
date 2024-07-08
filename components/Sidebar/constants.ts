@@ -383,12 +383,12 @@ export const SIDEBAR_ITEMS = [
             href: '/docs/become-validator/essentials/install-cored',
           },
           {
-            name: 'Setup network variables',
-            href: '/docs/become-validator/essentials/network-variables',
-          },
-          {
             name: 'Set connection config',
             href: '/docs/become-validator/essentials/connection-config',
+          },
+          {
+            name: 'Setup network variables',
+            href: '/docs/become-validator/essentials/network-variables',
           },
         ],
       },
