@@ -170,11 +170,6 @@ const TUTORIALS_ITEMS = {
         href: '/docs/tutorials/use-tokens/smart-ft-with-wasm',
         external: false,
       },
-      {
-        label: 'Asset FT Extension',
-        href: '/docs/tutorials/use-tokens/asset-ft-extension',
-        external: false,
-      },
     ],
   },
   integrate_coreum: {
