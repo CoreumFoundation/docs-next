@@ -69,6 +69,11 @@ export const SIDEBAR_ITEMS = [
             children: [],
           },
           {
+            name: 'Set Up cored Using Docker',
+            href: '/docs/tutorials/get-started/setup-cored-using-docker',
+            children: [],
+          },
+          {
             name: 'Install prebuild macOS',
             href: '/docs/tutorials/get-started/install-prebuild-macos',
             children: [],
@@ -383,12 +388,12 @@ export const SIDEBAR_ITEMS = [
             href: '/docs/become-validator/essentials/install-cored',
           },
           {
-            name: 'Set connection config',
-            href: '/docs/become-validator/essentials/connection-config',
-          },
-          {
             name: 'Setup network variables',
             href: '/docs/become-validator/essentials/network-variables',
+          },
+          {
+            name: 'Set connection config',
+            href: '/docs/become-validator/essentials/connection-config',
           },
         ],
       },
@@ -464,4 +469,3 @@ export const SIDEBAR_ITEMS = [
     external: true,
   }
 ];
-
