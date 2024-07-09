@@ -79,8 +79,8 @@ Coming soon...
 ```bash
 export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
 export COREUM_CHAIN_ID="coreum-testnet-1"
-export NEW_CORED_VERSION="v4.0.0"
-export UPGRADE="v4"
+export NEW_CORED_VERSION="v4.0.1"
+export UPGRADE="coreum%20v4"
 
 # If you used your custom path to coreum, change it correspondingly
 export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
@@ -103,7 +103,7 @@ chmod a+x $HOME/$COREUM_BINARY_NAME
 $HOME/$COREUM_BINARY_NAME version
 ```
 
-The printed version should match `v4.0.0`. If the version doesn't match stop following this tutorial immediately!
+The printed version should match `v4.0.1`. If the version doesn't match stop following this tutorial immediately!
 Continuing will lead to serious problems.
 
 [//]: # (The printed version should match the one specified in the `cored q upgrade plan` `info` field.)
