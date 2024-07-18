@@ -66,26 +66,18 @@ Otherwise, after reaching that height, your validator will stop and risk to be s
 
 ### Mainnet v4 upgrade
 
-Coming soon...
-
-### Testnet v4 upgrade
-
 #### Steps
-
-* Stop the `core` or `cosmovisor` if you use the `cosmovisor`.
 
 * Set the next environment variables:
 
 ```bash
 export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
-export COREUM_CHAIN_ID="coreum-testnet-1"
+export COREUM_CHAIN_ID="coreum-mainnet-1"
 export NEW_CORED_VERSION="v4.0.1"
-export UPGRADE="coreum%20v4"
+export UPGRADE="v4"
 
 # If you used your custom path to coreum, change it correspondingly
 export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
-
-export COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
 ```
 
 * Download and verify the binary:
@@ -112,7 +104,7 @@ Continuing will lead to serious problems.
 
 * Verify that the `cored` binary is executable by the user you used to run cosmovisor.
 
-* Replace the `cored` binary:
+* Move the `cored` binary:
 
 ```bash
 # Cosmovisor requires a new binary to be placed in the precise location. Create appropriate directory:
@@ -122,6 +114,56 @@ mkdir -p "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin"
 mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored"
 ```
 
-* Start the `cored` or `cosmovisor` if you use the `cosmovisor`.
+:::
+
+### Testnet v4 upgrade
+
+#### Steps
+
+* Set the next environment variables:
+
+```bash
+export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+export COREUM_CHAIN_ID="coreum-testnet-1"
+export NEW_CORED_VERSION="v4.0.1"
+export UPGRADE="coreum%20v4"
+
+# If you used your custom path to coreum, change it correspondingly
+export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
+```
+
+* Download and verify the binary:
+
+```bash
+cd $HOME
+curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$NEW_CORED_VERSION/$COREUM_BINARY_NAME
+
+# make it an executable.
+# NOTE: This is super important to set binary's executable permission to everyone (`a+x`), not only for the owner (`u+x`).
+# Otherwise `cosmovisor` will refuse to start the binary.
+chmod a+x $HOME/$COREUM_BINARY_NAME
+
+# Then verify the version:
+$HOME/$COREUM_BINARY_NAME version
+```
+
+The printed version should match `v4.0.1`. If the version doesn't match stop following this tutorial immediately!
+Continuing will lead to serious problems.
+
+[//]: # (The printed version should match the one specified in the `cored q upgrade plan` `info` field.)
+
+[//]: # (WARNING: If the version doesn't match stop following this tutorial immediately! Continuing will lead to serious problems.)
+
+* Verify that the `cored` binary is executable by the user you used to run cosmovisor.
+
+* Move the `cored` binary:
+
+```bash
+# Cosmovisor requires a new binary to be placed in the precise location. Create appropriate directory:
+mkdir -p "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin"
+
+# Replace the new binary there
+mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored"
+```
 
 :::
