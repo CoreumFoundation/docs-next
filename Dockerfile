@@ -19,8 +19,11 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Debugging: Check if the ibc-wasm-transfer.mdx file exists
-RUN ls -la ./app/docs/tutorials/ibc/
+# Set the DOCS_PATH environment variable
+ENV DOCS_PATH=/app/docs
+
+# Debugging: Check if the docs directory exists
+RUN ls -la ./app/docs/
 
 ARG PUBLIC_URL
 ENV NEXT_PUBLIC_FE_URL=$PUBLIC_URL
@@ -28,11 +31,15 @@ ENV NEXT_PUBLIC_FE_URL=$PUBLIC_URL
 # If using npm comment out above and use below instead
 RUN npm run build
 
+# Run the Algolia indexing script
+RUN node scripts/build-algolia-search.js
+
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
+ENV DOCS_PATH=/app/docs
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
@@ -40,6 +47,7 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/docs ./docs
 
 # Set the correct permission for prerender cache
 RUN mkdir .next
