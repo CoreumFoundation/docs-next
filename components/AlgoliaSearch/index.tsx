@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect, useRef, ChangeEvent } from 'react';
 import algoliasearch from 'algoliasearch/lite';
 import { createAutocomplete, AutocompleteState, AutocompleteOptions } from '@algolia/autocomplete-core';
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia';
@@ -308,9 +308,12 @@ const SearchBarModal: React.FC = () => {
     window.location.href = processedUrl;
   };
 
+
   const inputProps = getInputProps({ inputElement: null });
   const panelProps = getPanelProps();
   const rootProps = getRootProps({ inputElement: null });
+
+  
 
   const allHits = autocompleteState.collections.flatMap(collection => collection.items);
 
@@ -388,13 +391,14 @@ const SearchBarModal: React.FC = () => {
                   <Search size={20} className="text-gray-400" />
                 </div>
                 <div className="relative flex-grow">
-                  <input
-                    ref={inputRef}
-                    className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:text-gray-100 sm:text-sm"
-                    {...inputProps}
-                    placeholder="Search docs"
-                    onKeyDown={handleKeyDown}
-                  />
+               {/* @ts-ignore */}
+                <input
+                 ref={inputRef}
+                 className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:text-gray-100 sm:text-sm"
+                 {...inputProps}
+                 placeholder="Search docs"
+                 onKeyDown={handleKeyDown}
+               />
                   {autocompleteState.query && (
                     <button
                       className="absolute right-3 top-1/2 transform -translate-y-1/2"
