@@ -11,9 +11,10 @@ dotenv.config();
 const client = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     process.env.ALGOLIA_ADMIN_KEY
-  );
+);
 
-const CONTENT_PATH = path.join(process.cwd(), '../app/docs');
+// Use environment variable for CONTENT_PATH, with a fallback
+const CONTENT_PATH = process.env.DOCS_PATH || path.join(process.cwd(), 'docs');
 const MAX_RECORD_SIZE = 8000; // Keeping some buffer below the 10KB limit
 
 function convertFilePathToUrl(filePath) {
@@ -39,6 +40,10 @@ function convertFilePathToUrl(filePath) {
 }
 
 function getMdxFiles(dirPath) {
+    if (!fs.existsSync(dirPath)) {
+        console.error(`Directory does not exist: ${dirPath}`);
+        return [];
+    }
     let files = [];
     const entries = fs.readdirSync(dirPath, { withFileTypes: true });
     for (const entry of entries) {
@@ -82,16 +87,16 @@ function processContent(content, data, filePath) {
     sections.forEach((section, sectionIndex) => {
         const [title, ...contentParts] = section.split('\n');
         const sectionContent = contentParts.join('\n').trim();
-        
+
         // Split the section content into subsections
         const subsections = sectionContent.split(/^###\s/m).filter(Boolean);
-        
+
         subsections.forEach((subsection, subsectionIndex) => {
             const [subtitle, ...subcontentParts] = subsection.split('\n');
             const subsectionContent = subcontentParts.join('\n').trim();
-            
+
             const chunks = splitContent(subsectionContent);
-            
+
             chunks.forEach((chunk, chunkIndex) => {
                 records.push({
                     objectID: `${path.relative(CONTENT_PATH, filePath).replace(/\\/g, '/').replace(/\..+$/, '')}-${sectionIndex}-${subsectionIndex}-${chunkIndex}`,
@@ -120,8 +125,6 @@ function processContent(content, data, filePath) {
     return records;
 }
 
-
-
 async function getAllMdxData() {
     const files = getMdxFiles(CONTENT_PATH);
     let records = [];
@@ -141,7 +144,7 @@ async function getAllMdxData() {
 
 async function configureAlgoliaIndex() {
     const index = client.initIndex("coreumDocs");
-  
+
     try {
         await index.setSettings({
             searchableAttributes: [
@@ -163,6 +166,9 @@ async function configureAlgoliaIndex() {
 }
 
 async function pushDataToAlgolia() {
+    console.log(`Searching for MDX files in: ${CONTENT_PATH}`);
+    console.log(`Current working directory: ${process.cwd()}`);
+
     try {
         const docs = await getAllMdxData();
         const index = client.initIndex("coreumDocs");
