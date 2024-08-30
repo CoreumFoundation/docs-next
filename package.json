@@ -11,7 +11,7 @@
     "generate-pages": "tsc scripts/generateRemotePages.ts && node scripts/generateRemotePages.js"
   },
   "dependencies": {
-    "@cookbookdev/docsbot": "^4.8.8",
+    "@cookbookdev/coreum": "^1.0.2",
     "@cosmjs/crypto": "^0.32.3",
     "@cosmjs/proto-signing": "^0.32.3",
     "@headlessui/react": "^1.7.18",
