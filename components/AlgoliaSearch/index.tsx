@@ -4,14 +4,10 @@ import { createAutocomplete, AutocompleteState, AutocompleteOptions } from '@alg
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia';
 import '@algolia/autocomplete-theme-classic';
 import { ChevronDown, ChevronUp, ChevronRight, X, Search } from 'lucide-react';
-import { highlight } from 'highlightjs';
 
 
 const AlgoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 const AlgoliaApiKey = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY;
-
-console.log('Algolia App ID:', AlgoliaAppId);
-console.log('Algolia API Key:', AlgoliaApiKey);
 
 if (!AlgoliaAppId || !AlgoliaApiKey) {
   throw new Error('Algolia App ID or API Key is missing');
