@@ -6,6 +6,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Dropdown } from '../Dropdown';
 import AskCookbook from '@cookbookdev/docsbot/react';
+import "../index.css";
+
+// Import dynamic from Next.js
+import dynamic from 'next/dynamic';
+
+// Dynamically import the AlgoliaSearch component with SSR disabled
+const AutocompleteComponent = dynamic(() => import('@/components/AlgoliaSearch'), {
+  ssr: false, // Disable server-side rendering for this component
+});
 
 export const Navbar = () => {
   const dropdownItems = [
@@ -75,13 +84,16 @@ export const Navbar = () => {
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center gap-3">
-                <div
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
-                >
+                <div className="flex items-center gap-2">
                   <Dropdown
                     label="Join Coreum"
                     items={dropdownItems}
                   />
+                   <div className="algolia-search flex items-center">
+                   <AutocompleteComponent />
+
+                  </div>
+
                 </div>
                 <div
                   className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
