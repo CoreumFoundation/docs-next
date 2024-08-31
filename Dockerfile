@@ -30,15 +30,12 @@ ENV NEXT_PUBLIC_FE_URL=$PUBLIC_URL
 
 # Set Algolia environment variables
 ARG NEXT_PUBLIC_ALGOLIA_APP_ID
-# ARG ALGOLIA_ADMIN_KEY
+ARG NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY
 ENV NEXT_PUBLIC_ALGOLIA_APP_ID=$NEXT_PUBLIC_ALGOLIA_APP_ID
-# ENV ALGOLIA_ADMIN_KEY=$ALGOLIA_ADMIN_KEY
+ENV NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY=$NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY
 
 # If using npm comment out above and use below instead
 RUN npm run build
-
-# Run the Algolia indexing script
-# RUN node scripts/build-algolia-search.js
 
 # Production image, copy all the files and run next
 FROM base AS runner
