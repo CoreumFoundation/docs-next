@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "generate": "tsc scripts/generate.ts && node scripts/generate.js",
-    "generate-pages": "tsc scripts/generateRemotePages.ts && node scripts/generateRemotePages.js",
-    "postbuild": "node ./scripts/build-algolia-search.js"
+    "generate-pages": "tsc scripts/generateRemotePages.ts && node scripts/generateRemotePages.js"
   },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.17.4",
