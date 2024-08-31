@@ -19,8 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: 'Automated Version Bump'
-        uses: 'phips28/gh-action-bump-version@master'
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -43,49 +43,56 @@ jobs:
         include:
           - env: "devnet"
             WEBHOOK_ENDPOINT: https://keel.devnet-1.coreum.dev/v1/webhooks/native
-            PUBLIC_URL: https://devnet.example.com
+            KEEL_USERNAME: KEEL_DEVNET_USERNAME
+            KEEL_PASSWORD: KEEL_DEVNET_PASSWORD
+            PROJECT_ID: GKE_PROJECT
+            GKE_SA_KEY: GKE_SA_KEY
+            TAG: ${{ needs.bump_version.outputs.tag }}
           - env: "testnet"
             WEBHOOK_ENDPOINT: https://keel.testnet-1.coreum.dev/v1/webhooks/native
-            PUBLIC_URL: https://testnet.example.com
+            KEEL_USERNAME: KEEL_TESTNET_USERNAME
+            KEEL_PASSWORD: KEEL_TESTNET_PASSWORD
+            PROJECT_ID: GKE_TESTNET_PROJECT
+            GKE_SA_KEY: GKE_TESTNET_SA_KEY
+            TAG: ${{ needs.bump_version.outputs.tag }}
           - env: "mainnet"
             WEBHOOK_ENDPOINT: https://keel.mainnet-1.coreum.dev/v1/webhooks/native
-            PUBLIC_URL: https://mainnet.example.com
+            KEEL_USERNAME: KEEL_MAINNET_USERNAME
+            KEEL_PASSWORD: KEEL_MAINNET_PASSWORD
+            PROJECT_ID: GKE_MAINNET_PROJECT
+            GKE_SA_KEY: GKE_MAINNET_SA_KEY
+            TAG: ${{ needs.bump_version.outputs.tag }}
 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Setup gcloud CLI
       - uses: google-github-actions/setup-gcloud@v0.2.1
         with:
-          service_account_key: ${{ secrets.GKE_SA_KEY }}
-          project_id: ${{ secrets.PROJECT_ID }}
+          service_account_key: ${{ secrets[matrix.GKE_SA_KEY] }}
+          project_id: ${{ secrets[matrix.PROJECT_ID] }}
 
-      # Configure Docker to use the gcloud command-line tool as a credential
-      # helper for authentication
       - run: |-
           gcloud --quiet auth configure-docker
 
-      # Build the Docker image
       - name: Build
+        env:
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
         run: |-
           docker build \
-            --tag "gcr.io/${{ secrets.PROJECT_ID }}/$IMAGE:${{ matrix.TAG }}" \
-            --tag "gcr.io/${{ secrets.PROJECT_ID }}/$IMAGE:latest" \
-            --build-arg NEXT_PUBLIC_ALGOLIA_APP_ID=${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }} \
-            --build-arg NEXT_PUBLIC_ALGOLIA_API_KEY=${{ secrets.NEXT_PUBLIC_ALGOLIA_API_KEY }} \
-            --build-arg ALGOLIA_ADMIN_KEY=${{ secrets.ALGOLIA_ADMIN_KEY }} \
-            --build-arg PUBLIC_URL=${{ matrix.PUBLIC_URL }} \
+            --build-arg ALGOLIA_APP_ID=${ALGOLIA_APP_ID} \
+            --build-arg ALGOLIA_API_KEY=${ALGOLIA_API_KEY} \
+            --tag "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:${{ matrix.TAG }}" \
+            --tag "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:latest" \
             .
 
-      # Push the Docker image to Google Container Registry
       - name: Publish
         run: |-
-          docker push "gcr.io/${{ secrets.PROJECT_ID }}/$IMAGE:${{ matrix.TAG }}" && \
-          docker push "gcr.io/${{ secrets.PROJECT_ID }}/$IMAGE:latest"
+          docker push "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:${{ matrix.TAG }}" && \
+          docker push "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:latest"
 
-      # Send webhook to keel so it triggers image update.
       - name: Update Deployment
         run: |-
-          curl -v -u "${{ secrets.KEEL_USERNAME }}:${{ secrets.KEEL_PASSWORD }}" -X POST ${{ matrix.WEBHOOK_ENDPOINT }} -H "Content-Type: application/json" -d "{\"name\": \"gcr.io/${{ secrets.PROJECT_ID }}/$IMAGE\", \"tag\": \"${{ matrix.TAG }}\"}"
+          curl -v -u "${{ secrets[matrix.KEEL_USERNAME] }}:${{ secrets[matrix.KEEL_PASSWORD] }}" -X POST ${{ matrix.WEBHOOK_ENDPOINT }}  -H "Content-Type: application/json" -d "{\"name\": \"gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE\", \"tag\": \"${{ matrix.TAG }}\"}"
