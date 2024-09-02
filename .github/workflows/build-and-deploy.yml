@@ -76,17 +76,24 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
 
-          - name: Build
-          env:
-            NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
-            NEXT_PUBLIC_ALGOLIA_API_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_API_KEY }}
-          run: |-
-            docker build \
-              --build-arg NEXT_PUBLIC_ALGOLIA_APP_ID=${NEXT_PUBLIC_ALGOLIA_APP_ID} \
-              --build-arg NEXT_PUBLIC_ALGOLIA_API_KEY=${NEXT_PUBLIC_ALGOLIA_API_KEY} \
-              --tag "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:${{ matrix.TAG }}" \
-              --tag "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:latest" \
-              .
+      - name: Debug
+        run: |
+          echo "Project ID: ${{ secrets[matrix.PROJECT_ID] }}"
+          echo "Image: $IMAGE"
+          echo "Tag: ${{ matrix.TAG }}"
+
+      - name: Build
+        env:
+          NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
+          NEXT_PUBLIC_ALGOLIA_API_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_API_KEY }}
+        run: |-
+          docker build \
+            --build-arg NEXT_PUBLIC_ALGOLIA_APP_ID=${NEXT_PUBLIC_ALGOLIA_APP_ID} \
+            --build-arg NEXT_PUBLIC_ALGOLIA_API_KEY=${NEXT_PUBLIC_ALGOLIA_API_KEY} \
+            --tag "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:${{ matrix.TAG }}" \
+            --tag "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:latest" \
+            .
+
       - name: Publish
         run: |-
           docker push "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:${{ matrix.TAG }}" && \
@@ -94,4 +101,4 @@ jobs:
 
       - name: Update Deployment
         run: |-
-          curl -v -u "${{ secrets[matrix.KEEL_USERNAME] }}:${{ secrets[matrix.KEEL_PASSWORD] }}" -X POST ${{ matrix.WEBHOOK_ENDPOINT }}  -H "Content-Type: application/json" -d "{\"name\": \"gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE\", \"tag\": \"${{ matrix.TAG }}\"}"
+          curl -v -u "${{ secrets[matrix.KEEL_USERNAME] }}:${{ secrets[matrix.KEEL_PASSWORD] }}" -X POST ${{ matrix.WEBHOOK_ENDPOINT }} -H "Content-Type: application/json" -d "{\"name\": \"gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE\", \"tag\": \"${{ matrix.TAG }}\"}"
