@@ -19,8 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name:  'Automated Version Bump'
-        uses:  'phips28/gh-action-bump-version@master'
+      - name: 'Automated Version Bump'
+        uses: 'phips28/gh-action-bump-version@master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -76,18 +76,17 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
 
-      - name: Build
-        env:
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-        run: |-
-          docker build \
-            --build-arg ALGOLIA_APP_ID=${ALGOLIA_APP_ID} \
-            --build-arg ALGOLIA_API_KEY=${ALGOLIA_API_KEY} \
-            --tag "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:${{ matrix.TAG }}" \
-            --tag "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:latest" \
-            .
-
+          - name: Build
+          env:
+            NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
+            NEXT_PUBLIC_ALGOLIA_API_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_API_KEY }}
+          run: |-
+            docker build \
+              --build-arg NEXT_PUBLIC_ALGOLIA_APP_ID=${NEXT_PUBLIC_ALGOLIA_APP_ID} \
+              --build-arg NEXT_PUBLIC_ALGOLIA_API_KEY=${NEXT_PUBLIC_ALGOLIA_API_KEY} \
+              --tag "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:${{ matrix.TAG }}" \
+              --tag "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:latest" \
+              .
       - name: Publish
         run: |-
           docker push "gcr.io/${{ secrets[matrix.PROJECT_ID] }}/$IMAGE:${{ matrix.TAG }}" && \
