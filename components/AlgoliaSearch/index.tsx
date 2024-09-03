@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useRef, ChangeEvent } from 'react';
 import algoliasearch from 'algoliasearch/lite';
-import { createAutocomplete, AutocompleteState, AutocompleteOptions } from '@algolia/autocomplete-core';
+import { createAutocomplete, AutocompleteApi, AutocompleteState, AutocompleteOptions } from '@algolia/autocomplete-core';
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia';
 import '@algolia/autocomplete-theme-classic';
 import { ChevronDown, ChevronUp, ChevronRight, X, Search } from 'lucide-react';
@@ -30,6 +30,19 @@ type AutocompleteHit = {
     lvl4?: string;
     lvl5?: string;
   };
+};
+// Define the type for AutocompleteApi with your custom type (AutocompleteHit)
+type AutocompleteInstance = AutocompleteApi<AutocompleteHit>;
+
+// AutocompleteState<AutocompleteHit> type, you ensure that setAutocompleteState will accept the new state without any type errors.
+const initialAutocompleteState: AutocompleteState<AutocompleteHit> = {
+  collections: [],
+  completion: null,
+  context: {},
+  isOpen: false,
+  query: '',
+  activeItemId: null,
+  status: 'idle',
 };
 
 const MAX_VISIBLE_RESULTS = 3;
@@ -212,6 +225,7 @@ const groupHitsByHierarchy = (hits: AutocompleteHit[]) => {
   });
   return groupedHits;
 };
+
 const EnhancedSearchResults: React.FC<{ 
   hits: AutocompleteHit[]; 
   onSelect: (url: string) => void; 
@@ -247,73 +261,77 @@ const EnhancedSearchResults: React.FC<{
 
 const SearchBarModal: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [autocompleteState, setAutocompleteState] = useState<AutocompleteState<AutocompleteHit>>({
-    collections: [],
-    completion: null,
-    context: {},
-    isOpen: false,
-    query: '',
-    activeItemId: null,
-    status: 'idle',
-  });
+  const [autocompleteState, setAutocompleteState] = useState(initialAutocompleteState);
+
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const autocomplete = useMemo(
-    () =>
-      createAutocomplete({
-        onStateChange({ state }) {
-          setAutocompleteState(state);
-          setSelectedItemIndex(-1); // Reset selection when state changes
-        },
-        getSources() {
-          return [
-            {
-              sourceId: 'coreumDocs',
-              getItems({ query }) {
-                return getAlgoliaResults({
-                  searchClient,
-                  queries: [
-                    {
-                      indexName: 'coreumDocs',
-                      query,
-                      params: {
-                        hitsPerPage: 20,
-                        attributesToRetrieve: ['title', 'description', 'url', 'hierarchy'],
-                        attributesToSnippet: ['description:50'],
-                        snippetEllipsisText: '...',
-                        distinct: true,
-                      },
+  const autocompleteRef = useRef<AutocompleteInstance | null>(null);
+
+
+  const openModal = () => {
+    // Initialize createAutocomplete when opening the modal
+    autocompleteRef.current = createAutocomplete({
+      onStateChange({ state }) {
+        setAutocompleteState(state);
+        setSelectedItemIndex(-1); // Reset selection when state changes
+      },
+      getSources() {
+        return [
+          {
+            sourceId: 'coreumDocs',
+            getItems({ query }) {
+              return getAlgoliaResults({
+                searchClient,
+                queries: [
+                  {
+                    indexName: 'coreumDocs',
+                    query,
+                    params: {
+                      hitsPerPage: 20,
+                      attributesToRetrieve: ['title', 'description', 'url', 'hierarchy'],
+                      attributesToSnippet: ['description:50'],
+                      snippetEllipsisText: '...',
+                      distinct: true,
                     },
-                  ],
-                });
-              },
+                  },
+                ],
+              });
             },
-          ];
-        },
-      } as AutocompleteOptions<AutocompleteHit>),
-    []
-  );
+          },
+        ];
+      },
+    });
 
-  const { getInputProps, getRootProps, getPanelProps, getListProps } = autocomplete;
+    setIsModalOpen(true);
+  };
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // Reset state when closing the modal
+    setAutocompleteState({
+      collections: [],
+      completion: null,
+      context: {},
+      isOpen: false,
+      query: '',
+      activeItemId: null,
+      status: 'idle',
+    });
+    setSelectedItemIndex(-1);
+    autocompleteRef.current = null; // Clear the autocomplete instance
+  };
 
   const handleSelect = (url: string) => {
     closeModal();
-    // Remove extra "iso20022" if present
     const processedUrl = url.replace(/\/iso20022$/, '');
     window.location.href = processedUrl;
   };
 
-
-  const inputProps = getInputProps({ inputElement: null });
-  const panelProps = getPanelProps();
-  const rootProps = getRootProps({ inputElement: null });
-
-  
+  const inputProps = autocompleteRef.current?.getInputProps({ inputElement: null });
+  const panelProps = autocompleteRef.current?.getPanelProps();
+  const rootProps = autocompleteRef.current?.getRootProps({ inputElement: null });
 
   const allHits = autocompleteState.collections.flatMap(collection => collection.items);
 
@@ -321,13 +339,13 @@ const SearchBarModal: React.FC = () => {
     switch (event.key) {
       case 'ArrowDown':
         event.preventDefault();
-        setSelectedItemIndex(prevIndex => 
+        setSelectedItemIndex(prevIndex =>
           prevIndex < allHits.length - 1 ? prevIndex + 1 : prevIndex
         );
         break;
       case 'ArrowUp':
         event.preventDefault();
-        setSelectedItemIndex(prevIndex => 
+        setSelectedItemIndex(prevIndex =>
           prevIndex > 0 ? prevIndex - 1 : -1
         );
         break;
@@ -365,9 +383,19 @@ const SearchBarModal: React.FC = () => {
 
   return (
     <>
+      {/* Mobile search button */}
       <button
         onClick={openModal}
-        className="flex items-center space-x-2 bg-gray-800 text-white rounded-md px-3 py-1.5 hover:bg-green-600 transition-colors duration-200 focus:outline-none"
+        className="md:hidden flex items-center justify-center w-10 h-10 text-white"
+        aria-label="Search"
+      >
+        <Search size={20} />
+      </button>
+
+      {/* Desktop search button */}
+      <button
+        onClick={openModal}
+        className="hidden md:flex items-center space-x-2 bg-gray-800 text-white rounded-md px-3 py-1.5 hover:bg-green-600 transition-colors duration-200 focus:outline-none"
       >
         <Search size={16} />
         <span className="text-sm">Search</span>
@@ -376,9 +404,11 @@ const SearchBarModal: React.FC = () => {
           <span className="bg-gray-700 text-xs px-1 py-0.5 rounded">K</span>
         </div>
       </button>
+
+      {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-16">
-          <div ref={modalRef} className="bg-gray-900 w-full max-w-2xl rounded-lg shadow-lg flex flex-col" style={{ maxHeight: 'calc(100vh - 8rem)' }}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-16 px-4 sm:px-6 md:px-8">
+          <div ref={modalRef} className="bg-gray-900 w-full max-w-2xl rounded-lg shadow-lg flex flex-col" style={{ maxHeight: 'calc(100vh - 2rem)' }}>
             <div className="flex justify-between items-center p-4 border-b border-gray-700">
               <h2 className="text-2xl font-semibold text-white">Search docs</h2>
               <button onClick={closeModal} className="text-gray-400 hover:text-white transition-colors duration-150">
@@ -391,18 +421,18 @@ const SearchBarModal: React.FC = () => {
                   <Search size={20} className="text-gray-400" />
                 </div>
                 <div className="relative flex-grow">
-               {/* @ts-ignore */}
-                <input
-                 ref={inputRef}
-                 className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:text-gray-100 sm:text-sm"
-                 {...inputProps}
-                 placeholder="Search docs"
-                 onKeyDown={handleKeyDown}
-               />
+                {/* @ts-ignore */}
+                  <input
+                    ref={inputRef}
+                    className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:text-gray-100 sm:text-sm"
+                    {...inputProps}
+                    placeholder="Search docs"
+                    onKeyDown={handleKeyDown}
+                  />
                   {autocompleteState.query && (
                     <button
                       className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                      onClick={() => autocomplete.setQuery('')}
+                      onClick={() => autocompleteRef.current?.setQuery('')}
                     >
                       <X size={20} className="text-gray-400 hover:text-gray-500" />
                     </button>
@@ -438,4 +468,5 @@ const SearchBarModal: React.FC = () => {
     </>
   );
 };
+
 export default SearchBarModal;
