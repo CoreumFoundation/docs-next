@@ -5,7 +5,6 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image';
 import Link from 'next/link';
 import { Dropdown } from '../Dropdown';
-<<<<<<< HEAD
 import AskCookbook from '@cookbookdev/docsbot/react';
 import "../index.css";
 
@@ -16,9 +15,6 @@ import dynamic from 'next/dynamic';
 const AutocompleteComponent = dynamic(() => import('@/components/AlgoliaSearch'), {
   ssr: false, // Disable server-side rendering for this component
 });
-=======
-import AskCookbook from '@cookbookdev/coreum/react';
->>>>>>> 70507a354b69985e0280c0dccf317f1f0bb93c0b
 
 export const Navbar = () => {
   const dropdownItems = [
