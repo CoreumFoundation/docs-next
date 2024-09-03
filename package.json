@@ -11,15 +11,11 @@
     "generate-pages": "tsc scripts/generateRemotePages.ts && node scripts/generateRemotePages.js"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@algolia/autocomplete-js": "^1.17.4",
     "@algolia/autocomplete-theme-classic": "^1.17.4",
     "@algolia/client-common": "^5.0.0",
     "@algolia/requester-node-http": "^5.0.0",
     "@cookbookdev/docsbot": "^4.8.8",
-=======
-    "@cookbookdev/coreum": "^1.0.2",
->>>>>>> 70507a354b69985e0280c0dccf317f1f0bb93c0b
     "@cosmjs/crypto": "^0.32.3",
     "@cosmjs/proto-signing": "^0.32.3",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
