@@ -22,9 +22,6 @@ COPY . .
 # Set the DOCS_PATH environment variable
 ENV DOCS_PATH=/app/app/docs
 
-# Debugging: Check if the docs directory exists
-RUN ls -la ./app/docs/
-
 ARG PUBLIC_URL
 ENV NEXT_PUBLIC_FE_URL=$PUBLIC_URL
 
