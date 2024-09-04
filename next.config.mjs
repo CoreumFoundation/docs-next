@@ -47,10 +47,6 @@ const nextConfig = {
   reactStrictMode: true,
   output: "standalone",
   staticPageGenerationTimeout: 1000,
-  publicRuntimeConfig: {
-    NEXT_PUBLIC_ALGOLIA_APP_ID: process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
-    NEXT_PUBLIC_ALGOLIA_API_KEY: process.env.NEXT_PUBLIC_ALGOLIA_API_KEY,
-  },
 };
 
 // Merge MDX config with Next.js config
