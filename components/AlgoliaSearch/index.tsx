@@ -4,6 +4,7 @@ import { createAutocomplete, AutocompleteApi, AutocompleteState, AutocompleteOpt
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia';
 import '@algolia/autocomplete-theme-classic';
 import { ChevronDown, ChevronUp, ChevronRight, X, Search } from 'lucide-react';
+import { highlight } from 'highlightjs';
 
 
 const AlgoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
@@ -22,6 +23,7 @@ type AutocompleteHit = {
   content?: string;
   description?: string;
   url: string;
+  importance?: 'high' | 'medium' | 'low';
   hierarchy?: {
     lvl0?: string;
     lvl1?: string;
@@ -31,6 +33,7 @@ type AutocompleteHit = {
     lvl5?: string;
   };
 };
+
 // Define the type for AutocompleteApi with your custom type (AutocompleteHit)
 type AutocompleteInstance = AutocompleteApi<AutocompleteHit>;
 
@@ -52,7 +55,12 @@ const HighlightedText: React.FC<{ text: string; highlight: string }> = ({ text, 
     return <span>{text}</span>;
   }
 
-  const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+  // Escape special regex characters
+  const escapeRegExp = (string: string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  };
+
+  const parts = text.split(new RegExp(`(${escapeRegExp(highlight)})`, 'gi'));
   return (
     <span>
       {parts.map((part, index) => 
@@ -268,14 +276,11 @@ const SearchBarModal: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const autocompleteRef = useRef<AutocompleteInstance | null>(null);
-
-
   const openModal = () => {
-    // Initialize createAutocomplete when opening the modal
     autocompleteRef.current = createAutocomplete({
       onStateChange({ state }) {
         setAutocompleteState(state);
-        setSelectedItemIndex(-1); // Reset selection when state changes
+        setSelectedItemIndex(-1);
       },
       getSources() {
         return [
@@ -290,10 +295,17 @@ const SearchBarModal: React.FC = () => {
                     query,
                     params: {
                       hitsPerPage: 20,
-                      attributesToRetrieve: ['title', 'description', 'url', 'hierarchy'],
+                      attributesToRetrieve: ['title', 'description', 'url', 'hierarchy', 'importance'],
                       attributesToSnippet: ['description:50'],
                       snippetEllipsisText: '...',
                       distinct: true,
+                      optionalFilters: [
+                        'importance:high<score=3>',
+                        'importance:medium<score=2>'
+                      ],
+                      // Add this to ensure we get a mix of result types
+                      facets: ['importance'],
+                      maxValuesPerFacet: 3,
                     },
                   },
                 ],
@@ -303,10 +315,9 @@ const SearchBarModal: React.FC = () => {
         ];
       },
     });
-
+  
     setIsModalOpen(true);
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
     // Reset state when closing the modal
@@ -407,21 +418,22 @@ const SearchBarModal: React.FC = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-16 px-4 sm:px-6 md:px-8">
-          <div ref={modalRef} className="bg-gray-900 w-full max-w-2xl rounded-lg shadow-lg flex flex-col" style={{ maxHeight: 'calc(100vh - 2rem)' }}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-20">
+          <div className="bg-[#1B1D23] w-full max-w-xl rounded-lg shadow-lg flex flex-col" style={{ maxHeight: 'calc(100vh - 6rem)' }}>
             <div className="flex justify-between items-center p-4 border-b border-gray-700">
               <h2 className="text-2xl font-semibold text-white">Search docs</h2>
               <button onClick={closeModal} className="text-gray-400 hover:text-white transition-colors duration-150">
                 <X size={24} />
               </button>
             </div>
-            <div className="p-4 flex-grow flex flex-col overflow-hidden" {...rootProps}>
-              <div className="flex items-center space-x-2 bg-black rounded-full p-1 border border-gray-700 mb-4">
+            
+            <div className="p-4">
+              <div className="flex items-center space-x-2 bg-black rounded-full p-1 border border-gray-700">
                 <div className="flex items-center justify-center w-10 h-10">
                   <Search size={20} className="text-gray-400" />
                 </div>
                 <div className="relative flex-grow">
-                {/* @ts-ignore */}
+                  {/* @ts-ignore */}
                   <input
                     ref={inputRef}
                     className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:text-gray-100 sm:text-sm"
@@ -439,18 +451,20 @@ const SearchBarModal: React.FC = () => {
                   )}
                 </div>
               </div>
-              <div className="flex-grow overflow-y-auto">
-                {autocompleteState.isOpen && (
-                  <EnhancedSearchResults
-                    hits={allHits}
-                    onSelect={handleSelect}
-                    query={autocompleteState.query || ''}
-                    selectedItemIndex={selectedItemIndex}
-                  />
-                )}
-              </div>
             </div>
-            <div className="px-4 py-3 bg-gray-800 text-sm text-gray-400 flex justify-between items-center">
+
+            <div className="flex-grow overflow-y-auto px-4" {...rootProps}>
+              {autocompleteState.isOpen && (
+                <EnhancedSearchResults
+                  hits={allHits}
+                  onSelect={handleSelect}
+                  query={autocompleteState.query || ''}
+                  selectedItemIndex={selectedItemIndex}
+                />
+              )}
+            </div>
+
+            <div className="px-4 py-3 bg-[#1B1D23] text-sm text-gray-400 flex justify-between items-center border-t border-gray-700">
               <div>
                 Press
                 <span className="bg-gray-700 text-xs px-2 py-1 rounded mx-1">↓</span>
@@ -465,6 +479,7 @@ const SearchBarModal: React.FC = () => {
           </div>
         </div>
       )}
+
     </>
   );
 };
