@@ -1,6 +1,6 @@
 {
   "name": "docs-next",
-  "version": "0.23.19",
+  "version": "0.25.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -15,7 +15,7 @@
     "@algolia/autocomplete-theme-classic": "^1.17.4",
     "@algolia/client-common": "^5.0.0",
     "@algolia/requester-node-http": "^5.0.0",
-    "@cookbookdev/docsbot": "^4.8.8",
+    "@cookbookdev/coreum": "^1.0.2",
     "@cosmjs/crypto": "^0.32.3",
     "@cosmjs/proto-signing": "^0.32.3",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
