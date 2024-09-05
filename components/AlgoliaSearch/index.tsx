@@ -277,36 +277,43 @@ const groupHitsByHierarchy = (hits: AutocompleteHit[]) => {
 const isSymbolQuery = (query: string) => {
   return /^[\W_]+$/.test(query);
 };
+
 const SearchBarModal: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [autocompleteState, setAutocompleteState] = useState(initialAutocompleteState);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+  const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [noResultsFound, setNoResultsFound] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const autocompleteRef = useRef<AutocompleteInstance | null>(null);
+  const autocompleteRef = useRef<AutocompleteApi<AutocompleteHit> | null>(null);
 
   const debouncedSetQuery = useCallback(
-    debounce((query: string) => {
-      setDebouncedQuery(query);
+    debounce((q: string) => {
+      setDebouncedQuery(q);
     }, 300),
     []
   );
+
+  useEffect(() => {
+    if (query.trim() !== '') {
+      setNoResultsFound(true);
+    } else {
+      setNoResultsFound(false);
+    }
+  }, [query]);
 
   const openModal = () => {
     autocompleteRef.current = createAutocomplete<AutocompleteHit>({
       onStateChange({ state }) {
         setAutocompleteState(state);
         setSelectedItemIndex(-1);
+        setQuery(state.query);
         debouncedSetQuery(state.query);
 
-        // Check if the query contains only symbols
-        if (isSymbolQuery(state.query) || state.query.trim() === '') {
-          setNoResultsFound(true);
-        } else {
-          const hasResults = state.collections.some(collection => collection.items.length > 0);
-          setNoResultsFound(!hasResults && state.query.trim() !== '');
+        if (state.collections.some(collection => collection.items.length > 0)) {
+          setNoResultsFound(false);
         }
       },
       getSources({ query }) {
@@ -347,12 +354,11 @@ const SearchBarModal: React.FC = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-
-    // Reset state when closing the modal
     setAutocompleteState(initialAutocompleteState);
     setSelectedItemIndex(-1);
-    setNoResultsFound(false);  // Clear the "no results found" state
-    setDebouncedQuery('');     // Clear the debounced query
+    setQuery('');
+    setDebouncedQuery('');
+    setNoResultsFound(false);
     autocompleteRef.current = null;
   };
 
@@ -424,7 +430,7 @@ const SearchBarModal: React.FC = () => {
       return null;
     }
     
-    if (!hits || hits.length === 0 || noResultsFound) {
+    if (noResultsFound || !hits || hits.length === 0) {
       return (
         <div className="text-center py-4">
           <p className="text-gray-400">No results found for "{query}"</p>
@@ -505,10 +511,13 @@ const SearchBarModal: React.FC = () => {
                     placeholder="Search docs"
                     onKeyDown={handleKeyDown}
                   />
-                  {autocompleteState.query && (
+                  {query && (
                     <button
                       className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                      onClick={() => autocompleteRef.current?.setQuery('')}
+                      onClick={() => {
+                        autocompleteRef.current?.setQuery('');
+                        setNoResultsFound(false);
+                      }}
                     >
                       <X size={20} className="text-gray-400 hover:text-gray-500" />
                     </button>
@@ -518,11 +527,11 @@ const SearchBarModal: React.FC = () => {
             </div>
 
             <div className="flex-grow overflow-y-auto px-4" {...rootProps}>
-              {autocompleteState.status !== 'loading' && debouncedQuery && (
+              {query && (
                 <EnhancedSearchResults
                   hits={allHits}
                   onSelect={handleSelect}
-                  query={debouncedQuery}
+                  query={query}
                   selectedItemIndex={selectedItemIndex}
                 />
               )}
@@ -547,5 +556,7 @@ const SearchBarModal: React.FC = () => {
   );
 };
 
+
 export default SearchBarModal;
+
 
