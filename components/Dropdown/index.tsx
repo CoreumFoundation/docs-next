@@ -1,6 +1,6 @@
-import { FC, Fragment } from 'react';
-import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { FC, Fragment } from 'react'
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link';
 
 interface DropdownItem {
@@ -36,10 +36,7 @@ export const Dropdown: FC<DropdownProps> = ({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items 
-          className="relative w-full sm:absolute sm:right-0 sm:z-50 sm:mt-2 sm:w-56 origin-top-right rounded-md bg-[#0d110f] shadow-lg ring-0 outline-none"
-        >
-          <div className="py-1">
+        <Menu.Items className="relative w-full sm:absolute sm:right-0 sm:z-50 sm:mt-2 sm:w-56 origin-top-right rounded-md bg-[#0d110f] shadow-lg ring-0 outline-none">          <div className="py-1">
             {items.map((item: DropdownItem, index: number) => {
               return (
                 <Menu.Item key={`${item.label}-${index}`}>
@@ -49,11 +46,11 @@ export const Dropdown: FC<DropdownProps> = ({
                     target={item.external ? "_blank" : "_self"}
                   >
                     {item.label}
-                    {item.external && (
+                    {item.external ? (
                       <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd" d="M12.0767 8.39104H7.02734V7.16675H14.1691V14.3085H12.9448V9.25435L6.69904 15.5001L5.83333 14.6344L12.0767 8.39104Z" fill="#5E6773"/>
                       </svg>
-                    )}
+                    ) : ''}
                   </Link>
                 </Menu.Item>
               );

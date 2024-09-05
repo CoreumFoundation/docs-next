@@ -548,3 +548,4 @@ const SearchBarModal: React.FC = () => {
 };
 
 export default SearchBarModal;
+
