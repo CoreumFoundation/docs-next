@@ -1,10 +1,9 @@
-import React, { useState, useMemo, useEffect, useRef, ChangeEvent } from 'react';
-import algoliasearch from 'algoliasearch/lite';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';import algoliasearch from 'algoliasearch/lite';
 import { createAutocomplete, AutocompleteApi, AutocompleteState, AutocompleteOptions } from '@algolia/autocomplete-core';
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia';
 import '@algolia/autocomplete-theme-classic';
 import { ChevronDown, ChevronUp, ChevronRight, X, Search } from 'lucide-react';
-
+import debounce from 'lodash/debounce';
 
 const AlgoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 const AlgoliaApiKey = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY;
@@ -22,6 +21,7 @@ type AutocompleteHit = {
   content?: string;
   description?: string;
   url: string;
+  importance?: 'high' | 'medium' | 'low';
   hierarchy?: {
     lvl0?: string;
     lvl1?: string;
@@ -31,6 +31,7 @@ type AutocompleteHit = {
     lvl5?: string;
   };
 };
+
 // Define the type for AutocompleteApi with your custom type (AutocompleteHit)
 type AutocompleteInstance = AutocompleteApi<AutocompleteHit>;
 
@@ -52,7 +53,12 @@ const HighlightedText: React.FC<{ text: string; highlight: string }> = ({ text, 
     return <span>{text}</span>;
   }
 
-  const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+  // Escape special regex characters
+  const escapeRegExp = (string: string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  };
+
+  const parts = text.split(new RegExp(`(${escapeRegExp(highlight)})`, 'gi'));
   return (
     <span>
       {parts.map((part, index) => 
@@ -226,62 +232,95 @@ const groupHitsByHierarchy = (hits: AutocompleteHit[]) => {
   return groupedHits;
 };
 
-const EnhancedSearchResults: React.FC<{ 
-  hits: AutocompleteHit[]; 
-  onSelect: (url: string) => void; 
-  query: string;
-  selectedItemIndex: number;
-}> = ({ hits, onSelect, query, selectedItemIndex }) => {
-  const groupedHits = groupHitsByHierarchy(hits);
-  let startIndex = 0;
+// const EnhancedSearchResults: React.FC<{ 
+//   hits: AutocompleteHit[]; 
+//   onSelect: (url: string) => void; 
+//   query: string;
+//   selectedItemIndex: number;
+// }> = ({ hits, onSelect, query, selectedItemIndex }) => {
+//   console.log("Hits in EnhancedSearchResults:", hits);
+  
+//   if (!hits || hits.length === 0) {
+//     return (
+//       <div className="text-center py-4">
+//         <p className="text-gray-400">No results found for "{query}"</p>
+//       </div>
+//     );
+//   }
 
-  return (
-    <div className="space-y-4">
-      {Object.entries(groupedHits).map(([category, subsections]) => {
-        const searchResultsSection = (
-          <SearchResultsSection
-            key={category}
-            title={category}
-            subsections={subsections}
-            onSelect={onSelect}
-            query={query}
-            selectedItemIndex={selectedItemIndex}
-            startIndex={startIndex}
-          />
-        );
-        startIndex += Object.values(subsections).flat().length;
-        return searchResultsSection;
-      })}
-      {hits.length === 0 && (
-        <p className="text-gray-400 text-center py-4">No results found</p>
-      )}
-    </div>
-  );
+//   const groupedHits = groupHitsByHierarchy(hits);
+//   let startIndex = 0;
+
+//   return (
+//     <div className="space-y-4">
+//       {Object.entries(groupedHits).map(([category, subsections]) => {
+//         const searchResultsSection = (
+//           <SearchResultsSection
+//             key={category}
+//             title={category}
+//             subsections={subsections}
+//             onSelect={onSelect}
+//             query={query}
+//             selectedItemIndex={selectedItemIndex}
+//             startIndex={startIndex}
+//           />
+//         );
+//         startIndex += Object.values(subsections).flat().length;
+//         return searchResultsSection;
+//       })}
+//     </div>
+//   );
+// };
+
+
+// Helper function to detect symbol-only queries
+const isSymbolQuery = (query: string) => {
+  return /^[\W_]+$/.test(query);
 };
 
 const SearchBarModal: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [autocompleteState, setAutocompleteState] = useState(initialAutocompleteState);
-
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+  const [query, setQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [noResultsFound, setNoResultsFound] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const autocompleteRef = useRef<AutocompleteApi<AutocompleteHit> | null>(null);
 
-  const autocompleteRef = useRef<AutocompleteInstance | null>(null);
+  const debouncedSetQuery = useCallback(
+    debounce((q: string) => {
+      setDebouncedQuery(q);
+    }, 300),
+    []
+  );
 
+  useEffect(() => {
+    if (query.trim() !== '') {
+      setNoResultsFound(true);
+    } else {
+      setNoResultsFound(false);
+    }
+  }, [query]);
 
   const openModal = () => {
-    // Initialize createAutocomplete when opening the modal
-    autocompleteRef.current = createAutocomplete({
+    autocompleteRef.current = createAutocomplete<AutocompleteHit>({
       onStateChange({ state }) {
         setAutocompleteState(state);
-        setSelectedItemIndex(-1); // Reset selection when state changes
+        setSelectedItemIndex(-1);
+        setQuery(state.query);
+        debouncedSetQuery(state.query);
+
+        if (state.collections.some(collection => collection.items.length > 0)) {
+          setNoResultsFound(false);
+        }
       },
-      getSources() {
+      getSources({ query }) {
         return [
           {
             sourceId: 'coreumDocs',
-            getItems({ query }) {
+            getItems() {
               return getAlgoliaResults({
                 searchClient,
                 queries: [
@@ -290,10 +329,16 @@ const SearchBarModal: React.FC = () => {
                     query,
                     params: {
                       hitsPerPage: 20,
-                      attributesToRetrieve: ['title', 'description', 'url', 'hierarchy'],
+                      attributesToRetrieve: ['title', 'description', 'url', 'hierarchy', 'importance'],
                       attributesToSnippet: ['description:50'],
                       snippetEllipsisText: '...',
                       distinct: true,
+                      optionalFilters: [
+                        'importance:high<score=3>',
+                        'importance:medium<score=2>'
+                      ],
+                      facets: ['importance'],
+                      maxValuesPerFacet: 3,
                     },
                   },
                 ],
@@ -303,24 +348,18 @@ const SearchBarModal: React.FC = () => {
         ];
       },
     });
-
+  
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    // Reset state when closing the modal
-    setAutocompleteState({
-      collections: [],
-      completion: null,
-      context: {},
-      isOpen: false,
-      query: '',
-      activeItemId: null,
-      status: 'idle',
-    });
+    setAutocompleteState(initialAutocompleteState);
     setSelectedItemIndex(-1);
-    autocompleteRef.current = null; // Clear the autocomplete instance
+    setQuery('');
+    setDebouncedQuery('');
+    setNoResultsFound(false);
+    autocompleteRef.current = null;
   };
 
   const handleSelect = (url: string) => {
@@ -381,6 +420,48 @@ const SearchBarModal: React.FC = () => {
     }
   }, [isModalOpen]);
 
+  const EnhancedSearchResults: React.FC<{ 
+    hits: AutocompleteHit[]; 
+    onSelect: (url: string) => void; 
+    query: string;
+    selectedItemIndex: number;
+  }> = ({ hits, onSelect, query, selectedItemIndex }) => {
+    if (!query) {
+      return null;
+    }
+    
+    if (noResultsFound || !hits || hits.length === 0) {
+      return (
+        <div className="text-center py-4">
+          <p className="text-gray-400">No results found for "{query}"</p>
+        </div>
+      );
+    }
+
+    const groupedHits = groupHitsByHierarchy(hits);
+    let startIndex = 0;
+
+    return (
+      <div className="space-y-4">
+        {Object.entries(groupedHits).map(([category, subsections]) => {
+          const searchResultsSection = (
+            <SearchResultsSection
+              key={category}
+              title={category}
+              subsections={subsections}
+              onSelect={onSelect}
+              query={query}
+              selectedItemIndex={selectedItemIndex}
+              startIndex={startIndex}
+            />
+          );
+          startIndex += Object.values(subsections).flat().length;
+          return searchResultsSection;
+        })}
+      </div>
+    );
+  };
+
   return (
     <>
       {/* Mobile search button */}
@@ -407,21 +488,22 @@ const SearchBarModal: React.FC = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-16 px-4 sm:px-6 md:px-8">
-          <div ref={modalRef} className="bg-gray-900 w-full max-w-2xl rounded-lg shadow-lg flex flex-col" style={{ maxHeight: 'calc(100vh - 2rem)' }}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-20">
+          <div className="bg-[#1B1D23] w-full max-w-xl rounded-lg shadow-lg flex flex-col" style={{ maxHeight: 'calc(100vh - 6rem)' }}>
             <div className="flex justify-between items-center p-4 border-b border-gray-700">
               <h2 className="text-2xl font-semibold text-white">Search docs</h2>
               <button onClick={closeModal} className="text-gray-400 hover:text-white transition-colors duration-150">
                 <X size={24} />
               </button>
             </div>
-            <div className="p-4 flex-grow flex flex-col overflow-hidden" {...rootProps}>
-              <div className="flex items-center space-x-2 bg-black rounded-full p-1 border border-gray-700 mb-4">
+            
+            <div className="p-4">
+              <div className="flex items-center space-x-2 bg-black rounded-full p-1 border border-gray-700">
                 <div className="flex items-center justify-center w-10 h-10">
                   <Search size={20} className="text-gray-400" />
                 </div>
                 <div className="relative flex-grow">
-                {/* @ts-ignore */}
+                  {/* @ts-ignore */}
                   <input
                     ref={inputRef}
                     className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:text-gray-100 sm:text-sm"
@@ -429,28 +511,33 @@ const SearchBarModal: React.FC = () => {
                     placeholder="Search docs"
                     onKeyDown={handleKeyDown}
                   />
-                  {autocompleteState.query && (
+                  {query && (
                     <button
                       className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                      onClick={() => autocompleteRef.current?.setQuery('')}
+                      onClick={() => {
+                        autocompleteRef.current?.setQuery('');
+                        setNoResultsFound(false);
+                      }}
                     >
                       <X size={20} className="text-gray-400 hover:text-gray-500" />
                     </button>
                   )}
                 </div>
               </div>
-              <div className="flex-grow overflow-y-auto">
-                {autocompleteState.isOpen && (
-                  <EnhancedSearchResults
-                    hits={allHits}
-                    onSelect={handleSelect}
-                    query={autocompleteState.query || ''}
-                    selectedItemIndex={selectedItemIndex}
-                  />
-                )}
-              </div>
             </div>
-            <div className="px-4 py-3 bg-gray-800 text-sm text-gray-400 flex justify-between items-center">
+
+            <div className="flex-grow overflow-y-auto px-4" {...rootProps}>
+              {query && (
+                <EnhancedSearchResults
+                  hits={allHits}
+                  onSelect={handleSelect}
+                  query={query}
+                  selectedItemIndex={selectedItemIndex}
+                />
+              )}
+            </div>
+
+            <div className="px-4 py-3 bg-[#1B1D23] text-sm text-gray-400 flex justify-between items-center border-t border-gray-700">
               <div>
                 Press
                 <span className="bg-gray-700 text-xs px-2 py-1 rounded mx-1">↓</span>
@@ -469,4 +556,7 @@ const SearchBarModal: React.FC = () => {
   );
 };
 
+
 export default SearchBarModal;
+
+
