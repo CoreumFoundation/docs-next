@@ -1,11 +1,9 @@
-import React, { useState, useMemo, useEffect, useRef, ChangeEvent } from 'react';
-import algoliasearch from 'algoliasearch/lite';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';import algoliasearch from 'algoliasearch/lite';
 import { createAutocomplete, AutocompleteApi, AutocompleteState, AutocompleteOptions } from '@algolia/autocomplete-core';
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia';
 import '@algolia/autocomplete-theme-classic';
 import { ChevronDown, ChevronUp, ChevronRight, X, Search } from 'lucide-react';
-import { highlight } from 'highlightjs';
-
+import debounce from 'lodash/debounce';
 
 const AlgoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 const AlgoliaApiKey = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY;
@@ -234,59 +232,88 @@ const groupHitsByHierarchy = (hits: AutocompleteHit[]) => {
   return groupedHits;
 };
 
-const EnhancedSearchResults: React.FC<{ 
-  hits: AutocompleteHit[]; 
-  onSelect: (url: string) => void; 
-  query: string;
-  selectedItemIndex: number;
-}> = ({ hits, onSelect, query, selectedItemIndex }) => {
-  const groupedHits = groupHitsByHierarchy(hits);
-  let startIndex = 0;
+// const EnhancedSearchResults: React.FC<{ 
+//   hits: AutocompleteHit[]; 
+//   onSelect: (url: string) => void; 
+//   query: string;
+//   selectedItemIndex: number;
+// }> = ({ hits, onSelect, query, selectedItemIndex }) => {
+//   console.log("Hits in EnhancedSearchResults:", hits);
+  
+//   if (!hits || hits.length === 0) {
+//     return (
+//       <div className="text-center py-4">
+//         <p className="text-gray-400">No results found for "{query}"</p>
+//       </div>
+//     );
+//   }
 
-  return (
-    <div className="space-y-4">
-      {Object.entries(groupedHits).map(([category, subsections]) => {
-        const searchResultsSection = (
-          <SearchResultsSection
-            key={category}
-            title={category}
-            subsections={subsections}
-            onSelect={onSelect}
-            query={query}
-            selectedItemIndex={selectedItemIndex}
-            startIndex={startIndex}
-          />
-        );
-        startIndex += Object.values(subsections).flat().length;
-        return searchResultsSection;
-      })}
-      {hits.length === 0 && (
-        <p className="text-gray-400 text-center py-4">No results found</p>
-      )}
-    </div>
-  );
+//   const groupedHits = groupHitsByHierarchy(hits);
+//   let startIndex = 0;
+
+//   return (
+//     <div className="space-y-4">
+//       {Object.entries(groupedHits).map(([category, subsections]) => {
+//         const searchResultsSection = (
+//           <SearchResultsSection
+//             key={category}
+//             title={category}
+//             subsections={subsections}
+//             onSelect={onSelect}
+//             query={query}
+//             selectedItemIndex={selectedItemIndex}
+//             startIndex={startIndex}
+//           />
+//         );
+//         startIndex += Object.values(subsections).flat().length;
+//         return searchResultsSection;
+//       })}
+//     </div>
+//   );
+// };
+
+
+// Helper function to detect symbol-only queries
+const isSymbolQuery = (query: string) => {
+  return /^[\W_]+$/.test(query);
 };
-
 const SearchBarModal: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [autocompleteState, setAutocompleteState] = useState(initialAutocompleteState);
-
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [noResultsFound, setNoResultsFound] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
   const autocompleteRef = useRef<AutocompleteInstance | null>(null);
+
+  const debouncedSetQuery = useCallback(
+    debounce((query: string) => {
+      setDebouncedQuery(query);
+    }, 300),
+    []
+  );
+
   const openModal = () => {
-    autocompleteRef.current = createAutocomplete({
+    autocompleteRef.current = createAutocomplete<AutocompleteHit>({
       onStateChange({ state }) {
         setAutocompleteState(state);
         setSelectedItemIndex(-1);
+        debouncedSetQuery(state.query);
+
+        // Check if the query contains only symbols
+        if (isSymbolQuery(state.query) || state.query.trim() === '') {
+          setNoResultsFound(true);
+        } else {
+          const hasResults = state.collections.some(collection => collection.items.length > 0);
+          setNoResultsFound(!hasResults && state.query.trim() !== '');
+        }
       },
-      getSources() {
+      getSources({ query }) {
         return [
           {
             sourceId: 'coreumDocs',
-            getItems({ query }) {
+            getItems() {
               return getAlgoliaResults({
                 searchClient,
                 queries: [
@@ -303,7 +330,6 @@ const SearchBarModal: React.FC = () => {
                         'importance:high<score=3>',
                         'importance:medium<score=2>'
                       ],
-                      // Add this to ensure we get a mix of result types
                       facets: ['importance'],
                       maxValuesPerFacet: 3,
                     },
@@ -318,20 +344,16 @@ const SearchBarModal: React.FC = () => {
   
     setIsModalOpen(true);
   };
+
   const closeModal = () => {
     setIsModalOpen(false);
+
     // Reset state when closing the modal
-    setAutocompleteState({
-      collections: [],
-      completion: null,
-      context: {},
-      isOpen: false,
-      query: '',
-      activeItemId: null,
-      status: 'idle',
-    });
+    setAutocompleteState(initialAutocompleteState);
     setSelectedItemIndex(-1);
-    autocompleteRef.current = null; // Clear the autocomplete instance
+    setNoResultsFound(false);  // Clear the "no results found" state
+    setDebouncedQuery('');     // Clear the debounced query
+    autocompleteRef.current = null;
   };
 
   const handleSelect = (url: string) => {
@@ -391,6 +413,48 @@ const SearchBarModal: React.FC = () => {
       inputRef.current.focus();
     }
   }, [isModalOpen]);
+
+  const EnhancedSearchResults: React.FC<{ 
+    hits: AutocompleteHit[]; 
+    onSelect: (url: string) => void; 
+    query: string;
+    selectedItemIndex: number;
+  }> = ({ hits, onSelect, query, selectedItemIndex }) => {
+    if (!query) {
+      return null;
+    }
+    
+    if (!hits || hits.length === 0 || noResultsFound) {
+      return (
+        <div className="text-center py-4">
+          <p className="text-gray-400">No results found for "{query}"</p>
+        </div>
+      );
+    }
+
+    const groupedHits = groupHitsByHierarchy(hits);
+    let startIndex = 0;
+
+    return (
+      <div className="space-y-4">
+        {Object.entries(groupedHits).map(([category, subsections]) => {
+          const searchResultsSection = (
+            <SearchResultsSection
+              key={category}
+              title={category}
+              subsections={subsections}
+              onSelect={onSelect}
+              query={query}
+              selectedItemIndex={selectedItemIndex}
+              startIndex={startIndex}
+            />
+          );
+          startIndex += Object.values(subsections).flat().length;
+          return searchResultsSection;
+        })}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -454,11 +518,11 @@ const SearchBarModal: React.FC = () => {
             </div>
 
             <div className="flex-grow overflow-y-auto px-4" {...rootProps}>
-              {autocompleteState.isOpen && (
+              {autocompleteState.status !== 'loading' && debouncedQuery && (
                 <EnhancedSearchResults
                   hits={allHits}
                   onSelect={handleSelect}
-                  query={autocompleteState.query || ''}
+                  query={debouncedQuery}
                   selectedItemIndex={selectedItemIndex}
                 />
               )}
@@ -479,7 +543,6 @@ const SearchBarModal: React.FC = () => {
           </div>
         </div>
       )}
-
     </>
   );
 };

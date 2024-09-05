@@ -7,16 +7,15 @@ import Link from 'next/link';
 import { Dropdown } from '../Dropdown';
 import AskCookbook from '@cookbookdev/docsbot/react';
 import "../index.css";
-import { lazy, Suspense } from 'react';
-
 
 // Import dynamic from Next.js
 import dynamic from 'next/dynamic';
-import React from 'react';
+import { Suspense } from 'react';
 
 // Dynamically import the AlgoliaSearch component with SSR disabled
-const AutocompleteComponent = lazy(() => import('@/components/AlgoliaSearch'));
-
+const AutocompleteComponent = dynamic(() => import('@/components/AlgoliaSearch'), {
+  ssr: false, // Disable server-side rendering for this component
+});
 
 export const Navbar = () => {
   const dropdownItems = [
@@ -66,8 +65,6 @@ export const Navbar = () => {
       external: true,
     },
   ];
-
-  
   return (
     <>
       <AskCookbook apiKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWZiNGM1MTQ5YjZiODQ0ZDY4NWY3NjIiLCJpYXQiOjE3MTA5Njc4ODksImV4cCI6MjAyNjU0Mzg4OX0.oBQsTKgd3fsmkTG0WR3RVcigQkUFgKE5A0WA031Ju8E" />
@@ -87,100 +84,36 @@ export const Navbar = () => {
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center gap-3">
-                <div className="flex items-center gap-2">
-                  <Dropdown
-                    label="Join Coreum"
-                    items={dropdownItems}
-                  />
-                  <div className="algolia-search flex items-center">
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <AutocompleteComponent />
+              <div className="flex items-center gap-2">
+                <Dropdown
+                label="Join Coreum"
+                items={dropdownItems}
+                />
+                <div className="algolia-search flex items-center">
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <AutocompleteComponent />
                     </Suspense>
-                  </div>
-                </div>
-                <div
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                >
-                  <Link href="https://github.com/CoreumFoundation" target="_blank">
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/github-navbar.svg"
-                      alt="Coreum Github"
-                      width={32}
-                      height={32}
-                    />
-                  </Link>
-                </div>
-                <div
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                >
-                  <Link href="https://x.com/CoreumOfficial" target="_blank">
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/twitter-navbar.svg"
-                      alt="Coreum Twitter"
-                      width={32}
-                      height={32}
-                    />
-                  </Link>
-                </div>
-                <div
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                >
-                  <Link href="https://www.instagram.com/coreum.official/" target="_blank">
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/instagram-navbar.svg"
-                      alt="Coreum Instagram"
-                      width={32}
-                      height={32}
-                    />
-                  </Link>
-                </div>
-                <div
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                >
-                  <Link href="https://t.me/CoreumOfficial" target="_blank">
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/telegram-navbar.svg"
-                      alt="Coreum Telegram"
-                      width={32}
-                      height={32}
-                    />
-                  </Link>
-                </div>
-                <div
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                >
-                  <Link href="https://discord.com/invite/XdVAGKXEhg" target="_blank">
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/discord-navbar.svg"
-                      alt="Coreum Discord"
-                      width={32}
-                      height={32}
-                    />
-                  </Link>
-                </div>
-                <div
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                >
-                  <Link href="https://www.youtube.com/@coreumofficial" target="_blank">
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/youtube-navbar.svg"
-                      alt="Coreum Youtube"
-                      width={32}
-                      height={32}
-                    />
-                  </Link>
+                    </div>
+                    </div>
+                <div className="flex items-center gap-2">
+                  {['github', 'twitter', 'instagram', 'telegram', 'discord', 'youtube'].map((platform) => (
+                    <div key={platform} className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                      <Link href={`https://${platform === 'twitter' ? 'x' : platform}.com/${platform === 'twitter' ? 'CoreumOfficial' : platform === 'github' ? 'CoreumFoundation' : platform === 'youtube' ? '@coreumofficial' : 'CoreumOfficial'}`} target="_blank">
+                        <Image
+                          className="h-8 w-8"
+                          src={`/images/${platform}-navbar.svg`}
+                          alt={`Coreum ${platform.charAt(0).toUpperCase() + platform.slice(1)}`}
+                          width={32}
+                          height={32}
+                        />
+                      </Link>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="-mr-2 flex items-center sm:hidden">
-                {/* Mobile menu button */}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 bg-[#080908]  focus:outline-none ">
-                  <span className=" absolute -inset-0.5" />
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 bg-[#080908] focus:outline-none">
+                  <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="text-[#eee] block h-6 w-6" aria-hidden="true" />
@@ -191,7 +124,8 @@ export const Navbar = () => {
               </div>
             </div>
             <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-1 px-6 bg-[#080908]">
+              <div className="space-y-4 px-6 py-4 bg-[#080908]">
+                <AutocompleteComponent />
                 <div className="flex items-center w-full justify-between gap-4">
                   <Dropdown
                     label="Join Coreum"
@@ -209,96 +143,24 @@ export const Navbar = () => {
                     </svg>
                   </Link>
                 </div>
-                <div className="algolia-search flex items-center py-2">
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <AutocompleteComponent />
-                  </Suspense>
-                </div>
-                <div className="flex items-center w-full gap-2">
-                  <Disclosure.Button
-                    as="a"
-                    href="https://github.com/CoreumFoundation"
-                    target="_blank"
-                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/github-navbar.svg"
-                      alt="Coreum Github"
-                      width={32}
-                      height={32}
-                    />
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as="a"
-                    href="https://x.com/CoreumOfficial"
-                    target="_blank"
-                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/twitter-navbar.svg"
-                      alt="Coreum Twitter"
-                      width={32}
-                      height={32}
-                    />
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as="a"
-                    href="https://www.instagram.com/coreum.official/"
-                    target="_blank"
-                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/instagram-navbar.svg"
-                      alt="Coreum Instagram"
-                      width={32}
-                      height={32}
-                    />
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as="a"
-                    href="https://t.me/CoreumOfficial"
-                    target="_blank"
-                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/telegram-navbar.svg"
-                      alt="Coreum Telegram"
-                      width={32}
-                      height={32}
-                    />
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as="a"
-                    href="https://discord.com/invite/XdVAGKXEhg"
-                    target="_blank"
-                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/discord-navbar.svg"
-                      alt="Coreum Discord"
-                      width={32}
-                      height={32}
-                    />
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as="a"
-                    href="https://www.youtube.com/@coreumofficial"
-                    target="_blank"
-                    className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    <Image
-                      className="h-8 w-8"
-                      src="/images/youtube-navbar.svg"
-                      alt="Coreum Youtube"
-                      width={32}
-                      height={32}
-                    />
-                  </Disclosure.Button>
+                <div className="flex flex-wrap items-center w-full gap-2">
+                  {['github', 'twitter', 'instagram', 'telegram', 'discord', 'youtube'].map((platform) => (
+                    <Disclosure.Button
+                      key={platform}
+                      as="a"
+                      href={`https://${platform === 'twitter' ? 'x' : platform}.com/${platform === 'twitter' ? 'CoreumOfficial' : platform === 'github' ? 'CoreumFoundation' : platform === 'youtube' ? '@coreumofficial' : 'CoreumOfficial'}`}
+                      target="_blank"
+                      className="flex items-center border-l-4 border-transparent text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                    >
+                      <Image
+                        className="h-8 w-8"
+                        src={`/images/${platform}-navbar.svg`}
+                        alt={`Coreum ${platform.charAt(0).toUpperCase() + platform.slice(1)}`}
+                        width={32}
+                        height={32}
+                      />
+                    </Disclosure.Button>
+                  ))}
                 </div>
               </div>
             </Disclosure.Panel>
