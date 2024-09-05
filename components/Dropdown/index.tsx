@@ -36,8 +36,7 @@ export const Dropdown: FC<DropdownProps> = ({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="relative w-full sm:absolute sm:right-0 sm:z-10 sm:mt-2 sm:w-56 origin-top-right rounded-md bg-[#0d110f] shadow-lg ring-0 outline-none">
-          <div className="py-1">
+        <Menu.Items className="relative w-full sm:absolute sm:right-0 sm:z-50 sm:mt-2 sm:w-56 origin-top-right rounded-md bg-[#0d110f] shadow-lg ring-0 outline-none">          <div className="py-1">
             {items.map((item: DropdownItem, index: number) => {
               return (
                 <Menu.Item key={`${item.label}-${index}`}>
