@@ -8,7 +8,7 @@ const Page = () => {
 
   useEffect(() => {
     router.replace('/docs/become-validator/upgrades/main-info');
-  }, []);
+  }, [router]);
 
   return null;
 };

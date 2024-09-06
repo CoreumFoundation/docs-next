@@ -8,7 +8,7 @@ const ModulesPage = () => {
 
   useEffect(() => {
     router.replace('/docs/overview/modules');
-  }, []);
+  }, [router]);
 
   return null;
 };

@@ -8,7 +8,7 @@ const HelpPage = () => {
 
   useEffect(() => {
     router.replace('/docs/overview/help');
-  }, []);
+  }, [router]);
 
   return null;
 };

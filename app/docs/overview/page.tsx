@@ -8,7 +8,7 @@ const OverviewPage = () => {
 
   useEffect(() => {
     router.replace('/docs/overview/general');
-  }, []);
+  }, [router]);
 
   return null;
 };
