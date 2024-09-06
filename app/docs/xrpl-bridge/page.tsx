@@ -8,7 +8,7 @@ const BridgePage = () => {
 
   useEffect(() => {
     router.replace('/docs/overview/xrpl-bridge');
-  }, []);
+  }, [router]);
 
   return null;
 };

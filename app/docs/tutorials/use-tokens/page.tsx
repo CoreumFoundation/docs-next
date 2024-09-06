@@ -8,7 +8,7 @@ const Page = () => {
 
   useEffect(() => {
     router.replace('/docs/tutorials/use-tokens/create-and-manage-ft-with-cli');
-  }, []);
+  }, [router]);
 
   return null;
 };

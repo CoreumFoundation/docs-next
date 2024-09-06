@@ -8,7 +8,7 @@ const ValidatorPage = () => {
 
   useEffect(() => {
     router.replace('/docs/overview/validator');
-  }, []);
+  }, [router]);
 
   return null;
 };

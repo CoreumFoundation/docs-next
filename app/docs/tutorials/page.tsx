@@ -8,7 +8,7 @@ const ToolsPage = () => {
 
   useEffect(() => {
     router.replace('/docs/overview/tutorials');
-  }, []);
+  }, [router]);
 
   return null;
 };
