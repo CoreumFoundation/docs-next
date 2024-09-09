@@ -3,7 +3,6 @@ import Subsection from '../Subsection';
 import { AutocompleteHit } from '../../utils/types';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 
-
 type SearchResultsSectionProps = {
   title: string;
   subsections: { [key: string]: AutocompleteHit[] };
@@ -68,5 +67,4 @@ const SearchResultsSection: React.FC<SearchResultsSectionProps> = ({
     </div>
   );
 };
-
 export default SearchResultsSection;

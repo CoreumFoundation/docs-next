@@ -16,6 +16,7 @@ if (!AlgoliaAppId || !AlgoliaApiKey) {
 }
 
 const searchClient = algoliasearch(AlgoliaAppId, AlgoliaApiKey);
+const MAX_QUERY_LENGTH = 30;
 
 const SearchBarModal: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,7 +27,9 @@ const SearchBarModal: React.FC = () => {
   const [noResultsFound, setNoResultsFound] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const autocompleteRef = useRef<AutocompleteInstance | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
+  // Debounce search to avoid unnecessary API calls on every keystroke
   const debouncedSearch = useCallback(
     debounce((query: string) => {
       if (autocompleteRef.current) {
@@ -35,16 +38,16 @@ const SearchBarModal: React.FC = () => {
       }
       setIsLoading(false);
     }, 150),
-    []
+    [autocompleteRef, setIsLoading]  // Ensure these dependencies are included
   );
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuery = event.target.value;
+  const handleInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuery = event.target.value.slice(0, MAX_QUERY_LENGTH);
     setQuery(newQuery);
     setIsLoading(true);
-    setSelectedItemIndex(-1); // Reset selection when the input changes
+    setSelectedItemIndex(-1);
     debouncedSearch(newQuery);
-  };
+  }, [debouncedSearch]);
 
   const openModal = useCallback(() => {
     autocompleteRef.current = createAutocomplete<AutocompleteHit>({
@@ -92,7 +95,7 @@ const SearchBarModal: React.FC = () => {
     setIsModalOpen(true);
   }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setIsModalOpen(false);
     setAutocompleteState(initialAutocompleteState);
     setSelectedItemIndex(-1);
@@ -100,13 +103,13 @@ const SearchBarModal: React.FC = () => {
     setIsLoading(false);
     setNoResultsFound(false);
     autocompleteRef.current = null;
-  };
+  }, []);
 
-  const handleSelect = (url: string) => {
+  const handleSelect = useCallback((url: string) => {
     closeModal();
     const processedUrl = url.replace(/\/iso20022$/, '');
     window.location.href = processedUrl;
-  };
+  }, [closeModal]);
 
   const allHits = useMemo(() => 
     autocompleteState.collections.flatMap(collection => collection.items),
@@ -118,8 +121,7 @@ const SearchBarModal: React.FC = () => {
     [allHits]
   );
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log('Key pressed:', event.key); // Debugging
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
       case 'ArrowDown':
         event.preventDefault();
@@ -143,7 +145,7 @@ const SearchBarModal: React.FC = () => {
         closeModal();
         break;
     }
-  };
+  }, [allHits, selectedItemIndex, closeModal, handleSelect]);
 
   useEffect(() => {
     const handleGlobalKeyDown = (event: KeyboardEvent) => {
@@ -165,12 +167,28 @@ const SearchBarModal: React.FC = () => {
     }
   }, [isModalOpen]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        closeModal();
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isModalOpen, closeModal]);
+
   const EnhancedSearchResults: React.FC<{ 
     hits: AutocompleteHit[]; 
     onSelect: (url: string) => void; 
     query: string;
     selectedItemIndex: number;
-  }> = ({ hits, onSelect, query, selectedItemIndex }) => {
+  }> = useCallback(({ hits, onSelect, query, selectedItemIndex }) => {
     if (!query) {
       return null;
     }
@@ -204,19 +222,19 @@ const SearchBarModal: React.FC = () => {
         })}
       </div>
     );
-  };
+  }, [groupedHits, noResultsFound]);
 
   return (
     <>
       {/* Mobile search button */}
       <button
         onClick={openModal}
-        className="md:hidden flex items-center justify-center w-10 h-10 text-white"
+        className="md:hidden flex items-center justify-center w-12 h-12 text-white"
         aria-label="Search"
       >
-        <Search size={20} />
+        <Search size={24} />
       </button>
-
+  
       {/* Desktop search button */}
       <button
         onClick={openModal}
@@ -229,18 +247,22 @@ const SearchBarModal: React.FC = () => {
           <span className="bg-gray-700 text-xs px-1 py-0.5 rounded">K</span>
         </div>
       </button>
-
+  
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-20">
-          <div className="bg-[#1B1D23] w-full max-w-xl rounded-lg shadow-lg flex flex-col" style={{ maxHeight: 'calc(100vh - 6rem)' }}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-4 sm:pt-10">
+          <div 
+            ref={modalRef}
+            className="bg-[#1B1D23] w-full max-w-xl rounded-lg shadow-lg flex flex-col mx-4"
+            style={{ maxHeight: '90vh' }}
+          >
             <div className="flex justify-between items-center p-4 border-b border-gray-700">
-              <h2 className="text-2xl font-semibold text-white">Search docs</h2>
-              <button onClick={closeModal} className="text-gray-400 hover:text-white transition-colors duration-150">
-                <X size={24} />
+              <h2 className="text-xl sm:text-2xl font-semibold text-white">Search docs</h2>
+              <button onClick={closeModal} className="text-gray-400 hover:text-white transition-colors duration-150 p-2">
+                <X size={28} />
               </button>
             </div>
-            
+  
             <div className="p-4">
               <div className="flex items-center space-x-2 bg-black rounded-full p-1 border border-gray-700">
                 <div className="flex items-center justify-center w-10 h-10">
@@ -253,11 +275,12 @@ const SearchBarModal: React.FC = () => {
                 <div className="relative flex-grow">
                   <input
                     ref={inputRef}
-                    className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:text-gray-100 sm:text-sm"
+                    className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:text-gray-100 text-base sm:text-sm"
                     value={query}
                     onChange={handleInputChange}
                     placeholder="Search docs"
                     onKeyDown={handleKeyDown}
+                    maxLength={MAX_QUERY_LENGTH}
                   />
                   {query && (
                     <button
@@ -276,7 +299,7 @@ const SearchBarModal: React.FC = () => {
                 </div>
               </div>
             </div>
-
+  
             <div className="flex-grow overflow-y-auto px-4">
               {!isLoading && query && (
                 <EnhancedSearchResults
@@ -287,9 +310,9 @@ const SearchBarModal: React.FC = () => {
                 />
               )}
             </div>
-
+  
             <div className="px-4 py-3 bg-[#1B1D23] text-sm text-gray-400 flex justify-between items-center border-t border-gray-700">
-              <div>
+              <div className="hidden sm:block">
                 Press
                 <span className="bg-gray-700 text-xs px-2 py-1 rounded mx-1">↓</span>
                 <span className="bg-gray-700 text-xs px-2 py-1 rounded mr-1">↑</span>
@@ -298,6 +321,9 @@ const SearchBarModal: React.FC = () => {
                 to select,
                 <span className="bg-gray-700 text-xs px-2 py-1 rounded mx-1">esc</span>
                 to close
+              </div>
+              <div className="sm:hidden">
+                Tap to select, swipe down to close
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import HitComponent from '../HitComponent';
 import { AutocompleteHit } from '../../utils/types';
-import { ChevronDown, ChevronUp, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 
 type SubsectionComponentProps = {
   title: string;
