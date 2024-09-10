@@ -107,9 +107,17 @@ const SearchBarModal: React.FC = () => {
 
   const handleSelect = useCallback((url: string) => {
     closeModal();
-    const processedUrl = url.replace(/\/iso20022$/, '');
+  
+    // Ensure URL is absolute
+    let processedUrl = url.startsWith('/') ? url : `/${url}`;
+  
+    // Replace any duplicate instances of '/docs/tutorials/ISO20022'
+    processedUrl = processedUrl.replace(/(\/docs\/tutorials\/ISO20022)+/, '/docs/tutorials/ISO20022');
+  
+    // Navigate to the processed URL
     window.location.href = processedUrl;
   }, [closeModal]);
+  
 
   const allHits = useMemo(() => 
     autocompleteState.collections.flatMap(collection => collection.items),
