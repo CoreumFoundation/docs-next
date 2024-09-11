@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image';
 import Link from 'next/link';
 import { Dropdown } from '../Dropdown';
-import AskCookbook  from '@cookbookdev/coreum/react';
+import AskCookbook from '@cookbookdev/coreum/react';
 import "../index.css";
 
 // Import dynamic from Next.js
@@ -67,8 +67,7 @@ export const Navbar = () => {
   ];
   return (
     <>
-    { //@ts-ignore
-      <AskCookbook apiKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWZiNGM1MTQ5YjZiODQ0ZDY4NWY3NjIiLCJpYXQiOjE3MTA5Njc4ODksImV4cCI6MjAyNjU0Mzg4OX0.oBQsTKgd3fsmkTG0WR3RVcigQkUFgKE5A0WA031Ju8E" /> }
+      <AskCookbook apiKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWZiNGM1MTQ5YjZiODQ0ZDY4NWY3NjIiLCJpYXQiOjE3MTA5Njc4ODksImV4cCI6MjAyNjU0Mzg4OX0.oBQsTKgd3fsmkTG0WR3RVcigQkUFgKE5A0WA031Ju8E" /> 
       <Disclosure as="nav" className="shadow w-full">
         {({ open }) => (
           <>
@@ -171,3 +170,4 @@ export const Navbar = () => {
     </>
   );
 }
+
