@@ -4,8 +4,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { TabItem, Tabs } from "../Tabs";
 import Link from "next/link";
 import { Input } from "../Input";
-import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing';
-import { stringToPath } from '@cosmjs/crypto';
+import { DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
+import {stringToPath } from "@cosmjs/crypto";
 import axios from "axios";
 import { Spinner } from "../Spinner";
 import Image from 'next/image';
@@ -68,6 +68,7 @@ export const Faucets = () => {
     setFundLoading(false);
   }, [fundWallet, walletAddress]);
 
+  
   const handleGenerateWallet = useCallback(async () => {
     const wallet = await DirectSecp256k1HdWallet.generate(24, {
       prefix: currentConfig.tokenPrefix,
