@@ -74,14 +74,21 @@ const SearchBarModal: React.FC = () => {
                     indexName: 'coreumDocs',
                     query,
                     params: {
-                      hitsPerPage: 20,
+                      hitsPerPage: 200,
                       attributesToRetrieve: ['title', 'description', 'url', 'hierarchy', 'importance'],
                       attributesToSnippet: ['description:50'],
                       snippetEllipsisText: '...',
                       distinct: true,
-                      optionalFilters: ['importance:high<score=3>', 'importance:medium<score=2>'],
-                      facets: ['importance'],
-                      maxValuesPerFacet: 3,
+                      optionalFilters: [
+                        'importance:high<score=3>',
+                        'importance:medium<score=2>',
+                        'hierarchy.lvl0:Overview<score=2>',
+                        'hierarchy.lvl0:Tutorials<score=2>'
+                      ],
+                      facets: ['importance', 'hierarchy.lvl0'],
+                      maxValuesPerFacet: 5,
+                      filters: 'NOT hierarchy.lvl1:protobuf',
+                      sortFacetValuesBy: 'count'
                     },
                   },
                 ],
@@ -281,15 +288,16 @@ const SearchBarModal: React.FC = () => {
                   )}
                 </div>
                 <div className="relative flex-grow">
-                  <input
-                    ref={inputRef}
-                    className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:text-gray-100 text-base sm:text-sm"
-                    value={query}
-                    onChange={handleInputChange}
-                    placeholder="Search docs"
-                    onKeyDown={handleKeyDown}
-                    maxLength={MAX_QUERY_LENGTH}
-                  />
+                <input
+                ref={inputRef}
+                className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none text-base sm:text-sm"
+                value={query}
+                onChange={handleInputChange}
+                placeholder="Search docs"
+                onKeyDown={handleKeyDown}
+                maxLength={MAX_QUERY_LENGTH}
+                />
+
                   {query && (
                     <button
                       className="absolute right-3 top-1/2 transform -translate-y-1/2"
