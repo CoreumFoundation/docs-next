@@ -261,6 +261,10 @@ export const SIDEBAR_ITEMS = [
             name: 'Financial Simulator',
             href: '/docs/tutorials/ISO20022/financialSimulator',
           },
+          {
+            name: 'ISO20022 Client',
+            href: '/docs/tutorials/ISO20022/ISO20022-Client',
+          }
         ],
       },
       {

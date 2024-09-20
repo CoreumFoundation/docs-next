@@ -16,6 +16,8 @@
 
   "tutorials/ISO20022": [
     {
+      "page": "ISO20022-Client",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/iso20022-client/refs/heads/master/README.md"
       
     }
 
