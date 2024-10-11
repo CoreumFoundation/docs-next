@@ -52,7 +52,7 @@ Please note that each subsequent section depends on the previous one.
 -   Let's create new NFT class:
 
     ```bash
-    # cored tx assetnft issue-class [symbol] [name] [description] [uri] [uri_hash] --from [issuer] --features=burning,freezing,whitelisting,disable_sending [flags]
+    # cored tx assetnft issue-class [symbol] [name] [description] [uri] [uri-hash] --from [issuer] --features=burning,freezing,whitelisting,disable_sending [flags]
     cored tx assetnft issue-class puppysmartnft1 "Puppy NFTs" "A collection of awesome puppy NFTs" "http://puppy-nfts.com" "somehash" --from $NFT_ISSUER_ADDRESS --features=burning,freezing,whitelisting --node=$RPC_URL --chain-id=$CHAIN_ID
     # confirm transaction before signing and broadcasting [y/N]: y
     ```
@@ -81,7 +81,7 @@ Please note that each subsequent section depends on the previous one.
 -   We will now mint 2 NFTs within created class
 
     ```bash
-    #cored tx assetnft mint [class-id] [id] [uri] [uri_hash] --from [sender] [flags]
+    #cored tx assetnft mint [class-id] [id] [uri] [uri-hash] --from [sender] [flags]
     cored tx assetnft mint $NFT_CLASS_ID puppysmartnft-1 "http://puppy-nfts.com/puppynft-1" "somehash" --from $NFT_ISSUER_ADDRESS --node=$RPC_URL --chain-id=$CHAIN_ID
 
     cored tx assetnft mint $NFT_CLASS_ID puppysmartnft-2 "http://puppy-nfts.com/puppynft-2" "somehash" --from $NFT_ISSUER_ADDRESS --node=$RPC_URL --chain-id=$CHAIN_ID
