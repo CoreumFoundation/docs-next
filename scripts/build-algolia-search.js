@@ -10,11 +10,11 @@ dotenv.config();
 
 const client = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
-    process.env.ALGOLIA_ADMIN_KEY
+    process.env.NEXT_PUBLIC_ALGOLIA_API_KEY
 );
 
 // Use environment variable for CONTENT_PATH, with a fallback
-const CONTENT_PATH = process.env.DOCS_PATH || path.join(process.cwd(), 'docs');
+const CONTENT_PATH = process.env.DOCS_PATH || path.join(process.cwd(), 'app/docs');
 const MAX_RECORD_SIZE = 8000; // Keeping some buffer below the 10KB limit
 
 function convertFilePathToUrl(filePath) {
@@ -104,7 +104,7 @@ function processContent(content, data, filePath) {
                     subtitle: subtitle ? subtitle.trim() : null,
                     content: chunk,
                     description: chunk.slice(0, 150) + '...',
-                    url: convertFilePathToUrl(filePath) + 
+                    url: convertFilePathToUrl(filePath) +
                          (sectionIndex > 0 ? `#${title.toLowerCase().replace(/\s+/g, '-')}` : '') +
                          (subtitle ? `-${subtitle.toLowerCase().replace(/\s+/g, '-')}` : ''),
                     ...data,
