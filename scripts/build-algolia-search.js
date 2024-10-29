@@ -105,7 +105,7 @@ function processContent(content, data, filePath) {
                     content: chunk,
                     description: chunk.slice(0, 150) + '...',
                     url: convertFilePathToUrl(filePath) +
-                         (sectionIndex > 0 ? `#${title.toLowerCase().replace(/\s+/g, '-')}` : '') +
+                         (sectionIndex > 0 ? `#${title.toLowerCase().replace(/\s+/g, '-')}` : '#s') +
                          (subtitle ? `-${subtitle.toLowerCase().replace(/\s+/g, '-')}` : ''),
                     ...data,
                     hierarchy: {
