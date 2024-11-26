@@ -6,6 +6,7 @@ import rehypeIgnore from 'rehype-ignore';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
+import { rehypeGithubAlerts } from 'rehype-github-alerts';
 
 import langHttp from 'highlight.js/lib/languages/http';
 import langNginx from 'highlight.js/lib/languages/nginx';
@@ -36,6 +37,7 @@ const withMDX = createMDX({
       }],
       rehypeIgnore,
       rehypeStringify,
+      rehypeGithubAlerts,
     ],
   },
 });

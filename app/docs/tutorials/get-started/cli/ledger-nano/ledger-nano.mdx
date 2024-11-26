@@ -4,9 +4,9 @@ This tutorial will show you how to utilize a Ledger device with the Cosmos Ledge
 
 The use of a hardware wallet for storing crypto keys significantly enhances the security of your digital assets. The Ledger device functions as a secure enclave that contains the seed and private keys, and the signing process for transactions occurs entirely within the device  ensuring  that no private data is ever transmitted externally.
 
-::: warning DISCLAIMER
-Since Ledger limits HD paths, CORE `--coin-type=990` is currently not supported, but we will use ATOM `--coin-type=118`(path m/44/118), which will also work for us.
-:::
+> [!WARNING] DISCLAIMER
+> Since Ledger limits HD paths, CORE `--coin-type=990` is currently not supported, but we will use ATOM `--coin-type=118`(path m/44/118), which will also work for us.
+
 
 ## Prerequisites
 
@@ -24,20 +24,22 @@ Since Ledger limits HD paths, CORE `--coin-type=990` is currently not supported,
 
 * Set up an account in `cored` using your Ledger key.
 
-::: tip NOTE:
+> [!TIP]
+> NOTE:
+>
+> The instructions provided will generate private keys on your Ledger device  using the `cored` tool in Coreum network  and keep references to them saved locally. However, the actual keys will be exclusively stored within the Ledger device.
 
-The instructions provided will generate private keys on your Ledger device  using the `cored` tool in Coreum network  and keep references to them saved locally. However, the actual keys will be exclusively stored within the Ledger device.
-:::
 
 ```bash
 #cored keys add [name]  --chain-id=[chain ID] --keyring-backend=[os|file|test] --ledger --coin-type=[coin type]
 cored keys add ledger-1 --chain-id=coreum-testnet-1  --ledger --coin-type=118
 ```
 
-::: tip NOTE:
-- You can use the `--keyring-backend` flag to increase the security of your keys.
-- If you want to target other network than testnet, replace it with values at [network variables page](/docs/tutorials/get-started/setup-cli)
-:::
+> [!TIP]
+> NOTE:
+> - You can use the `--keyring-backend` flag to increase the security of your keys.
+> - If you want to target other network than testnet, replace it with values at [network variables page](/docs/tutorials/get-started/setup-cli)
+
 
 ```bash
 #cored keys add [name]  --chain-id=[chain ID] --keyring-backend=[os|file|test] --ledger --coin-type=[coin type]
@@ -48,9 +50,10 @@ cored keys add ledger-2 --chain-id=coreum-testnet-1 --keyring-backend=test  --le
 
 Execute this command to display your address on your Ledger device. Use the `name` that you assigned to your Ledger key.
 
-::: tip NOTE:
-Before executing commands, make sure to unlock your device using the PIN and open the Cosmos app.
-:::
+> [!TIP]
+> NOTE:
+> Before executing commands, make sure to unlock your device using the PIN and open the Cosmos app.
+
 
 ```bash
 cored keys show ledger-1 -d --chain-id=coreum-testnet-1
@@ -90,9 +93,9 @@ Congratulations! You have sent your first transaction using Ledger and `cored` C
 
 # Instructions to Ledger Nano + Keplr
 
-::: tip NOTE:
-Before proceeding with this section, make sure to install the Cosmos app on your Ledger Nano device.
-:::
+> [!TIP]
+> NOTE:
+> Before proceeding with this section, make sure to install the Cosmos app on your Ledger Nano device.
 
 * Connect your Ledger device to your computer, enter the PIN to unlock it, and open the Cosmos app.
 
@@ -103,34 +106,34 @@ Before proceeding with this section, make sure to install the Cosmos app on your
 * Ensure that your Ledger device is unlocked and the Cosmos app is open. Then, follow the instructions provided in the Keplr pop-up.
 
 * Connect to the [Coreum Chain](/docs/tools/wallets) to add the Coreum account.
-  :::details OPTIONAL
-  Way to add `Coreum Mainnet` chain to the `Keplr` extension:
-  * Navigate to <a href="https://chains.keplr.app/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Add Chains to Keplr</a>.
-  * In the search field, enter `Coreum`.
-  * From the search results, locate `Coreum` and click the `Add to Keplr` button.
-  * A transaction prompt will appear asking you to approve the `Add Coreum to Keplr` transaction.
-  :::
+  >[!NOTE]
+  > OPTIONAL
+  > Way to add `Coreum Mainnet` chain to the `Keplr` extension:
+  > * Navigate to <a href="https://chains.keplr.app/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Add Chains to Keplr</a>.
+  > * In the search field, enter `Coreum`.
+  > * From the search results, locate `Coreum` and click the `Add to Keplr` button.
+  > * A transaction prompt will appear asking you to approve the `Add Coreum to Keplr` transaction.
 
 * Click the `Connect to coreum-testnet-1` button to establish a connection with the Coreum testnet chain.
 
   This action will also prompt you to approve the request to  `Add Coreum Testnet 1 to Keplr`.
 
-  :::warning TIP
-  To establish a connection with various networks like Mainnet, Testnet, or Devnet, you can initiate the connection by clicking on the corresponding network buttons
+> [!WARNING]
+> To establish a connection with various networks like Mainnet, Testnet, or Devnet, you can initiate the connection by clicking on the corresponding network buttons
+>
+> listed on [Coreum Docs page](/docs/tools/wallets).
 
-  listed on [Coreum Docs page](/docs/tools/wallets).
-  :::
 
 * By default, the Coreum Chain may not be visible. To change this check the `DETAILS`:
-:::details DETAILS
-  * Open the Keplr extension.
-  * Select the `Manage Chain Visibility` option from the burger menu located at the top left corner.
-  * In the `Search networks` field, type `Coreum` to find the Coreum testnet.
-  * Choose the `Coreum Testnet 1` option.
-  * Finally, click the `Save` button to apply the changes and make the Coreum Chain visible in the Keplr extension.
-
-By following these steps, you can easily connect to the Coreum testnet chain in Keplr and ensure that the Coreum Chain is visible within the extension for seamless interaction.
-:::
+> [!NOTE]
+> DETAILS
+> * Open the Keplr extension.
+> * Select the `Manage Chain Visibility` option from the burger menu located at the top left corner.
+> * In the `Search networks` field, type `Coreum` to find the Coreum testnet.
+> * Choose the `Coreum Testnet 1` option.
+> * Finally, click the `Save` button to apply the changes and make the Coreum Chain visible in the Keplr extension.
+>
+> By following these steps, you can easily connect to the Coreum testnet chain in Keplr and ensure that the Coreum Chain is visible within the extension for seamless interaction.
 
 * To fund the test account:
   * Start by clicking the  `Deposit` button.
@@ -144,8 +147,8 @@ By following these steps, you can easily connect to the Coreum testnet chain in 
   * Once you have entered the necessary details, approve the transaction by using your Ledger device.
   * After approving the transaction, verify that the balance has been successfully updated to reflect the changes.
 
-::: tip NOTE:
-Whenever you initiate a transaction, you will be required to confirm it on your Ledger device. The Keplr interface will provide the necessary prompts for confirmation.
-:::
+> [!TIP]
+> NOTE:
+> Whenever you initiate a transaction, you will be required to confirm it on your Ledger device. The Keplr interface will provide the necessary prompts for confirmation.
 
 Great! You have successfully set up Keplr with your Ledger Nano. For more comprehensive details, you can refer to the <a href="https://support.ledger.com/hc/en-us/articles/4411149814417?docs=true" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Ledger support page</a>.
