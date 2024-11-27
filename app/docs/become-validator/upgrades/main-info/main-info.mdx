@@ -56,11 +56,12 @@ time: "0001-01-01T00:00:00Z"
 upgraded_client_state: null
 ```
 
-::: warning
-Your node must be prepared for the Upgrade before the specified `height`.
 
-Otherwise, after reaching that height, your validator will stop and risk to be slashed for being offline.
-:::
+> [!WARNING]
+> Your node must be prepared for the Upgrade before the specified `height`.
+>
+> Otherwise, after reaching that height, your validator will stop and risk to be slashed for being offline.
+
 
 ## Upgrades
 
@@ -114,7 +115,6 @@ mkdir -p "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin"
 mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored"
 ```
 
-:::
 
 ### Testnet v4patch1 upgrade
 
@@ -165,5 +165,3 @@ mkdir -p "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin"
 # Replace the new binary there
 mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/cored"
 ```
-
-:::
