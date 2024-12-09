@@ -28,7 +28,7 @@ git clone https://github.com/CoreumFoundation/tutorials.git
 * Go to the contract directory.
 
 ```bash
-cd tutorials/wasm/extension
+cd tutorials/wasm/extension-ft-with-dex
 ```
 
 * Generate a new account
@@ -54,7 +54,7 @@ export FT_RECEIVER_2=$(cored keys show ft-receiver-2 --address $COREUM_CHAIN_ID_
 * Check the balance
 
 ```bash
-cored q bank balances $FT_ADMIN --denom $COREUM_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balances $FT_ADMIN $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 ```
 
 ## Build contract
@@ -65,7 +65,7 @@ cored q bank balances $FT_ADMIN --denom $COREUM_DENOM $COREUM_NODE_ARGS $COREUM_
 docker run --rm -v "$(pwd)":/code \
   --mount type=volume,source="$(basename "$(pwd)")_cache",target=/target \
   --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
-  cosmwasm/optimizer:0.15.0
+  cosmwasm/optimizer:0.16.1
 ```
 
 This operation might take a significant amount of time.
@@ -78,7 +78,7 @@ This operation might take a significant amount of time.
 RES=$(cored tx wasm store artifacts/extension.wasm \
     --from $FT_ADMIN --gas auto --gas-adjustment 1.4 -y -b block --output json $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS)
 echo $RES
-CODE_ID=$(echo $RES | jq -r '.logs[0].events[-1].attributes[-1].value')
+CODE_ID=$(echo $RES | jq -r '.events[-1].attributes[-2].value')
 echo "Code ID: $CODE_ID"
 ```
 
@@ -100,12 +100,12 @@ We can issue a new token like explain in [Create and Manage FT with CLI](/docs/t
 Use the following command to issue your FT with extension:
 
 ```bash
-cored tx assetft issue MYFT cmyft 2 100000000 "My FT token with extension" --from $FT_ADMIN --features=burning,freezing,minting,whitelisting,extension --burn-rate=0.02 --send-commission-rate=0.03 --extension_code_id=$CODE_ID --extension_label=my-extension $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS -y -b block --gas auto --gas-adjustment 1.4
+cored tx assetft issue MYFT cmyft 2 100000000 "My FT token with extension" --from $FT_ADMIN --features=burning,minting,extension --burn-rate=0.02 --send-commission-rate=0.03 --extension-code-id=$CODE_ID --extension-label=my-extension $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS -y -b block --gas auto --gas-adjustment 1.4
 ```
 
 * On token `instantiation` we can set custom parameters we allow to set in the contract related to extension.
-* extension_code_id - CodeID of the deployed wasm contract
-* extension_label - optional label to assign to the extension
+* extension-code-id - CodeID of the deployed wasm contract
+* extension-label - optional label to assign to the extension
 * extension_funds - optional funds to transfer to the contract when instantiating the token
 * extension_issuance_msg - optional json encoded data to pass to WASM on instantiation by the ft issuer
 
@@ -116,12 +116,12 @@ export FT_DENOM=cmyft-$FT_ADMIN
 ```
 
 ```bash
-cored q bank total --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank total-supply-of $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "100000000"
 ```
 
 ```bash
-cored q bank denom-metadata --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank denom-metadata $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 ```
 
 ```bash
@@ -136,46 +136,55 @@ EXTENSION_ADDR=$(echo $RES | jq -r '.token.extension_cw_address')
 echo "Extension Address: $EXTENSION_ADDR"
 ```
 
-## Interactions with the extension
+## Interactions with the extension (transfer)
 
 When we issue a token with extension, every bank transfer of this token will be intercepted and instead of the recipient,
 it will be sent to the smart contract used as asset extension and then the contract decides what to do with it.
 
 The smart contract may decide to send the tokens to the recipient or not, return it to the sender, send it to multiple
-accounts, burn a part of it, mint some more coins to send as a reward, apply features like freezing, whitelisting,
-commission rate, burn rate or any custom logic. We will implement some of these ideas, but first, let's understand the flow.
+accounts, burn a part of it, mint some more coins to send as a reward, apply features like, commission rate, burn rate or any custom logic.
+We will implement some of these ideas, but first, let's understand the flow.
 
 Let's say alice sends `100$FT_DENOM` to bob. This transaction will be intercepted and transferred to `$EXTENSION_ADDR`.
+If asset FT features are enable (e.g. whitelisting, freezing) they will be checked before the calling the smart contract.
 Then `sudo` entrypoint of the contract will be called with `ExtensionTransfer` message.
 
 Code:
 
 ```rust
 #[entry_point]
-pub fn sudo(deps: DepsMut<CoreumQueries>, env: Env, msg: SudoMsg) -> CoreumResult<ContractError> {
+pub fn sudo(deps: DepsMut, env: Env, msg: SudoMsg) -> Result<Response, ContractError> {
     match msg {
         SudoMsg::ExtensionTransfer {
-            sender, recipient, transfer_amount, commission_amount, burn_amount, context,
+            sender,
+            recipient,
+            transfer_amount,
+            commission_amount,
+            burn_amount,
+            context,
         } => sudo_extension_transfer(
-            deps, env, transfer_amount, sender, recipient, commission_amount, burn_amount, context,
+            deps,
+            env,
+            transfer_amount,
+            sender,
+            recipient,
+            commission_amount,
+            burn_amount,
+            context,
         ),
+        SudoMsg::ExtensionPlaceOrder {
+            order,
+            expected_to_spend,
+            expected_to_receive,
+        } => sudo_extension_place_order(order, expected_to_spend, expected_to_receive),
     }
 }
+
 ```
 
-In the code snippet above in the `SudoMsg` enum, we declare the function to be called when a bank transfer is initiated.
-The `sudo` function marked with `entry_point` macro routes them to the proper handlers. The `sudo_extension_transfer`
-function is the handler for the `ExtensionTransfer` message, that can decide what to do when a bank send is intercepted.
-
-Here we receive `ExtensionTransfer` message and call `sudo_extension_transfer` function with parameters described below:
-- deps: The CosmWasm's interface to access storage, api and querier
-- env: The CosmWasm's interface to access block info, the transaction which this message is a part of, and the contract info
-- sender: The original transfer's sender, which is `alice` in our example
-- recipient: The original transfer's recipient, which is `bob` in our example
-- transfer_amount: The `100$FT_DENOM` tokens that was sent from alice to bob
-- commission_amount: The commission amount calculated based on the commission rate defined when issuing the token, which is `2$FT_DENOM` in our example
-- burn_amount: The burn amount calculated based on the burn rate defined when issuing the token, which is `3$FT_DENOM` in our example
-- context: Contextual information including `ibc_purpose` (whether the transaction is and ibc in, out, ack, timeout or none) and the indicator whether the sender, the receiver or both are smart contracts
+In the code snippet above in the `SudoMsg` enum, we declare the functions to be called. The `sudo` function marked with `entry_point` macro routes them to the proper handlers.
+`ExtensionTransfer -> sudo_extension_transfer` - when a bank transfer is initiated. `ExtensionPlaceOrder -> sudo_extension_place_order` - when an DEX order is placed.
+Read <a className="text-[#24D494] font-bold" href="/docs/overview/smart-tokens#extension" target="_blank">smart-tokens/extension</a> to get more info about the message attributes.
 
 Now, let's implement some of those ideas, starting with the most basic one to just keep the amount in the extension address.
 As described before, the coins are first transferred to the extension, then it should decide. It can just decide to do nothing.
@@ -184,8 +193,9 @@ The template code that we deployed is going to do just that.
 Code:
 
 ```rust
+
 pub fn sudo_extension_transfer(
-    _deps: DepsMut<CoreumQueries>,
+    _deps: DepsMut,
     _env: Env,
     _amount: Uint128,
     _sender: String,
@@ -193,12 +203,23 @@ pub fn sudo_extension_transfer(
     _commission_amount: Uint128,
     _burn_amount: Uint128,
     _context: TransferContext,
-) -> CoreumResult<ContractError> {
+) -> Result<Response, ContractError> {
     Ok(Response::new())
 }
+
+pub fn sudo_extension_place_order(
+    _order: DEXOrder,
+    _expected_to_spend: Coin,
+    _expected_to_receive: Coin,
+) -> Result<Response, ContractError> {
+    Ok(Response::new())
+}
+
 ```
 
-We can test it by sending some about to an account. The account won't receive it, but the extension will have it instead.
+_**Note**: If `sudo_extension_place_order` handler is not implemented you will be able to send the token, but won't be able to place an DEX order with the token._
+
+We can test transfer handler by sending some about to an account. The account won't receive it, but the extension will have it instead.
 
 ```bash
 cored tx bank send $FT_ADMIN $FT_RECEIVER_1 10$FT_DENOM -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
@@ -207,22 +228,21 @@ cored tx bank send $FT_ADMIN $FT_RECEIVER_1 10$FT_DENOM -y -b block $COREUM_NODE
 * Check balance
 
 ```bash
-cored q bank balances $FT_ADMIN --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $FT_ADMIN $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "99999988"
 ```
 
 ```bash
-cored q bank balances $FT_RECEIVER_1 --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $FT_RECEIVER_1 $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "0"
 ```
 
 ```bash
-cored q bank balances $EXTENSION_ADDR --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $EXTENSION_ADDR $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "12"
 ```
 
 ### A simple bank transfer.
-_Checkout `extension/simple` branch to see code for this example._
 
 Now let's change the code to send the amount as it should be without the extension like a normal bank transfer.
 With our current setup, we only need to modify `sudo_extension_transfer` function to achieve what we want.
@@ -230,8 +250,9 @@ With our current setup, we only need to modify `sudo_extension_transfer` functio
 Code:
 
 ```rust
+
 pub fn sudo_extension_transfer(
-    deps: DepsMut<CoreumQueries>,
+    deps: DepsMut,
     _env: Env,
     amount: Uint128,
     _sender: String,
@@ -239,7 +260,7 @@ pub fn sudo_extension_transfer(
     _commission_amount: Uint128,
     _burn_amount: Uint128,
     _context: TransferContext,
-) -> CoreumResult<ContractError> {
+) -> Result<Response, ContractError> {
     let denom = DENOM.load(deps.storage)?;
 
     let transfer_msg = cosmwasm_std::BankMsg::Send {
@@ -261,7 +282,7 @@ pub fn sudo_extension_transfer(
 RES=$(cored tx wasm store artifacts/extension.wasm \
     --from $FT_ADMIN --gas auto --gas-adjustment 1.4 -y -b block --output json $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS)
 echo $RES
-CODE_ID=$(echo $RES | jq -r '.logs[0].events[-1].attributes[-1].value')
+CODE_ID=$(echo $RES | jq -r '.events[-1].attributes[-2].value')
 echo "Code ID: $CODE_ID"
 ```
 
@@ -282,27 +303,27 @@ cored tx bank send $FT_ADMIN $FT_RECEIVER_1 10$FT_DENOM -y -b block $COREUM_NODE
 * Check balance
 
 ```bash
-cored q bank balances $FT_ADMIN --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $FT_ADMIN $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "99999976"
 ```
 
 ```bash
-cored q bank balances $FT_RECEIVER_1 --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $FT_RECEIVER_1 $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "10"
 ```
 
 We see that 10 coins are transferred from `$FT_ADMIN` to `$FT_RECEIVER_1`.
 
 ### Reject some transactions.
-_Checkout `extension/reject` branch to see code for this example._
 
 Let's add an arbitrary rule to reject any bank transfer, sending 7 coins.
 
 Code:
 
 ```rust
+
 pub fn sudo_extension_transfer(
-    deps: DepsMut<CoreumQueries>,
+    deps: DepsMut,
     _env: Env,
     amount: Uint128,
     _sender: String,
@@ -310,7 +331,7 @@ pub fn sudo_extension_transfer(
     _commission_amount: Uint128,
     _burn_amount: Uint128,
     _context: TransferContext,
-) -> CoreumResult<ContractError> {
+) -> Result<Response, ContractError> {
     let denom = DENOM.load(deps.storage)?;
 
     if amount == Uint128::new(7) {
@@ -344,195 +365,18 @@ cored tx bank send $FT_ADMIN $FT_RECEIVER_1 7$FT_DENOM -y -b block $COREUM_NODE_
 * Check balance
 
 ```bash
-cored q bank balances $FT_ADMIN --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $FT_ADMIN $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "99999976"
 ```
 
 ```bash
-cored q bank balances $FT_RECEIVER_1 --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $FT_RECEIVER_1 $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "10"
 ```
 
 Since the transaction is rejected, we can see that the balance of none of the accounts are changed.
 
-### Custom whitelisting.
-_Checkout `extension/whitelist` branch to see code for this example._
-
-Let's say we already have one coin with whitelisting feature with many whitelisted accounts, now we want to issue a new
-coin, but we don't want to whitelist those accounts again for this new coin. We can write a smart contracts that checks
-whitelisting for both coins when some account transfer some token of this new coin.
-
-We need to change our smart contract to add whitelisting feature to it. Just for demonstration purposes, let's enable the
-whitelisting assertions only of the token is issued with `--features=whitelisting`.
-
-In this special case, we want to receive denom of the parent token if there is any and also store it, so we need to
-expand `IssuanceMsg` struct and also add a new state item.
-
-```rust
-pub struct IssuanceMsg {
-    pub parent_denom: Option<String>,
-}
-```
-
-```rust
-pub const PARENT_DENOM: Item<String> = Item::new("parent_denom");
-```
-
-We need to store the denom in the `instantiate` function.
-
-```rust
-PARENT_DENOM.save(
-    deps.storage,
-    &msg.issuance_msg
-        .parent_denom
-        .unwrap_or_default(),
-)?;
-```
-
-Now we have everything needed to implement whitelisting in `sudo_extension_transfer` function.
-
-Code:
-
-```rust
-pub fn sudo_extension_transfer(
-    deps: DepsMut<CoreumQueries>,
-    _env: Env,
-    amount: Uint128,
-    _sender: String,
-    recipient: String,
-    _commission_amount: Uint128,
-    _burn_amount: Uint128,
-    _context: TransferContext,
-) -> CoreumResult<ContractError> {
-    let denom = DENOM.load(deps.storage)?;
-    let token = query_token(deps.as_ref(), &denom)?;
-
-    if let Some(features) = &token.features {
-        if features.contains(&assetft::WHITELISTING) {
-            assert_whitelisting(deps.as_ref(), &recipient, &token.denom, amount)?;
-        }
-    }
-
-    let transfer_msg = cosmwasm_std::BankMsg::Send {
-        to_address: recipient.to_string(),
-        amount: vec![Coin { amount, denom }],
-    };
-
-    let response = Response::new()
-        .add_attribute("method", "execute_transfer")
-        .add_message(transfer_msg);
-
-    Ok(response)
-}
-
-fn assert_whitelisting(
-    deps: Deps<CoreumQueries>,
-    account: &str,
-    denom: &str,
-    amount: Uint128,
-) -> Result<(), ContractError> {
-    let parent_denom = PARENT_DENOM.load(deps.storage).unwrap_or_default();
-    if !parent_denom.is_empty() {
-        let whitelisted_balance = query_whitelisted_balance(deps, account, &parent_denom)?;
-        if whitelisted_balance.amount.gt(&Uint128::zero()) {
-            return Ok(());
-        }
-    }
-
-    let bank_balance = query_bank_balance(deps, account, denom)?;
-    let whitelisted_balance = query_whitelisted_balance(deps, account, denom)?;
-
-    if amount + bank_balance.amount > whitelisted_balance.amount {
-        return Err(ContractError::WhitelistingError {});
-    }
-
-    Ok(())
-}
-
-fn query_token(deps: Deps<CoreumQueries>, denom: &str) -> StdResult<Token> {
-    let token: TokenResponse = deps.querier.query(
-        &CoreumQueries::AssetFT(Query::Token {
-            denom: denom.to_string(),
-        })
-        .into(),
-    )?;
-
-    Ok(token.token)
-}
-
-fn query_bank_balance(deps: Deps<CoreumQueries>, account: &str, denom: &str) -> StdResult<Coin> {
-    let bank_balance: BalanceResponse = deps.querier.query(
-        &BankQuery::Balance {
-            address: account.to_string(),
-            denom: denom.to_string(),
-        }
-        .into(),
-    )?;
-
-    Ok(bank_balance.amount)
-}
-
-fn query_whitelisted_balance(
-    deps: Deps<CoreumQueries>,
-    account: &str,
-    denom: &str,
-) -> StdResult<Coin> {
-    let whitelisted_balance: WhitelistedBalanceResponse = deps.querier.query(
-        &CoreumQueries::AssetFT(Query::WhitelistedBalance {
-            account: account.to_string(),
-            denom: denom.to_string(),
-        })
-        .into(),
-    )?;
-    Ok(whitelisted_balance.balance)
-}
-```
-
-* Build the contract, deploy the built artifact and migrate the extension code again.
-
-For the second token, we instantiate the extension with extra flag to store the first token's denom to be able to query
-the first token's whitelist first and if the account is whitelisted there, allow the transfer to move forward even if
-the account is not whitelisted in this token.
-
-```bash
-cored tx assetft issue MYFT2 cmyft2 2 1000000 "My second FT token with extension" --from $FT_ADMIN --features=whitelisting,extension --extension_code_id=$CODE_ID --extension_label=my-second-extension --extension_issuance_msg='{"parent_denom": "'$FT_DENOM'"}' $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS -y -b block --gas auto --gas-adjustment 1.4
-```
-
-* Build denom
-
-```bash
-export FT_DENOM2=cmyft2-$FT_ADMIN
-```
-
-Now if we send some of these coins, it will be rejected by the extension because the account is not whitelisted anywhere.
-
-```bash
-cored tx bank send $FT_ADMIN $FT_RECEIVER_1 10$FT_DENOM2 -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-# Whitelisted limit exceeded.
-```
-
-Let's whitelist `$FT_RECEIVER_1` in the first FT and whitelist `$FT_RECEIVER_2` in the second FT.
-
-```bash
-cored tx assetft set-whitelisted-limit $FT_RECEIVER_1 800$FT_DENOM --from $FT_ADMIN $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS -y -b block
-```
-
-```bash
-cored tx assetft set-whitelisted-limit $FT_RECEIVER_2 800$FT_DENOM2 --from $FT_ADMIN $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS -y -b block
-```
-
-We can now send second tokens to both accounts and it will be successful.
-
-```bash
-cored tx bank send $FT_ADMIN $FT_RECEIVER_1 10$FT_DENOM2 -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-```
-
-```bash
-cored tx bank send $FT_ADMIN $FT_RECEIVER_2 10$FT_DENOM2 -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-```
-
 ### Custom send commission rate.
-_Checkout `extension/send-commission-rate` branch to see code for this example._
 
 For this example, we want to implement send commission rate feature in the extension, but the commission is split between
 the extension and the token admin.
@@ -540,8 +384,9 @@ the extension and the token admin.
 Code:
 
 ```rust
+
 pub fn sudo_extension_transfer(
-    deps: DepsMut<CoreumQueries>,
+    deps: DepsMut,
     _env: Env,
     amount: Uint128,
     _sender: String,
@@ -549,7 +394,7 @@ pub fn sudo_extension_transfer(
     commission_amount: Uint128,
     _burn_amount: Uint128,
     _context: TransferContext,
-) -> CoreumResult<ContractError> {
+) -> Result<Response, ContractError> {
     let denom = DENOM.load(deps.storage)?;
     let token = query_token(deps.as_ref(), &denom)?;
 
@@ -565,7 +410,7 @@ pub fn sudo_extension_transfer(
     if !commission_amount.is_zero() {
         // if token has an admin, send half of the commission to the admin and let the extension keep
         // the rest of the commission
-        if let Some(admin) = &token.admin {
+        if let Some(admin) = token.admin.into() {
             let admin_commission_amount = commission_amount.div(Uint128::new(2));
             let admin_commission_msg = cosmwasm_std::BankMsg::Send {
                 to_address: admin.to_string(),
@@ -582,20 +427,17 @@ pub fn sudo_extension_transfer(
                 .add_message(admin_commission_msg);
         }
     }
-
     Ok(response)
 }
 
-fn query_token(deps: Deps<CoreumQueries>, denom: &str) -> StdResult<Token> {
-    let token: TokenResponse = deps.querier.query(
-        &CoreumQueries::AssetFT(Query::Token {
-            denom: denom.to_string(),
-        })
-        .into(),
-    )?;
-
-    Ok(token.token)
+fn query_token(deps: Deps, denom: &str) -> StdResult<Token> {
+    let request = QueryTokenRequest {
+        denom: denom.to_string(),
+    };
+    let token: QueryTokenResponse = request.query(&deps.querier)?;
+    Ok(token.token.unwrap_or_default())
 }
+
 ```
 
 * Build the contract, deploy the built artifact and migrate the extension code again.
@@ -608,264 +450,47 @@ Let's check the sender (`$FT_ADMIN`), the recipient (`$FT_RECEIVER_1`) and the e
 * Check balances
 
 ```bash
-cored q bank balances $FT_ADMIN --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $FT_ADMIN $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "99999976"
 ```
 
 ```bash
-cored q bank balances $FT_RECEIVER_1 --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $FT_RECEIVER_1 $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "10"
 ```
 
 ```bash
-cored q bank balances $EXTENSION_ADDR --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $EXTENSION_ADDR $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "14"
 ```
 
 * Send tokens
 
 ```bash
-cored tx bank send $FT_ADMIN $FT_RECEIVER_1 200$FT_DENOM -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored tx bank send $FT_ADMIN $FT_RECEIVER_1 200$FT_DENOM --gas auto --gas-adjustment 1.2 -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 ```
 
 * Check balances again
 
 ```bash
-cored q bank balances $FT_ADMIN --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $FT_ADMIN $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "99999769"
 ```
 
 ```bash
-cored q bank balances $FT_RECEIVER_1 --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $FT_RECEIVER_1 $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "210"
 ```
 
 ```bash
-cored q bank balances $EXTENSION_ADDR --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank balance $EXTENSION_ADDR $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 # amount: "21"
 ```
 
 We see that admin has 207 fewer coins (-200 -6 \[commission amount\] -4 \[burn amount\] +3 \[50% commission refund\] =
 -207), recipient has 200 more coins and the extension has 3 more coins \[50% commission refund\].
 
-### Custom burn rate.
-_Checkout `extension/burn-rate` branch to see code for this example._
-
-Let's say we have a token with burn rate, but you want to burn less and less for transfers with more and more amount.
-For example, the burn amount would be the same as defined when issuing the token for transfers up to 200 coins, and then
-from 200 to 400 coins, burn half of the defined burn amount and refund the rest, and for transfers of more than 400
-coins, burn 20% of the defined burn amount and refund the rest.
-
-Code:
-
-```rust
-pub fn sudo_extension_transfer(
-    deps: DepsMut<CoreumQueries>,
-    _env: Env,
-    amount: Uint128,
-    sender: String,
-    recipient: String,
-    _commission_amount: Uint128,
-    burn_amount: Uint128,
-    _context: TransferContext,
-) -> CoreumResult<ContractError> {
-    let denom = DENOM.load(deps.storage)?;
-    let token = query_token(deps.as_ref(), &denom)?;
-
-    let transfer_msg = cosmwasm_std::BankMsg::Send {
-        to_address: recipient.to_string(),
-        amount: vec![Coin { amount, denom }],
-    };
-
-    let mut response = Response::new()
-        .add_attribute("method", "execute_transfer")
-        .add_message(transfer_msg);
-
-    if !burn_amount.is_zero() {
-        let new_burn_amount = match amount.u128() {
-            0..=200 => burn_amount,
-            201..=400 => burn_amount.div(Uint128::new(2)),
-            _ => burn_amount.div(Uint128::new(5)),
-        };
-
-        let burn_message = CoreumMsg::AssetFT(assetft::Msg::Burn {
-            coin: cosmwasm_std::coin(new_burn_amount.u128(), &token.denom),
-        });
-
-        response = response
-            .add_attribute("burn_amount", new_burn_amount)
-            .add_message(burn_message);
-
-        if new_burn_amount.lt(&burn_amount) {
-            let refund_amount = burn_amount.sub(new_burn_amount);
-
-            let refund_burn_rate_msg = cosmwasm_std::BankMsg::Send {
-                to_address: sender.to_string(),
-                amount: vec![Coin {
-                    amount: refund_amount,
-                    denom: token.denom.to_string(),
-                }],
-            };
-
-            response = response
-                .add_attribute("burn_rate_refund", refund_amount.to_string())
-                .add_message(refund_burn_rate_msg);
-        }
-    }
-
-    Ok(response)
-}
-
-fn query_token(deps: Deps<CoreumQueries>, denom: &str) -> StdResult<Token> {
-    let token: TokenResponse = deps.querier.query(
-        &CoreumQueries::AssetFT(Query::Token {
-            denom: denom.to_string(),
-        })
-        .into(),
-    )?;
-
-    Ok(token.token)
-}
-```
-
-* Build the contract, deploy the built artifact and migrate the extension code again.
-
-Now if we send 100 coins to another account, 2 coins will be burnt (100*0.02=2).
-_not related to this example but 3 more coins are also sent for the commission which is kept by the extension (100*0.03=3)._
-
-```bash
-cored tx bank send $FT_ADMIN $FT_RECEIVER_1 100$FT_DENOM -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-```
-
-* Check balances
-
-```bash
-cored q bank balances $FT_ADMIN --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-# amount: "99999664"
-```
-
-We see that admin has 105 fewer coins.
-
-If we send 300 coins to another account, 3 coins will be burnt (300*0.02*0.5=3) and the rest (3) will send back to admin.
-_not related to this example but 9 more coins are also sent for the commission which is kept by the extension (300*0.03=9)._
-
-```bash
-cored tx bank send $FT_ADMIN $FT_RECEIVER_1 300$FT_DENOM -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-```
-
-* Check balances
-
-```bash
-cored q bank balances $FT_ADMIN --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-# amount: "99999352"
-```
-
-We see that admin has 312 fewer coins (-300-6+3-9=-312)
-
-And if we send 500 coins to another account, 2 coins will be burnt (500*0.02*0.2=2) and the rest (8) will send back to admin.
-_not related to this example but 15 more coins are also sent for the commission which is kept by the extension (500*0.03=15)._
-
-```bash
-cored tx bank send $FT_ADMIN $FT_RECEIVER_1 500$FT_DENOM -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-```
-
-* Check balances
-
-```bash
-cored q bank balances $FT_ADMIN --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-# amount: "99998835"
-```
-
-We see that admin has 517 fewer coins (-500-10+8-15=-517).
-
-## Limitations.
-
-A token cannot have `extension` feature and any of `ibc` or `block smart contract` features at the same time, because
-the extension can decide what to do with bank transfers involving ibc or smart contracts, and it doesn't make sense to
-have these features enabled.
-
-### Custom block smart contract.
-_Checkout `extension/block-smart-contract` branch to see code for this example._
-
-Let's say we want to implement `block smart contract` feature that rejects any payment to any recipient which is a smart
-contract, except the smart contract used as the asset extension.
-
-Code:
-
-```rust
-pub fn sudo_extension_transfer(
-    deps: DepsMut<CoreumQueries>,
-    _env: Env,
-    amount: Uint128,
-    _sender: String,
-    recipient: String,
-    _commission_amount: Uint128,
-    _burn_amount: Uint128,
-    context: TransferContext,
-) -> CoreumResult<ContractError> {
-    let denom = DENOM.load(deps.storage)?;
-    let token = query_token(deps.as_ref(), &denom)?;
-
-    assert_block_smart_contracts(&context, &recipient, &token, amount)?;
-
-    let transfer_msg = cosmwasm_std::BankMsg::Send {
-        to_address: recipient.to_string(),
-        amount: vec![Coin { amount, denom }],
-    };
-
-    let response = Response::new()
-        .add_attribute("method", "execute_transfer")
-        .add_message(transfer_msg);
-
-    Ok(response)
-}
-
-fn assert_block_smart_contracts(
-    context: &TransferContext,
-    recipient: &str,
-    token: &Token,
-    amount: Uint128,
-) -> Result<(), ContractError> {
-    if Some(recipient.to_string()) == token.extension_cw_address
-    {
-        return Ok(());
-    }
-
-    if context.recipient_is_smart_contract {
-        return Err(ContractError::SmartContractBlocked {});
-    }
-
-    return Ok(());
-}
-```
-
-* Build the contract, deploy the built artifact and migrate the extension code again.
-
-To test it, we need another contract address. If you followed above examples, you should have access `$FT_DENOM2` with
-a contract that is not the same as this extension's contract and the transfer to it will be blocked.
-
-* Capture some other contract address.
-
-```bash
-RES=$(cored q assetft token $FT_DENOM2 $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS --output json)
-EXTENSION_ADDR2=$(echo $RES | jq -r '.token.extension_cw_address')
-echo "Other Extension Address: $EXTENSION_ADDR2"
-```
-
-If we send some coins to the other contract, it will be blocked.
-
-```bash
-cored tx bank send $FT_ADMIN $EXTENSION_ADDR2 10$FT_DENOM -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-```
-
-But if we do a bank send to our current contract, it will be transferred.
-
-```bash
-cored tx bank send $FT_ADMIN $EXTENSION_ADDR 10$FT_DENOM -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
-```
-
 ### Custom ibc.
-_Checkout `extension/ibc` branch to see code for this example._
 
 As the last example, let's say we want to disallow ibc transfer more than an arbitrary amount, like 100 tokens, but
 allow other amounts.
@@ -874,7 +499,7 @@ Code:
 
 ```rust
 pub fn sudo_extension_transfer(
-    deps: DepsMut<CoreumQueries>,
+    deps: DepsMut,
     _env: Env,
     amount: Uint128,
     _sender: String,
@@ -882,11 +507,13 @@ pub fn sudo_extension_transfer(
     _commission_amount: Uint128,
     _burn_amount: Uint128,
     context: TransferContext,
-) -> CoreumResult<ContractError> {
+) -> Result<Response, ContractError> {
     let denom = DENOM.load(deps.storage)?;
 
     if matches!(context.ibc_purpose, IBCPurpose::Out) && amount > Uint128::new(100) {
-        return Err(ContractError::IBCDisabled {});
+        return Err(ContractError::Std(StdError::generic_err(
+            "IBC is disabled",
+        )));
     }
 
     let transfer_msg = cosmwasm_std::BankMsg::Send {
@@ -905,6 +532,52 @@ pub fn sudo_extension_transfer(
 * Build the contract, deploy the built artifact and migrate the extension code again.
 
 If you transfer some amount more than 100 tokens, it will fail and show the error.
+
+## Interactions with the extension (place order)
+
+When we issue a token with extension, every order placement will be intercepted to let the smart contract
+decide whether the placement is allowed or not.
+
+Let's add an arbitrary rule to reject any order if the order's quantity is less than 10.
+
+Code:
+
+```rust
+
+pub fn sudo_extension_place_order(
+    order: DEXOrder,
+    _expected_to_spend: Coin,
+    _expected_to_receive: Coin,
+) -> Result<Response, ContractError> {
+    if order.quantity < Uint128::new(10) {
+        return Err(ContractError::Std(StdError::generic_err(
+            "Too small order quantity",
+        )));
+    }
+
+    Ok(Response::new())
+}
+```
+
+* Build the contract, deploy the built artifact and migrate the extension code again.
+
+Now if we place and order with the quantity less than 10, the order will be rejected.
+
+```bash
+cored tx dex place-order limit id1 $COREUM_DENOM $FT_DENOM 9 SIDE_SELL --time-in-force=TIME_IN_FORCE_GTC --price 1e1 --gas auto --gas-adjustment 1.2 --from $FT_ADMIN -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+# Too small order quantity
+```
+
+* Place the order with the correct quantity now
+
+```bash
+cored tx dex place-order limit id1 $COREUM_DENOM $FT_DENOM 11 SIDE_SELL --time-in-force=TIME_IN_FORCE_GTC --price 1e1 --gas auto --gas-adjustment 1.2 --from $FT_ADMIN -y -b block $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+```
+
+```bash
+cored q dex orders $FT_ADMIN $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+# the order should be in the list
+```
 
 ## Next steps
 
