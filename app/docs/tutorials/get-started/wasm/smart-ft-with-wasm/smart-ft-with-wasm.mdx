@@ -69,7 +69,7 @@ This operation might take a significant amount of time.
 RES=$(cored tx wasm store artifacts/ft_airdrop.wasm \
     --from wasm-deployer --gas auto --gas-adjustment 1.3 -y -b block --output json $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS)
 echo $RES
-CODE_ID=$(echo $RES | jq -r '.logs[0].events[-1].attributes[-1].value')
+CODE_ID=$(echo $RES | jq -r '.events[-1].attributes[-2].value')
 echo "Code ID: $CODE_ID"
 ```
 
@@ -175,11 +175,11 @@ echo "Open the https://explorer.testnet-1.coreum.dev/coreum/accounts/$CONTRACT_A
 ```
 
 ```bash
-cored q bank total --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank total-supply-of $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 ```
 
 ```bash
-cored q bank denom-metadata --denom $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
+cored q bank denom-metadata $FT_DENOM $COREUM_NODE_ARGS $COREUM_CHAIN_ID_ARGS
 ```
 
 ```bash
