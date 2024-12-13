@@ -14,7 +14,8 @@ export const metadata: Metadata = {
     'Blockchain Token Creation',
     'Go Blockchain Development',
     'Digital Assets Management',
-    'Coreum Token Issuance'
+    'Coreum Token Issuance',
+    'Coreum DEX'
   ],
   openGraph: {
     type: 'website',

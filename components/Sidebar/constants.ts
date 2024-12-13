@@ -102,6 +102,10 @@ export const SIDEBAR_ITEMS = [
               {
                 name: 'Ledger Nano with CLI',
                 href: '/docs/tutorials/get-started/cli/ledger-nano',
+              },
+              {
+                name: 'Coreum DEX with CLI',
+                href: '/docs/tutorials/get-started/cli/coreum-dex-cli',
               }
             ],
           },
@@ -316,6 +320,10 @@ export const SIDEBAR_ITEMS = [
       {
         name: 'Cosmos Non-Fungible Token',
         href: '/docs/modules/cosmos-non-fungible-token',
+      },
+      {
+        name: 'Coreum DEX',
+        href: '/docs/modules/coreum-dex',
       }
     ],
   },

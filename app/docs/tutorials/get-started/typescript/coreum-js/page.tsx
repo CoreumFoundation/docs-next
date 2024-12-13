@@ -15,7 +15,8 @@ export const metadata: Metadata = {
     'Non-Fungible Tokens',
     'Blockchain Tokenization',
     'JavaScript Blockchain Programming',
-    'Coreum Token Management'
+    'Coreum Token Management',
+    'Coreum DEX'
   ],
   openGraph: {
     type: 'website',

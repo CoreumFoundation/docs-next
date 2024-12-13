@@ -53,6 +53,11 @@ const MODULES_ITEMS: DocLinkItemProps[] = [
     href: '/docs/modules/cosmos-non-fungible-token',
     external: false,
   },
+  {
+    label: 'Coreum DEX',
+    href: '/docs/modules/coreum-dex',
+    external: false,
+  },
 ];
 
 const ModulesMainPage = () => {
