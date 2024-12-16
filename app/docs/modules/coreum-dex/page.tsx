@@ -11,8 +11,6 @@ export const metadata: Metadata = {
     'Coreum fungible token',
     'Blockchain token creation',
     'Assetft module',
-    'Minting tokens',
-    'Burning tokens',
     'Token freezing',
     'Coreum token management',
     'Blockchain whitelisting',

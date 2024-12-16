@@ -13,7 +13,6 @@ export const metadata: Metadata = {
     'cored CLI Tutorial',
     'Coreum Testnet Transactions',
     'Blockchain CLI Operations',
-    'Coreum Staking Commands',
     'Coreum DEX Module',
   ],
   openGraph: {
