@@ -88,38 +88,25 @@ function processContent(content, data, filePath) {
         const [title, ...contentParts] = section.split('\n');
         const sectionContent = contentParts.join('\n').trim();
 
-        // Split the section content into subsections
-        const subsections = sectionContent.split(/^###\s/m).filter(Boolean);
-
-        subsections.forEach((subsection, subsectionIndex) => {
-            const [subtitle, ...subcontentParts] = subsection.split('\n');
-            const subsectionContent = subcontentParts.join('\n').trim();
-
-            const chunks = splitContent(subsectionContent);
+            const chunks = splitContent(sectionContent);
 
             chunks.forEach((chunk, chunkIndex) => {
                 records.push({
-                    objectID: `${path.relative(CONTENT_PATH, filePath).replace(/\\/g, '/').replace(/\..+$/, '')}-${sectionIndex}-${subsectionIndex}-${chunkIndex}`,
-                    title: title.trim(),
-                    subtitle: subtitle ? subtitle.trim() : null,
+                    objectID: `${path.relative(CONTENT_PATH, filePath).replace(/\\/g, '/').replace(/\..+$/, '')}-${sectionIndex}-${chunkIndex}`,
+                    title: title.replace(/\n/g, '').trim(),
                     content: chunk,
                     description: chunk.slice(0, 150) + '...',
-                    url: convertFilePathToUrl(filePath) +
-                         (sectionIndex > 0 ? `#${title.toLowerCase().replace(/\s+/g, '-')}` : '#s') +
-                         (subtitle ? `-${subtitle.toLowerCase().replace(/\s+/g, '-')}` : ''),
+                    url: convertFilePathToUrl(filePath) + `#${title.replace(/\n|\/|\.|#|\?|\`|\(|\)|\:|\*|\,/g, '').trim().toLowerCase().replace(/\s+/g, '-')}`,
                     ...data,
                     hierarchy: {
                         lvl0: data.category || 'Documentation',
                         lvl1: data.title || path.basename(filePath, path.extname(filePath)),
                         lvl2: title.trim(),
-                        lvl3: subtitle ? subtitle.trim() : null
                     },
                     sectionIndex: sectionIndex,
-                    subsectionIndex: subsectionIndex,
                     chunkIndex: chunkIndex
                 });
             });
-        });
     });
 
     return records;
@@ -149,12 +136,11 @@ async function configureAlgoliaIndex() {
         await index.setSettings({
             searchableAttributes: [
                 'unordered(title)',
-                'unordered(subtitle)',
                 'unordered(description)',
                 'unordered(content)'
             ],
             attributesToSnippet: ['description:50', 'content:50'],
-            attributesForFaceting: ['hierarchy.lvl0', 'hierarchy.lvl1', 'hierarchy.lvl2', 'hierarchy.lvl3'],
+            attributesForFaceting: ['hierarchy.lvl0', 'hierarchy.lvl1', 'hierarchy.lvl2'],
             distinct: true,
             attributeForDistinct: 'url'
         });
