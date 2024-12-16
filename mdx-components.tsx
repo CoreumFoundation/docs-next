@@ -29,6 +29,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           style={{
             fontSize: '32px',
             marginTop: '40px',
+            scrollMarginTop: '32px',
             marginBottom: '40px',
           }}
         >
@@ -46,6 +47,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           style={{
             fontSize: '24px',
             marginTop: '12px',
+            scrollMarginTop: '32px',
             marginBottom: '12px',
             wordWrap: 'break-word',
           }}
@@ -64,6 +66,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           style={{
             fontSize: '18px',
             marginBottom: '12px',
+            scrollMarginTop: '32px',
             wordWrap: 'break-word',
           }}
         >
@@ -81,6 +84,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           style={{
             fontSize: '16px',
             marginBottom: '12px',
+            scrollMarginTop: '32px',
             wordWrap: 'break-word',
           }}
         >
@@ -98,6 +102,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           style={{
             fontSize: '14px',
             marginBottom: '12px',
+            scrollMarginTop: '32px',
             wordWrap: 'break-word',
           }}
         >
@@ -115,6 +120,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           style={{
             fontSize: '12px',
             marginBottom: '12px',
+            scrollMarginTop: '32px',
             wordWrap: 'break-word',
           }}
         >
