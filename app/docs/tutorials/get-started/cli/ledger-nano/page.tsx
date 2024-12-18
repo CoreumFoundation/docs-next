@@ -34,8 +34,8 @@ const Page = () => {
     href: '/docs/tutorials/get-started/cli/smart-ft-with-acl',
   };
   const nextNavigationItem = {
-    label: 'Transfer Funds with Golang',
-    href: '/docs/tutorials/get-started/golang/transfer-funds',
+    label: 'Coreum DEX with CLI',
+    href: '/docs/tutorials/get-started/cli/coreum-dex-cli',
   };
 
   return (

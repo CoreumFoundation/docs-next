@@ -1,0 +1,190 @@
+# Coreum DEX with CLI
+
+The section provides a tutorial on how to use `cored` cli with the DEX.
+
+## Prepare the environment
+
+* [Install cored binary](/docs/become-validator/essentials/install-cored)
+
+* Set the [network variables](/docs/tutorials/get-started/setup-cli). Chose the network you want to use (devnet, testnet, mainnet).
+
+## Generate trader wallets for the DEX
+
+* Generate trader1 and trader2 wallets:
+```bash
+cored keys add trader1 $COREUM_CHAIN_ID_ARGS
+export TRADER1_ADDRESS=$(cored keys show trader1 --address $COREUM_CHAIN_ID_ARGS)
+
+cored keys add trader2 $COREUM_CHAIN_ID_ARGS
+export TRADER2_ADDRESS=$(cored keys show trader2 --address $COREUM_CHAIN_ID_ARGS)
+```
+* Go to [faucet page](/docs/tools/faucet) and fund the accounts.
+
+## Issue token
+
+* Issue new token for the DEX by trader1:
+
+```bash
+cored tx assetft issue DEXFT dexft 6 1000000 "My DEX ft token" --gas auto -y -b block --from $TRADER1_ADDRESS $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+export $DENOM1=dexft-$TRADER1_ADDRESS
+export $DENOM2=$COREUM_DENOM
+```
+Now we have 2 denoms: $DENOM1 issued by trader1 and coreum native $DENOM2
+
+## Place and execute orders
+
+* Place DEX order to sell `1000` of $DENOM1 with `1.2` price:
+
+```bash
+cored tx dex place-order ORDER_TYPE_LIMIT "my-order-id1" $DENOM1 $DENOM2 1000 SIDE_SELL --price 12e-1 --time-in-force=TIME_IN_FORCE_GTC --gas auto --gas-adjustment 1.3 -y -b block --from $TRADER1_ADDRESS $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+```
+
+* Query user's balances
+
+```bash
+cored q bank balances $TRADER1_ADDRESS $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+```
+
+Output:
+
+```bash
+balances:
+- amount: "1000000"
+  denom: $DENOM1
+- amount: "9989956379"
+  denom: $DENOM2
+pagination:
+  total: "2"
+```
+
+In the output above, we see that we have initial 1000000 $DENOM1, though we have created the order. It is because the order is not executed yet.
+And the `1000` of `$DENOM1` is locked in the DEX.
+
+* Query user's spendable balances from bank and assetft
+
+```bash
+cored q bank spendable-balances $TRADER1_ADDRESS $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+```
+
+Output
+
+```bash
+balances:
+- amount: "999000"
+  denom: $DENOM1
+- amount: "9979956379"
+  denom: $DENOM2
+pagination:
+  total: "2"
+```
+
+```bash
+cored q assetft balance $TRADER1_ADDRESS $DENOM1 $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+```
+
+Output
+
+```bash
+balance: "1000000"
+expected_to_receive_in_dex: "0"
+frozen: "0"
+locked: "1000"
+locked_in_dex: "1000"
+locked_in_vesting: "0"
+whitelisted: "0"
+```
+
+* Check user's orders
+
+```bash
+cored q dex orders  $TRADER1_ADDRESS $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+```
+
+Output
+
+```bash
+orders:
+- base_denom: $DENOM1
+  creator: $TRADER1_ADDRESS
+  good_til: null
+  id: my-order-id1
+  price: "12e-1"
+  quantity: "1000"
+  quote_denom: $DENOM2
+  remaining_balance: "1000"
+  remaining_quantity: "1000"
+  reserve:
+    amount: "10000000"
+    denom: $DENOM2
+  sequence: "3"
+  side: SIDE_SELL
+  time_in_force: TIME_IN_FORCE_GTC
+  type: ORDER_TYPE_LIMIT
+pagination:
+  next_key: null
+  total: "0"
+```
+
+* Place DEX order from trader2 to buy `1000` of $DENOM1 with `1.3` price to execute previously created order:
+
+```bash
+cored tx dex place-order ORDER_TYPE_LIMIT "my-order-id1" $DENOM1 $DENOM2 1000 SIDE_BUY --price 13e-1 --time-in-force=TIME_IN_FORCE_GTC --gas auto --gas-adjustment 1.3 -y -b block --from $TRADER2_ADDRESS $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+```
+
+* Check the orders or trader1 and trader2
+
+```bash
+cored q dex orders  $TRADER1_ADDRESS $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+cored q dex orders  $TRADER2_ADDRESS $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+```
+
+Output
+
+```bash
+orders: []
+pagination:
+  next_key: null
+  total: "0"
+```
+
+For both traders the output is the same (no orders), because have matched 100% of both orders and closed them.
+
+* Check users' balances
+
+```bash
+cored q bank balances $TRADER1_ADDRESS $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+```
+
+Output
+
+```
+balances:
+- amount: "999000"
+  denom: $DENOM1
+- amount: "9989957579"
+  denom: $DENOM2
+pagination:
+  total: "2"
+```
+
+You can see that 1000 of $DENOM1 is spent and 1200 of $DENOM2  is received.
+
+```bash
+cored q bank balances $TRADER2_ADDRESS $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
+```
+
+Output
+
+```bash
+balances:
+- amount: "1000"
+  denom: $DENOM1
+- amount: "9999987079"
+  denom: $DENOM2
+pagination:
+  total: "2"
+```
+
+You can see that 1200 of $DENOM2 is spent and 1000 of $DENOM1  is received.
+
+The taker uses the better price, that's why the order was executed with the `1.2` maker's price and the trader1 spent 1200 of $DENOM2 instead of 1200.

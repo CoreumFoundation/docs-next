@@ -15,7 +15,8 @@ export const metadata: Metadata = {
     'Cryptocurrency Wallet Integration',
     'Coreum Gas Estimation',
     'Deterministic Gas Model',
-    'Coreum Blockchain Technology'
+    'Coreum Blockchain Technology',
+    'DEX'
   ],
   openGraph: {
     type: 'website',
