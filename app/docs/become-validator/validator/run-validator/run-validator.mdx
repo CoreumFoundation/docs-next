@@ -10,6 +10,10 @@ as a state-sync server.
   crudini --set $COREUM_APP_CONFIG state-sync snapshot-interval 0
   crudini --set $COREUM_APP_CONFIG "" pruning \"everything\"
   crudini --set $COREUM_APP_CONFIG "" min-retain-blocks 10
+  crudini --set $COREUM_NODE_CONFIG p2p flush_throttle_timeout \"10ms\"
+  crudini --set $COREUM_NODE_CONFIG consensus peer_gossip_sleep_duration \"10ms\"
+  crudini --set $COREUM_NODE_CONFIG consensus peer_query_maj23_sleep_duration \"10ms\"
+  crudini --set $COREUM_NODE_CONFIG consensus timeout_commit \"500ms\"
 ```
 
   **Keep $COREUM_HOME/config/node_key.json and $COREUM_HOME/config/priv_validator_key.json files in a safe place, since they
