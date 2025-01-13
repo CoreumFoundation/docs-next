@@ -72,7 +72,7 @@ COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
   # Get block details from one of the state sync servers
   CURRENT_BLOCK_DETAILS=$(curl ${COREUM_STATE_SYNC_SERVERS#*,}/block | jq -r '.result.block.header.height + "\n" + .result.block_id.hash')
   CURRENT_BLOCK_HEIGHT=$(echo $CURRENT_BLOCK_DETAILS | head -1 )
-  TRUSTED_BLOCK_HEIGHT=$(expr $CURRENT_BLOCK_HEIGHT - 500)
+  TRUSTED_BLOCK_HEIGHT=$(expr $CURRENT_BLOCK_HEIGHT - 1000)
   TRUSTED_BLOCK_DETAILS=$(curl "${COREUM_STATE_SYNC_SERVERS#*,}/block?height=${TRUSTED_BLOCK_HEIGHT}" | jq -r '.result.block.header.height + "\n" + .result.block_id.hash')
   TRUSTED_BLOCK_HASH=$(echo $TRUSTED_BLOCK_DETAILS | tail -n 1 )
   ```
