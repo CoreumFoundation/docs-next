@@ -286,7 +286,11 @@ export const SIDEBAR_ITEMS = [
       {
         name: 'Special Addresses',
         href: '/docs/tutorials/special-addresses',
-      }
+      },
+      {
+        name: "Coreum XRPL Bridge",
+        href: '/docs/tutorials/xrpl-bridge-integration',
+      },
     ],
   },
   {
@@ -342,7 +346,7 @@ export const SIDEBAR_ITEMS = [
       {
         name: 'Update Relayer',
         href: '/docs/xrpl-bridge/update-relayer',
-      },
+      }
     ],
   },
   {
