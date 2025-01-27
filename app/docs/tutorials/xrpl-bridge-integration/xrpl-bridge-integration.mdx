@@ -350,6 +350,104 @@ const sendTokensToXrpl = async ({
 const result = sendTokensToXrpl({ recipient: 'recipient-address-on-xrpl-chain', funds: [{ amount: '10', denom: 'utestcore' }], senderAccount: account });
 ```
 
+### Send tokens to Coreum from XRPL
+
+```ts
+interface SendToCosmosArgs {
+  recipient: string;
+  xrplAccount: string;
+  amount: string;
+  currency: string;
+  tokenIssuer: string;
+  fee?: string;
+  deliverAmount: string;
+}
+
+const convertStringToHex = (value: string) => {
+  let hex = '';
+
+  value.split('').forEach((char: string) => {
+    const charCode = char.charCodeAt(0).toString(16);
+    hex += charCode.padStart(2, "0");
+  });
+
+  return hex;
+};
+
+
+
+const sendTokensToCoreum = async ({
+  xrplAccount,
+  recipient,
+  amount,
+  currency,
+  fee,
+  deliverAmount,
+  tokenIssuer,
+}: SendToCosmosArgs) => {
+  try {
+    const contractConfig = await getBridgeContractConfig();
+
+    let currencyAmount: Amount = Big(amount).mul(Big(10).pow(6)).toString();
+    let sendMaxAmount: Amount = amount;
+
+    if (currency.toLowerCase() !== "xrp") {
+      const currencyInfo = {
+        currency,
+        issuer: tokenIssuer,
+      };
+      currencyAmount = {
+        ...currencyInfo,
+        value: deliverAmount,
+      };
+      sendMaxAmount = {
+        ...currencyInfo,
+        value: amount,
+      };
+    }
+
+    const memoData: string = JSON.stringify({
+      type: "coreumbridge-xrpl-v1",
+      coreum_recipient: recipient,
+    });
+
+    const sendTx: Transaction = {
+      TransactionType: "Payment",
+      Account: xrplAccount,
+      Destination: contractConfig.bridge_xrpl_address,
+      Amount: currencyAmount,
+      Memos: [
+        {
+          Memo: {
+            MemoData: convertStringToHex(memoData),
+          },
+        },
+      ],
+      ...(currency.toLowerCase() !== "xrp" && { SendMax: sendMaxAmount }),
+      ...(fee ? { Fee: fee } : {}),
+    };
+
+    if (sendTx) {
+      const sendResponse = await xrplClient?.submit(sendTx);
+      return sendResponse;
+    }
+  } catch (error) {
+    console.log(error);
+
+    return null;
+  }
+};
+
+const sendResponse = sendTokensToCoreum({
+  xrplAccount: 'Some xrpl account',
+  recipient: 'Recipient account on coreum side',
+  amount: '100',
+  currency: 'xrp',
+  deliverAmount: '10000000', // needs to be calculated properly
+  tokenIssuer: 'rrrrrrrrrrrrrrrrrrrrrhoLvTp',
+});
+```
+
 ### Implementation of getTxFee
 
 There is the example of QueryClientImpl to estimate transaction fee.
