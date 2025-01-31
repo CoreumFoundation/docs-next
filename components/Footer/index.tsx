@@ -53,7 +53,7 @@ const navigation = {
     },
     {
       name: 'Discord',
-      href: 'https://discord.com/invite/XdVAGKXEhg',
+      href: 'https://discord.com/invite/VgkhYeWmTd',
       icon: (props: any) => (
         <Image
           className="w-6"
