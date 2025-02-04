@@ -104,3 +104,38 @@ docker stop coreumbridge-xrpl-relayer && docker rm coreumbridge-xrpl-relayer
 ```
 
 Once the container is stopped and removed, proceed with the instructions in [run section](#run)
+
+## Exposing relayer metrics
+
+To expose metrics you need to change config located here `.coreumbridge-xrpl-relayer/relayer.yaml`
+You need to change the following section:
+
+```yaml
+metrics:
+    enabled: true
+    server:
+        listen_address: 0.0.0.0:10090 #specify the desired port to expose metrics
+    periodic_collector:
+        repeat_delay: 1m0s
+```
+
+After you've change the config you need to restart the bridge following [these instructions](#restart-running-instance)
+
+Here's also an example of prometheus configuration to scrape bridge metrics:
+
+```yaml
+      - job_name: coreum-xrpl-mainnet-relayer
+        honor_timestamps: true
+        honor_labels: true
+        scrape_interval: 5s
+        scrape_timeout: 5s
+        metrics_path: /metrics
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: instance
+            replacement: *your_relayer_instance_name*
+        scheme: http
+        static_configs:
+          - targets:
+              - *your_relayer_instance_ip*:10090
+```
