@@ -350,6 +350,42 @@ export const SIDEBAR_ITEMS = [
     ],
   },
   {
+    name: 'CoreDEX',
+    href: '/docs/core_dex',
+    children: [
+      {
+        name: 'Overview',
+        href: '/docs/core_dex/overview',
+      },
+      {
+        name: 'API Server',
+        href: '/docs/core_dex/api-server',
+        children: [
+          {
+            name: 'Overview',
+            href: '/docs/core_dex/api-server/overview',
+          },
+          {
+            name: 'Update service',
+            href: '/docs/core_dex/api-server/update-service',
+          },
+        ],
+      },
+      {
+        name: 'Data Aggregator',
+        href: '/docs/core_dex/data-aggregator',
+      },
+      {
+        name: 'Store',
+        href: '/docs/core_dex/store',
+      },
+      {
+        name: 'Frontend',
+        href: '/docs/core_dex/frontend',
+      },
+    ],
+  },
+  {
     name: 'Become Validator',
     href: '/docs/become-validator',
     children: [
