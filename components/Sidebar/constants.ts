@@ -314,6 +314,10 @@ export const SIDEBAR_ITEMS = [
         href: '/docs/modules/coreum-fee-model',
       },
       {
+        name: 'Coreum DEX',
+        href: '/docs/modules/coreum-dex',
+      },
+      {
         name: 'Cosmos Non-Fungible Token',
         href: '/docs/modules/cosmos-non-fungible-token',
       }
@@ -350,7 +354,7 @@ export const SIDEBAR_ITEMS = [
     ],
   },
   {
-    name: 'CoreDEX',
+    name: 'DEX API',
     href: '/docs/core_dex',
     children: [
       {

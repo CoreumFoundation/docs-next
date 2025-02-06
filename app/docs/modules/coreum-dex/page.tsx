@@ -1,5 +1,5 @@
 
-import Component from './data-aggregator.mdx';
+import Component from './coreum-dex.mdx';
 
 const Page = () => {
   return (
