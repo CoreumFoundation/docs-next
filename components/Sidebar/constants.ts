@@ -314,6 +314,10 @@ export const SIDEBAR_ITEMS = [
         href: '/docs/modules/coreum-fee-model',
       },
       {
+        name: 'Coreum DEX',
+        href: '/docs/modules/coreum-dex',
+      },
+      {
         name: 'Cosmos Non-Fungible Token',
         href: '/docs/modules/cosmos-non-fungible-token',
       }
@@ -347,6 +351,42 @@ export const SIDEBAR_ITEMS = [
         name: 'Update Relayer',
         href: '/docs/xrpl-bridge/update-relayer',
       }
+    ],
+  },
+  {
+    name: 'DEX API',
+    href: '/docs/core_dex',
+    children: [
+      {
+        name: 'Overview',
+        href: '/docs/core_dex/overview',
+      },
+      {
+        name: 'API Server',
+        href: '/docs/core_dex/api-server',
+        children: [
+          {
+            name: 'Overview',
+            href: '/docs/core_dex/api-server/overview',
+          },
+          {
+            name: 'Update service',
+            href: '/docs/core_dex/api-server/update-service',
+          },
+        ],
+      },
+      {
+        name: 'Data Aggregator',
+        href: '/docs/core_dex/data-aggregator',
+      },
+      {
+        name: 'Store',
+        href: '/docs/core_dex/store',
+      },
+      {
+        name: 'Frontend',
+        href: '/docs/core_dex/frontend',
+      },
     ],
   },
   {
