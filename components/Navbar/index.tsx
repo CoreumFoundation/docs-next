@@ -67,7 +67,7 @@ export const Navbar = () => {
   ];
   return (
     <>
-      <AskCookbook apiKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWZiNGM1MTQ5YjZiODQ0ZDY4NWY3NjIiLCJpYXQiOjE3MTA5Njc4ODksImV4cCI6MjAyNjU0Mzg4OX0.oBQsTKgd3fsmkTG0WR3RVcigQkUFgKE5A0WA031Ju8E" /> 
+      <AskCookbook apiKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWZiNGM1MTQ5YjZiODQ0ZDY4NWY3NjIiLCJpYXQiOjE3MTA5Njc4ODksImV4cCI6MjAyNjU0Mzg4OX0.oBQsTKgd3fsmkTG0WR3RVcigQkUFgKE5A0WA031Ju8E" />
       <Disclosure as="nav" className="shadow w-full">
         {({ open }) => (
           <>

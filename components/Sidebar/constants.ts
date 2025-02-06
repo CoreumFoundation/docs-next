@@ -474,6 +474,10 @@ export const SIDEBAR_ITEMS = [
         href: '/docs/api/protobuf',
       },
       {
+        name: 'Protobuf v5',
+        href: '/docs/api/protobuf-v5',
+      },
+      {
         name: 'Rust Protobuf',
         href: '/docs/api/rust-protobuf',
       }
