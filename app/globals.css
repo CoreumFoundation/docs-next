@@ -136,6 +136,12 @@ body {
   list-style-type: circle;
 }
 
+.mdx-summary {
+  color: '#EEE';
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
 .mdx-pre {
   background: #1d1d1d;
 }
