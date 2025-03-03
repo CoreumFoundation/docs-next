@@ -102,6 +102,7 @@ Params:
 - `from` _required_ - unix timestamp of trades start
 - `to` _required_ - unix timestamp of trades end
 - `account` _optional_ - account address for which trades should be returned
+- `side` _optional_ - side of the trade (1 - buy, 2 - sell (see enum domain/order-properties))
 
 Returns:
 
@@ -155,6 +156,8 @@ Returns:
   ]
 }
 ```
+
+For retrieving the exchange history, the dev should only retrieve one `side`: If both sides are retrieved the list contains duplicates (party and counter party) of the trades, which would be confusing the end users.
 
 #### tickers
 
@@ -298,7 +301,7 @@ Below is a matrix of possible values for the order object before it can be succe
 | **timeInForce**   | TIME_IN_FORCE_GTC (1)                                               |                                           |
 |                   | TIME_IN_FORCE_IOC (2)                                               | TIME_IN_FORCE_IOC (2)                     |
 |                   | TIME_IN_FORCE_FOK (3)                                               |                                           |
-| **goodTil**       | `{goodTilBlockTime: Date Object, goodTilBlockHeight: 0}` or undefined | undefined                                 |
+| **goodTil**       | \{goodTilBlockTime: Date Object, goodTilBlockHeight: 0\} or undefined | undefined                                 |
 | **baseDenom**     | string (denomName-issuer eg. udevcore)                              | string (denomName-issuer eg. udevcore)    |
 | **quoteDenom**    | string (denomName-issuer eg. udevcore)                              | string (denomName-issuer eg. udevcore)    |
 | **quantity**      | string (eg. 10000)                                                  | string (eg. 10000)                        |
@@ -351,6 +354,7 @@ Example response:
     "good_til": {
         "good_til_block_time": "2025-12-30T12:00:00Z"
     }
+}
 ```
 
 In which the TXBytes is the base64 encoded transaction that needs to be signed and submitted to the blockchain.
@@ -421,28 +425,34 @@ Sample return:
 
 ```json5
 {
-  Buy: [
+  "Buy": [
     {
-      Price: "3140",
-      HumanReadablePrice: "3140",
-      Amount: "2272",
-      SymbolAmount: "0.002272",
-      Sequence: 41567,
-      OrderID: "8b341e25-482e-487f-b9e2-9467d98c16ac",
+      "Price": "3140",
+      "HumanReadablePrice": "3140",
+      "Amount": "2272",
+      "SymbolAmount": "0.002272",
+      "Sequence": 41567,
+      "OrderID": "8b341e25-482e-487f-b9e2-9467d98c16ac",
+      "RemainingAmount": "2272",
+      "RemainingSymbolAmount": "0.002272",
     },
   ],
-  Sell: [
+  "Sell": [
     {
-      Price: "3360",
-      HumanReadablePrice: "3360",
-      Amount: "2071",
-      SymbolAmount: "0.002071",
-      Sequence: 41760,
-      OrderID: "8b341e25-482e-487f-b9e2-9467d98c16ac",
+      "Price": "3360",
+      "HumanReadablePrice": "3360",
+      "Amount": "2071",
+      "SymbolAmount": "0.002071",
+      "Sequence": 41760,
+      "OrderID": "8b341e25-482e-487f-b9e2-9467d98c16ac",
+      "RemainingAmount": "2071",
+      "RemainingSymbolAmount": "0.002071",
     },
   ],
 }
 ```
+
+where a frontend could display `(SymbolAmount-RemainingSymbolAmount)/SymbolAmount` as an indicator of progress of the order.
 
 #### /wallet/assets
 
@@ -457,14 +467,14 @@ Sample return:
 ```json5
 [
   {
-    Denom: "dextestdenom0-devcore1p0edzyzpazpt68vdrjy20c42lvwsjpvfzahygs",
-    Amount: "1000000000000",
-    SymbolAmount: "1000.0000",
+    "Denom": "dextestdenom0-devcore1p0edzyzpazpt68vdrjy20c42lvwsjpvfzahygs",
+    "Amount": "1000000000000",
+    "SymbolAmount": "1000.0000",
   },
   {
-    Denom: "dextestdenom1-devcore1p0edzyzpazpt68vdrjy20c42lvwsjpvfzahygs",
-    Amount: "1000000000000",
-    SymbolAmount: "1000.0000",
+    "Denom": "dextestdenom1-devcore1p0edzyzpazpt68vdrjy20c42lvwsjpvfzahygs",
+    "Amount": "1000000000000",
+    "SymbolAmount": "1000.0000",
   },
   //...
 ]
@@ -481,7 +491,7 @@ curl -H "Network: devnet" \
 
 The update service uses a websocket for a subscription system in which the user subscribes to certain information.
 
-See the <a href="/docs/core_dex/api-server/update-service" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">Update service</a> for extensive information.
+See the [README-update-service.md](README-update-service.md) for extensive information.
 
 ## Application start parameters
 
