@@ -68,11 +68,11 @@ export const Faucets = () => {
     setFundLoading(false);
   }, [fundWallet, walletAddress]);
 
-  
+
   const handleGenerateWallet = useCallback(async () => {
     const wallet = await DirectSecp256k1HdWallet.generate(24, {
       prefix: currentConfig.tokenPrefix,
-      hdPaths: [stringToPath(currentConfig.coreumHDPath)],
+      hdPaths: [stringToPath(currentConfig.coreumHDPath) as any],
     });
 
     const [{ address }] = await wallet.getAccounts();
