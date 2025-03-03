@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
-import Component from './ISO20022-client.mdx';
-
+import Component from './ISO20022-Client.mdx';
 
 export const metadata: Metadata = {
   title: "ISO20022 Client: Decentralized Financial Messaging",

@@ -263,7 +263,7 @@ export const SIDEBAR_ITEMS = [
           },
           {
             name: 'ISO20022 Client',
-            href: '/docs/tutorials/ISO20022/ISO20022-client',
+            href: '/docs/tutorials/ISO20022/ISO20022-Client',
           }
         ],
       },
