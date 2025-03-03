@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Component from './ISO20022-Client.mdx';
+import Component from './ISO20022-client.mdx';
 
 
 export const metadata: Metadata = {
@@ -38,4 +38,3 @@ const Page = () => {
 };
 
 export default Page;
-        

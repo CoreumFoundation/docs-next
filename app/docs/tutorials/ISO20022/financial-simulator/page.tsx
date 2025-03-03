@@ -1,4 +1,4 @@
-import Component from './iso20022.mdx';
+import Component from './financial-simulator.mdx';
 import { Metadata } from 'next';
 
 
@@ -24,12 +24,11 @@ export const metadata: Metadata = {
       }],
     },
   };
-  
+
   const Page = () => {
     return (
       <Component />
     );
   };
-  
+
   export default Page;
-  

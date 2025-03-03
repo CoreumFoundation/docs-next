@@ -255,15 +255,15 @@ export const SIDEBAR_ITEMS = [
         children: [
           {
             name: 'Intro to ISO20022',
-            href: '/docs/tutorials/ISO20022/Intro-To-ISO20022',
+            href: '/docs/tutorials/ISO20022/intro-to-ISO20022',
           },
           {
             name: 'Financial Simulator',
-            href: '/docs/tutorials/ISO20022/financialSimulator',
+            href: '/docs/tutorials/ISO20022/financial-simulator',
           },
           {
             name: 'ISO20022 Client',
-            href: '/docs/tutorials/ISO20022/ISO20022-Client',
+            href: '/docs/tutorials/ISO20022/ISO20022-client',
           }
         ],
       },

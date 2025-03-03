@@ -1,37 +1,382 @@
 {
-  "tutorials": [
+  "api": [
     {
-      "page": "coreum-wasm-sdk",
-      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum-wasm-sdk/main/README.md"
+      "page": "protobuf",
+      "source": ""
     },
     {
+      "page": "protobuf-v5",
+      "source": ""
+    },
+    {
+      "page": "rust-protobuf",
+      "source": ""
+    }
+  ],
+  "become-validator": [
+    {
+      "page": "run-full-node",
+      "source": ""
+    },
+    {
+      "page": "troubleshooting",
+      "source": ""
+    },
+    {
+      "page": "",
+      "source": ""
+    }
+  ],
+  "become-validator/essentials": [
+    {
+      "page": "connection-config",
+      "source": ""
+    },
+    {
+      "page": "how-much-fund-to-create-validator",
+      "source": ""
+    },
+    {
+      "page": "install-cored",
+      "source": ""
+    },
+    {
+      "page": "network-variables",
+      "source": ""
+    },
+    {
+      "page": "node-prerequisites",
+      "source": ""
+    },
+    {
+      "page": "system-requirements",
+      "source": ""
+    }
+  ],
+  "become-validator/upgrades": [
+    {
+      "page": "history",
+      "source": ""
+    },
+    {
+      "page": "main-info",
+      "source": ""
+    }
+  ],
+  "become-validator/validator": [
+    {
+      "page": "run-sentry",
+      "source": ""
+    },
+    {
+      "page": "run-validator",
+      "source": ""
+    },
+    {
+      "page": "unjain-validator",
+      "source": ""
+    }
+  ],
+  "core_dex": [
+    {
+      "page": "data-aggregator",
+      "source": ""
+    },
+    {
+      "page": "frontend",
+      "source": ""
+    },
+    {
+      "page": "overview",
+      "source": ""
+    },
+    {
+      "page": "store",
+      "source": ""
+    }
+  ],
+  "core_dex/api-server": [
+    {
+      "page": "overview",
+      "source": ""
+    },
+    {
+      "page": "update-service",
+      "source": ""
+    }
+  ],
+  "help": [
+    {
+      "page": "faq",
+      "source": ""
+    },
+    {
+      "page": "useful-links",
+      "source": ""
+    }
+  ],
+  "modules": [
+    {
+      "page": "coreum-deterministic-gas",
+      "source": ""
+    },
+    {
+      "page": "coreum-dex",
+      "source": ""
+    },
+    {
+      "page": "coreum-fee-model",
+      "source": ""
+    },
+    {
+      "page": "coreum-fungible-token",
+      "source": ""
+    },
+    {
+      "page": "coreum-non-fungible-token",
+      "source": ""
+    },
+    {
+      "page": "cosmos-non-fungible-token",
+      "source": ""
+    }
+  ],
+  "tools": [
+    {
+      "page": "blockchain-explorers",
+      "source": ""
+    },
+    {
+      "page": "faucet",
+      "source": ""
+    },
+    {
+      "page": "wallets",
+      "source": ""
+    }
+  ],
+  "tutorials": [
+    {
       "page": "coreum-ts-protobuf",
-      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum-ts-protobuf/main/README.md"
+      "source": ""
+    },
+    {
+      "page": "coreum-wasm-sdk",
+      "source": ""
     },
     {
       "page": "crust-for-development",
-      "source": "https://raw.githubusercontent.com/CoreumFoundation/crust/master/README.md"
+      "source": ""
+    },
+    {
+      "page": "gas-price",
+      "source": ""
+    },
+    {
+      "page": "special-addresses",
+      "source": ""
+    },
+    {
+      "page": "xrpl-bridge-integration",
+      "source": ""
     }
   ],
-
+  "tutorials/build-apps": [
+    {
+      "page": "amm",
+      "source": ""
+    },
+    {
+      "page": "web-app",
+      "source": ""
+    }
+  ],
+  "tutorials/get-started": [
+    {
+      "page": "install-cored",
+      "source": ""
+    },
+    {
+      "page": "install-prebuild-macos",
+      "source": ""
+    },
+    {
+      "page": "install-prebuild-windows",
+      "source": ""
+    },
+    {
+      "page": "setup-cli",
+      "source": ""
+    },
+    {
+      "page": "setup-cored-using-docker",
+      "source": ""
+    }
+  ],
+  "tutorials/get-started/cli": [
+    {
+      "page": "ledger-nano",
+      "source": ""
+    },
+    {
+      "page": "send-multisig-transaction",
+      "source": ""
+    },
+    {
+      "page": "smart-ft-with-acl",
+      "source": ""
+    },
+    {
+      "page": "transfer-funds-cli",
+      "source": ""
+    }
+  ],
+  "tutorials/get-started/golang": [
+    {
+      "page": "create-ft",
+      "source": ""
+    },
+    {
+      "page": "create-nft",
+      "source": ""
+    },
+    {
+      "page": "transfer-funds",
+      "source": ""
+    }
+  ],
+  "tutorials/get-started/typescript": [
+    {
+      "page": "coreum-js",
+      "source": ""
+    },
+    {
+      "page": "cosmjs",
+      "source": ""
+    },
+    {
+      "page": "transfer-funds",
+      "source": ""
+    }
+  ],
+  "tutorials/get-started/wasm": [
+    {
+      "page": "deploy-wasm-contract",
+      "source": ""
+    },
+    {
+      "page": "smart-ft-with-wasm",
+      "source": ""
+    },
+    {
+      "page": "testing-multiple-contracts",
+      "source": ""
+    },
+    {
+      "page": "using-cosmjs-with-wasm-contracts",
+      "source": ""
+    }
+  ],
+  "tutorials/ibc": [
+    {
+      "page": "ibc-channels",
+      "source": ""
+    },
+    {
+      "page": "ibc-smart-contract-call",
+      "source": ""
+    },
+    {
+      "page": "ibc-transfer-to-osmosis",
+      "source": ""
+    },
+    {
+      "page": "ibc-transfer-using-cli",
+      "source": ""
+    },
+    {
+      "page": "ibc-wasm-transfer",
+      "source": ""
+    }
+  ],
+  "tutorials/integrate-coreum": [
+    {
+      "page": "cex-integrations",
+      "source": ""
+    },
+    {
+      "page": "explorer-api",
+      "source": ""
+    },
+    {
+      "page": "wallet-integration",
+      "source": ""
+    }
+  ],
   "tutorials/ISO20022": [
     {
-      "page": "ISO20022-Client",
-      "source": "https://raw.githubusercontent.com/CoreumFoundation/iso20022-client/refs/heads/master/README.md"
-      
-    }
-
-  ],
-  "api/protobuf": [
+      "page": "financial-simulator",
+      "source": ""
+    },
     {
-      "page": "protobuf",
-      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum/5adfcc2d93e81b9344f0abaca7eab68fbca2ecba/docs/api.md"
+      "page": "intro-to-ISO20022",
+      "source": ""
+    },
+    {
+      "page": "ISO20022-client",
+      "source": ""
     }
   ],
-  "api/rust-protobuf": [
+  "tutorials/use-tokens": [
     {
-      "page": "rust-protobuf",
-      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum-rust-protobuf/main/README.md"
+      "page": "asset-ft-extension",
+      "source": ""
+    },
+    {
+      "page": "create-and-manage-ft-with-cli",
+      "source": ""
+    },
+    {
+      "page": "create-and-manage-ft-with-golang",
+      "source": ""
+    },
+    {
+      "page": "create-and-manage-nft-with-cli",
+      "source": ""
+    },
+    {
+      "page": "create-and-manage-nft-with-golang",
+      "source": ""
+    },
+    {
+      "page": "smart-ft-with-wasm",
+      "source": ""
+    }
+  ],
+  "xrpl-bridge": [
+    {
+      "page": "asset-flow",
+      "source": ""
+    },
+    {
+      "page": "fees",
+      "source": ""
+    },
+    {
+      "page": "install-relayer",
+      "source": ""
+    },
+    {
+      "page": "register-new-token",
+      "source": ""
+    },
+    {
+      "page": "run-relayer",
+      "source": ""
+    },
+    {
+      "page": "update-relayer",
+      "source": ""
     }
   ]
 }
