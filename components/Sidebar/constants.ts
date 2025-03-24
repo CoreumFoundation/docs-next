@@ -1,47 +1,50 @@
+export const ROUTE_V4_PREFIX = '/docs/v4';
+export const ROUTE_NEXT_PREFIX = '/docs/next';
+
 export const SIDEBAR_ITEMS = [
   {
     name: 'Overview',
-    href: '/docs/overview',
+    href: '/overview',
     children: [
       {
         name: 'General Overview',
-        href: '/docs/overview/general',
+        href: '/overview/general',
       },
       {
         name: 'Introduction',
-        href: '/docs/overview/introduction',
+        href: '/overview/introduction',
       },
       {
         name: 'Smart Contracts',
-        href: '/docs/overview/smart-contracts'
+        href: '/overview/smart-contracts'
       },
       {
         name: 'Smart Tokens',
-        href: '/docs/overview/smart-tokens'
+        href: '/overview/smart-tokens'
       },
       {
         name: 'Modules',
-        href: '/docs/overview/modules',
+        href: '/overview/modules',
       },
       {
         name: 'Tutorials',
-        href: '/docs/overview/tutorials',
+        href: '/overview/tutorials',
       },
       {
         name: 'Become Validator',
-        href: '/docs/overview/validator',
+        href: '/overview/validator',
       },
       {
         name: 'Tools/Ecosystem',
-        href: '/docs/overview/tools',
+        href: '/overview/tools',
       },
       {
         name: 'XRPL Bridge',
-        href: '/docs/overview/xrpl-bridge',
+        href: '/overview/xrpl-bridge',
       },
       {
         name: 'Help',
-        href: '/docs/overview/help',
+        href: '/overview/help',
       },
       {
         name: 'Technical White Paper',
@@ -52,114 +55,114 @@ export const SIDEBAR_ITEMS = [
   },
   {
     name: 'Tutorials',
-    href: '/docs/tutorials',
+    href: '/tutorials',
     children: [
       {
         name: 'Get Started',
-        href: '/docs/tutorials/get-started',
+        href: '/tutorials/get-started',
         children: [
           {
             name: 'Setup CLI Network Variables',
-            href: '/docs/tutorials/get-started/setup-cli',
+            href: '/tutorials/get-started/setup-cli',
             children: [],
           },
           {
             name: 'Install cored',
-            href: '/docs/tutorials/get-started/install-cored',
+            href: '/tutorials/get-started/install-cored',
             children: [],
           },
           {
             name: 'Set Up cored Using Docker',
-            href: '/docs/tutorials/get-started/setup-cored-using-docker',
+            href: '/tutorials/get-started/setup-cored-using-docker',
             children: [],
           },
           {
             name: 'Install prebuild macOS',
-            href: '/docs/tutorials/get-started/install-prebuild-macos',
+            href: '/tutorials/get-started/install-prebuild-macos',
             children: [],
           },
           {
             name: 'Install prebuild windows',
-            href: '/docs/tutorials/get-started/install-prebuild-windows',
+            href: '/tutorials/get-started/install-prebuild-windows',
             children: [],
           },
           {
             name: 'CLI',
-            href: '/docs/tutorials/get-started/cli',
+            href: '/tutorials/get-started/cli',
             children: [
               {
                 name: 'Transfer Funds with CLI',
-                href: '/docs/tutorials/get-started/cli/transfer-funds-cli',
+                href: '/tutorials/get-started/cli/transfer-funds-cli',
               },
               {
                 name: 'Send Multisig Transaction',
-                href: '/docs/tutorials/get-started/cli/send-multisig-transaction',
+                href: '/tutorials/get-started/cli/send-multisig-transaction',
               },
               {
                 name: 'Smart FT with Access Control List (ACL)',
-                href: '/docs/tutorials/get-started/cli/smart-ft-with-acl',
+                href: '/tutorials/get-started/cli/smart-ft-with-acl',
               },
               {
                 name: 'Ledger Nano with CLI',
-                href: '/docs/tutorials/get-started/cli/ledger-nano',
+                href: '/tutorials/get-started/cli/ledger-nano',
               }
             ],
           },
           {
             name: 'Golang',
-            href: '/docs/tutorials/get-started/golang',
+            href: '/tutorials/get-started/golang',
             children: [
               {
                 name: 'Transfer Funds with Golang',
-                href: '/docs/tutorials/get-started/golang/transfer-funds',
+                href: '/tutorials/get-started/golang/transfer-funds',
               },
               {
                 name: 'Create Fungible Token with Golang',
-                href: '/docs/tutorials/get-started/golang/create-ft',
+                href: '/tutorials/get-started/golang/create-ft',
               },
               {
                 name: 'Create Non-Fungible Token with Golang',
-                href: '/docs/tutorials/get-started/golang/create-nft',
+                href: '/tutorials/get-started/golang/create-nft',
               }
             ],
           },
           {
             name: 'Typescript',
-            href: '/docs/tutorials/get-started/typescript',
+            href: '/tutorials/get-started/typescript',
             children: [
               {
                 name: 'Transfer Funds with Typescript',
-                href: '/docs/tutorials/get-started/typescript/transfer-funds',
+                href: '/tutorials/get-started/typescript/transfer-funds',
               },
               {
                 name: 'Using CosmJS',
-                href: '/docs/tutorials/get-started/typescript/cosmjs',
+                href: '/tutorials/get-started/typescript/cosmjs',
               },
               {
                 name: 'Using coreum-js',
-                href: '/docs/tutorials/get-started/typescript/coreum-js',
+                href: '/tutorials/get-started/typescript/coreum-js',
               },
             ],
           },
           {
             name: 'WASM',
-            href: '/docs/tutorials/get-started/wasm',
+            href: '/tutorials/get-started/wasm',
             children: [
               {
                 name: 'Deploy First WASM Contract',
-                href: '/docs/tutorials/get-started/wasm/deploy-wasm-contract',
+                href: '/tutorials/get-started/wasm/deploy-wasm-contract',
               },
               {
                 name: 'Smart FT with WASM',
-                href: '/docs/tutorials/get-started/wasm/smart-ft-with-wasm',
+                href: '/tutorials/get-started/wasm/smart-ft-with-wasm',
               },
               {
                 name: 'Testing Multiple Contracts',
-                href: '/docs/tutorials/get-started/wasm/testing-multiple-contracts',
+                href: '/tutorials/get-started/wasm/testing-multiple-contracts',
               },
               {
                 name: 'Using CosmJS with WASM Contracts',
-                href: '/docs/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
+                href: '/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
               },
             ],
           },
@@ -167,299 +170,299 @@ export const SIDEBAR_ITEMS = [
       },
       {
         name: 'Use Tokens',
-        href: '/docs/tutorials/use-tokens',
+        href: '/tutorials/use-tokens',
         children: [
           {
             name: 'Create and Manage FT with CLI',
-            href: '/docs/tutorials/use-tokens/create-and-manage-ft-with-cli',
+            href: '/tutorials/use-tokens/create-and-manage-ft-with-cli',
           },
           {
             name: 'Create and Manage FT with Golang',
-            href: '/docs/tutorials/use-tokens/create-and-manage-ft-with-golang',
+            href: '/tutorials/use-tokens/create-and-manage-ft-with-golang',
           },
           {
             name: 'Create and Manage NFT with CLI',
-            href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-cli',
+            href: '/tutorials/use-tokens/create-and-manage-nft-with-cli',
           },
           {
             name: 'Create and Manage NFT with Golang',
-            href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-golang',
+            href: '/tutorials/use-tokens/create-and-manage-nft-with-golang',
           },
           {
             name: 'Smart FT with WASM',
-            href: '/docs/tutorials/use-tokens/smart-ft-with-wasm',
+            href: '/tutorials/use-tokens/smart-ft-with-wasm',
           },
         ],
       },
       {
         name: 'Integrate Coreum',
-        href: '/docs/tutorials/integrate-coreum',
+        href: '/tutorials/integrate-coreum',
         children: [
           {
             name: 'CEX Integration',
-            href: '/docs/tutorials/integrate-coreum/cex-integrations',
+            href: '/tutorials/integrate-coreum/cex-integrations',
           },
           {
             name: 'Wallet Integration',
-            href: '/docs/tutorials/integrate-coreum/wallet-integration',
+            href: '/tutorials/integrate-coreum/wallet-integration',
           },
           {
             name: 'Explorer API - Beta',
-            href: '/docs/tutorials/integrate-coreum/explorer-api',
+            href: '/tutorials/integrate-coreum/explorer-api',
           },
         ],
       },
       {
         name: 'Build Apps',
-        href: '/docs/tutorials/build-apps',
+        href: '/tutorials/build-apps',
         children: [
           {
             name: 'Web App',
-            href: '/docs/tutorials/build-apps/web-app',
+            href: '/tutorials/build-apps/web-app',
           },
           {
             name: 'AMM (Automated Market Maker)',
-            href: '/docs/tutorials/build-apps/amm',
+            href: '/tutorials/build-apps/amm',
           }
         ],
       },
       {
         name: 'IBC',
-        href: '/docs/tutorials/ibc',
+        href: '/tutorials/ibc',
         children: [
           {
             name: 'IBC Channels',
-            href: '/docs/tutorials/ibc/ibc-channels',
+            href: '/tutorials/ibc/ibc-channels',
           },
           {
             name: 'IBC Transfer to Osmosis Using Keplr Wallet',
-            href: '/docs/tutorials/ibc/ibc-transfer-to-osmosis',
+            href: '/tutorials/ibc/ibc-transfer-to-osmosis',
           },
           {
             name: 'IBC Smart Contract Call Tutorial',
-            href: '/docs/tutorials/ibc/ibc-smart-contract-call',
+            href: '/tutorials/ibc/ibc-smart-contract-call',
           },
           {
             name: 'IBC WASM Transfer Tutorial',
-            href: '/docs/tutorials/ibc/ibc-wasm-transfer',
+            href: '/tutorials/ibc/ibc-wasm-transfer',
           },
           {
             name: 'IBC Transfer Using CLI',
-            href: '/docs/tutorials/ibc/ibc-transfer-using-cli',
+            href: '/tutorials/ibc/ibc-transfer-using-cli',
           },
         ],
       },
       {
         name: 'IS020022',
-        href: '/docs/tutorials/ISO20022',
+        href: '/tutorials/ISO20022',
         children: [
           {
             name: 'Intro to ISO20022',
-            href: '/docs/tutorials/ISO20022/intro-to-ISO20022',
+            href: '/tutorials/ISO20022/intro-to-ISO20022',
           },
           {
             name: 'Financial Simulator',
-            href: '/docs/tutorials/ISO20022/financial-simulator',
+            href: '/tutorials/ISO20022/financial-simulator',
           },
           {
             name: 'ISO20022 Client',
-            href: '/docs/tutorials/ISO20022/ISO20022-Client',
+            href: '/tutorials/ISO20022/ISO20022-Client',
           }
         ],
       },
       {
         name: 'Gas Price',
-        href: '/docs/tutorials/gas-price',
+        href: '/tutorials/gas-price',
       },
       {
         name: 'Coreum WASM SDK',
-        href: '/docs/tutorials/coreum-wasm-sdk',
+        href: '/tutorials/coreum-wasm-sdk',
       },
       {
         name: 'Coreum TS Protobuf',
-        href: '/docs/tutorials/coreum-ts-protobuf',
+        href: '/tutorials/coreum-ts-protobuf',
       },
       {
         name: 'Crust for Development',
-        href: '/docs/tutorials/crust-for-development',
+        href: '/tutorials/crust-for-development',
       },
       {
         name: 'Special Addresses',
-        href: '/docs/tutorials/special-addresses',
+        href: '/tutorials/special-addresses',
       },
       {
         name: "Coreum XRPL Bridge",
-        href: '/docs/tutorials/xrpl-bridge-integration',
+        href: '/tutorials/xrpl-bridge-integration',
       },
     ],
   },
   {
     name: 'Modules',
-    href: '/docs/modules',
+    href: '/modules',
     children: [
       {
         name: 'Coreum Fungible Token',
-        href: '/docs/modules/coreum-fungible-token',
+        href: '/modules/coreum-fungible-token',
       },
       {
         name: 'Coreum Non-Fungible Token',
-        href: '/docs/modules/coreum-non-fungible-token',
+        href: '/modules/coreum-non-fungible-token',
       },
       {
         name: 'Coreum Deterministic Gas',
-        href: '/docs/modules/coreum-deterministic-gas',
+        href: '/modules/coreum-deterministic-gas',
       },
       {
         name: 'Coreum Fee Model',
-        href: '/docs/modules/coreum-fee-model',
+        href: '/modules/coreum-fee-model',
       },
       {
         name: 'Coreum DEX',
-        href: '/docs/modules/coreum-dex',
+        href: '/modules/coreum-dex',
       },
       {
         name: 'Cosmos Non-Fungible Token',
-        href: '/docs/modules/cosmos-non-fungible-token',
+        href: '/modules/cosmos-non-fungible-token',
       }
     ],
   },
   {
     name: 'XRPL Bridge',
-    href: '/docs/xrpl-bridge',
+    href: '/xrpl-bridge',
     children: [
       {
         name: 'Install Relayer',
-        href: '/docs/xrpl-bridge/install-relayer',
+        href: '/xrpl-bridge/install-relayer',
       },
       {
         name: 'Run Relayer',
-        href: '/docs/xrpl-bridge/run-relayer',
+        href: '/xrpl-bridge/run-relayer',
       },
       {
         name: 'Asset flow',
-        href: '/docs/xrpl-bridge/asset-flow',
+        href: '/xrpl-bridge/asset-flow',
       },
       {
         name: 'Register New Token',
-        href: '/docs/xrpl-bridge/register-new-token',
+        href: '/xrpl-bridge/register-new-token',
       },
       {
         name: 'Fees',
-        href: '/docs/xrpl-bridge/fees',
+        href: '/xrpl-bridge/fees',
       },
       {
         name: 'Update Relayer',
-        href: '/docs/xrpl-bridge/update-relayer',
+        href: '/xrpl-bridge/update-relayer',
       }
     ],
   },
   {
     name: 'DEX API',
-    href: '/docs/core_dex',
+    href: '/core_dex',
     children: [
       {
         name: 'Overview',
-        href: '/docs/core_dex/overview',
+        href: '/core_dex/overview',
       },
       {
         name: 'API Server',
-        href: '/docs/core_dex/api-server',
+        href: '/core_dex/api-server',
         children: [
           {
             name: 'Overview',
-            href: '/docs/core_dex/api-server/overview',
+            href: '/core_dex/api-server/overview',
           },
           {
             name: 'Update service',
-            href: '/docs/core_dex/api-server/update-service',
+            href: '/core_dex/api-server/update-service',
           },
         ],
       },
       {
         name: 'Data Aggregator',
-        href: '/docs/core_dex/data-aggregator',
+        href: '/core_dex/data-aggregator',
       },
       {
         name: 'Store',
-        href: '/docs/core_dex/store',
+        href: '/core_dex/store',
       },
       {
         name: 'Frontend',
-        href: '/docs/core_dex/frontend',
+        href: '/core_dex/frontend',
       },
     ],
   },
   {
     name: 'Become Validator',
-    href: '/docs/become-validator',
+    href: '/become-validator',
     children: [
       {
         name: 'Run Full Node',
-        href: '/docs/become-validator/run-full-node',
+        href: '/become-validator/run-full-node',
       },
       {
         name: 'Validator',
-        href: '/docs/become-validator/validator',
+        href: '/become-validator/validator',
         children: [
           {
             name: 'Validator',
-            href: '/docs/become-validator/validator/run-validator',
+            href: '/become-validator/validator/run-validator',
           },
           {
             name: 'Sentry',
-            href: '/docs/become-validator/validator/run-sentry',
+            href: '/become-validator/validator/run-sentry',
           },
           {
             name: 'How to Unjail My Validator',
-            href: '/docs/become-validator/validator/unjail-validator',
+            href: '/become-validator/validator/unjail-validator',
           },
         ],
       },
       {
         name: 'Essentials',
-        href: '/docs/become-validator/essentials',
+        href: '/become-validator/essentials',
         children: [
           {
             name: 'System Requirements',
-            href: '/docs/become-validator/essentials/system-requirements',
+            href: '/become-validator/essentials/system-requirements',
           },
           {
             name: 'How much fund do I need to create a validator?',
-            href: '/docs/become-validator/essentials/how-much-fund-to-create-validator',
+            href: '/become-validator/essentials/how-much-fund-to-create-validator',
           },
           {
             name: 'Node prerequisites',
-            href: '/docs/become-validator/essentials/node-prerequisites',
+            href: '/become-validator/essentials/node-prerequisites',
           },
           {
             name: 'Install cored',
-            href: '/docs/become-validator/essentials/install-cored',
+            href: '/become-validator/essentials/install-cored',
           },
           {
             name: 'Setup network variables',
-            href: '/docs/become-validator/essentials/network-variables',
+            href: '/become-validator/essentials/network-variables',
           },
           {
             name: 'Set connection config',
-            href: '/docs/become-validator/essentials/connection-config',
+            href: '/become-validator/essentials/connection-config',
           },
         ],
       },
       {
         name: 'Troubleshooting',
-        href: '/docs/become-validator/troubleshooting',
+        href: '/become-validator/troubleshooting',
       },
       {
         name: 'Upgrades',
-        href: '/docs/become-validator/upgrades',
+        href: '/become-validator/upgrades',
         children: [
           {
             name: 'How to Upgrade My Node',
-            href: '/docs/become-validator/upgrades/main-info',
+            href: '/become-validator/upgrades/main-info',
           },
           {
             name: 'Upgrades History',
-            href: '/docs/become-validator/upgrades/history',
+            href: '/become-validator/upgrades/history',
           },
         ],
       }
@@ -467,51 +470,51 @@ export const SIDEBAR_ITEMS = [
   },
   {
     name: 'API',
-    href: '/docs/api',
+    href: '/api',
     children: [
       {
         name: 'Protobuf',
-        href: '/docs/api/protobuf',
+        href: '/api/protobuf',
       },
       {
         name: 'Protobuf v5',
-        href: '/docs/api/protobuf-v5',
+        href: '/api/protobuf-v5',
       },
       {
         name: 'Rust Protobuf',
-        href: '/docs/api/rust-protobuf',
+        href: '/api/rust-protobuf',
       }
     ]
   },
   {
     name: 'Tools/Ecosystem',
-    href: '/docs/tools',
+    href: '/tools',
     children: [
       {
         name: 'Wallets',
-        href: '/docs/tools/wallets',
+        href: '/tools/wallets',
       },
       {
         name: 'Faucet',
-        href: '/docs/tools/faucet',
+        href: '/tools/faucet',
       },
       {
         name: 'Blockchain Explorers',
-        href: '/docs/tools/blockchain-explorers',
+        href: '/tools/blockchain-explorers',
       },
     ],
   },
   {
     name: 'Help',
-    href: '/docs/help',
+    href: '/help',
     children: [
       {
         name: 'FAQ',
-        href: '/docs/help/faq',
+        href: '/help/faq',
       },
       {
         name: 'Useful links',
-        href: '/docs/help/useful-links',
+        href: '/help/useful-links',
       },
     ],
   },

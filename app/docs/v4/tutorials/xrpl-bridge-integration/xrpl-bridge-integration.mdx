@@ -1,0 +1,1707 @@
+# Coreum - XRPL Bridge Integration Guide
+
+This guide explains how to integrate the Coreum - XRPL Bridge into your project.
+Before proceeding, ensure you have completed the previous tutorials and understand how to:
+
+- Connect your wallet
+- Retrieve the sender account
+- Obtain a signing client
+
+## Generating and Adding the Smart Contract Interface to Your Project
+
+Before interacting with the smart contract, you need to generate the client and message composer based on the contract. This includes all the necessary messages and queries.
+
+You can achieve this using the <a href="https://github.com/CosmWasm/ts-codegen" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">ts-codegen</a>.
+
+### Generating the Client
+
+Run the following command to generate the client:
+
+```bash
+ts-codegen generate \
+  --plugin client \
+  --schema ./schema \
+  --out ./ts \
+  --name Bridge \
+  --no-bundle
+```
+
+### Generating the Message Composer
+
+Run the following command to generate the message composer:
+
+```bash
+ts-codegen generate \
+  --plugin message-composer \
+  --schema ./schema \
+  --out ./ts \
+  --name Bridge \
+  --no-bundle
+```
+
+Move the generated files (`Bridge.client.ts`, `Bridge.message-composer.ts` and `Bridge.types.ts`) into a single folder named `contract`.
+
+## Communication with the smart contract
+
+To begin working with the smart contract, define the following objects by instantiating the `BridgeMsgComposer` and `BridgeClient` classes.
+
+### Initializing `BridgeMsgComposer` and `BridgeClient`
+
+```ts
+const signingClient = <define signingClient here>;
+const sender = "testcore123...";
+const bridgeContractAddress = "testcore1d90zv8wrwsalluqcezca22zds3dzvjj06fs0v88sh6shhven8pjsgq539p";
+
+const bridgeClient: BridgeClient = BridgeClient(signingClient, sender, bridgeContractAddress);
+const bridgetMsgComposer: BridgeMsgComposer = BridgeMsgComposer(sender, bridgeContractAddress);
+```
+
+#### Methods Available in BridgeClient
+The `bridgeClient` object provides the following methods:
+
+- `config`: Retrieves the configuration of the smart contract.
+- `coreumTokens`: Returns the list of Coreum-based assets registered in the smart contract.
+- `xrplTokens`: Returns the list of XRPL-based assets registered in the smart contract.
+- `pendingRefunds`: Fetches the list of unprocessed bridge transactions. Users need to claim refunds manually.
+- `claimRefund`: Sends a transaction to claim pending refunds.
+- `sendToXrpl`: Sends a transaction to bridge assets from the Coreum chain to the XRPL chain.
+
+## Querying the Smart Contract
+
+To query the smart contract, use the `bridgeClient` object defined earlier.
+
+### Examples of querying the query methods from `bridgeClient`:
+
+- `config`
+
+Retrieves the configuration of the smart contract.
+
+```ts
+export type BridgeState = "active" | "halted";
+export interface Relayer {
+  coreum_address: Addr;
+  xrpl_address: string;
+  xrpl_pub_key: string;
+}
+
+export interface Config {
+  bridge_state: BridgeState;
+  bridge_xrpl_address: string;
+  evidence_threshold: number;
+  relayers: Relayer[];
+  trust_set_limit_amount: Uint128;
+  used_ticket_sequence_threshold: number;
+  xrpl_base_fee: number;
+}
+
+const getBridgeContractConfig = async () => {
+  let config: Config | null = null;
+
+  try {
+    config = await bridgeClient.config();
+  } catch (error) {
+    console.log(error);
+  }
+
+  return config;
+}
+
+const contractConfig = await getBridgeContractConfig();
+```
+
+- `coreumTokens`
+
+Returns the list of Coreum-based assets registered in the smart contract.
+
+```ts
+export type Uint64 = string;
+export interface CoreumToken {
+  bridging_fee: Uint128;
+  decimals: number;
+  denom: string;
+  max_holding_amount: Uint128;
+  sending_precision: number;
+  state: TokenState;
+  xrpl_currency: string;
+}
+
+const getCoreumTokens = async () => {
+  let tokens: CoreumToken[] = [];
+
+  try {
+    const response = await bridgeClient.coreumTokens({});
+
+    tokens = response.tokens;
+  } catch (error) {
+    console.log(error);
+  }
+
+  return tokens;
+}
+
+const coreumTokens = await getCoreumTokens();
+```
+
+- `xrplTokens`
+
+Returns the list of XRPL-based assets registered in the smart contract.
+
+```ts
+export type Uint64 = string;
+export interface XRPLToken {
+  bridging_fee: Uint128;
+  coreum_denom: string;
+  currency: string;
+  issuer: string;
+  max_holding_amount: Uint128;
+  sending_precision: number;
+  state: TokenState;
+}
+
+const getXRPLTokens = async () => {
+  let tokens: XRPLToken[] = [];
+
+  try {
+    const response = await bridgeClient.xrplTokens({});
+
+    tokens = response.tokens;
+  } catch (error) {
+    console.log(error);
+  }
+
+  return tokens;
+}
+
+const xrplTokens = await getXRPLTokens();
+```
+
+- `pendingRefunds`
+
+Fetches the list of unprocessed bridge transactions. Users need to claim refunds manually.
+
+```ts
+export type Uint64 = string;
+export interface Coin {
+  amount: Uint128;
+  denom: string;
+  [k: string]: unknown;
+}
+
+export interface PendingRefund {
+  coin: Coin;
+  id: string;
+  xrpl_tx_hash?: string | null;
+}
+
+const getXRPLTokens = async () => {
+  let pendingRefunds: PendingRefund[] = [];
+
+  try {
+    const response = await bridgeClient.pendingRefunds({
+      address: sender,
+    });
+
+    pendingRefunds = response.pending_refunds;
+  } catch (error) {
+    console.log(error);
+  }
+
+  return pendingRefunds;
+}
+
+const refunds = await getXRPLTokens();
+```
+
+## Preparing and executing of transactions
+
+To send transactions methods from the smart contract, use the `bridgeClient` and `bridgeMsgComposer` object defined earlier.
+
+### Transaction methods overview
+
+- `claimRefund`
+
+Sends a transaction to claim pending refunds.
+
+Imports:
+```ts
+import {
+  GasPrice,
+  QueryClient,
+  calculateFee,
+  createProtobufRpcClient,
+  decodeCosmosSdkDecFromProto,
+} from "@cosmjs/stargate";
+```
+
+```ts
+const getRequestFundsMsg = ({ refundId }: { refundId: string }) => {
+  const requestFundsMsg = bridgeMsgComposer.claimRefund({
+    pendingRefundId: refundId,
+  });
+
+  return requestFundsMsg;
+};
+
+const claimRefund = async ({ refundId }: { refundId: string }) => {
+  try {
+    let fee: StdFee | "auto" = "auto";
+    const requestFundsMsg = getRequestFundsMsg({ refundId });
+
+    const estimateTxFeeResponse = await getTxFee([requestFundsMsg]);
+    if (estimateTxFeeResponse && estimateTxFeeResponse.fee) {
+      fee = estimateTxFeeResponse.fee;
+    }
+
+    const transactionResult = await bridgeClient.claimRefund(
+      {
+        pendingRefundId: refundId,
+      },
+      fee
+    );
+
+    return transactionResult;
+  } catch (error) {
+    console.log(error);
+  }
+
+  return null;
+};
+
+const result = await claimRefund({ refundId: 'refund-id-1' });
+```
+
+- `sendToXrpl`
+
+Sends a transaction to bridge assets from the Coreum chain to the XRPL chain.
+
+```ts
+interface SendToXrplArgs {
+  recipient: string;
+  fee: number | StdFee | "auto";
+  tokenIssuer?: string;
+  funds?: Coin[];
+  deliverAmount?: string;
+  senderAccount?: string;
+}
+type SendToXrplMsgArgs = Omit<SendToXrplArgs, "fee" | "amount" | "decimals">;
+
+const getSendToXrplMsg = ({
+  recipient,
+  deliverAmount,
+  funds,
+  senderAccount,
+}: SendToXrplMsgArgs) => {
+const sendTokensToXrplMsg = bridgeMsgComposer.sendToXrpl(
+  {
+    recipient,
+    deliverAmount,
+  },
+  funds
+);
+
+return sendTokensToXrplMsg;
+};
+
+const sendTokensToXrpl = async ({
+  recipient,
+  deliverAmount,
+  funds,
+  senderAccount,
+}: SendToXrplArgs) => {
+  try {
+    const denom = funds?.[0].denom;
+    const deliverAmountValue = deliverAmount;
+
+    let fee: StdFee | "auto" = "auto";
+    const msg = getSendToXrplMsg({
+      recipient,
+      funds,
+      ...(denom?.includes("xrpl") && deliverAmountValue
+        ? { deliverAmount: Big(deliverAmountValue).toFixed().toString() }
+        : undefined),
+      senderAccount,
+    });
+
+    const response = await getTxFee([msg], senderAccount);
+
+    if (response && response.fee && response.fee !== undefined) {
+      fee = response.fee;
+    }
+
+    const result = await bridgeClient.sendToXrpl(
+      {
+        recipient,
+        ...(denom?.includes("xrpl") && deliverAmountValue
+          ? { deliverAmount: Big(deliverAmountValue).toFixed().toString() }
+          : undefined),
+      },
+      fee,
+      "",
+      funds
+    );
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+  return null;
+};
+
+const result = sendTokensToXrpl({ recipient: 'recipient-address-on-xrpl-chain', funds: [{ amount: '10', denom: 'utestcore' }], senderAccount: account });
+```
+
+### Send tokens to Coreum from XRPL
+
+```ts
+interface SendToCosmosArgs {
+  recipient: string;
+  xrplAccount: string;
+  amount: string;
+  currency: string;
+  tokenIssuer: string;
+  fee?: string;
+  deliverAmount: string;
+}
+
+const convertStringToHex = (value: string) => {
+  let hex = '';
+
+  value.split('').forEach((char: string) => {
+    const charCode = char.charCodeAt(0).toString(16);
+    hex += charCode.padStart(2, "0");
+  });
+
+  return hex;
+};
+
+
+
+const sendTokensToCoreum = async ({
+  xrplAccount,
+  recipient,
+  amount,
+  currency,
+  fee,
+  deliverAmount,
+  tokenIssuer,
+}: SendToCosmosArgs) => {
+  try {
+    const contractConfig = await getBridgeContractConfig();
+
+    let currencyAmount: Amount = Big(amount).mul(Big(10).pow(6)).toString();
+    let sendMaxAmount: Amount = amount;
+
+    if (currency.toLowerCase() !== "xrp") {
+      const currencyInfo = {
+        currency,
+        issuer: tokenIssuer,
+      };
+      currencyAmount = {
+        ...currencyInfo,
+        value: deliverAmount,
+      };
+      sendMaxAmount = {
+        ...currencyInfo,
+        value: amount,
+      };
+    }
+
+    const memoData: string = JSON.stringify({
+      type: "coreumbridge-xrpl-v1",
+      coreum_recipient: recipient,
+    });
+
+    const sendTx: Transaction = {
+      TransactionType: "Payment",
+      Account: xrplAccount,
+      Destination: contractConfig.bridge_xrpl_address,
+      Amount: currencyAmount,
+      Memos: [
+        {
+          Memo: {
+            MemoData: convertStringToHex(memoData),
+          },
+        },
+      ],
+      ...(currency.toLowerCase() !== "xrp" && { SendMax: sendMaxAmount }),
+      ...(fee ? { Fee: fee } : {}),
+    };
+
+    if (sendTx) {
+      const sendResponse = await xrplClient?.submit(sendTx);
+      return sendResponse;
+    }
+  } catch (error) {
+    console.log(error);
+
+    return null;
+  }
+};
+
+const sendResponse = sendTokensToCoreum({
+  xrplAccount: 'Some xrpl account',
+  recipient: 'Recipient account on coreum side',
+  amount: '100',
+  currency: 'xrp',
+  deliverAmount: '10000000', // needs to be calculated properly
+  tokenIssuer: 'rrrrrrrrrrrrrrrrrrrrrhoLvTp',
+});
+```
+
+### Implementation of getTxFee
+
+There is the example of QueryClientImpl to estimate transaction fee.
+
+`coin.ts`
+```ts
+/* eslint-disable */
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+
+export const protobufPackage = "cosmos.base.v1beta1";
+
+/**
+ * Coin defines a token with a denomination and an amount.
+ *
+ * NOTE: The amount field is an Int which implements the custom method
+ * signatures required by gogoproto.
+ */
+export interface Coin {
+  denom: string;
+  amount: string;
+}
+
+/**
+ * DecCoin defines a token with a denomination and a decimal amount.
+ *
+ * NOTE: The amount field is an Dec which implements the custom method
+ * signatures required by gogoproto.
+ */
+export interface DecCoin {
+  denom: string;
+  amount: string;
+}
+
+/** IntProto defines a Protobuf wrapper around an Int object. */
+export interface IntProto {
+  int: string;
+}
+
+/** DecProto defines a Protobuf wrapper around a Dec object. */
+export interface DecProto {
+  dec: string;
+}
+
+function createBaseCoin(): Coin {
+  return { denom: "", amount: "" };
+}
+
+export const Coin = {
+  encode(message: Coin, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.denom !== "") {
+      writer.uint32(10).string(message.denom);
+    }
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Coin {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCoin();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.denom = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.amount = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Coin {
+    return {
+      denom: isSet(object.denom) ? String(object.denom) : "",
+      amount: isSet(object.amount) ? String(object.amount) : "",
+    };
+  },
+
+  toJSON(message: Coin): unknown {
+    const obj: any = {};
+    if (message.denom !== "") {
+      obj.denom = message.denom;
+    }
+    if (message.amount !== "") {
+      obj.amount = message.amount;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Coin>, I>>(base?: I): Coin {
+    return Coin.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Coin>, I>>(object: I): Coin {
+    const message = createBaseCoin();
+    message.denom = object.denom ?? "";
+    message.amount = object.amount ?? "";
+    return message;
+  },
+};
+
+function createBaseDecCoin(): DecCoin {
+  return { denom: "", amount: "" };
+}
+
+export const DecCoin = {
+  encode(message: DecCoin, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.denom !== "") {
+      writer.uint32(10).string(message.denom);
+    }
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DecCoin {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDecCoin();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.denom = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.amount = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DecCoin {
+    return {
+      denom: isSet(object.denom) ? String(object.denom) : "",
+      amount: isSet(object.amount) ? String(object.amount) : "",
+    };
+  },
+
+  toJSON(message: DecCoin): unknown {
+    const obj: any = {};
+    if (message.denom !== "") {
+      obj.denom = message.denom;
+    }
+    if (message.amount !== "") {
+      obj.amount = message.amount;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DecCoin>, I>>(base?: I): DecCoin {
+    return DecCoin.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DecCoin>, I>>(object: I): DecCoin {
+    const message = createBaseDecCoin();
+    message.denom = object.denom ?? "";
+    message.amount = object.amount ?? "";
+    return message;
+  },
+};
+
+function createBaseIntProto(): IntProto {
+  return { int: "" };
+}
+
+export const IntProto = {
+  encode(message: IntProto, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.int !== "") {
+      writer.uint32(10).string(message.int);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): IntProto {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseIntProto();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.int = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): IntProto {
+    return { int: isSet(object.int) ? String(object.int) : "" };
+  },
+
+  toJSON(message: IntProto): unknown {
+    const obj: any = {};
+    if (message.int !== "") {
+      obj.int = message.int;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<IntProto>, I>>(base?: I): IntProto {
+    return IntProto.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<IntProto>, I>>(object: I): IntProto {
+    const message = createBaseIntProto();
+    message.int = object.int ?? "";
+    return message;
+  },
+};
+
+function createBaseDecProto(): DecProto {
+  return { dec: "" };
+}
+
+export const DecProto = {
+  encode(message: DecProto, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.dec !== "") {
+      writer.uint32(10).string(message.dec);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DecProto {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDecProto();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.dec = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DecProto {
+    return { dec: isSet(object.dec) ? String(object.dec) : "" };
+  },
+
+  toJSON(message: DecProto): unknown {
+    const obj: any = {};
+    if (message.dec !== "") {
+      obj.dec = message.dec;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DecProto>, I>>(base?: I): DecProto {
+    return DecProto.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DecProto>, I>>(object: I): DecProto {
+    const message = createBaseDecProto();
+    message.dec = object.dec ?? "";
+    return message;
+  },
+};
+
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
+
+type KeysOfUnion<T> = T extends T ? keyof T : never;
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
+
+function isSet(value: any): boolean {
+  return value !== null && value !== undefined;
+}
+```
+
+`params.ts`
+```ts
+/* eslint-disable */
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+
+export const protobufPackage = "coreum.feemodel.v1";
+
+/**
+ * ModelParams define fee model params.
+ * There are four regions on the fee model curve
+ * - between 0 and "long average block gas" where gas price goes down exponentially from InitialGasPrice to gas price with maximum discount (InitialGasPrice * (1 - MaxDiscount))
+ * - between "long average block gas" and EscalationStartBlockGas (EscalationStartBlockGas = MaxBlockGas * EscalationStartFraction) where we offer gas price with maximum discount all the time
+ * - between EscalationStartBlockGas (EscalationStartBlockGas = MaxBlockGas * EscalationStartFraction) and MaxBlockGas where price goes up rapidly (being an output of a power function) from gas price with maximum discount to MaxGasPrice  (MaxGasPrice = InitialGasPrice * MaxGasMultiplier)
+ * - above MaxBlockGas (if it happens for any reason) where price is equal to MaxGasPrice (MaxGasPrice = InitialGasPrice * MaxGasMultiplier)
+ *
+ * The input (x value) for that function is calculated by taking short block gas average.
+ * Price (y value) being an output of the fee model is used as the minimum gas price for next block.
+ */
+export interface ModelParams {
+  /** initial_gas_price is used when block gas short average is 0. It happens when there are no transactions being broadcasted. This value is also used to initialize gas price on brand-new chain. */
+  initialGasPrice: string;
+  /** max_gas_price_multiplier is used to compute max_gas_price (max_gas_price = initial_gas_price * max_gas_price_multiplier). Max gas price is charged when block gas short average is greater than or equal to MaxBlockGas. This value is used to limit gas price escalation to avoid having possible infinity GasPrice value otherwise. */
+  maxGasPriceMultiplier: string;
+  /** max_discount is th maximum discount we offer on top of initial gas price if short average block gas is between long average block gas and escalation start block gas. */
+  maxDiscount: string;
+  /** escalation_start_fraction defines fraction of max block gas usage where gas price escalation starts if short average block gas is higher than this value. */
+  escalationStartFraction: string;
+  /** max_block_gas sets the maximum capacity of block. This is enforced on tendermint level in genesis configuration. Once short average block gas goes above this value, gas price is a flat line equal to MaxGasPrice. */
+  maxBlockGas: Long;
+  /**
+   * short_ema_block_length defines inertia for short average long gas in EMA model. The equation is: NewAverage = ((ShortAverageBlockLength - 1)*PreviousAverage + GasUsedByCurrentBlock) / ShortAverageBlockLength
+   * The value might be interpreted as the number of blocks which are taken to calculate the average. It would be exactly like that in SMA model, in EMA this is an approximation.
+   */
+  shortEmaBlockLength: number;
+  /**
+   * long_ema_block_length defines inertia for long average block gas in EMA model. The equation is: NewAverage = ((LongAverageBlockLength - 1)*PreviousAverage + GasUsedByCurrentBlock) / LongAverageBlockLength
+   * The value might be interpreted as the number of blocks which are taken to calculate the average. It would be exactly like that in SMA model, in EMA this is an approximation.
+   */
+  longEmaBlockLength: number;
+}
+
+/** Params store gov manageable feemodel parameters. */
+export interface Params {
+  /** model is a fee model params. */
+  model?: ModelParams | undefined;
+}
+
+function createBaseModelParams(): ModelParams {
+  return {
+    initialGasPrice: "",
+    maxGasPriceMultiplier: "",
+    maxDiscount: "",
+    escalationStartFraction: "",
+    maxBlockGas: Long.ZERO,
+    shortEmaBlockLength: 0,
+    longEmaBlockLength: 0,
+  };
+}
+
+export const ModelParams = {
+  encode(message: ModelParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.initialGasPrice !== "") {
+      writer.uint32(10).string(message.initialGasPrice);
+    }
+    if (message.maxGasPriceMultiplier !== "") {
+      writer.uint32(18).string(message.maxGasPriceMultiplier);
+    }
+    if (message.maxDiscount !== "") {
+      writer.uint32(26).string(message.maxDiscount);
+    }
+    if (message.escalationStartFraction !== "") {
+      writer.uint32(34).string(message.escalationStartFraction);
+    }
+    if (!message.maxBlockGas.isZero()) {
+      writer.uint32(40).int64(message.maxBlockGas);
+    }
+    if (message.shortEmaBlockLength !== 0) {
+      writer.uint32(48).uint32(message.shortEmaBlockLength);
+    }
+    if (message.longEmaBlockLength !== 0) {
+      writer.uint32(56).uint32(message.longEmaBlockLength);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ModelParams {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseModelParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.initialGasPrice = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.maxGasPriceMultiplier = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.maxDiscount = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.escalationStartFraction = reader.string();
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.maxBlockGas = reader.int64() as Long;
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.shortEmaBlockLength = reader.uint32();
+          continue;
+        case 7:
+          if (tag !== 56) {
+            break;
+          }
+
+          message.longEmaBlockLength = reader.uint32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ModelParams {
+    return {
+      initialGasPrice: isSet(object.initialGasPrice) ? String(object.initialGasPrice) : "",
+      maxGasPriceMultiplier: isSet(object.maxGasPriceMultiplier) ? String(object.maxGasPriceMultiplier) : "",
+      maxDiscount: isSet(object.maxDiscount) ? String(object.maxDiscount) : "",
+      escalationStartFraction: isSet(object.escalationStartFraction) ? String(object.escalationStartFraction) : "",
+      maxBlockGas: isSet(object.maxBlockGas) ? Long.fromValue(object.maxBlockGas) : Long.ZERO,
+      shortEmaBlockLength: isSet(object.shortEmaBlockLength) ? Number(object.shortEmaBlockLength) : 0,
+      longEmaBlockLength: isSet(object.longEmaBlockLength) ? Number(object.longEmaBlockLength) : 0,
+    };
+  },
+
+  toJSON(message: ModelParams): unknown {
+    const obj: any = {};
+    if (message.initialGasPrice !== "") {
+      obj.initialGasPrice = message.initialGasPrice;
+    }
+    if (message.maxGasPriceMultiplier !== "") {
+      obj.maxGasPriceMultiplier = message.maxGasPriceMultiplier;
+    }
+    if (message.maxDiscount !== "") {
+      obj.maxDiscount = message.maxDiscount;
+    }
+    if (message.escalationStartFraction !== "") {
+      obj.escalationStartFraction = message.escalationStartFraction;
+    }
+    if (!message.maxBlockGas.isZero()) {
+      obj.maxBlockGas = (message.maxBlockGas || Long.ZERO).toString();
+    }
+    if (message.shortEmaBlockLength !== 0) {
+      obj.shortEmaBlockLength = Math.round(message.shortEmaBlockLength);
+    }
+    if (message.longEmaBlockLength !== 0) {
+      obj.longEmaBlockLength = Math.round(message.longEmaBlockLength);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ModelParams>, I>>(base?: I): ModelParams {
+    return ModelParams.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ModelParams>, I>>(object: I): ModelParams {
+    const message = createBaseModelParams();
+    message.initialGasPrice = object.initialGasPrice ?? "";
+    message.maxGasPriceMultiplier = object.maxGasPriceMultiplier ?? "";
+    message.maxDiscount = object.maxDiscount ?? "";
+    message.escalationStartFraction = object.escalationStartFraction ?? "";
+    message.maxBlockGas = (object.maxBlockGas !== undefined && object.maxBlockGas !== null)
+      ? Long.fromValue(object.maxBlockGas)
+      : Long.ZERO;
+    message.shortEmaBlockLength = object.shortEmaBlockLength ?? 0;
+    message.longEmaBlockLength = object.longEmaBlockLength ?? 0;
+    return message;
+  },
+};
+
+function createBaseParams(): Params {
+  return { model: undefined };
+}
+
+export const Params = {
+  encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.model !== undefined) {
+      ModelParams.encode(message.model, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Params {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.model = ModelParams.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Params {
+    return { model: isSet(object.model) ? ModelParams.fromJSON(object.model) : undefined };
+  },
+
+  toJSON(message: Params): unknown {
+    const obj: any = {};
+    if (message.model !== undefined) {
+      obj.model = ModelParams.toJSON(message.model);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Params>, I>>(base?: I): Params {
+    return Params.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
+    const message = createBaseParams();
+    message.model = (object.model !== undefined && object.model !== null)
+      ? ModelParams.fromPartial(object.model)
+      : undefined;
+    return message;
+  },
+};
+
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
+
+type KeysOfUnion<T> = T extends T ? keyof T : never;
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
+
+function isSet(value: any): boolean {
+  return value !== null && value !== undefined;
+}
+```
+
+`genesis.ts`
+```ts
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { DecCoin } from "./coin";
+import { Params } from "./params";
+
+export const protobufPackage = "coreum.feemodel.v1";
+
+/** GenesisState defines the module's genesis state. */
+export interface GenesisState {
+  /** params defines all the parameters of the module. */
+  params?:
+    | Params
+    | undefined;
+  /** min_gas_price is the current minimum gas price required by the chain. */
+  minGasPrice?: DecCoin | undefined;
+}
+
+function createBaseGenesisState(): GenesisState {
+  return { params: undefined, minGasPrice: undefined };
+}
+
+export const GenesisState = {
+  encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.minGasPrice !== undefined) {
+      DecCoin.encode(message.minGasPrice, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGenesisState();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.params = Params.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.minGasPrice = DecCoin.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GenesisState {
+    return {
+      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
+      minGasPrice: isSet(object.minGasPrice) ? DecCoin.fromJSON(object.minGasPrice) : undefined,
+    };
+  },
+
+  toJSON(message: GenesisState): unknown {
+    const obj: any = {};
+    if (message.params !== undefined) {
+      obj.params = Params.toJSON(message.params);
+    }
+    if (message.minGasPrice !== undefined) {
+      obj.minGasPrice = DecCoin.toJSON(message.minGasPrice);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GenesisState>, I>>(base?: I): GenesisState {
+    return GenesisState.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
+    const message = createBaseGenesisState();
+    message.params = (object.params !== undefined && object.params !== null)
+      ? Params.fromPartial(object.params)
+      : undefined;
+    message.minGasPrice = (object.minGasPrice !== undefined && object.minGasPrice !== null)
+      ? DecCoin.fromPartial(object.minGasPrice)
+      : undefined;
+    return message;
+  },
+};
+
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
+
+type KeysOfUnion<T> = T extends T ? keyof T : never;
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
+
+function isSet(value: any): boolean {
+  return value !== null && value !== undefined;
+}
+```
+
+`query.ts`
+```ts
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable no-empty */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { DecCoin } from "./coin";
+import { Params } from "./params";
+
+export const protobufPackage = "coreum.feemodel.v1";
+
+export interface QueryMinGasPriceRequest {
+}
+
+export interface QueryMinGasPriceResponse {
+  minGasPrice?: DecCoin | undefined;
+}
+
+export interface QueryRecommendedGasPriceRequest {
+  afterBlocks: number;
+}
+
+export interface QueryRecommendedGasPriceResponse {
+  low?: DecCoin | undefined;
+  med?: DecCoin | undefined;
+  high?: DecCoin | undefined;
+}
+
+export interface QueryParamsRequest {
+}
+
+export interface QueryParamsResponse {
+  params?: Params | undefined;
+}
+
+function createBaseQueryMinGasPriceRequest(): QueryMinGasPriceRequest {
+  return {};
+}
+
+export const QueryMinGasPriceRequest = {
+  encode(_: QueryMinGasPriceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryMinGasPriceRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryMinGasPriceRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryMinGasPriceRequest {
+    return {};
+  },
+
+  toJSON(_: QueryMinGasPriceRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryMinGasPriceRequest>, I>>(base?: I): QueryMinGasPriceRequest {
+    return QueryMinGasPriceRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryMinGasPriceRequest>, I>>(_: I): QueryMinGasPriceRequest {
+    const message = createBaseQueryMinGasPriceRequest();
+    return message;
+  },
+};
+
+function createBaseQueryMinGasPriceResponse(): QueryMinGasPriceResponse {
+  return { minGasPrice: undefined };
+}
+
+export const QueryMinGasPriceResponse = {
+  encode(message: QueryMinGasPriceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.minGasPrice !== undefined) {
+      DecCoin.encode(message.minGasPrice, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryMinGasPriceResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryMinGasPriceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.minGasPrice = DecCoin.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryMinGasPriceResponse {
+    return { minGasPrice: isSet(object.minGasPrice) ? DecCoin.fromJSON(object.minGasPrice) : undefined };
+  },
+
+  toJSON(message: QueryMinGasPriceResponse): unknown {
+    const obj: any = {};
+    if (message.minGasPrice !== undefined) {
+      obj.minGasPrice = DecCoin.toJSON(message.minGasPrice);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryMinGasPriceResponse>, I>>(base?: I): QueryMinGasPriceResponse {
+    return QueryMinGasPriceResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryMinGasPriceResponse>, I>>(object: I): QueryMinGasPriceResponse {
+    const message = createBaseQueryMinGasPriceResponse();
+    message.minGasPrice = (object.minGasPrice !== undefined && object.minGasPrice !== null)
+      ? DecCoin.fromPartial(object.minGasPrice)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryRecommendedGasPriceRequest(): QueryRecommendedGasPriceRequest {
+  return { afterBlocks: 0 };
+}
+
+export const QueryRecommendedGasPriceRequest = {
+  encode(message: QueryRecommendedGasPriceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.afterBlocks !== 0) {
+      writer.uint32(8).uint32(message.afterBlocks);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryRecommendedGasPriceRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryRecommendedGasPriceRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.afterBlocks = reader.uint32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryRecommendedGasPriceRequest {
+    return { afterBlocks: isSet(object.afterBlocks) ? Number(object.afterBlocks) : 0 };
+  },
+
+  toJSON(message: QueryRecommendedGasPriceRequest): unknown {
+    const obj: any = {};
+    if (message.afterBlocks !== 0) {
+      obj.afterBlocks = Math.round(message.afterBlocks);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryRecommendedGasPriceRequest>, I>>(base?: I): QueryRecommendedGasPriceRequest {
+    return QueryRecommendedGasPriceRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryRecommendedGasPriceRequest>, I>>(
+    object: I,
+  ): QueryRecommendedGasPriceRequest {
+    const message = createBaseQueryRecommendedGasPriceRequest();
+    message.afterBlocks = object.afterBlocks ?? 0;
+    return message;
+  },
+};
+
+function createBaseQueryRecommendedGasPriceResponse(): QueryRecommendedGasPriceResponse {
+  return { low: undefined, med: undefined, high: undefined };
+}
+
+export const QueryRecommendedGasPriceResponse = {
+  encode(message: QueryRecommendedGasPriceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.low !== undefined) {
+      DecCoin.encode(message.low, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.med !== undefined) {
+      DecCoin.encode(message.med, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.high !== undefined) {
+      DecCoin.encode(message.high, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryRecommendedGasPriceResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryRecommendedGasPriceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.low = DecCoin.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.med = DecCoin.decode(reader, reader.uint32());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.high = DecCoin.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryRecommendedGasPriceResponse {
+    return {
+      low: isSet(object.low) ? DecCoin.fromJSON(object.low) : undefined,
+      med: isSet(object.med) ? DecCoin.fromJSON(object.med) : undefined,
+      high: isSet(object.high) ? DecCoin.fromJSON(object.high) : undefined,
+    };
+  },
+
+  toJSON(message: QueryRecommendedGasPriceResponse): unknown {
+    const obj: any = {};
+    if (message.low !== undefined) {
+      obj.low = DecCoin.toJSON(message.low);
+    }
+    if (message.med !== undefined) {
+      obj.med = DecCoin.toJSON(message.med);
+    }
+    if (message.high !== undefined) {
+      obj.high = DecCoin.toJSON(message.high);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryRecommendedGasPriceResponse>, I>>(
+    base?: I,
+  ): QueryRecommendedGasPriceResponse {
+    return QueryRecommendedGasPriceResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryRecommendedGasPriceResponse>, I>>(
+    object: I,
+  ): QueryRecommendedGasPriceResponse {
+    const message = createBaseQueryRecommendedGasPriceResponse();
+    message.low = (object.low !== undefined && object.low !== null) ? DecCoin.fromPartial(object.low) : undefined;
+    message.med = (object.med !== undefined && object.med !== null) ? DecCoin.fromPartial(object.med) : undefined;
+    message.high = (object.high !== undefined && object.high !== null) ? DecCoin.fromPartial(object.high) : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryParamsRequest(): QueryParamsRequest {
+  return {};
+}
+
+export const QueryParamsRequest = {
+  encode(_: QueryParamsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryParamsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryParamsRequest {
+    return {};
+  },
+
+  toJSON(_: QueryParamsRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(base?: I): QueryParamsRequest {
+    return QueryParamsRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(_: I): QueryParamsRequest {
+    const message = createBaseQueryParamsRequest();
+    return message;
+  },
+};
+
+function createBaseQueryParamsResponse(): QueryParamsResponse {
+  return { params: undefined };
+}
+
+export const QueryParamsResponse = {
+  encode(message: QueryParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryParamsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.params = Params.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryParamsResponse {
+    return { params: isSet(object.params) ? Params.fromJSON(object.params) : undefined };
+  },
+
+  toJSON(message: QueryParamsResponse): unknown {
+    const obj: any = {};
+    if (message.params !== undefined) {
+      obj.params = Params.toJSON(message.params);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(base?: I): QueryParamsResponse {
+    return QueryParamsResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
+    const message = createBaseQueryParamsResponse();
+    message.params = (object.params !== undefined && object.params !== null)
+      ? Params.fromPartial(object.params)
+      : undefined;
+    return message;
+  },
+};
+
+/** Query defines the gRPC querier service. */
+export interface Query {
+  /** MinGasPrice queries the current minimum gas price required by the network. */
+  MinGasPrice(request: QueryMinGasPriceRequest): Promise<QueryMinGasPriceResponse>;
+  /** RecommendedGasPrice queries the recommended gas price for the next n blocks. */
+  RecommendedGasPrice(request: QueryRecommendedGasPriceRequest): Promise<QueryRecommendedGasPriceResponse>;
+  /** Params queries the parameters of x/feemodel module. */
+  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+}
+
+export const QueryServiceName = "coreum.feemodel.v1.Query";
+export class QueryClientImpl implements Query {
+  private readonly rpc: Rpc;
+  private readonly service: string;
+  constructor(rpc: Rpc, opts?: { service?: string }) {
+    this.service = opts?.service || QueryServiceName;
+    this.rpc = rpc;
+    this.MinGasPrice = this.MinGasPrice.bind(this);
+    this.RecommendedGasPrice = this.RecommendedGasPrice.bind(this);
+    this.Params = this.Params.bind(this);
+  }
+  MinGasPrice(request: QueryMinGasPriceRequest): Promise<QueryMinGasPriceResponse> {
+    const data = QueryMinGasPriceRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "MinGasPrice", data);
+    return promise.then((data) => QueryMinGasPriceResponse.decode(_m0.Reader.create(data)));
+  }
+
+  RecommendedGasPrice(request: QueryRecommendedGasPriceRequest): Promise<QueryRecommendedGasPriceResponse> {
+    const data = QueryRecommendedGasPriceRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "RecommendedGasPrice", data);
+    return promise.then((data) => QueryRecommendedGasPriceResponse.decode(_m0.Reader.create(data)));
+  }
+
+  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
+    const data = QueryParamsRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "Params", data);
+    return promise.then((data) => QueryParamsResponse.decode(_m0.Reader.create(data)));
+  }
+}
+
+interface Rpc {
+  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
+}
+
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
+
+type KeysOfUnion<T> = T extends T ? keyof T : never;
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
+
+function isSet(value: any): boolean {
+  return value !== null && value !== undefined;
+}
+```
+
+```ts
+import { GasPrice, QueryClient, calculateFee, createProtobufRpcClient, decodeCosmosSdkDecFromProto } from "@cosmjs/stargate";
+
+const tendermintClient = <define tendermint client>;
+
+const getFeeModel = () => {
+  if (!tendermintClient) {
+    return null;
+  }
+
+  const queryClient = new QueryClient(tendermintClient);
+  const rpcClient = createProtobufRpcClient(queryClient);
+
+  return new FeeModelClient(rpcClient);
+};
+
+const getGasPrice = async () => {
+  const feeModel = getFeeModel();
+
+  if (!feeModel) {
+    return "";
+  }
+
+  const gasPriceMultiplier = 1.1;
+  const feeModelParams = await feeModel.Params({});
+  const minGasPriceRes = await feeModel.MinGasPrice({});
+
+  const minGasPrice = decodeCosmosSdkDecFromProto(
+    minGasPriceRes.minGasPrice?.amount || ""
+  );
+
+  let gasPrice = minGasPrice.toFloatApproximation() * gasPriceMultiplier;
+  const initialGasPrice = decodeCosmosSdkDecFromProto(
+    feeModelParams.params?.model?.initialGasPrice || ""
+  ).toFloatApproximation();
+
+  if (gasPrice > initialGasPrice) {
+    gasPrice = initialGasPrice;
+  }
+
+  return GasPrice.fromString(
+    `${gasPrice}${minGasPriceRes.minGasPrice?.denom || ""}`
+  );
+};
+
+const getTxFee = (msgs: readonly EncodeObject[], senderAccount?: string) => {
+  const gasPrice = await getGasPrice();
+  const gasWanted = await signingClient.simulate(
+    account,
+    msgs,
+    ""
+  );
+  const totalGasWanted = new Big(gasWanted).mul(1.2).toFixed(0);
+
+  return {
+    fee: calculateFee(+totalGasWanted, gasPrice),
+  };
+};
+```

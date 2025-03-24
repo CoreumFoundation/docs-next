@@ -4,17 +4,17 @@ import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import classNames from 'classnames';
 import { ArrowUpIcon, Bars3Icon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavigationItem } from '@/utils/types';
-import { SIDEBAR_ITEMS } from './constants';
+import { ROUTE_NEXT_PREFIX, ROUTE_V4_PREFIX, SIDEBAR_ITEMS } from './constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import TransitionDiv from '../Transition';
 
 interface SidebarProps {
   children: React.ReactNode;
 }
 
-const renderLink = (item: NavigationItem, isActive: boolean) => {
+const renderLink = (item: NavigationItem, isActive: boolean, routePrefix: string) => {
   if (item.external) {
     return (
       <a
@@ -34,7 +34,7 @@ const renderLink = (item: NavigationItem, isActive: boolean) => {
 
   return (
     <Link
-      href={item.href}
+      href={`${routePrefix}${item.href}`}
       prefetch={false}
       className={classNames(
         isActive ? 'text-[#25D695] font-medium bg-sidebar-active' : 'text-[#5E6773] font-normal hover:text-white',
@@ -46,7 +46,7 @@ const renderLink = (item: NavigationItem, isActive: boolean) => {
   );
 };
 
-const renderNavigationItems = (items: NavigationItem[], pathname: string) => {
+const renderNavigationItems = (items: NavigationItem[], pathname: string, routePrefix: string) => {
   if (!items) return null;
 
   return items.map((item: NavigationItem) => {
@@ -58,7 +58,7 @@ const renderNavigationItems = (items: NavigationItem[], pathname: string) => {
 
     return (
       <li key={item.name}>
-        {!item.children?.length ? renderLink(item, isActive) : (
+        {!item.children?.length ? renderLink(item, isActive, routePrefix) : (
           <Disclosure>
             {({ open }) => (
               <>
@@ -76,7 +76,7 @@ const renderNavigationItems = (items: NavigationItem[], pathname: string) => {
                   />
                 </Disclosure.Button>
                 <Disclosure.Panel as="ul" className="my-2 ml-4 px-2 border-l border-l-1 border-[#17191E]">
-                  {renderNavigationItems(item.children || [], pathname)}
+                  {renderNavigationItems(item.children || [], pathname, routePrefix)}
                 </Disclosure.Panel>
               </>
             )}
@@ -91,6 +91,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const routePrefix = useMemo(() => {
+    return pathname.includes('/next') ? ROUTE_NEXT_PREFIX : ROUTE_V4_PREFIX;
+  }, [pathname]);
 
   const scrollToTop = useCallback(() => {
     if (scrollContainerRef.current) {
@@ -153,7 +157,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
                           <ul role="list" className="-mx-2 space-y-1">
-                            {renderNavigationItems(SIDEBAR_ITEMS, pathname)}
+                            {renderNavigationItems(SIDEBAR_ITEMS, pathname, routePrefix)}
                           </ul>
                         </li>
                       </ul>
@@ -182,7 +186,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
-                    {renderNavigationItems(SIDEBAR_ITEMS, pathname)}
+                    {renderNavigationItems(SIDEBAR_ITEMS, pathname, routePrefix)}
                   </ul>
                 </li>
               </ul>

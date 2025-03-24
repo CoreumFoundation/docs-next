@@ -1,0 +1,36 @@
+# System Requirements
+
+### Mainnet
+
+> [!WARNING]
+> Use only SSD or NVMe hard drives, directly attached to the motherboard.
+
+Recommended requirement - to use a dedicated bare-metal server
+
+If you use Cloud Computing Instance, ensure that your SSD disk is directly attached to the motherboard.
+Otherwise, you might experience IO delay and risk to be jailed of not signing blocks.
+
+|Node Type  |Cores  |RAM    |Storage    | Internet Connection |
+|-----------|-------|-------|-----------|---------------------|
+|Validator  |8      |16GB   |500GB-2TB  | 100+ MBPS           |
+|Full       |4      |32GB   |2TB        | 100+ MBPS           |
+|Default    |4      |32GB   |1TB        | 100+ MBPS            |
+
+### Testnet
+|Node Type  |Cores  |RAM    |Storage    |  Internet Connection |
+|-----------|-------|-------|-----------| ---------------------|
+|Validator  |2      |16GB   |500GB      |  100+  MBPS           |
+|Full       |2      |16GB   |500GB      |  100+  MBPS           |
+|Default    |2      |16GB   |500GB      |  100+  MBPS           |
+
+### Devnet
+
+To ease maintenance efforts, we decided to support only amd64 architecture.
+
+Also, we recommend you using testnet, since it is more stable.
+
+|Node Type  |Cores  |RAM    |Storage    |  Internet Connection |
+|-----------|-------|-------|-----------| ---------------------|
+|Validator  |2      |16GB   |100GB      |  100+  MBPS           |
+|Full       |2      |16GB   |100GB      |  100+  MBPS           |
+|Default    |2      |16GB   |100GB      |  100+  MBPS           |

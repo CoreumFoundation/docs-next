@@ -1,0 +1,44 @@
+# Setup network variables
+
+This document describes the command to set up the environment depending on the type of network you want to use.
+
+{/* markdown-link-check-disable */}
+
+| \-                     | mainnet                                                                                                      | testnet                                                                                                                                                  | devnet                                                   | znet (localnet)             |
+|------------------------|--------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|-----------------------------|
+| **Chain ID**           | coreum-mainnet-1                                                                                             | coreum-testnet-1                                                                                                                                         | coreum-devnet-1                                          | coreum-devnet-1             |
+| **Denom**              | ucore                                                                                                        | utestcore                                                                                                                                                | udevcore                                                 | udevcore                    |
+| **RPC URL**            | https://full-node.mainnet-1.coreum.dev:26657                                                                 | https://full-node.testnet-1.coreum.dev:26657                                                                                                             | https://full-node.devnet-1.coreum.dev:26657              | http://localhost:26657      |
+| **Cosmovisor version** | v1.5.0                                                                                                       | v1.5.0                                                                                                                                                   | v1.5.0                                                   | v1.5.0                      |
+| **Cored version**      | v4.1.2                                                                                                       | v4.1.2                                                                                                                                                   | You can find the link to binary at [this page](/docs/become-validator/essentials/install-cored) | already installed via crust |
+| **Upgrade name**       | Check the `Name` column [here](/docs/become-validator/upgrades/history)                                      | Check the `Name` column [here](/docs/become-validator/upgrades/history)                                                                                  | genesis                                                  | genesis                     |
+| **State sync servers** | https://full-node-californium.mainnet-1.coreum.dev:26657 https://full-node-curium.mainnet-1.coreum.dev:26657 | https://full-node-eris.testnet-1.coreum.dev:26657 https://full-node-pluto.testnet-1.coreum.dev:26657 | not supported                                            | not supported               |
+
+{/* markdown-link-check-disable */}
+
+* ⚠️ Keep in mind, that our Public RPC Node is stable, but there is always a risk of DDoS attacks,
+  and if you build your own product(wallet, etc), it is recommended to rely on your own RPC Node.
+* ⚠️ Also, having own RPC node is recommended if you frequently query the Node(for instance, for indexing),
+  since we have rate limiting there.
+
+
+* Set the chain env variables with the values corresponding to the network you want to connect to, from the table above.
+
+    ```
+    export COREUM_CHAIN_ID="{Chain ID}"
+    export COREUM_DENOM="{Denom}"
+    export COREUM_NODE="{RPC URL}"
+    export COREUM_COSMOVISOR_VERSION="{Cosmovisor version}"
+    export COREUM_VERSION="{Cored version}"
+    export UPGRADE_NAME="{Upgrade name}"
+
+    export COREUM_CHAIN_ID_ARGS="--chain-id=$COREUM_CHAIN_ID"
+    export COREUM_NODE_ARGS="--node=$COREUM_NODE"
+
+    export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
+
+    export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+    export COSMOVISOR_TAR_NAME=cosmovisor-$COREUM_COSMOVISOR_VERSION-linux-$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/).tar.gz
+    ```
+
+**Attention!** *Set those variables globally so it is automatically set after starting a new terminal session.*

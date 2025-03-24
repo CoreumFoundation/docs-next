@@ -1,0 +1,39 @@
+# install prebuild windows
+
+This document outlines the steps for setting up a prebuilt environment on Windows, including finding PowerShell, installing Microsoft WSL, configuring WSL, and handling common errors.
+
+# Find PowerShell
+
+*Press `Windows + X` and select "Windows PowerShell (Admin)" from the menu.*
+
+# Install Microsoft WSL
+
+*Follow the instructions provided by Microsoft to install Windows Subsystem for Linux (WSL):* <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Install WSL</a>
+
+# Brief Tutorial With WSL
+
+# Start WSL
+
+To start your default WSL Linux distribution, in the PowerShell window, type:
+<img className="w-85 mb-10" src="/images/tutorials/get-started/Windows.png" alt="Cosmo Wallet Step 2" />
+
+
+### To start a specific distribution (e.g., Ubuntu), use:
+    ```bash
+    wsl -d Ubuntu
+    ```
+
+* Set Global Variables in Terminal
+    ```bash
+    nano ~/.bashrc
+    ```
+* Add your global variables at the end of the file. For example, to set COREUM_HOME, you might add:
+    ```bash
+    export COREUM_HOME="/path/to/coreum"
+    ```
+* Check Your Variables
+To ensure your variables are correctly set, execute:
+    ```bash
+    source ~/.bashrc
+    echo $
+    ```

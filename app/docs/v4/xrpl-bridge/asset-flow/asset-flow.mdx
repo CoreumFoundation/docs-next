@@ -1,0 +1,33 @@
+# Asset Flow
+
+The flow of assets for the bridge incurs in a decentralized and non-custodial mechanism.
+
+## From XRPL to Coreum
+
+1.  Users initiate a transfer by sending a payment transaction to the Multisig account on the XRPL,
+    specifying issuer details, currency, amount, and the Coreum recipient's address.
+
+2.  The relayer network continuously monitors for such transactions. Upon detecting one, the first
+    relayer to do so channels the transaction, extracts its information, and submits proof to
+    Coreum's Bridge Contract.
+
+3.  The Bridge Contract then verifies the asset with Coreum's token registry and authorizes it for
+    transfer.
+
+4. For tokens originating from Coreum and Cosmos, the Bridge Contract directly dispatches the tokens to the recipient. In the case of XRPL-native tokens, the contract mints a <a href="https://www.coreum.com/smart-tokens" target="_blank" rel="noopener noreferrer" className="text-[#24D494] font-bold">Smart Token</a> on Coreum which is a representation of the original XRPL asset, equipped with Minting, Burning, and IBC functionalities. The token is then sent to the recipient.
+
+
+
+<img className="my-10" src="/images/xrpl-bridge/asset-flow/send_from_xrpl_to_coreum.png" width="100%" />
+
+## From the Coreum to XRPL
+
+1.  Users initiate the transfer process and send tokens to the Bridge Contract on Coreum.
+2.  A relayer then identifies this transaction, retrieves it, and forwards the details to the
+    Multisig account on the XRPL.
+3.  Finally, the Multisig account processes the transaction and delivers the tokens directly to the
+    recipient's address on the XRPL.
+
+<center className="my-10">
+    <img src="/images/xrpl-bridge/asset-flow/send_from_coreum_to_xrpl.png" width="60%" />
+</center>

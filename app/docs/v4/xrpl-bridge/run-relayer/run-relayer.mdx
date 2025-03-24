@@ -1,0 +1,141 @@
+# Run relayer
+
+**Relayers** will facilitate communication between the two chains by connecting the multi-sig
+account on the XRPL with the bridge smart contract on Coreum.
+
+The relayer is sitting in between the two chains, between the multi-signing account on the XRPL and
+the Bridge smart contract on the Coreum blockchain.
+
+They are responsible for listening for events on both chains and trigger actions on the XRPL and
+Coreum. Relayers are incentivized by receiving fees deducted from transactions.
+
+**Minimum hardware setup requirements**:
+
+-   e2 small machine type with 0.5 vCPU, 2GB of memory and 20BG of disk space (mostly for logs).
+
+## Setup env variables and `coreumbridge-xrpl-relayer`
+
+Pass the [doc](/docs/xrpl-bridge/install-relayer).
+
+```bash
+coreumbridge-xrpl-relayer init \
+    --coreum-chain-id $COREUM_CHAIN_ID \
+    --coreum-grpc-url $COREUM_GRPC_URL  \
+    --xrpl-rpc-url $XRPL_RPC_URL \
+    --coreum-contract-address $COREUMBRIDGE_XRPL_CONTRACT_ADDRESS
+```
+
+## Generate the relayer keys
+
+Generate new keys:
+
+```bash
+coreumbridge-xrpl-relayer coreum keys add coreum-relayer
+
+coreumbridge-xrpl-relayer xrpl keys add xrpl-relayer
+```
+
+!!! Save output mnemonics to a safe place to be able to recover the relayer later. !!!
+
+The `coreum-relayer` and `xrpl-relayer` are key names set by default in the `relayer.yaml`. If for
+some reason you want to update them, then updated them in the `relayer.yaml` as well.
+
+Or import the existing mnemonics:
+
+```bash
+coreumbridge-xrpl-relayer coreum keys add coreum-relayer --recover
+
+coreumbridge-xrpl-relayer xrpl keys add xrpl-relayer --recover
+```
+
+## Extract keys info for the contract deployment
+
+```bash
+coreumbridge-xrpl-relayer relayer-keys
+```
+
+Output example:
+
+```bash
+Keys info
+    coreumAddress: "testcore1lwzy78a7ulernmvdgvjyagaslsmp7x7g496jj4"
+    xrplAddress: "r41Cc8WLZMeUvZfvB4Fc4hRjpHya4T4Nqq"
+    xrplPubKey: "022ED182ACEBFE4C55CE0A0EA561468C31336F9B4E71FB487FC84D94A2826F1C10"
+```
+
+The output contains the `coreumAddress`, `xrplAddress` and `xrplPubKey` used for the contract
+deployment.
+
+Create the Coreum account on chain by sending some tokens to the `coreumAddress`. The ideal initial
+amount for the relayer to operate properly is **100 COREUM**.
+
+Do the same with the XRPL account by sending **2 XRP tokens** to the `xrplAddress` to activate it.
+See <a href="https://xrpl.org/docs/concepts/accounts/reserves" target="_blank" rel="noopener noreferrer" style={{ color: '#24D494'}}>reserve requirements</a> for more information.
+
+
+Once the accounts are created share the public keys info with Coreum foundation.
+
+## Run
+
+```bash
+docker run -it --detach-keys="ctrl-c" --name coreumbridge-xrpl-relayer \
+    -v $HOME/.coreumbridge-xrpl-relayer:/root/.coreumbridge-xrpl-relayer \
+    coreumfoundation/coreumbridge-xrpl-relayer:$COREUMBRIDGE_XRPL_VERSION \
+    start
+```
+
+Once you are attached, press any key and enter passwords for two keyrings after this, preses CTRL-c
+to detach from the container. It is expected that at that time the relayer is initialized and its
+keys are generated and accounts are funded.
+
+When you run the relayer first time, and the keys are not included to the relayers set yet, you will
+see errors in the logs such as `UnauthorizedSender`. It is expected, don't stop the relayer. Once
+the relayer is included to the relayers set it will start relaying and no such error will be
+printed.
+
+If the relayer metrics are enabled, you also need to forward the metrics port (default 9090). To
+enable them update the `$HOME/.coreumbridge-xrpl-relayer/relayer.yaml` config file and restart the
+relayer.
+
+## Restart running instance
+
+```bash
+docker stop coreumbridge-xrpl-relayer && docker rm coreumbridge-xrpl-relayer
+```
+
+Once the container is stopped and removed, proceed with the instructions in [run section](#run)
+
+## Exposing relayer metrics
+
+To expose metrics you need to change config located here `.coreumbridge-xrpl-relayer/relayer.yaml`
+You need to change the following section:
+
+```yaml
+metrics:
+    enabled: true
+    server:
+        listen_address: 0.0.0.0:10090 #specify the desired port to expose metrics
+    periodic_collector:
+        repeat_delay: 1m0s
+```
+
+After you've change the config you need to restart the bridge following [these instructions](#restart-running-instance)
+
+Here's also an example of prometheus configuration to scrape bridge metrics:
+
+```yaml
+      - job_name: coreum-xrpl-mainnet-relayer
+        honor_timestamps: true
+        honor_labels: true
+        scrape_interval: 5s
+        scrape_timeout: 5s
+        metrics_path: /metrics
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: instance
+            replacement: *your_relayer_instance_name*
+        scheme: http
+        static_configs:
+          - targets:
+              - *your_relayer_instance_ip*:10090
+```

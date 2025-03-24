@@ -1,0 +1,228 @@
+# Create Fungible Token with Golang
+
+This document gives instructions and examples on how to use our `pkg/client` package to create and
+manage fungible token.
+
+## Complete code
+
+Complete code with `go.mod` file you can find
+<a className="text-[#25D695] hover:opacity-80 text-base font-bold" href="https://github.com/CoreumFoundation/tutorials/tree/main/go/create-fungible-token" target="_blank">here</a>
+
+P.S. If you have issues with `go mod tidy` command, just copy `go.mod` file from the example above.
+
+[//]: # '## Skeleton'
+
+!!!include(/docs/tutorials/get-started/golang)!!!
+
+## Creating fungible token
+
+Here is the example of creating new token `uabc` with initial supply of 100 000 000:
+
+```go
+senderAddress, err := senderInfo.GetAddress()
+if err != nil {
+	panic(err)
+}
+const subunit = "uabc"
+
+msgIssue := &assetfttypes.MsgIssue{
+	Issuer:        senderAddress.String(),
+	Symbol:        "ABC",
+	Subunit:       subunit,
+	Precision:     6,
+	InitialAmount: sdkmath.NewInt(100_000_000),
+	Description:   "ABC coin",
+	Features:      []assetfttypes.Feature{assetfttypes.Feature_freezing},
+}
+
+ctx := context.Background()
+_, err = client.BroadcastTx(
+	ctx,
+	clientCtx.WithFromAddress(senderAddress),
+	txFactory,
+	msgIssue,
+)
+if err != nil {
+	panic(err)
+}
+```
+
+## Querying the initial supply
+
+After creating the token, initial supply is available on the issuer's account:
+
+```go
+// Query initial balance hold by the admin (issuer of the token)
+denom := subunit + "-" + senderAddress.String()
+bankClient := banktypes.NewQueryClient(clientCtx)
+resp, err := bankClient.Balance(ctx, &banktypes.QueryBalanceRequest{
+	Address: senderAddress.String(),
+	Denom:   denom,
+})
+if err != nil {
+	panic(err)
+}
+fmt.Printf("Issuer's balance: %s\n", resp.Balance)
+```
+
+## Sending tokens
+
+Now admin may send those tokens to someone:
+
+```go
+denom := subunit + "-" + senderAddress.String()
+bankClient := banktypes.NewQueryClient(clientCtx)
+resp, err := bankClient.Balance(ctx, &banktypes.QueryBalanceRequest{
+	Address: senderAddress.String(),
+	Denom:   denom,
+})
+if err != nil {
+	panic(err)
+}
+fmt.Printf("Issuer's balance: %s\n", resp.Balance)
+
+// Send issued token to someone
+recipientInfo, _, err := clientCtx.Keyring().NewMnemonic(
+	"recipient",
+	keyring.English,
+	sdk.GetConfig().GetFullBIP44Path(),
+	"",
+	hd.Secp256k1,
+)
+if err != nil {
+	panic(err)
+}
+
+recipientAddress, err := recipientInfo.GetAddress()
+if err != nil {
+	panic(err)
+}
+
+msgSend := &banktypes.MsgSend{
+	FromAddress: senderAddress.String(),
+	ToAddress:   recipientAddress.String(),
+	Amount:      sdk.NewCoins(sdk.NewInt64Coin(denom, 1_000_000)),
+}
+
+_, err = client.BroadcastTx(
+	ctx,
+	clientCtx.WithFromAddress(senderAddress),
+	txFactory,
+	msgSend,
+)
+if err != nil {
+	panic(err)
+}
+
+// Query the balance of the recipient
+resp, err = bankClient.Balance(ctx, &banktypes.QueryBalanceRequest{
+	Address: recipientAddress.String(),
+	Denom:   denom,
+})
+if err != nil {
+	panic(err)
+}
+fmt.Printf("Recipient's balance: %s\n", resp.Balance)
+```
+
+## Freezing
+
+Because admin enabled `freezing` feature during token issuance, he/she might freeze the portion of
+the recipient's balance:
+
+```go
+msgFreeze := &assetfttypes.MsgFreeze{
+	Sender:  senderAddress.String(),
+	Account: recipientAddress.String(),
+	Coin:    sdk.NewInt64Coin(denom, 500_000),
+}
+
+_, err = client.BroadcastTx(
+	ctx,
+	clientCtx.WithFromAddress(senderAddress),
+	txFactory,
+	msgFreeze,
+)
+if err != nil {
+	panic(err)
+}
+```
+## Transfer Admin
+Transfer the administrative rights of a fungible token (FT) to another account. This allows the new admin to manage the token, including minting, burning, freezing, and other administrative actions.
+```go
+assetftClient := assetfttypes.NewQueryClient(clientCtx)
+	res, err := assetftClient.Token(ctx, &assetfttypes.QueryTokenRequest{
+		Denom: denom,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("Token admin: %s\n", res.Token.Admin)
+
+	// Transfer admin rights
+	msgTransferAdmin := &assetfttypes.MsgTransferAdmin{
+		Sender:  senderAddress.String(),
+		Account: recipientAddress.String(),
+		Denom:   denom,
+	}
+
+	_, err = client.BroadcastTx(
+		ctx,
+		clientCtx.WithFromAddress(senderAddress),
+		txFactory,
+		msgTransferAdmin,
+	)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Admin transfer message broadcasted successfully")
+```
+
+## Clear Admin
+Remove the administrative rights of a fungible token (FT). Once cleared, no account will have administrative control over the token, meaning no further administrative actions like minting, burning, or freezing can be performed
+```go
+res, err = assetftClient.Token(ctx, &assetfttypes.QueryTokenRequest{
+		Denom: denom,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("Token admin: %s\n", res.Token.Admin)
+
+// Transfer admin rights
+	msgClearAdmin := &assetfttypes.MsgClearAdmin{
+		Sender: recipientAddress.String(),
+		Denom:  denom,
+	}
+
+	_, err = client.BroadcastTx(
+		ctx,
+		clientCtx.WithFromAddress(recipientAddress),
+		txFactory,
+		msgClearAdmin,
+	)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Admin clear message broadcasted successfully")
+
+	res, err = assetftClient.Token(ctx, &assetfttypes.QueryTokenRequest{
+		Denom: denom,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	if res.Token.Admin == "" {
+		fmt.Print("Token admin: no one\n")
+	} else {
+		fmt.Printf("Token admin: %s\n", res.Token.Admin)
+	}
+```
+
+After doing this, recipient is not allowed to transfer 500_000uabc from its account.
+
+All the other features may be used in a similar fashion. More info is available in
+[the documentation](/docs/modules/coreum-fungible-token)

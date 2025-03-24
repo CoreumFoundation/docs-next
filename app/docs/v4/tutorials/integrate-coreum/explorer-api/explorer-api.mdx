@@ -1,0 +1,67 @@
+# Explorer API - Beta
+
+The tutorial provides the instruction on how to use the `Explorer API`.
+
+## Endpoints
+
+The primary hasura API is GraphQL API. All GraphQL Query endpoints are public and available for the usage.
+The list of supported `Explorer APIs` can be found on the page [network-variables](/docs/tutorials/get-started/setup-cli).
+For the production usage we advise to deploy your own `Explorer Backend`. The source code can be found <a className="text-[#25D695] hover:opacity-80 text-base font-bold" href="https://github.com/CoreumFoundation/bdjuno" target="_blank">here</a>.
+
+## GraphQL Schema
+
+The GraphQL schema is located <a className="text-[#25D695] hover:opacity-80 text-base font-bold" href="https://github.com/CoreumFoundation/bdjuno/tree/chains/coreum/hasura/api/schema.graphql" target="_blank">here</a>. It describes
+all supported queries and can be used for the client code generation.
+
+## GraphQL Playground
+
+To run and play with the GraphQL represented as a UI you need:
+
+* Install the <a className="text-[#25D695] hover:opacity-80 text-base font-bold" href="https://github.com/graphql/graphql-playground" target="_blank">graphql-playground</a>.
+* Create a folder and copy the <a className="text-[#25D695] hover:opacity-80 text-base font-bold" href="https://github.com/CoreumFoundation/bdjuno/tree/chains/coreum/hasura/api/schema.graphql" target="_blank">schema.graphql</a> file there.
+* Create new file `.graphqlconfig` in the same folder with the content
+
+```
+{
+  "name": "Explorer Schema",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Remote SWAPI GraphQL Endpoint": {
+        "url": " https://hasura.testnet-1.coreum.dev/v1/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": true
+      }
+    }
+  }
+}
+```
+
+* Run the `graphql-playground` and chose the `.graphqlconfig` as config.
+
+* Execute the query
+
+To get transactions by address, use that query
+
+```graphql
+{
+    messages_by_address(args: {addresses: "{testcore1sxu4sumja8c53gvyn7cctqlsqm27w6jh0dnvdm}", limit: "50", offset: "0", types: "{}"}) {
+        value
+        type
+        transaction_hash
+    }
+}
+```
+
+The same request can be represented as a raw request:
+
+```bash
+curl --location 'https://hasura.testnet-1.coreum.dev/v1/graphql' \
+--header 'Content-Type: text/plain' \
+--data '{"operationName":"GetMessagesByAddress","variables":{"limit":50,"offset":0,"types":"{}","address":"{testcore1sxu4sumja8c53gvyn7cctqlsqm27w6jh0dnvdm}"},"query":"query GetMessagesByAddress($address: _text, $limit: bigint = 50, $offset: bigint = 0, $types: _text = \"{}\") {\n  messagesByAddress: messages_by_address(\n    args: {addresses: $address, types: $types, limit: $limit, offset: $offset}\n  ) {\n    transaction {\n      height\n      hash\n      success\n      messages\n      logs\n      block {\n        height\n        timestamp\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"}'
+```
+
+Pay attention that examples are for the `testnet` network, so if you want to use different you need to update the address for the
+corresponding network.

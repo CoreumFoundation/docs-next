@@ -10,7 +10,8 @@ import "../index.css";
 
 // Import dynamic from Next.js
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
+import { Suspense, useMemo } from 'react';
+import { usePathname } from 'next/navigation';
 
 // Dynamically import the AlgoliaSearch component with SSR disabled
 const AutocompleteComponent = dynamic(() => import('@/components/AlgoliaSearch'), {
@@ -65,6 +66,32 @@ export const Navbar = () => {
       external: true,
     },
   ];
+
+  const versionDropdownItems = [
+    {
+      label: 'v4',
+      href: '/docs/v4/overview/general',
+      external: false,
+    },
+    {
+      label: 'Next',
+      href: '/docs/next/overview/general',
+      external: false,
+    }
+  ];
+
+  const route = usePathname();
+
+  const versionRoute = useMemo(() => {
+    const currentRoute = route.split('/')[2];
+
+    if (!currentRoute || currentRoute && (currentRoute !== 'next' && currentRoute !== 'v4')) {
+      return 'Select Version';
+    }
+
+    return currentRoute.toUpperCase();
+  }, [route]);
+
   return (
     <>
       <AskCookbook apiKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWZiNGM1MTQ5YjZiODQ0ZDY4NWY3NjIiLCJpYXQiOjE3MTA5Njc4ODksImV4cCI6MjAyNjU0Mzg4OX0.oBQsTKgd3fsmkTG0WR3RVcigQkUFgKE5A0WA031Ju8E" />
@@ -84,17 +111,21 @@ export const Navbar = () => {
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center gap-3">
-              <div className="flex items-center gap-2">
-                <Dropdown
-                label="Join Coreum"
-                items={dropdownItems}
-                />
-                <div className="algolia-search flex items-center">
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <AutocompleteComponent />
+                <div className="flex items-center gap-2">
+                  <Dropdown
+                    label="Join Coreum"
+                    items={dropdownItems}
+                  />
+                  <Dropdown
+                    label={versionRoute}
+                    items={versionDropdownItems}
+                  />
+                  <div className="algolia-search flex items-center">
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <AutocompleteComponent />
                     </Suspense>
-                    </div>
-                    </div>
+                  </div>
+                </div>
                 <div className="flex items-center gap-2">
                   {['github', 'twitter', 'instagram', 'telegram', 'discord', 'youtube'].map((platform) => (
                     <div key={platform} className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
@@ -170,4 +201,3 @@ export const Navbar = () => {
     </>
   );
 }
-

@@ -1,0 +1,121 @@
+# Run full node
+
+**Attention!** *If you are planning to run a node against the devnet (either a full node or a validator node),
+be mindful that the devnet might be restarted without prior notice (i.e block height set to 0 and all state removed),
+and you should be prepared to act accordingly by removing all state and start from zero.*
+
+The doc describes the procedure of creating and running the validator node.
+
+* [Check requirements](/docs/become-validator/essentials/system-requirements)
+
+* [Set up node prerequisites](/docs/become-validator/essentials/node-prerequisites)
+
+* [Install cored binary](/docs/become-validator/essentials/install-cored).
+
+* Verify that [network variables](/docs/become-validator/essentials/network-variables) are set up correctly.
+
+* Set the moniker variable to reuse it in the following instructions.
+```bash
+export MONIKER="full"
+```
+
+* Init the node
+The command will create a default node configuration
+```bash
+cored init $MONIKER $COREUM_CHAIN_ID_ARGS
+```
+
+* Set the common connection config using the [doc](/docs/become-validator/essentials/connection-config).
+
+* Set the config path variables.
+
+```bash
+COREUM_APP_CONFIG=$COREUM_HOME/config/app.toml
+COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
+```
+
+* (Optional) Enable REST APIs disabled by default.
+  ```bash
+  crudini --set $COREUM_APP_CONFIG api enable true # enable API
+  crudini --set $COREUM_APP_CONFIG api swagger true # enable swagger UI for the API
+  ```
+  If you face `File contains parsing errors`  issue, check [troubleshooting section](/docs/become-validator/troubleshooting)
+
+* (Optional) Enable prometheus monitoring.
+  ```bash
+  crudini --set $COREUM_NODE_CONFIG instrumentation prometheus true
+  ```
+
+* (Optional) If you want your validator to be a state sync server (provide state snapshots for other nodes), you can enable it:
+  ```bash
+  crudini --set $COREUM_APP_CONFIG state-sync snapshot-interval 500
+  crudini --set $COREUM_APP_CONFIG state-sync snapshot-keep-recent 3
+  ```
+ You can read <a href="https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html" target="_blank" rel="noopener noreferrer" className="text-[#24D494] font-bold">Using State Sync</a> document to get more details.
+
+  That configuration is required for the state-sync servers, used as a snapshot provided for the nodes.
+
+* Enable state-sync, so your validator can sync by snapshot.
+  With the state-sync you can ignore past network upgrades, but if you want to have a node with full block history,
+  instead of state-sync you should visit <a href="/docs/become-validator/upgrades/history" className="text-[#24D494] font-bold">this section</a>
+
+  You can read <a href="https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html" target="_blank" rel="noopener noreferrer" className="text-[#24D494] font-bold">Using State Sync</a> document to get more details.
+
+  ** Get at least two state sync servers and set them from the [doc](/docs/become-validator/essentials/network-variables):
+  ```bash
+  export COREUM_STATE_SYNC_SERVERS="{State sync servers}"
+  ```
+
+  ** Get the trusted block hash and height
+
+  ```bash
+  # Get block details from one of the state sync servers
+  CURRENT_BLOCK_DETAILS=$(curl ${COREUM_STATE_SYNC_SERVERS#*,}/block | jq -r '.result.block.header.height + " " + .result.block_id.hash')
+  CURRENT_BLOCK_HEIGHT=$(echo $CURRENT_BLOCK_DETAILS | awk '{print $1}' )
+  TRUSTED_BLOCK_HEIGHT=$(expr $CURRENT_BLOCK_HEIGHT - 1000)
+  TRUSTED_BLOCK_DETAILS=$(curl "${COREUM_STATE_SYNC_SERVERS#*,}/block?height=${TRUSTED_BLOCK_HEIGHT}" | jq -r '.result.block.header.height + "\n" + .result.block_id.hash')
+  TRUSTED_BLOCK_HASH=$(echo $TRUSTED_BLOCK_DETAILS | awk '{print $2}' )
+  ```
+  If you see `Failure writing output to destination` error, check if `jq` is installed.
+** Check if you have needed data:
+  ```bash
+  echo "height:$TRUSTED_BLOCK_HEIGHT, hash:$TRUSTED_BLOCK_HASH"
+  # Output should be similar to "height:1425435, hash:9ADD8B2035F6B79F58B75D6F66A4B9B148787204553344295C7117417AEB856C"
+  ```
+
+  **  Enable state sync
+  ```bash
+  # Change statesync settings
+  crudini --set $COREUM_NODE_CONFIG statesync enable true
+  crudini --set $COREUM_NODE_CONFIG statesync rpc_servers "\"$COREUM_STATE_SYNC_SERVERS\""
+  crudini --set $COREUM_NODE_CONFIG statesync trust_height $TRUSTED_BLOCK_HEIGHT
+  crudini --set $COREUM_NODE_CONFIG statesync trust_hash "\"$TRUSTED_BLOCK_HASH\""
+  ```
+
+* Start the node.
+
+    * Start with `cosmovisor` (recommended)
+  ```bash
+  cosmovisor run start $COREUM_CHAIN_ID_ARGS
+  ```
+
+    * Start with `cored`
+   ```bash
+  cored start $COREUM_CHAIN_ID_ARGS
+  ```
+
+  **Attention!** *Make sure that the node will be automatically started after a node restart. Add it as
+  an OS "service",
+  or schedule the start using the tools you prefer.*
+
+* (Optional) You can also search logs for height value - it shows the latest fetched block by your node. If it is increasing - all good!
+
+* (Optional) You can check sync status of your node by next command:
+```bash
+echo "catching_up: $(echo  $(cored status) | jq -r '.SyncInfo.catching_up')"
+# if output is "false", you are ready to start your validator
+```
+
+## What is next?
+
+You can run [validator node](/docs/become-validator/validator/run-validator)
