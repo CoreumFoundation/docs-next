@@ -2,7 +2,7 @@
 
 ## Network connection
 
-Ensure that your Node is visible by the other nodes within the network. 
+Ensure that your Node is visible by the other nodes within the network.
 
 You can check it by sending ping message from your local machine.
 ```bash
@@ -26,3 +26,20 @@ with
 global-labels = []
 ```
 
+## Validator missing blocks
+
+In order to check your validators uptime you can use the following resources:
+
+- [Validators.info](https://validator.info/coreum)
+- [Mintscan](https://www.mintscan.io/coreum/validators?sector=uptime)
+
+
+You should aim for your validator to have < 95% uptime. In case your validator has > 95% uptime you should
+check the following:
+
+- Check if your validator machine has enough resources according to the following [doc](/docs/become-validator/essentials/system-requirements)
+  You should make sure that your machine uses NVMe SSD disk.
+- Check if your storage solution is fast enough. Install `htop` application on your server and check if a lot of time is spent
+  doing `iowait` operations. If so, you should consider upgrading your storage solution.
+
+In case you are still unable to resolve this issue you can (join our discord server)[https://discord.com/invite/VgkhYeWmTd] and ask for help there.
