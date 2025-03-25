@@ -1,4 +1,4 @@
-import { ProtobufPageContent } from '@/app/docs/api/protobuf/ProtobufPageContent';
+import { ProtobufPageContent } from './ProtobufPageContent';
 import { Batch } from '@/components/Batch';
 import { Metadata } from 'next';
 

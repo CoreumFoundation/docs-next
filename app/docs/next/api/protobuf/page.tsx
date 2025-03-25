@@ -1,4 +1,4 @@
-import { ProtobufPageContent } from '@/app/docs/api/protobuf/ProtobufPageContent';
+import { ProtobufPageContent } from './ProtobufPageContent';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
