@@ -19,6 +19,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Spell Check Repo
+        if: always()
+        uses: crate-ci/typos@v1.30.2
+        with:
+          config: ./.typos.yaml
+
       - name: 'Automated Version Bump'
         uses: 'phips28/gh-action-bump-version@master'
         env:
