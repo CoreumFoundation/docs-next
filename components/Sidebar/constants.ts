@@ -1,7 +1,7 @@
 export const ROUTE_V4_PREFIX = '/docs/v4';
 export const ROUTE_NEXT_PREFIX = '/docs/next';
 
-export const SIDEBAR_ITEMS = [
+export const OVERVIEW_ITEMS = [
   {
     name: 'Overview',
     href: '/overview',
@@ -52,7 +52,10 @@ export const SIDEBAR_ITEMS = [
         external: true,
       }
     ],
-  },
+  }
+];
+
+export const TUTORIAL_ITEMS = [
   {
     name: 'Tutorials',
     href: '/tutorials',
@@ -296,6 +299,9 @@ export const SIDEBAR_ITEMS = [
       },
     ],
   },
+];
+
+export const MODULES_ITEMS = [
   {
     name: 'Modules',
     href: '/modules',
@@ -326,6 +332,9 @@ export const SIDEBAR_ITEMS = [
       }
     ],
   },
+];
+
+export const XRPL_BRIDGE_ITEMS = [
   {
     name: 'XRPL Bridge',
     href: '/xrpl-bridge',
@@ -356,6 +365,9 @@ export const SIDEBAR_ITEMS = [
       }
     ],
   },
+];
+
+export const DEX_API = [
   {
     name: 'DEX API',
     href: '/core_dex',
@@ -392,6 +404,9 @@ export const SIDEBAR_ITEMS = [
       },
     ],
   },
+];
+
+export const VALIDATORS_ITEMS = [
   {
     name: 'Become Validator',
     href: '/become-validator',
@@ -468,6 +483,9 @@ export const SIDEBAR_ITEMS = [
       }
     ],
   },
+];
+
+export const API_ITEMS = [
   {
     name: 'API',
     href: '/api',
@@ -486,6 +504,9 @@ export const SIDEBAR_ITEMS = [
       }
     ]
   },
+];
+
+export const TOOLS_ITEMS = [
   {
     name: 'Tools/Ecosystem',
     href: '/tools',
@@ -504,6 +525,9 @@ export const SIDEBAR_ITEMS = [
       },
     ],
   },
+];
+
+export const HELP_ITEMS = [
   {
     name: 'Help',
     href: '/help',
@@ -518,6 +542,9 @@ export const SIDEBAR_ITEMS = [
       },
     ],
   },
+];
+
+export const BUG_BOUNTY_ITEMS = [
   {
     name: 'Bug Bounty',
     href: 'https://skynet.certik.com/projects/coreum#bug-bounty',

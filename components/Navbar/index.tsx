@@ -8,64 +8,15 @@ import { Dropdown } from '../Dropdown';
 import AskCookbook from '@cookbookdev/coreum/react';
 import "../index.css";
 
-// Import dynamic from Next.js
 import dynamic from 'next/dynamic';
 import { Suspense, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
 
-// Dynamically import the AlgoliaSearch component with SSR disabled
 const AutocompleteComponent = dynamic(() => import('@/components/AlgoliaSearch'), {
-  ssr: false, // Disable server-side rendering for this component
+  ssr: false,
 });
 
 export const Navbar = () => {
-  const pathname = usePathname();
-
-  const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
-
-  const dropdownItems = [
-    {
-      label: 'Overview',
-      href: `${routePrefix}/overview/general`,
-      external: false,
-    },
-    {
-      label: 'Tutorials',
-      href: `${routePrefix}/overview/tutorials`,
-      external: false,
-    },
-    {
-      label: 'Modules',
-      href: `${routePrefix}/overview/modules`,
-      external: false,
-    },
-    {
-      label: 'Validator',
-      href: `${routePrefix}/overview/validator`,
-      external: false,
-    },
-    {
-      label: 'API',
-      href: `${routePrefix}/api/protobuf`,
-      external: false,
-    },
-    {
-      label: 'Tools/Ecosystem',
-      href: `${routePrefix}/overview/tools`,
-      external: false,
-    },
-    {
-      label: 'Help',
-      href: `${routePrefix}/next/overview/help`,
-      external: false,
-    },
-    {
-      label: 'Bug Bounty',
-      href: 'https://skynet.certik.com/projects/coreum#bug-bounty',
-      external: true,
-    },
-  ];
-
   const versionDropdownItems = [
     {
       label: 'v4',
@@ -78,8 +29,6 @@ export const Navbar = () => {
       external: false,
     }
   ];
-
-
 
   const route = usePathname();
 
@@ -113,10 +62,6 @@ export const Navbar = () => {
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center gap-3">
                 <div className="flex items-center gap-2">
-                  <Dropdown
-                    label="Join Coreum"
-                    items={dropdownItems}
-                  />
                   <Dropdown
                     label={versionRoute}
                     items={versionDropdownItems}
@@ -160,8 +105,8 @@ export const Navbar = () => {
                 <AutocompleteComponent />
                 <div className="flex items-center w-full justify-between gap-4">
                   <Dropdown
-                    label="Join Coreum"
-                    items={dropdownItems}
+                    label={versionRoute}
+                    items={versionDropdownItems}
                   />
                   <Link href="/docs" className="flex items-center justify-between gap-2 px-2 py-1 text-nowrap rounded-lg text-[#1B1D23] text-sm bg-green-gradient">
                     Get Started
@@ -174,12 +119,6 @@ export const Navbar = () => {
                       />
                     </svg>
                   </Link>
-                </div>
-                <div className="flex items-center w-full">
-                  <Dropdown
-                    label={versionRoute}
-                    items={versionDropdownItems}
-                  />
                 </div>
                 <div className="flex flex-wrap items-center w-full gap-2">
                   {['github', 'twitter', 'instagram', 'telegram', 'discord', 'youtube'].map((platform) => (

@@ -4,7 +4,20 @@ import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import classNames from 'classnames';
 import { ArrowUpIcon, Bars3Icon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavigationItem } from '@/utils/types';
-import { ROUTE_NEXT_PREFIX, ROUTE_V4_PREFIX, SIDEBAR_ITEMS } from './constants';
+import {
+  API_ITEMS,
+  BUG_BOUNTY_ITEMS,
+  DEX_API,
+  HELP_ITEMS,
+  MODULES_ITEMS,
+  OVERVIEW_ITEMS,
+  ROUTE_NEXT_PREFIX,
+  ROUTE_V4_PREFIX,
+  TOOLS_ITEMS,
+  TUTORIAL_ITEMS,
+  VALIDATORS_ITEMS,
+  XRPL_BRIDGE_ITEMS,
+} from './constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -19,9 +32,7 @@ const renderLink = (item: NavigationItem, isActive: boolean, routePrefix: string
     return (
       <a
         href={item.href}
-        className={classNames(
-          'group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6 text-[#5E6773] font-normal hover:text-white'
-        )}
+        className="group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6 text-[#5E6773] font-normal hover:text-white"
         target='blank'
       >
         {item.name}
@@ -50,7 +61,7 @@ const renderNavigationItems = (items: NavigationItem[], pathname: string, routeP
   if (!items) return null;
 
   return items.map((item: NavigationItem) => {
-    const isActive = pathname === item.href;
+    const isActive = pathname.includes(item.href);
 
     const cx = classNames('flex items-center w-full rounded-lg p-3 pr-2 gap-x-6 text-base font-normal capitalize', {
       'text-[#25D695] font-medium bg-sidebar-active': isActive,
@@ -107,6 +118,35 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
     setSidebarOpen(false);
   }, [pathname]);
 
+  const sidebarItems = useMemo(() => {
+    if (routePrefix.includes('next')) {
+      return [
+        ...OVERVIEW_ITEMS,
+        ...TUTORIAL_ITEMS,
+        ...MODULES_ITEMS,
+        ...XRPL_BRIDGE_ITEMS,
+        ...DEX_API,
+        ...VALIDATORS_ITEMS,
+        ...API_ITEMS,
+        ...TOOLS_ITEMS,
+        ...HELP_ITEMS,
+        ...BUG_BOUNTY_ITEMS,
+      ];
+    }
+
+    return [
+      ...OVERVIEW_ITEMS,
+      ...TUTORIAL_ITEMS,
+      ...MODULES_ITEMS,
+      ...XRPL_BRIDGE_ITEMS,
+      ...VALIDATORS_ITEMS,
+      ...API_ITEMS,
+      ...TOOLS_ITEMS,
+      ...HELP_ITEMS,
+      ...BUG_BOUNTY_ITEMS,
+    ];
+  }, [routePrefix]);
+
   return (
     <>
       <div className="flex flex-col lg:flex-row w-full h-auto min-h-full flex-1 font-['space grotesk']">
@@ -157,7 +197,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
                           <ul role="list" className="-mx-2 space-y-1">
-                            {renderNavigationItems(SIDEBAR_ITEMS, pathname, routePrefix)}
+                            {renderNavigationItems(sidebarItems, pathname, routePrefix)}
                           </ul>
                         </li>
                       </ul>
@@ -186,7 +226,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
-                    {renderNavigationItems(SIDEBAR_ITEMS, pathname, routePrefix)}
+                    {renderNavigationItems(sidebarItems, pathname, routePrefix)}
                   </ul>
                 </li>
               </ul>
