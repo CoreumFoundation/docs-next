@@ -174,6 +174,12 @@ export const Navbar = () => {
                     </svg>
                   </Link>
                 </div>
+                <div className="flex items-center w-full">
+                  <Dropdown
+                    label={versionRoute}
+                    items={versionDropdownItems}
+                  />
+                </div>
                 <div className="flex flex-wrap items-center w-full gap-2">
                   {['github', 'twitter', 'instagram', 'telegram', 'discord', 'youtube'].map((platform) => (
                     <Disclosure.Button
