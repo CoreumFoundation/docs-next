@@ -1,4 +1,3 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './run-validator.mdx';
 import { Metadata } from 'next';
@@ -28,11 +27,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Run Full Node',
-    href: '/docs/become-validator/run-full-node',
+    href: `/docs/next/become-validator/run-full-node`,
   };
   const nextNavigationItem = {
     label: 'Run Sentry Node',
-    href: '/docs/become-validator/validator/run-sentry',
+    href: `/docs/next/become-validator/validator/run-sentry`,
   };
 
   return (

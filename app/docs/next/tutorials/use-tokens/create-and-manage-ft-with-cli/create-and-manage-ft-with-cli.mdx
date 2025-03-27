@@ -1,6 +1,6 @@
 # Create Fungible Token with CLI
 
-This tutorial will guide you through the process of using the [assetft](/docs/modules/coreum-fungible-token)
+This tutorial will guide you through the process of using the [assetft](/docs/next/modules/coreum-fungible-token)
 module to create and manage Fungible Tokens.
 
 Please note that each subsequent section depends on the previous one.
@@ -16,12 +16,12 @@ Please note that each subsequent section depends on the previous one.
     ```
 
     \* If you want to use other network, find CHAIN_ID and RPC_URL values on the
-    [network variables](/docs/tutorials/get-started/setup-cli) page.
+    [network variables](/docs/next/tutorials/get-started/setup-cli) page.
 
--   [Install cored binary](/docs/tutorials/get-started/install-cored)
+-   [Install cored binary](/docs/next/tutorials/get-started/install-cored)
 
 -   You should have two accounts on your local keychain. If you do not have them, you can go to the
-    [faucet page](/docs/tools/faucet) and generate funded accounts for the testnet.
+    [faucet page](/docs/next/tools/faucet) and generate funded accounts for the testnet.
     Once you have their mnemonics, import them by running the following command:
 
     ```bash
@@ -72,7 +72,7 @@ Please note that each subsequent section depends on the previous one.
   </details>
 
   The output of the command should provide a transaction hash.
-  Copy this hash and go to the [Block explorer](/docs/tools/blockchain-explorers) to see the transaction's status.
+  Copy this hash and go to the [Block explorer](/docs/next/tools/blockchain-explorers) to see the transaction's status.
   Remember that your transaction may appear in block explorer with some delay since it should be indexed first.
 
   Please note that you can only issue one unique FT within one account address.
@@ -269,7 +269,7 @@ The send commission rate determines the commission applied to tokens transferred
 except when one of the participants is the token admin. To illustrate how this works, follow the
 steps below:
 
--   First, we need a third account to transfer tokens to, let's [generate](/docs/tools/faucet) it and prepare:
+-   First, we need a third account to transfer tokens to, let's [generate](/docs/next/tools/faucet) it and prepare:
     ```bash
     # import the third account
     cored keys add ft-receiver-2 --recover --chain-id=$CHAIN_ID
@@ -344,7 +344,7 @@ Transfer the administrative rights of a fungible token (FT) to another account. 
 cored tx assetft transfer-admin $FT_RECEIVER_1 $FT_DENOM --from $FT_ADMIN --node=$RPC_URL --chain-id=$CHAIN_ID
 ```
 
-## Clear Admin 
+## Clear Admin
 Tokens can also lose their admin forever by clearing admin.
 Then, no one will have any more privilege than others.
 
@@ -365,4 +365,4 @@ transaction will fail.
 
 ## What is next?
 
-You can read more about Fungible Tokens at [Smart Token Spec](/docs/modules/coreum-fungible-token) pages
+You can read more about Fungible Tokens at [Smart Token Spec](/docs/next/modules/coreum-fungible-token) pages

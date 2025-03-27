@@ -9,9 +9,9 @@ To complete this tutorial, you need to:
 * Install <a className="text-[#24D494] font-bold text-base" href="https://www.rust-lang.org/tools/install" target="_blank">rust and cargo</a>.
 * Be familiar with the Rust programming language.
 * Have a general understanding of how the Coreum blockchain works.
-* Follow the [instruction](/docs/tutorials/get-started/install-cored) to install cored binary.
+* Follow the [instruction](/docs/v4/tutorials/get-started/install-cored) to install cored binary.
 * Install the required util: `jq`.
-* Set the [network variables](/docs/tutorials/get-started/setup-cli) for the development (testnet is preferable).
+* Set the [network variables](/docs/v4/tutorials/get-started/setup-cli) for the development (testnet is preferable).
 
 ## Source Code
 The source code is located <a className="text-[#24D494] font-bold" href="https://github.com/CoreumFoundation/tutorials/tree/main/wasm/extension" target="_blank">here</a>.
@@ -41,7 +41,7 @@ cored keys add ft-receiver-2 $COREUM_CHAIN_ID_ARGS
 
 * Fund account
 
-Use the [faucet](/docs/tools/faucet) to fund your account
+Use the [faucet](/docs/v4/tools/faucet) to fund your account
 
 * Export commonly used, throughout the tutorial, environment variables.
 
@@ -95,7 +95,7 @@ In order to use the deployed contract as an asset extension, you don't need to i
 * Issuing the smart token with extension
 
 Now we have a wasm smart contract that can be used as an extension to a smart token.
-We can issue a new token like explain in [Create and Manage FT with CLI](/docs/tutorials/use-tokens/create-and-manage-ft-with-cli) but pass additional params for the extension.
+We can issue a new token like explain in [Create and Manage FT with CLI](/docs/v4/tutorials/use-tokens/create-and-manage-ft-with-cli) but pass additional params for the extension.
 
 Use the following command to issue your FT with extension:
 
@@ -908,7 +908,7 @@ If you transfer some amount more than 100 tokens, it will fail and show the erro
 
 ## Next steps
 
-* Read Coreum [modules](/docs/overview/modules) specification, to be familiar with the custom Coreum functionality you can
+* Read Coreum [modules](/docs/v4/overview/modules) specification, to be familiar with the custom Coreum functionality you can
 use for your extension.
 * Read <a className="text-[#24D494] font-bold" href="https://docs.cosmwasm.com/docs/" target="_blank">WASM docs</a> to understand all supported WASM features.
-* Check other [tutorials](/docs/overview/tutorials) to find something you might be interested in additionally.
+* Check other [tutorials](/docs/v4/overview/tutorials) to find something you might be interested in additionally.

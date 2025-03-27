@@ -52,6 +52,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/docs',
+        destination: '/docs/next/overview/general',
+        permanent: true,
+      },
+      {
         source: '/docs/overview',
         destination: '/docs/next/overview/general',
         permanent: true,
@@ -67,8 +72,13 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/docs/become-validator',
+        source: '/docs/next/become-validator',
         destination: '/docs/next/overview/validator',
+        permanent: true,
+      },
+      {
+        source: '/docs/v4/become-validator',
+        destination: '/docs/v4/overview/validator',
         permanent: true,
       },
       {
@@ -96,7 +106,16 @@ const nextConfig = {
         destination: '/docs/next/overview/xrpl-bridge',
         permanent: true,
       },
-
+      {
+        source: '/docs/become-validator/upgrades',
+        destination: '/docs/next/become-validator/upgrades/main-info',
+        permanent: true,
+      },
+      {
+        source: '/docs/next/become-validator/upgrades',
+        destination: '/docs/next/become-validator/upgrades/main-info',
+        permanent: true,
+      },
       {
         source: '/docs/next',
         destination: '/docs/next/overview/general',
@@ -193,6 +212,7 @@ const nextConfig = {
         destination: '/docs/v4/overview/xrpl-bridge',
         permanent: true,
       },
+
       {
         source: '/docs/api/:slug',
         destination: '/docs/next/api/:slug',
@@ -231,6 +251,26 @@ const nextConfig = {
       {
         source: '/docs/xrpl-bridge/:slug',
         destination: '/docs/next/xrpl-bridge/:slug',
+        permanent: true,
+      },
+      {
+        source: '/docs/v4/xrpl-bridge',
+        destination: '/docs/v4/overview/xrpl-bridge',
+        permanent: true,
+      },
+      {
+        source: '/docs/next/xrpl-bridge',
+        destination: '/docs/next/overview/xrpl-bridge',
+        permanent: true,
+      },
+      {
+        source: '/docs/tutorials/use-tokens',
+        destination: '/docs/next/tutorials/use-tokens/create-and-manage-ft-with-cli',
+        permanent: true,
+      },
+      {
+        source: '/docs/next/tutorials/use-tokens',
+        destination: '/docs/next/tutorials/use-tokens/create-and-manage-ft-with-cli',
         permanent: true,
       },
     ]

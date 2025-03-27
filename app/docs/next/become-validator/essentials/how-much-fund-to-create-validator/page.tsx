@@ -2,6 +2,7 @@ import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './how-much-fund-to-create-validator.mdx';
 
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Understanding Funding Requirements for a Coreum Validator Node | Coreum Docs",
@@ -27,13 +28,17 @@ export const metadata: Metadata = {
 
 
 const Page = () => {
+  const pathname = usePathname();
+
+  const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
+
   const prevNavigationItem = {
     label: 'System Requirements',
-    href: '/docs/become-validator/essentials/system-requirements',
+    href: `${routePrefix}/become-validator/essentials/system-requirements`,
   };
   const nextNavigationItem = {
     label: 'How to Unjail My Validator?',
-    href: '/docs/become-validator/validator/unjail-validator',
+    href: `${routePrefix}/become-validator/validator/unjail-validator`,
   };
 
   return (

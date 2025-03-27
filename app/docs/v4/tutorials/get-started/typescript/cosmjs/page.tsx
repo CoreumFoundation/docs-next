@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Transfer Funds with Typescript',
-    href: '/docs/tutorials/get-started/typescript/transfer-funds',
+    href: '/docs/v4/tutorials/get-started/typescript/transfer-funds',
   };
   const nextNavigationItem = {
     label: 'Using coreum-js',
-    href: '/docs/tutorials/get-started/typescript/coreum-js',
+    href: '/docs/v4/tutorials/get-started/typescript/coreum-js',
   };
 
   return (

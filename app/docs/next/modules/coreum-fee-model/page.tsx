@@ -3,6 +3,7 @@ import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-fee-model.mdx';
 
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Coreum Fee Model: Dynamic Gas Pricing for Blockchain Transactions | Coreum Developers",
@@ -33,11 +34,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Coreum Deterministic Gas',
-    href: '/docs/modules/coreum-deterministic-gas',
+    href: `/docs/next/modules/coreum-deterministic-gas`,
   };
   const nextNavigationItem = {
     label: 'Cosmos Non-Fungible Token',
-    href: '/docs/modules/cosmos-non-fungible-token',
+    href: `/docs/next/modules/cosmos-non-fungible-token`,
   };
 
   return (

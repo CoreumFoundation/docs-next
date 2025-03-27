@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Become Validator Overview',
-    href: '/docs/overview/validator',
+    href: '/docs/v4/overview/validator',
   };
   const nextNavigationItem = {
     label: 'Run Validator Node',
-    href: '/docs/become-validator/validator/run-validator',
+    href: '/docs/v4/become-validator/validator/run-validator',
   };
 
   return (

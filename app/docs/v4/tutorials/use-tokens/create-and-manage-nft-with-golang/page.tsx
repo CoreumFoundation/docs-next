@@ -2,6 +2,7 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-and-manage-nft-with-golang.mdx';
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Create and Manage NFTs on Coreum with Golang | Coreum Developer Guide",
@@ -29,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Create and Manage NFT with CLI',
-    href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-cli',
+    href: `/docs/v4/tutorials/use-tokens/create-and-manage-nft-with-cli`,
   };
   const nextNavigationItem = {
     label: 'Smart FT with WASM',
-    href: '/docs/tutorials/use-tokens/smart-ft-with-wasm',
+    href: `/docs/v4/tutorials/use-tokens/smart-ft-with-wasm`,
   };
 
   return (

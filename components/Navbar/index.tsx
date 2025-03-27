@@ -19,45 +19,44 @@ const AutocompleteComponent = dynamic(() => import('@/components/AlgoliaSearch')
 });
 
 export const Navbar = () => {
+  const pathname = usePathname();
+
+  const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
+
   const dropdownItems = [
     {
       label: 'Overview',
-      href: '/docs/overview/general',
+      href: `${routePrefix}/overview/general`,
       external: false,
     },
     {
       label: 'Tutorials',
-      href: '/docs/overview/tutorials',
+      href: `${routePrefix}/overview/tutorials`,
       external: false,
     },
     {
       label: 'Modules',
-      href: '/docs/overview/modules',
+      href: `${routePrefix}/overview/modules`,
       external: false,
     },
     {
       label: 'Validator',
-      href: '/docs/overview/validator',
+      href: `${routePrefix}/overview/validator`,
       external: false,
     },
     {
       label: 'API',
-      href: '/docs/api/protobuf',
+      href: `${routePrefix}/api/protobuf`,
       external: false,
     },
     {
       label: 'Tools/Ecosystem',
-      href: '/docs/overview/tools',
+      href: `${routePrefix}/overview/tools`,
       external: false,
     },
-    // {
-    //   label: 'Apps',
-    //   href: '/docs/overview/apps',
-    //   external: false,
-    // },
     {
       label: 'Help',
-      href: '/docs/overview/help',
+      href: `${routePrefix}/next/overview/help`,
       external: false,
     },
     {
@@ -79,6 +78,8 @@ export const Navbar = () => {
       external: false,
     }
   ];
+
+
 
   const route = usePathname();
 

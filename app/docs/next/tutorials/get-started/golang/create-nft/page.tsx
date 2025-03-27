@@ -30,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Create Fungible Token with Golang',
-    href: '/docs/tutorials/get-started/golang/create-ft',
+    href: '/docs/next/tutorials/get-started/golang/create-ft',
   };
   const nextNavigationItem = {
     label: 'Transfer Funds with Typescript',
-    href: '/docs/tutorials/get-started/typescript/transfer-funds',
+    href: '/docs/next/tutorials/get-started/typescript/transfer-funds',
   };
 
   return (

@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Smart FT with WASM',
-    href: '/docs/tutorials/use-tokens/smart-ft-with-wasm',
+    href: '/docs/v4/tutorials/use-tokens/smart-ft-with-wasm',
   };
   const nextNavigationItem = {
     label: 'CEX Integration',
-    href: '/docs/tutorials/integrate-coreum/cex-integrations',
+    href: '/docs/v4/tutorials/integrate-coreum/cex-integrations',
   };
 
   return (

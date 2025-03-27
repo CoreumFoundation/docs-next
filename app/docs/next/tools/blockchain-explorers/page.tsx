@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Faucet',
-    href: '/docs/tools/faucet',
+    href: '/docs/next/tools/faucet',
   };
 
   return (

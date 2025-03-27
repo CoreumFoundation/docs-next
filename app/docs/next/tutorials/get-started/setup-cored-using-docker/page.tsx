@@ -29,13 +29,13 @@ export const metadata: Metadata = {
 const Page = () => {
     const prevNavigationItem = {
       label: 'Setup CLI Network Variables',
-      href: '/docs/tutorials/get-started/install-cored',
+      href: '/docs/next/tutorials/get-started/install-cored',
     };
     const nextNavigationItem = {
       label: 'Install Prebuild MacOS',
-      href: '/docs/tutorials/get-started/install-prebuild-macos',
+      href: '/docs/next/tutorials/get-started/install-prebuild-macos',
     };
-  
+
     return (
       <div className="flex flex-col w-full">
         <Component />

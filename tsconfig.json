@@ -29,7 +29,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/docs/tutorials/cored/page.mdx",
+    "app/docs/next/tutorials/cored/page.mdx",
+    "app/docs/v4/tutorials/cored/page.mdx",
     "types/**/*.d.ts"
   ],
   "exclude": ["./node_modules"]

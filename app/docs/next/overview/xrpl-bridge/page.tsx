@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 const XRPLBridgeMainPage = () => {
   const prevNavigationItem = {
     label: 'Tools/Ecosystem',
-    href: '/docs/overview/smart-contracts',
+    href: '/docs/next/overview/smart-contracts',
   };
 
   return (

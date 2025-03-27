@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Using coreum-js',
-    href: '/docs/tutorials/get-started/typescript/coreum-js',
+    href: '/docs/next/tutorials/get-started/typescript/coreum-js',
   };
   const nextNavigationItem = {
     label: 'Smart FT with WASM',
-    href: '/docs/tutorials/get-started/wasm/smart-ft-with-wasm',
+    href: '/docs/next/tutorials/get-started/wasm/smart-ft-with-wasm',
   };
 
   return (

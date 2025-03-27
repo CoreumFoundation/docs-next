@@ -6,13 +6,13 @@ and you should be prepared to act accordingly by removing all state and start fr
 
 The doc describes the procedure of creating and running the validator node.
 
-* [Check requirements](/docs/become-validator/essentials/system-requirements)
+* [Check requirements](/docs/v4/become-validator/essentials/system-requirements)
 
-* [Set up node prerequisites](/docs/become-validator/essentials/node-prerequisites)
+* [Set up node prerequisites](/docs/v4/become-validator/essentials/node-prerequisites)
 
-* [Install cored binary](/docs/become-validator/essentials/install-cored).
+* [Install cored binary](/docs/v4/become-validator/essentials/install-cored).
 
-* Verify that [network variables](/docs/become-validator/essentials/network-variables) are set up correctly.
+* Verify that [network variables](/docs/v4/become-validator/essentials/network-variables) are set up correctly.
 
 * Set the moniker variable to reuse it in the following instructions.
 ```bash
@@ -25,7 +25,7 @@ The command will create a default node configuration
 cored init $MONIKER $COREUM_CHAIN_ID_ARGS
 ```
 
-* Set the common connection config using the [doc](/docs/become-validator/essentials/connection-config).
+* Set the common connection config using the [doc](/docs/v4/become-validator/essentials/connection-config).
 
 * Set the config path variables.
 
@@ -39,7 +39,7 @@ COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
   crudini --set $COREUM_APP_CONFIG api enable true # enable API
   crudini --set $COREUM_APP_CONFIG api swagger true # enable swagger UI for the API
   ```
-  If you face `File contains parsing errors`  issue, check [troubleshooting section](/docs/become-validator/troubleshooting)
+  If you face `File contains parsing errors`  issue, check [troubleshooting section](/docs/v4/become-validator/troubleshooting)
 
 * (Optional) Enable prometheus monitoring.
   ```bash
@@ -57,11 +57,11 @@ COREUM_NODE_CONFIG=$COREUM_HOME/config/config.toml
 
 * Enable state-sync, so your validator can sync by snapshot.
   With the state-sync you can ignore past network upgrades, but if you want to have a node with full block history,
-  instead of state-sync you should visit <a href="/docs/become-validator/upgrades/history" className="text-[#24D494] font-bold">this section</a>
+  instead of state-sync you should visit <a href="/docs/v4/become-validator/upgrades/history" className="text-[#24D494] font-bold">this section</a>
 
   You can read <a href="https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html" target="_blank" rel="noopener noreferrer" className="text-[#24D494] font-bold">Using State Sync</a> document to get more details.
 
-  ** Get at least two state sync servers and set them from the [doc](/docs/become-validator/essentials/network-variables):
+  ** Get at least two state sync servers and set them from the [doc](/docs/v4/become-validator/essentials/network-variables):
   ```bash
   export COREUM_STATE_SYNC_SERVERS="{State sync servers}"
   ```
@@ -118,4 +118,4 @@ echo "catching_up: $(echo  $(cored status) | jq -r '.SyncInfo.catching_up')"
 
 ## What is next?
 
-You can run [validator node](/docs/become-validator/validator/run-validator)
+You can run [validator node](/docs/v4/become-validator/validator/run-validator)

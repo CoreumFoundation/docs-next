@@ -31,13 +31,13 @@ export const metadata: Metadata = {
 const Page = () => {
     const prevNavigationItem = {
       label: 'Set Connnection config',
-      href: '/docs/become-validator/essentials/connection-config',
+      href: '/docs/v4/become-validator/essentials/connection-config',
     };
     const nextNavigationItem = {
       label: 'Troubleshooting',
-      href: '/docs/become-validator/troubleshooting/',
+      href: '/docs/v4/become-validator/troubleshooting/',
     };
-  
+
     return (
       <div className="flex flex-col w-full">
         <Component />
@@ -48,5 +48,5 @@ const Page = () => {
       </div>
     );
   };
-  
+
   export default Page;

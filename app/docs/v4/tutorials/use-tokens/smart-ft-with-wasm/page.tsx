@@ -2,6 +2,7 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './smart-ft-with-wasm.mdx';
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Developing Smart FT with WASM on Coreum | Coreum Developers",
@@ -32,11 +33,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Create and Manage NFT with Golang',
-    href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-golang',
+    href: `/docs/v4/tutorials/use-tokens/create-and-manage-nft-with-golang`,
   };
   const nextNavigationItem = {
     label: 'Asset FT Extension',
-    href: '/docs/tutorials/use-tokens/asset-ft-extension',
+    href: `/docs/v4/tutorials/use-tokens/asset-ft-extension`,
   };
 
   return (

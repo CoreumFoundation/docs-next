@@ -1,4 +1,3 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-and-manage-ft-with-cli.mdx';
 import { Metadata } from 'next';
@@ -31,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Using CosmJS with WASM Contracts',
-    href: '/docs/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
+    href: '/docs/next/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
   };
   const nextNavigationItem = {
     label: 'Create and Manage FT with Golang',
-    href: '/docs/tutorials/use-tokens/create-and-manage-ft-with-golang',
+    href: '/docs/next/tutorials/use-tokens/create-and-manage-ft-with-golang',
   };
 
   return (

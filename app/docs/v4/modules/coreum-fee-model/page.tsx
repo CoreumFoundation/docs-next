@@ -33,11 +33,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Coreum Deterministic Gas',
-    href: '/docs/modules/coreum-deterministic-gas',
+    href: '/docs/v4/modules/coreum-deterministic-gas',
   };
   const nextNavigationItem = {
     label: 'Cosmos Non-Fungible Token',
-    href: '/docs/modules/cosmos-non-fungible-token',
+    href: '/docs/v4/modules/cosmos-non-fungible-token',
   };
 
   return (

@@ -30,32 +30,32 @@ export const metadata: Metadata = {
 const MODULES_ITEMS: DocLinkItemProps[] = [
   {
     label: 'Fungible Tokens',
-    href: '/docs/modules/coreum-fungible-token',
+    href: '/docs/next/modules/coreum-fungible-token',
     external: false,
   },
   {
     label: 'Non-Fungible Tokens',
-    href: '/docs/modules/coreum-non-fungible-token',
+    href: '/docs/next/modules/coreum-non-fungible-token',
     external: false,
   },
   {
     label: 'Deterministic Gas',
-    href: '/docs/modules/coreum-deterministic-gas',
+    href: '/docs/next/modules/coreum-deterministic-gas',
     external: false,
   },
   {
     label: 'Fee Model',
-    href: '/docs/modules/coreum-fee-model',
+    href: '/docs/next/modules/coreum-fee-model',
     external: false,
   },
   {
     label: 'DEX',
-    href: '/docs/modules/coreum-dex',
+    href: '/docs/next/modules/coreum-dex',
     external: false,
   },
   {
     label: 'Cosmos Non-Fungible Tokens',
-    href: '/docs/modules/cosmos-non-fungible-token',
+    href: '/docs/next/modules/cosmos-non-fungible-token',
     external: false,
   },
 ];

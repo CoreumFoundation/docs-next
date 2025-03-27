@@ -37,12 +37,12 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'Set up CLI Network Variables',
-        href: '/docs/tutorials/get-started/setup-cli',
+        href: '/docs/v4/tutorials/get-started/setup-cli',
         external: false,
       },
       {
         label: 'Install cored',
-        href: '/docs/tutorials/get-started/install-cored',
+        href: '/docs/v4/tutorials/get-started/install-cored',
         external: false,
       },
     ],
@@ -53,22 +53,22 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'Transfer funds with CLI',
-        href: '/docs/tutorials/get-started/cli/transfer-funds-cli',
+        href: '/docs/v4/tutorials/get-started/cli/transfer-funds-cli',
         external: false,
       },
       {
         label: 'Send multisig Transaction',
-        href: '/docs/tutorials/get-started/cli/send-multisig-transaction',
+        href: '/docs/v4/tutorials/get-started/cli/send-multisig-transaction',
         external: false,
       },
       {
         label: 'Smart FT with Access Control List (ACL)',
-        href: '/docs/tutorials/get-started/cli/smart-ft-with-acl',
+        href: '/docs/v4/tutorials/get-started/cli/smart-ft-with-acl',
         external: false,
       },
       {
         label: 'Ledger Nano with CLI: Support and Usage',
-        href: '/docs/tutorials/get-started/cli/ledger-nano',
+        href: '/docs/v4/tutorials/get-started/cli/ledger-nano',
         external: false,
       },
     ],
@@ -79,17 +79,17 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'Transfer funds with Golang',
-        href: '/docs/tutorials/get-started/golang/transfer-funds',
+        href: '/docs/v4/tutorials/get-started/golang/transfer-funds',
         external: false,
       },
       {
         label: 'Create and manage my first FT with Golang',
-        href: '/docs/tutorials/get-started/golang/create-ft',
+        href: '/docs/v4/tutorials/get-started/golang/create-ft',
         external: false,
       },
       {
         label: 'Create and manage my first NFT with Golang',
-        href: '/docs/tutorials/get-started/golang/create-nft',
+        href: '/docs/v4/tutorials/get-started/golang/create-nft',
         external: false,
       },
     ],
@@ -100,17 +100,17 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'Transfer funds with Typescript',
-        href: '/docs/tutorials/get-started/typescript/transfer-funds',
+        href: '/docs/v4/tutorials/get-started/typescript/transfer-funds',
         external: false,
       },
       {
         label: 'Using CosmJS',
-        href: '/docs/tutorials/get-started/typescript/cosmjs',
+        href: '/docs/v4/tutorials/get-started/typescript/cosmjs',
         external: false,
       },
       {
         label: 'Using coreum-js SDK to interact with Coreum network',
-        href: '/docs/tutorials/get-started/typescript/coreum-js',
+        href: '/docs/v4/tutorials/get-started/typescript/coreum-js',
         external: false,
       },
     ],
@@ -121,22 +121,22 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'Deploy first WASM contract',
-        href: '/docs/tutorials/get-started/wasm/deploy-wasm-contract',
+        href: '/docs/v4/tutorials/get-started/wasm/deploy-wasm-contract',
         external: false,
       },
       {
         label: 'Smart FT with WASM',
-        href: '/docs/tutorials/get-started/wasm/smart-ft-with-wasm',
+        href: '/docs/v4/tutorials/get-started/wasm/smart-ft-with-wasm',
         external: false,
       },
       {
         label: 'Testing multiple contracts',
-        href: '/docs/tutorials/get-started/wasm/testing-multiple-contracts',
+        href: '/docs/v4/tutorials/get-started/wasm/testing-multiple-contracts',
         external: false,
       },
       {
         label: 'Using CosmJS with WASM contracts',
-        href: '/docs/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
+        href: '/docs/v4/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
         external: false,
       },
     ],
@@ -147,27 +147,27 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'Create and manage my first FT with CLI',
-        href: '/docs/tutorials/use-tokens/create-and-manage-ft-with-cli',
+        href: '/docs/v4/tutorials/use-tokens/create-and-manage-ft-with-cli',
         external: false,
       },
       {
         label: 'Create and manage my first FT with Golang',
-        href: '/docs/tutorials/use-tokens/create-and-manage-ft-with-golang',
+        href: '/docs/v4/tutorials/use-tokens/create-and-manage-ft-with-golang',
         external: false,
       },
       {
         label: 'Create and manage my first NFT with CLI',
-        href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-cli',
+        href: '/docs/v4/tutorials/use-tokens/create-and-manage-nft-with-cli',
         external: false,
       },
       {
         label: 'Create and manage my first NFT with Golang',
-        href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-golang',
+        href: '/docs/v4/tutorials/use-tokens/create-and-manage-nft-with-golang',
         external: false,
       },
       {
         label: 'Smart FT with WASM',
-        href: '/docs/tutorials/use-tokens/smart-ft-with-wasm',
+        href: '/docs/v4/tutorials/use-tokens/smart-ft-with-wasm',
         external: false,
       },
     ],
@@ -178,17 +178,17 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'CEX integration',
-        href: '/docs/tutorials/integrate-coreum/cex-integrations',
+        href: '/docs/v4/tutorials/integrate-coreum/cex-integrations',
         external: false,
       },
       {
         label: 'Wallet integration',
-        href: '/docs/tutorials/integrate-coreum/wallet-integration',
+        href: '/docs/v4/tutorials/integrate-coreum/wallet-integration',
         external: false,
       },
       {
         label: 'Explorer API - Beta',
-        href: '/docs/tutorials/integrate-coreum/explorer-api',
+        href: '/docs/v4/tutorials/integrate-coreum/explorer-api',
         external: false,
       },
     ],
@@ -199,12 +199,12 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'Web app',
-        href: '/docs/tutorials/build-apps/web-app',
+        href: '/docs/v4/tutorials/build-apps/web-app',
         external: false,
       },
       {
         label: 'AMM',
-        href: '/docs/tutorials/build-apps/amm',
+        href: '/docs/v4/tutorials/build-apps/amm',
         external: false,
       },
     ],
@@ -215,27 +215,27 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'IBC Channels',
-        href: '/docs/tutorials/ibc/ibc-channels',
+        href: '/docs/v4/tutorials/ibc/ibc-channels',
         external: false,
       },
       {
         label: 'IBC Transfer to Osmosis Using Keplr Wallet',
-        href: '/docs/tutorials/ibc/ibc-transfer-to-osmosis',
+        href: '/docs/v4/tutorials/ibc/ibc-transfer-to-osmosis',
         external: false,
       },
       {
         label: 'IBC Smart Contract Call Tutorial',
-        href: '/docs/tutorials/ibc/ibc-smart-contract-call',
+        href: '/docs/v4/tutorials/ibc/ibc-smart-contract-call',
         external: false,
       },
       {
         label: 'IBC WASM Transfer Tutorial',
-        href: '/docs/tutorials/ibc/ibc-wasm-transfer',
+        href: '/docs/v4/tutorials/ibc/ibc-wasm-transfer',
         external: false,
       },
       {
         label: 'IBC Transfer Using CLI',
-        href: '/docs/tutorials/ibc/ibc-transfer-using-cli',
+        href: '/docs/v4/tutorials/ibc/ibc-transfer-using-cli',
         external: false,
       },
     ],

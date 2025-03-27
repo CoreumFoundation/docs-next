@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'How to Unjail My Validator',
-    href: '/docs/become-validator/validator/unjail-validator',
+    href: '/docs/v4/become-validator/validator/unjail-validator',
   };
   const nextNavigationItem = {
     label: 'Upgrades History',
-    href: '/docs/become-validator/upgrades/history',
+    href: '/docs/v4/become-validator/upgrades/history',
   };
 
   return (

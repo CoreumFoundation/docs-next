@@ -4,11 +4,11 @@ a# Smart FT with Access Control List (ACL)
 
 The documentation below explains how to create a Multisig account and grant different permissions to individual addresses using the Authz Module so that each address has different permissions for the management of Coreum assets.
 
-* Follow the [instruction](/docs/tutorials/get-started/install-cored) to install cored binary.
+* Follow the [instruction](/docs/v4/tutorials/get-started/install-cored) to install cored binary.
 
-* Verify that [network variables](/docs/tutorials/get-started/setup-cli) are set up correctly.
+* Verify that [network variables](/docs/v4/tutorials/get-started/setup-cli) are set up correctly.
 
-* The first step is to create a multisig account. Follow the steps in [multisig creation](/docs/tutorials/get-started/cli/send-multisig-transaction) to set it up.
+* The first step is to create a multisig account. Follow the steps in [multisig creation](/docs/v4/tutorials/get-started/cli/send-multisig-transaction) to set it up.
 
 * Generate the json tx to issue an FT from the multisig.
 
@@ -135,7 +135,7 @@ As we can see from the output, the authz message grants permissions to the addre
     ```
 And now the address "minter" can mint the AssetFT token "MYFT" (and any other tokens issued by the multisig) on behalf of the multisig by itself without limits. Let's test it.
 
-* Use [faucet](/docs/tools/faucet) to fund `minter` account
+* Use [faucet](/docs/v4/tools/faucet) to fund `minter` account
 
 * Mint token.
 
@@ -162,7 +162,7 @@ As we can see, our 200 tokens have been minted correctly and have been added to 
 
 ## Creating and managing a Multisig using a UI instead of CLI
 
-There are currently multiple implementations of interfaces. In the main Cosmos repository we can find <a href="https://github.com/cosmos/cosmos-multisig-ui" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Cosmos Multisig UI</a> which allows us to create and use multisigs more comfortably on any Cosmos SDK based chain. Therefore, it also works with the Coreum blockchain, we must simply select Coreum on the top right of the page and it will fill in all the Coreum mainnet information. If we want to adjust it for testnet we can click on the settings wheel and modify the information there to point towards our testnet or devnet. This information is in [network variables](/docs/tutorials/get-started/setup-cli).
+There are currently multiple implementations of interfaces. In the main Cosmos repository we can find <a href="https://github.com/cosmos/cosmos-multisig-ui" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Cosmos Multisig UI</a> which allows us to create and use multisigs more comfortably on any Cosmos SDK based chain. Therefore, it also works with the Coreum blockchain, we must simply select Coreum on the top right of the page and it will fill in all the Coreum mainnet information. If we want to adjust it for testnet we can click on the settings wheel and modify the information there to point towards our testnet or devnet. This information is in [network variables](/docs/v4/tutorials/get-started/setup-cli).
 
 It allows us to create multisigs using both public keys (like we did in this tutorial with CLI) or our addresses. If you want to use addresses to create a multisig instead of public keys, these addresses must have been created on chain (they must have received funds before). If these addresses have never received any tokens, they can not be used to create the multisig because the Public Key can not be obtained from the chain.
 

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Smart Contracts',
-    href: '/docs/overview/smart-contracts',
+    href: '/docs/next/overview/smart-contracts',
   };
 
   return (

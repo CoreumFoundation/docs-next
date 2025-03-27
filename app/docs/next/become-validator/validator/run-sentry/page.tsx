@@ -3,6 +3,7 @@ import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './run-sentry.mdx';
 
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Guide to Setting Up Sentry Nodes for Coreum Blockchain | Coreum Node Configuration",
@@ -29,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Run Validator Node',
-    href: '/docs/become-validator/validator/run-validator',
+    href: `/docs/next/become-validator/validator/run-validator`,
   };
   const nextNavigationItem = {
     label: 'System Requirements',
-    href: '/docs/become-validator/essentials/system-requirements',
+    href: `/docs/next/become-validator/essentials/system-requirements`,
   };
 
   return (

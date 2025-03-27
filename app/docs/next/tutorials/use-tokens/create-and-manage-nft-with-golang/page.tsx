@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Create and Manage NFT with CLI',
-    href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-cli',
+    href: '/docs/next/tutorials/use-tokens/create-and-manage-nft-with-cli',
   };
   const nextNavigationItem = {
     label: 'Smart FT with WASM',
-    href: '/docs/tutorials/use-tokens/smart-ft-with-wasm',
+    href: '/docs/next/tutorials/use-tokens/smart-ft-with-wasm',
   };
 
   return (

@@ -2,6 +2,7 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-and-manage-ft-with-cli.mdx';
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Create and Manage Fungible Tokens on Coreum Blockchain with CLI | Coreum Docs",
@@ -31,11 +32,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Using CosmJS with WASM Contracts',
-    href: '/docs/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
+    href: '/docs/v4/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
   };
   const nextNavigationItem = {
     label: 'Create and Manage FT with Golang',
-    href: '/docs/tutorials/use-tokens/create-and-manage-ft-with-golang',
+    href: '/docs/v4/tutorials/use-tokens/create-and-manage-ft-with-golang',
   };
 
   return (

@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Tools/Ecosystem Overview',
-    href: '/docs/overview/tools',
+    href: '/docs/next/overview/tools',
   };
   const nextNavigationItem = {
     label: 'Faucet',
-    href: '/docs/tools/faucet',
+    href: '/docs/next/tools/faucet',
   };
 
   return (

@@ -2,6 +2,7 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-and-manage-nft-with-cli.mdx';
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Creating Non-Fungible Tokens on Coreum with CLI | Coreum Docs",
@@ -29,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Create and Manage FT with Golang',
-    href: '/docs/tutorials/use-tokens/create-and-manage-ft-with-golang',
+    href: `/docs/v4/tutorials/use-tokens/create-and-manage-ft-with-golang`,
   };
   const nextNavigationItem = {
     label: 'Create and Manage NFT with Golang',
-    href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-golang',
+    href: `/docs/v4/tutorials/use-tokens/create-and-manage-nft-with-golang`,
   };
 
   return (

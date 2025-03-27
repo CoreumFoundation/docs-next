@@ -30,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'AMM (Automated Market Maker)',
-    href: '/docs/tutorials/build-apps/amm',
+    href: '/docs/next/tutorials/build-apps/amm',
   };
   const nextNavigationItem = {
     label: 'IBC Transfer to Osmosis Using Keplr Wallet',
-    href: '/docs/tutorials/ibc/ibc-transfer-to-osmosis',
+    href: '/docs/next/tutorials/ibc/ibc-transfer-to-osmosis',
   };
 
   return (

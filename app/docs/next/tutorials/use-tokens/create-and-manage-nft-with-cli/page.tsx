@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Create and Manage FT with Golang',
-    href: '/docs/tutorials/use-tokens/create-and-manage-ft-with-golang',
+    href: '/docs/next/tutorials/use-tokens/create-and-manage-ft-with-golang',
   };
   const nextNavigationItem = {
     label: 'Create and Manage NFT with Golang',
-    href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-golang',
+    href: '/docs/next/tutorials/use-tokens/create-and-manage-nft-with-golang',
   };
 
   return (

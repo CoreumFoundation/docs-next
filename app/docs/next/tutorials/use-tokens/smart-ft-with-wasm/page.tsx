@@ -32,11 +32,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Create and Manage NFT with Golang',
-    href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-golang',
+    href: '/docs/next/tutorials/use-tokens/create-and-manage-nft-with-golang',
   };
   const nextNavigationItem = {
     label: 'Asset FT Extension',
-    href: '/docs/tutorials/use-tokens/asset-ft-extension',
+    href: '/docs/next/tutorials/use-tokens/asset-ft-extension',
   };
 
   return (

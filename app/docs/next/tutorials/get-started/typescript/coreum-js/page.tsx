@@ -30,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Using CosmJS',
-    href: '/docs/tutorials/get-started/typescript/cosmjs',
+    href: '/docs/next/tutorials/get-started/typescript/cosmjs',
   };
   const nextNavigationItem = {
     label: 'Deploy First WASM Contract',
-    href: '/docs/tutorials/get-started/wasm/deploy-wasm-contract',
+    href: '/docs/next/tutorials/get-started/wasm/deploy-wasm-contract',
   };
 
   return (

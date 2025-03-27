@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Deploy First WASM Contract',
-    href: '/docs/tutorials/get-started/wasm/deploy-wasm-contract',
+    href: '/docs/v4/tutorials/get-started/wasm/deploy-wasm-contract',
   };
   const nextNavigationItem = {
     label: 'Testing Multiple Contracts',
-    href: '/docs/tutorials/get-started/wasm/testing-multiple-contracts',
+    href: '/docs/v4/tutorials/get-started/wasm/testing-multiple-contracts',
   };
 
   return (

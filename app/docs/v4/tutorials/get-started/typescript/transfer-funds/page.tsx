@@ -32,11 +32,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Create Non-Fungible Token with Golang',
-    href: '/docs/tutorials/get-started/golang/create-nft',
+    href: '/docs/v4/tutorials/get-started/golang/create-nft',
   };
   const nextNavigationItem = {
     label: 'Using CosmJS',
-    href: '/docs/tutorials/get-started/typescript/cosmjs',
+    href: '/docs/v4/tutorials/get-started/typescript/cosmjs',
   };
 
   return (

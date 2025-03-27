@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Tutorials Overview',
-    href: '/docs/overview/tutorials',
+    href: '/docs/v4/overview/tutorials',
   };
   const nextNavigationItem = {
     label: 'Install cored',
-    href: '/docs/tutorials/get-started/install-cored',
+    href: '/docs/v4/tutorials/get-started/install-cored',
   };
 
   return (

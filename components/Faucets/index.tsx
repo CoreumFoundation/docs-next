@@ -9,6 +9,7 @@ import {stringToPath } from "@cosmjs/crypto";
 import axios from "axios";
 import { Spinner } from "../Spinner";
 import Image from 'next/image';
+import { usePathname } from "next/navigation";
 
 const tabs = [
   { label: 'Mainnet', id: 'mainnet' },
@@ -41,6 +42,10 @@ export const Faucets = () => {
   const [fundLoading, setFundLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isWalletGenerated, setIsWalletGenerated] = useState<boolean>(false);
+
+  const pathname = usePathname();
+
+  const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
 
   const currentConfig = useMemo(() => {
     return CONFIG[currentTab.id as ('testnet' | 'devnet')] || {};
@@ -208,7 +213,7 @@ export const Faucets = () => {
         return (
           <div className="flex flex-col w-full gap-8">
             <div className="text-base font-normal text-[#868991]">
-              You can generate your address at <Link className="text-[#25D695] font-semibold" href="/docs/tools/wallets">wallet page</Link>, and you can find the list of Coreum Markets <Link target="_blank" className="text-[#25D695] font-semibold" href="https://coinmarketcap.com/currencies/coreum/markets">here</Link>.
+              You can generate your address at <Link className="text-[#25D695] font-semibold" href={`${routePrefix}/tools/wallets`}>wallet page</Link>, and you can find the list of Coreum Markets <Link target="_blank" className="text-[#25D695] font-semibold" href="https://coinmarketcap.com/currencies/coreum/markets">here</Link>.
             </div>
             <div className="text-base font-normal text-[#868991]">
               Note: Check if EX supports withdrawal into Coreum Network beforehand.

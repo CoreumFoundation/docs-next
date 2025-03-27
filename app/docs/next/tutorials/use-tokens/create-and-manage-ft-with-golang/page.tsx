@@ -1,4 +1,3 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-and-manage-ft-with-golang.mdx';
 import { Metadata } from 'next';
@@ -29,11 +28,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Create and Manage FT with CLI',
-    href: '/docs/tutorials/use-tokens/create-and-manage-ft-with-cli',
+    href: '/docs/next/tutorials/use-tokens/create-and-manage-ft-with-cli',
   };
   const nextNavigationItem = {
     label: 'Create and Manage NFT with CLI',
-    href: '/docs/tutorials/use-tokens/create-and-manage-nft-with-cli',
+    href: '/docs/next/tutorials/use-tokens/create-and-manage-nft-with-cli',
   };
 
   return (

@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Web App',
-    href: '/docs/tutorials/build-apps/web-app',
+    href: '/docs/v4/tutorials/build-apps/web-app',
   };
   const nextNavigationItem = {
     label: 'IBC Channels',
-    href: '/docs/tutorials/ibc/ibc-channels',
+    href: '/docs/v4/tutorials/ibc/ibc-channels',
   };
 
   return (

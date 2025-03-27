@@ -32,11 +32,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'IBC Channels',
-    href: '/docs/tutorials/ibc/ibc-channels',
+    href: '/docs/v4/tutorials/ibc/ibc-channels',
   };
   const nextNavigationItem = {
     label: 'IBC Smart Contract Call Tutorial',
-    href: '/docs/tutorials/ibc/ibc-smart-contract-call',
+    href: '/docs/v4/tutorials/ibc/ibc-smart-contract-call',
   };
 
   return (

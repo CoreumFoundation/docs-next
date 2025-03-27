@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Wallets',
-    href: '/docs/tools/wallets',
+    href: '/docs/next/tools/wallets',
   };
   const nextNavigationItem = {
     label: 'Blockchain Explorers',
-    href: '/docs/tools/blockchain-explorers',
+    href: '/docs/next/tools/blockchain-explorers',
   };
 
   return (

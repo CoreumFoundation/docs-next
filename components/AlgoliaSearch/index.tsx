@@ -3,10 +3,11 @@ import debounce from 'lodash/debounce';
 import algoliasearch from 'algoliasearch/lite';
 import { createAutocomplete } from '@algolia/autocomplete-core';
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia';
-import { AutocompleteInstance, AutocompleteHit, initialAutocompleteState } from '../../utils/types'; 
+import { AutocompleteInstance, AutocompleteHit, initialAutocompleteState } from '../../utils/types';
 import SearchResultsSection from '../SearchResultsSection';
-import { isSymbolQuery, groupHitsByHierarchy } from '../../utils/utils'; 
+import { isSymbolQuery, groupHitsByHierarchy } from '../../utils/utils';
 import { X, Search, Loader } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const AlgoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 const AlgoliaApiKey = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY;
@@ -28,6 +29,9 @@ const SearchBarModal: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const autocompleteRef = useRef<AutocompleteInstance | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+
+  const pathname = usePathname();
+  const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
 
   // Debounce search to avoid unnecessary API calls on every keystroke
   const debouncedSearch = useCallback(
@@ -114,24 +118,24 @@ const SearchBarModal: React.FC = () => {
 
   const handleSelect = useCallback((url: string) => {
     closeModal();
-  
+
     // Ensure URL is absolute
     let processedUrl = url.startsWith('/') ? url : `/${url}`;
-  
+
     // Replace any duplicate instances of '/docs/tutorials/ISO20022'
-    processedUrl = processedUrl.replace(/(\/docs\/tutorials\/ISO20022)+/, '/docs/tutorials/ISO20022');
-  
+    processedUrl = processedUrl.replace(/(\/docs\/tutorials\/ISO20022)+/, `${routePrefix}/tutorials/ISO20022`);
+
     // Navigate to the processed URL
     window.location.href = processedUrl;
   }, [closeModal]);
-  
 
-  const allHits = useMemo(() => 
+
+  const allHits = useMemo(() =>
     autocompleteState.collections.flatMap(collection => collection.items),
     [autocompleteState.collections]
   );
 
-  const groupedHits = useMemo(() => 
+  const groupedHits = useMemo(() =>
     groupHitsByHierarchy(allHits),
     [allHits]
   );
@@ -198,16 +202,16 @@ const SearchBarModal: React.FC = () => {
     };
   }, [isModalOpen, closeModal]);
 
-  const EnhancedSearchResults: React.FC<{ 
-    hits: AutocompleteHit[]; 
-    onSelect: (url: string) => void; 
+  const EnhancedSearchResults: React.FC<{
+    hits: AutocompleteHit[];
+    onSelect: (url: string) => void;
     query: string;
     selectedItemIndex: number;
   }> = useCallback(({ hits, onSelect, query, selectedItemIndex }) => {
     if (!query) {
       return null;
     }
-    
+
     if (!hits || hits.length === 0 || noResultsFound) {
       return (
         <div className="text-center py-4">
@@ -215,9 +219,9 @@ const SearchBarModal: React.FC = () => {
         </div>
       );
     }
-  
+
     let startIndex = 0;
-  
+
     return (
       <div className="space-y-4">
         {Object.entries(groupedHits).map(([category, subsections]) => {
@@ -249,7 +253,7 @@ const SearchBarModal: React.FC = () => {
       >
         <Search size={24} />
       </button>
-  
+
       {/* Desktop search button */}
       <button
         onClick={openModal}
@@ -262,11 +266,11 @@ const SearchBarModal: React.FC = () => {
           <span className="bg-gray-700 text-xs px-1 py-0.5 rounded">K</span>
         </div>
       </button>
-  
+
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-4 sm:pt-10">
-          <div 
+          <div
             ref={modalRef}
             className="bg-[#1B1D23] w-full max-w-xl rounded-lg shadow-lg flex flex-col mx-4"
             style={{ maxHeight: '90vh' }}
@@ -277,7 +281,7 @@ const SearchBarModal: React.FC = () => {
                 <X size={28} />
               </button>
             </div>
-  
+
             <div className="p-4">
               <div className="flex items-center space-x-2 bg-black rounded-full p-1 border border-gray-700">
                 <div className="flex items-center justify-center w-10 h-10">
@@ -315,7 +319,7 @@ const SearchBarModal: React.FC = () => {
                 </div>
               </div>
             </div>
-  
+
             <div className="flex-grow overflow-y-auto px-4">
               {!isLoading && query && (
                 <EnhancedSearchResults
@@ -326,7 +330,7 @@ const SearchBarModal: React.FC = () => {
                 />
               )}
             </div>
-  
+
             <div className="px-4 py-3 bg-[#1B1D23] text-sm text-gray-400 flex justify-between items-center border-t border-gray-700">
               <div className="hidden sm:block">
                 Press

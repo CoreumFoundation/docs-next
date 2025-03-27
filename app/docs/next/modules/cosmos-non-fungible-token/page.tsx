@@ -2,6 +2,7 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './cosmos-non-fungible-token.mdx';
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Cosmos Non-Fungible Tokens: Create, Transfer, and Manage NFTs | Cosmos Developers",
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Coreum Fee Model',
-    href: '/docs/modules/coreum-fee-model',
+    href: `/docs/next/modules/coreum-fee-model`,
   };
 
   return (

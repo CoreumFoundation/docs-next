@@ -32,11 +32,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Testing Multiple Contracts',
-    href: '/docs/tutorials/get-started/wasm/testing-multiple-contracts',
+    href: '/docs/next/tutorials/get-started/wasm/testing-multiple-contracts',
   };
   const nextNavigationItem = {
     label: 'Create and Manage FT with CLI',
-    href: '/docs/tutorials/use-tokens/create-and-manage-ft-with-cli',
+    href: '/docs/next/tutorials/use-tokens/create-and-manage-ft-with-cli',
   };
 
   return (

@@ -4,7 +4,7 @@ This document describes the rules for the gas price calculation for the projects
 
 ## Fee model
 
-The Coreum chain uses the [Coreum Fee Model](/docs/modules/coreum-fee-model) for the `min gas price` calculation.
+The Coreum chain uses the [Coreum Fee Model](/docs/v4/modules/coreum-fee-model) for the `min gas price` calculation.
 If the sent transaction's gas price is lower than the `min gas price` the transaction will be rejected.
 The minimum gas price is a dynamic value and can be changed after each block.
 
@@ -44,7 +44,7 @@ For example, you can use 1.1 as a multiplier if you send the tx right after quer
 
 ### Use non-optimized `initial gas price`
 
-The `initial gas price` is the gas price used in the [Coreum Fee Model](/docs/modules/coreum-fee-model) as initial.
+The `initial gas price` is the gas price used in the [Coreum Fee Model](/docs/v4/modules/coreum-fee-model) as initial.
 That value is a parameter, which is set initially in the genesis and can be updated by the governance. This value can be
 used as a gas price, for cases when the tools you use don't support additional queries.
 To get that value automatically you can

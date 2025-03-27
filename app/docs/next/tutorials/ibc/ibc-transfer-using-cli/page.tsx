@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'IBC WASM Transfer Tutorial',
-    href: '/docs/tutorials/ibc/ibc-wasm-transfer',
+    href: '/docs/next/tutorials/ibc/ibc-wasm-transfer',
   };
 
   return (

@@ -30,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Install cored',
-    href: '/docs/tutorials/get-started/install-cored',
+    href: '/docs/v4/tutorials/get-started/install-cored',
   };
   const nextNavigationItem = {
     label: 'Send Multisig Transaction',
-    href: '/docs/tutorials/get-started/cli/send-multisig-transaction',
+    href: '/docs/v4/tutorials/get-started/cli/send-multisig-transaction',
   };
 
   return (

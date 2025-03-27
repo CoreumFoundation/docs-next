@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'How to Upgrade My Node',
-    href: '/docs/become-validator/upgrades/main-info',
+    href: '/docs/v4/become-validator/upgrades/main-info',
   };
 
   return (

@@ -30,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Ledger Nano with CLI',
-    href: '/docs/tutorials/get-started/cli/ledger-nano',
+    href: '/docs/v4/tutorials/get-started/cli/ledger-nano',
   };
   const nextNavigationItem = {
     label: 'Create Fungible Token with Golang',
-    href: '/docs/tutorials/get-started/golang/create-ft',
+    href: '/docs/v4/tutorials/get-started/golang/create-ft',
   };
 
   return (

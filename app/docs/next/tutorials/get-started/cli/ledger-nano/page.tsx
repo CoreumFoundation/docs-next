@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Smart FT with Access Control List (ACL)',
-    href: '/docs/tutorials/get-started/cli/smart-ft-with-acl',
+    href: '/docs/next/tutorials/get-started/cli/smart-ft-with-acl',
   };
   const nextNavigationItem = {
     label: 'Transfer Funds with Golang',
-    href: '/docs/tutorials/get-started/golang/transfer-funds',
+    href: '/docs/next/tutorials/get-started/golang/transfer-funds',
   };
 
   return (

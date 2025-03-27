@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Transfer Funds with CLI',
-    href: '/docs/tutorials/get-started/cli/transfer-funds-cli',
+    href: '/docs/v4/tutorials/get-started/cli/transfer-funds-cli',
   };
   const nextNavigationItem = {
     label: 'Smart FT with Access Control List (ACL)',
-    href: '/docs/tutorials/get-started/cli/smart-ft-with-acl',
+    href: '/docs/v4/tutorials/get-started/cli/smart-ft-with-acl',
   };
 
   return (

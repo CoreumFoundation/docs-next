@@ -30,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'IBC Smart Contract Call Tutorial',
-    href: '/docs/tutorials/ibc/ibc-smart-contract-call',
+    href: '/docs/next/tutorials/ibc/ibc-smart-contract-call',
   };
   const nextNavigationItem = {
     label: 'IBC Transfer Using CLI',
-    href: '/docs/tutorials/ibc/ibc-transfer-using-cli',
+    href: '/docs/next/tutorials/ibc/ibc-transfer-using-cli',
   };
 
   return (

@@ -34,11 +34,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Modules Overview',
-    href: '/docs/overview/modules',
+    href: '/docs/v4/overview/modules',
   };
   const nextNavigationItem = {
     label: 'Non-Fungible Tokens',
-    href: '/docs/modules/coreum-non-fungible-token',
+    href: '/docs/v4/modules/coreum-non-fungible-token',
   };
 
   return (

@@ -1,6 +1,7 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './run-full-node.mdx';
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "How to Run a Full Node on Coreum Blockchain | Coreum Network Participation",
@@ -29,13 +30,16 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
+  const pathname = usePathname();
+  const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
+
   const prevNavigationItem = {
     label: 'Become Validator Overview',
-    href: '/docs/overview/validator',
+    href: `${routePrefix}/overview/validator`,
   };
   const nextNavigationItem = {
     label: 'Run Validator Node',
-    href: '/docs/become-validator/validator/run-validator',
+    href: `${routePrefix}/become-validator/validator/run-validator`,
   };
 
   return (

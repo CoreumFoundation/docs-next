@@ -6,15 +6,15 @@ export const metadata: Metadata = {
   title: "Coreum Overview | Coreum Docs",
   description: "An introduction to Coreum, providing a general overview of the blockchain's capabilities, including Smart Tokens, Smart Contracts, and key technical information. Ideal for developers and enthusiasts starting with Coreum.",
   keywords: [
-    'Coreum Overview', 
-    'Blockchain Introduction', 
-    'Smart Tokens', 
-    'Smart Contracts', 
-    'Blockchain Technology', 
-    'Coreum Features', 
-    'Blockchain Ecosystem', 
-    'Coreum Development', 
-    'Coreum Platform Capabilities', 
+    'Coreum Overview',
+    'Blockchain Introduction',
+    'Smart Tokens',
+    'Smart Contracts',
+    'Blockchain Technology',
+    'Coreum Features',
+    'Blockchain Ecosystem',
+    'Coreum Development',
+    'Coreum Platform Capabilities',
     'Decentralized Technology'
   ],
   openGraph: {
@@ -30,17 +30,17 @@ export const metadata: Metadata = {
 const OVERVIEW_ITEMS: DocLinkItemProps[] = [
   {
     label: 'Introduction',
-    href: '/docs/overview/introduction',
+    href: '/docs/v4/overview/introduction',
     external: false,
   },
   {
     label: 'Smart Contracts',
-    href: '/docs/overview/smart-contracts',
+    href: '/docs/v4/overview/smart-contracts',
     external: false,
   },
   {
     label: 'Smart Tokens',
-    href: '/docs/overview/smart-tokens',
+    href: '/docs/v4/overview/smart-tokens',
     external: false,
   },
   {

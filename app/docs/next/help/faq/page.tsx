@@ -1,7 +1,5 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './faq.mdx';
-
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -29,11 +27,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Help Overview',
-    href: '/docs/overview/help',
+    href: `/docs/next/overview/help`,
   };
   const nextNavigationItem = {
     label: 'Useful links',
-    href: '/docs/help/useful-links',
+    href: `/docs/next/help/useful-links`,
   };
 
   return (

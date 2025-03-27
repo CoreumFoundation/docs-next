@@ -1,7 +1,6 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './unjail-validator.mdx';
-
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -31,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'How much fund do I need to create a validator?',
-    href: '/docs/become-validator/essentials/how-much-fund-to-create-validator',
+    href: `/docs/next/become-validator/essentials/how-much-fund-to-create-validator`,
   };
   const nextNavigationItem = {
     label: 'How to Upgrade My Node',
-    href: '/docs/become-validator/upgrades/main-info',
+    href: `/docs/next/become-validator/upgrades/main-info`,
   };
 
   return (

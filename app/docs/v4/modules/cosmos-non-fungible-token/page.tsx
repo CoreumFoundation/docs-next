@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Coreum Fee Model',
-    href: '/docs/modules/coreum-fee-model',
+    href: '/docs/v4/modules/coreum-fee-model',
   };
 
   return (

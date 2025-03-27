@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Smart FT with WASM',
-    href: '/docs/tutorials/get-started/wasm/smart-ft-with-wasm',
+    href: '/docs/next/tutorials/get-started/wasm/smart-ft-with-wasm',
   };
   const nextNavigationItem = {
     label: 'Using CosmJS with WASM Contracts',
-    href: '/docs/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
+    href: '/docs/next/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
   };
 
   return (

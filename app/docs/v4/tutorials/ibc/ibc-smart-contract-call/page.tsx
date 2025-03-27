@@ -32,11 +32,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'IBC Transfer to Osmosis Using Keplr Wallet',
-    href: '/docs/tutorials/ibc/ibc-transfer-to-osmosis',
+    href: '/docs/v4/tutorials/ibc/ibc-transfer-to-osmosis',
   };
   const nextNavigationItem = {
     label: 'IBC WASM Transfer Tutorial',
-    href: '/docs/tutorials/ibc/ibc-wasm-transfer',
+    href: '/docs/v4/tutorials/ibc/ibc-wasm-transfer',
   };
 
   return (

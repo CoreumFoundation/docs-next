@@ -20,11 +20,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'General Overview',
-    href: '/docs/overview/general',
+    href: '/docs/v4/overview/general',
   };
   const nextNavigationItem = {
     label: 'Smart Contracts',
-    href: '/docs/overview/smart-contracts',
+    href: '/docs/v4/overview/smart-contracts',
   };
 
   return (

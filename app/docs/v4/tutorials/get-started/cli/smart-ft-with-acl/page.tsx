@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Send Multisig Transaction',
-    href: '/docs/tutorials/get-started/cli/send-multisig-transaction',
+    href: '/docs/v4/tutorials/get-started/cli/send-multisig-transaction',
   };
   const nextNavigationItem = {
     label: 'Ledger Nano with CLI',
-    href: '/docs/tutorials/get-started/cli/ledger-nano',
+    href: '/docs/v4/tutorials/get-started/cli/ledger-nano',
   };
 
   return (

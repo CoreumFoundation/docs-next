@@ -30,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Setup CLI Network Variables',
-    href: '/docs/tutorials/get-started/setup-cli',
+    href: '/docs/v4/tutorials/get-started/setup-cli',
   };
   const nextNavigationItem = {
     label: 'Setup Cored Using Docker',
-    href: '/docs/tutorials/get-started/setup-cored-using-docker',
+    href: '/docs/v4/tutorials/get-started/setup-cored-using-docker',
   };
 
   return (

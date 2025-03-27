@@ -3,6 +3,7 @@ import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-fungible-token.mdx';
 
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Coreum Fungible Token Creation and Management | Coreum Developers",
@@ -34,11 +35,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Modules Overview',
-    href: '/docs/overview/modules',
+    href: `/docs/next/overview/modules`,
   };
   const nextNavigationItem = {
     label: 'Non-Fungible Tokens',
-    href: '/docs/modules/coreum-non-fungible-token',
+    href: `/docs/next/modules/coreum-non-fungible-token`,
   };
 
   return (

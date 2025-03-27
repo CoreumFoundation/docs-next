@@ -2,6 +2,7 @@ import Component from './network-variables.mdx';
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Install Coreum's Core Daemon (cored): Comprehensive Guide | Coreum Docs",
@@ -29,24 +30,28 @@ export const metadata: Metadata = {
 
 
 const Page = () => {
-    const prevNavigationItem = {
-      label: 'Set Connnection config',
-      href: '/docs/become-validator/essentials/connection-config',
-    };
-    const nextNavigationItem = {
-      label: 'Troubleshooting',
-      href: '/docs/become-validator/troubleshooting/',
-    };
-  
-    return (
-      <div className="flex flex-col w-full">
-        <Component />
-        <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
-          <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
-          <NavigatonItem href={nextNavigationItem.href} label={nextNavigationItem.label} mode={NavigatonItemMode.Next} />
-        </div>
-      </div>
-    );
+  const pathname = usePathname();
+
+  const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
+
+  const prevNavigationItem = {
+    label: 'Set Connnection config',
+    href: `${routePrefix}/become-validator/essentials/connection-config`,
   };
-  
-  export default Page;
+  const nextNavigationItem = {
+    label: 'Troubleshooting',
+    href: `${routePrefix}/become-validator/troubleshooting`,
+  };
+
+  return (
+    <div className="flex flex-col w-full">
+      <Component />
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
+        <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
+        <NavigatonItem href={nextNavigationItem.href} label={nextNavigationItem.label} mode={NavigatonItemMode.Next} />
+      </div>
+    </div>
+  );
+};
+
+export default Page;

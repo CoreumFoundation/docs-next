@@ -1,8 +1,8 @@
 import { CardImage } from "@/components/CardImage";
 import Transition from "@/components/Transition";
-import classNames from "classnames";
 import Image from "next/image";
 import Link from 'next/link';
+import { usePathname } from "next/navigation";
 
 interface CardItem {
   image: React.ReactNode;
@@ -12,35 +12,39 @@ interface CardItem {
   external?: boolean;
 }
 
-const CARDS: CardItem[] = [
-  {
-    image: <CardImage type="features" />,
-    title: 'Features',
-    content: 'Dive into the protocol\'s capabilities, including Smart Tokens, CosmWasm Smart Contracts and Coreum\'s gas fee model.',
-    href: '/docs/overview/smart-tokens',
-  },
-  {
-    image: <CardImage type="validators" />,
-    title: 'Validators',
-    content: 'Guides and updates on node set up for deploying on devnet, testnet, or mainnet.',
-    href: '/docs/become-validator/run-full-node',
-  },
-  {
-    image: <CardImage type="developers" />,
-    title: 'Developers ',
-    content: 'A full suite of development tooling: Coreum\'s CLI, Smart Contract Playground, and complete TypeScript / Go modules, and tutorials.',
-    href: '/docs/overview/general',
-  },
-  {
-    image: <CardImage type="community" />,
-    title: 'Community',
-    content: 'Explore community resources and initiatives across the Coreum ecosystem. Open-source knowledge and research materials.',
-    href: 'https://www.coreum.com/community',
-    external: true,
-  },
-]
-
 export default function Home() {
+  const pathname = usePathname();
+
+  const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
+
+  const CARDS: CardItem[] = [
+    {
+      image: <CardImage type="features" />,
+      title: 'Features',
+      content: 'Dive into the protocol\'s capabilities, including Smart Tokens, CosmWasm Smart Contracts and Coreum\'s gas fee model.',
+      href: `${routePrefix}/overview/smart-tokens`,
+    },
+    {
+      image: <CardImage type="validators" />,
+      title: 'Validators',
+      content: 'Guides and updates on node set up for deploying on devnet, testnet, or mainnet.',
+      href: `${routePrefix}/become-validator/run-full-node`,
+    },
+    {
+      image: <CardImage type="developers" />,
+      title: 'Developers',
+      content: 'A full suite of development tooling: Coreum\'s CLI, Smart Contract Playground, and complete TypeScript / Go modules, and tutorials.',
+      href: `${routePrefix}/overview/general`,
+    },
+    {
+      image: <CardImage type="community" />,
+      title: 'Community',
+      content: 'Explore community resources and initiatives across the Coreum ecosystem. Open-source knowledge and research materials.',
+      href: 'https://www.coreum.com/community',
+      external: true,
+    },
+  ];
+
   return (
     <Transition>
       <div className="flex min-h-max flex-col items-center justify-between px-6 pt-2 pb-20 md:px-14 lg:px-20 xl:px-32 w-full gap-20 max-w-7xl">

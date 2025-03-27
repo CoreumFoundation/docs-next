@@ -36,11 +36,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Coreum Fungible Token',
-    href: '/docs/modules/coreum-fungible-token',
+    href: '/docs/v4/modules/coreum-fungible-token',
   };
   const nextNavigationItem = {
     label: 'Coreum Deterministic Gas',
-    href: '/docs/modules/coreum-deterministic-gas',
+    href: '/docs/v4/modules/coreum-deterministic-gas',
   };
 
   return (

@@ -30,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Run Sentry Node',
-    href: '/docs/become-validator/validator/run-sentry',
+    href: '/docs/v4/become-validator/validator/run-sentry',
   };
   const nextNavigationItem = {
     label: 'How much fund do I need to create a validator?',
-    href: '/docs/become-validator/essentials/how-much-fund-to-create-validator',
+    href: '/docs/v4/become-validator/essentials/how-much-fund-to-create-validator',
   };
 
   return (

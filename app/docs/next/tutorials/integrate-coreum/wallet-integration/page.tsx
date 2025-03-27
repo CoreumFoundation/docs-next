@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'CEX Integration',
-    href: '/docs/tutorials/integrate-coreum/cex-integrations',
+    href: '/docs/next/tutorials/integrate-coreum/cex-integrations',
   };
   const nextNavigationItem = {
     label: 'Explorer API - Beta',
-    href: '/docs/tutorials/integrate-coreum/explorer-api',
+    href: '/docs/next/tutorials/integrate-coreum/explorer-api',
   };
 
   return (

@@ -34,17 +34,17 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'Run a full node',
-        href: '/docs/become-validator/run-full-node',
+        href: '/docs/next/become-validator/run-full-node',
         external: false,
       },
       {
         label: 'Run a validator node',
-        href: '/docs/become-validator/validator/run-validator',
+        href: '/docs/next/become-validator/validator/run-validator',
         external: false,
       },
       {
         label: 'Run a sentry node',
-        href: '/docs/become-validator/validator/run-sentry',
+        href: '/docs/next/become-validator/validator/run-sentry',
         external: false,
       },
     ],
@@ -54,22 +54,22 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'System Requirements',
-        href: '/docs/become-validator/essentials/system-requirements',
+        href: '/docs/next/become-validator/essentials/system-requirements',
         external: false,
       },
       {
         label: 'Ne Requirements',
-        href: '/docs/become-validator/essentials/system-requirements',
+        href: '/docs/next/become-validator/essentials/system-requirements',
         external: false,
       },
       {
         label: 'How much fund to I need to create a validator?',
-        href: '/docs/become-validator/essentials/how-much-fund-to-create-validator',
+        href: '/docs/next/become-validator/essentials/how-much-fund-to-create-validator',
         external: false,
       },
       {
         label: 'Network Variables',
-        href: '/docs/become-validator/essentials/network-variables',
+        href: '/docs/next/become-validator/essentials/network-variables',
         external: false,
       },
     ],
@@ -79,17 +79,17 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'How to unjail my validator?',
-        href: '/docs/become-validator/validator/unjail-validator',
+        href: '/docs/next/become-validator/validator/unjail-validator',
         external: false,
       },
       {
         label: 'How to upgrade my node?',
-        href: '/docs/become-validator/upgrades/main-info',
+        href: '/docs/next/become-validator/upgrades/main-info',
         external: false,
       },
       {
         label: 'Upgrade history',
-        href: '/docs/become-validator/upgrades/history',
+        href: '/docs/next/become-validator/upgrades/history',
         external: false,
       },
     ],

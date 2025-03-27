@@ -30,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Wallet Integration',
-    href: '/docs/tutorials/integrate-coreum/wallet-integration',
+    href: '/docs/v4/tutorials/integrate-coreum/wallet-integration',
   };
   const nextNavigationItem = {
     label: 'Web App',
-    href: '/docs/tutorials/build-apps/web-app',
+    href: '/docs/v4/tutorials/build-apps/web-app',
   };
 
   return (

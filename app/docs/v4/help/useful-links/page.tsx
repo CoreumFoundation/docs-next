@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'FAQ',
-    href: '/docs/help/faq',
+    href: '/docs/v4/help/faq',
   };
 
   return (

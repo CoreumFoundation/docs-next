@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'System Requirements',
-    href: '/docs/become-validator/essentials/system-requirements',
+    href: '/docs/v4/become-validator/essentials/system-requirements',
   };
   const nextNavigationItem = {
     label: 'How to Unjail My Validator?',
-    href: '/docs/become-validator/validator/unjail-validator',
+    href: '/docs/v4/become-validator/validator/unjail-validator',
   };
 
   return (

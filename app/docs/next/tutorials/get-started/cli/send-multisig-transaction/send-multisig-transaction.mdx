@@ -2,9 +2,9 @@
 
 The sample below describes the full flow from the creation of the multisig account to the tx broadcast.
 
-* Follow the [instruction](/docs/tutorials/get-started/install-cored) to install cored binary.
+* Follow the [instruction](/docs/next/tutorials/get-started/install-cored) to install cored binary.
 
-* Verify that [network variables](/docs/tutorials/get-started/setup-cli) are set up correctly.
+* Verify that [network variables](/docs/next/tutorials/get-started/setup-cli) are set up correctly.
 
 * Add the keys that we are going to use for the multisig.
 
@@ -67,8 +67,8 @@ The sample below describes the full flow from the creation of the multisig accou
     ```bash
     cored keys show --address k1k2k3 $COREUM_CHAIN_ID_ARGS
     ```
-  
-* Use [faucet](/docs/tools/wallets) to fund `k1k2k3` account
+
+* Use [faucet](/docs/next/tools/wallets) to fund `k1k2k3` account
 
 * Check the multisig account balances.
 
@@ -109,7 +109,7 @@ The sample below describes the full flow from the creation of the multisig accou
 * Try to send partially signed tx to check that it won't pass.
 
     ```bash
-    cored tx broadcast bank-signed-tx.json -y -b block $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS 
+    cored tx broadcast bank-signed-tx.json -y -b block $COREUM_CHAIN_ID_ARGS $COREUM_NODE_ARGS
     ```
 
 * Add one more signature.

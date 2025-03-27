@@ -30,12 +30,12 @@ export const metadata: Metadata = {
 const HELP_ITEMS: DocLinkItemProps[] = [
   {
     label: 'FAQ',
-    href: '/docs/help/faq',
+    href: '/docs/v4/help/faq',
     external: false,
   },
   {
     label: 'Useful links',
-    href: '/docs/help/useful-links',
+    href: '/docs/v4/help/useful-links',
     external: false,
   },
 ];

@@ -1,4 +1,3 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './web-app.mdx';
 import { Metadata } from 'next';
@@ -31,11 +30,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Explorer API - Beta',
-    href: '/docs/tutorials/integrate-coreum/explorer-api',
+    href: '/docs/next/tutorials/integrate-coreum/explorer-api',
   };
   const nextNavigationItem = {
     label: 'AMM (Automated Market Maker)',
-    href: '/docs/tutorials/build-apps/amm',
+    href: '/docs/next/tutorials/build-apps/amm',
   };
 
   return (
