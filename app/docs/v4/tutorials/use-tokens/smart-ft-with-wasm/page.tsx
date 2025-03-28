@@ -1,8 +1,6 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './smart-ft-with-wasm.mdx';
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Developing Smart FT with WASM on Coreum | Coreum Developers",

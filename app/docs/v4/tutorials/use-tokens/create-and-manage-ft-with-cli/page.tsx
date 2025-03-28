@@ -1,8 +1,6 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-and-manage-ft-with-cli.mdx';
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Create and Manage Fungible Tokens on Coreum Blockchain with CLI | Coreum Docs",

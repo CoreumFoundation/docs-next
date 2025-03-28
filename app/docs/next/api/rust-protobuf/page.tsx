@@ -1,4 +1,3 @@
-
 import Component from './rust-protobuf.mdx';
 import { Metadata } from 'next';
 
@@ -35,4 +34,3 @@ const Page = () => {
 };
 
 export default Page;
-        

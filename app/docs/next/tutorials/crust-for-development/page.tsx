@@ -1,4 +1,3 @@
-
 import Component from './crust-for-development.mdx';
 import { Metadata } from 'next';
 

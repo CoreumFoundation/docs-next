@@ -2,7 +2,6 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './useful-links.mdx';
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Useful Links for Coreum Community and Developers | Coreum",
@@ -28,7 +27,6 @@ export const metadata: Metadata = {
     }],
   },
 };
-
 
 const Page = () => {
   const prevNavigationItem = {

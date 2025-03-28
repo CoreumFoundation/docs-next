@@ -1,6 +1,4 @@
-
 import Component from './coreum-wasm-sdk.mdx';
-
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

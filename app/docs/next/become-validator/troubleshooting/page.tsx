@@ -1,6 +1,4 @@
-
 import Component from './troubleshooting.mdx';
-
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

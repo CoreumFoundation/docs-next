@@ -1,4 +1,3 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './send-multisig-transaction.mdx';
 import { Metadata } from 'next';

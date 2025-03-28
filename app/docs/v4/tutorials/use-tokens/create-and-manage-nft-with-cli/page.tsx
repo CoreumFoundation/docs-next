@@ -1,8 +1,6 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-and-manage-nft-with-cli.mdx';
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Creating Non-Fungible Tokens on Coreum with CLI | Coreum Docs",

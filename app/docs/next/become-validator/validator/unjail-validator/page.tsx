@@ -1,4 +1,3 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './unjail-validator.mdx';
 import { Metadata } from 'next';

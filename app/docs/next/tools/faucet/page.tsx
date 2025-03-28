@@ -1,7 +1,5 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './faucet.mdx';
-
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

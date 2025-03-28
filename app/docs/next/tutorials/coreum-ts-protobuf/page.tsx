@@ -1,4 +1,3 @@
-
 import Component from './coreum-ts-protobuf.mdx';
 import { Metadata } from 'next';
 

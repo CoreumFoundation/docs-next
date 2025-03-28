@@ -1,8 +1,6 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './create-and-manage-nft-with-golang.mdx';
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Create and Manage NFTs on Coreum with Golang | Coreum Developer Guide",

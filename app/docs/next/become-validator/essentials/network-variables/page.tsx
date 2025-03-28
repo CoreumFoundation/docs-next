@@ -1,8 +1,6 @@
 import Component from './network-variables.mdx';
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Install Coreum's Core Daemon (cored): Comprehensive Guide | Coreum Docs",
@@ -30,17 +28,13 @@ export const metadata: Metadata = {
 
 
 const Page = () => {
-  const pathname = usePathname();
-
-  const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
-
   const prevNavigationItem = {
     label: 'Set Connnection config',
-    href: `${routePrefix}/become-validator/essentials/connection-config`,
+    href: `/docs/next/become-validator/essentials/connection-config`,
   };
   const nextNavigationItem = {
     label: 'Troubleshooting',
-    href: `${routePrefix}/become-validator/troubleshooting`,
+    href: `/docs/next/become-validator/troubleshooting`,
   };
 
   return (

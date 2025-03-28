@@ -1,6 +1,4 @@
-
 import Component from './connection-config.mdx';
-
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

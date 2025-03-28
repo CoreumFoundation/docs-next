@@ -1,9 +1,6 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-fee-model.mdx';
-
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Coreum Fee Model: Dynamic Gas Pricing for Blockchain Transactions | Coreum Developers",

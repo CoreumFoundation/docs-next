@@ -1,9 +1,6 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './system-requirements.mdx';
-
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Coreum Node System Requirements for Mainnet, Testnet, and Devnet | Coreum Docs",
@@ -29,16 +26,13 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  const pathname = usePathname();
-  const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
-
   const prevNavigationItem = {
     label: 'Run Sentry Node',
-    href: `${routePrefix}/become-validator/validator/run-sentry`,
+    href: `/docs/next/become-validator/validator/run-sentry`,
   };
   const nextNavigationItem = {
     label: 'How much fund do I need to create a validator?',
-    href: `${routePrefix}/become-validator/essentials/how-much-fund-to-create-validator`,
+    href: `/docs/next/become-validator/essentials/how-much-fund-to-create-validator`,
   };
 
   return (

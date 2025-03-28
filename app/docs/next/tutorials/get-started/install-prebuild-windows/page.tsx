@@ -1,4 +1,3 @@
-
 import Component from './install-prebuild-windows.mdx';
 import { Metadata } from 'next';
 
@@ -35,5 +34,3 @@ const Page = () => {
 };
 
 export default Page;
-        
-  

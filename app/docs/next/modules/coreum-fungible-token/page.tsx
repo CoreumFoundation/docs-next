@@ -1,9 +1,6 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-fungible-token.mdx';
-
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Coreum Fungible Token Creation and Management | Coreum Developers",
@@ -30,7 +27,6 @@ export const metadata: Metadata = {
     }],
   },
 };
-
 
 const Page = () => {
   const prevNavigationItem = {

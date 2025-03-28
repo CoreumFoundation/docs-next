@@ -1,9 +1,6 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './run-sentry.mdx';
-
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Guide to Setting Up Sentry Nodes for Coreum Blockchain | Coreum Node Configuration",
