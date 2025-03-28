@@ -25,7 +25,7 @@ The documentation below explains how to create a Multisig account and grant diff
     # 1000000 - the initial amount of umyft (1 MYFT)
     # --features - optional flag that defines what features the FT will have
     # --send-commission-rate - the value of the commission rate charged when sent.
-    # In this particular case we didn't incluse burn-rate so the value of that will be 0.
+    # In this particular case we didn't include burn-rate so the value of that will be 0.
 ```
 
 * Check the tx content.
@@ -166,7 +166,7 @@ There are currently multiple implementations of interfaces. In the main Cosmos r
 
 It allows us to create multisigs using both public keys (like we did in this tutorial with CLI) or our addresses. If you want to use addresses to create a multisig instead of public keys, these addresses must have been created on chain (they must have received funds before). If these addresses have never received any tokens, they can not be used to create the multisig because the Public Key can not be obtained from the chain.
 
-In general, these multisig implementions have the following workflow.
+In general, these multisig implementations have the following workflow.
 
 1. Create the multisig.
 2. Use the multisig to create a transaction.

@@ -1,7 +1,7 @@
 # Smart Tokens
 
 Smart tokens are natively issued tokens on the Coreum chain that are wrapped around Smart Contracts.
-They are highly customizable and are designed to be lightweight and flexible while remaining extendible.
+They are highly customizable and are designed to be lightweight and flexible while remaining extendable.
 
 These tokens exist on the chain’s storage and memory, hence, interacting with them does not require calling Smart Contract functions.
 We can refer to Smart Tokens as objects and classes that inherit a set of characteristics and functions from the global definition of a token.
@@ -21,7 +21,7 @@ Currently, the following set of features is available for all Smart Tokens:
 - [IBC (Inter Blockchain Communication) compatibility](#ibc-compatibility)
 - [Smart Contract integration](#smart-contract-integration)
 - [Clawback](#clawback)
-- [Transfering Admin](#transfering-admin)
+- [Transferring Admin](#transferring-admin)
 - [Clear Admin](#clear-admin)
 - [Extension](#extension)
 
@@ -196,8 +196,8 @@ Same rules apply to sending tokens over IBC transfer protocol if IBC is enabled 
 _**Disclaimer**: if the admin claws back from the escrow address, then it will break the IBC. admins
 should not do this if they want the IBC to work for their token._
 
-<a id="transfering-admin"></a>
-### Transfering Admin
+<a id="transferring-admin"></a>
+### Transferring Admin
 Each token has an issuer, whose address is a part of the denom forever. The initial admin of the token is the issuer, but the admin role can be transferred to another account. Then, all the privileges of the previous admin will be transferred to the new admin, such as the ability to mint tokens if minting is enabled. The specific privileges and features will be discussed in the next section.
 
 <a id="clear-admin"></a>

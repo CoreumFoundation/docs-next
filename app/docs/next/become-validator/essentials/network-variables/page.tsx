@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Set Connnection config',
+    label: 'Set Connection config',
     href: `/docs/next/become-validator/essentials/connection-config`,
   };
   const nextNavigationItem = {

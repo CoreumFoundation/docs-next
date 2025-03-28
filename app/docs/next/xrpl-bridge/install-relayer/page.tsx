@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "XRPL-Coreum Relayer Setup: A Developer's Guide | Coreum and XRP Ledger Integration",
-  description: "Master XRPL-Coreum relayer setup for cross-chain functionality. Our guide covers CLI network variables and Docker configuration for seamless XRPL bridge intallation.",
+  description: "Master XRPL-Coreum relayer setup for cross-chain functionality. Our guide covers CLI network variables and Docker configuration for seamless XRPL bridge installation.",
   keywords: [
     'Coreum XRPL Relayer',
     'Coreum XRP Ledger',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    description: "Master XRPL-Coreum relayer setup for cross-chain functionality. Our guide covers CLI network variables and Docker configuration for seamless XRPL bridge intallation.",
+    description: "Master XRPL-Coreum relayer setup for cross-chain functionality. Our guide covers CLI network variables and Docker configuration for seamless XRPL bridge installation.",
     siteName: "XRPL-Coreum Relayer Setup: A Developer's Guide | Coreum and XRP Ledger Integration",
     images: [{
       url: 'https://test.docs.coreum.dev/images/og.jpg',

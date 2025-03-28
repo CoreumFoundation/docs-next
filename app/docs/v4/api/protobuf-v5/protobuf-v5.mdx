@@ -3,7 +3,7 @@
 # Protobuf v5 Documentation
 
 > [!WARNING]
-> This Protobuf structure is avaliable on `DEVNET-1` network only.
+> This Protobuf structure is available on `DEVNET-1` network only.
 
 <a name="top"></a>
 
@@ -3636,7 +3636,7 @@ Msg defines the Msg service.
 | `AddToWhitelist` | [MsgAddToWhitelist](#coreum.asset.nft.v1.MsgAddToWhitelist) | [EmptyResponse](#coreum.asset.nft.v1.EmptyResponse) | `AddToWhitelist sets the account as whitelisted to hold the NFT` |  |
 | `RemoveFromWhitelist` | [MsgRemoveFromWhitelist](#coreum.asset.nft.v1.MsgRemoveFromWhitelist) | [EmptyResponse](#coreum.asset.nft.v1.EmptyResponse) | `RemoveFromWhitelist removes an account from whitelisted list of the NFT` |  |
 | `AddToClassWhitelist` | [MsgAddToClassWhitelist](#coreum.asset.nft.v1.MsgAddToClassWhitelist) | [EmptyResponse](#coreum.asset.nft.v1.EmptyResponse) | `AddToClassWhitelist adds account as whitelist for all the NFTs in the class NOTE: class whitelist does not affect the individual nft whitelisting.` |  |
-| `RemoveFromClassWhitelist` | [MsgRemoveFromClassWhitelist](#coreum.asset.nft.v1.MsgRemoveFromClassWhitelist) | [EmptyResponse](#coreum.asset.nft.v1.EmptyResponse) | `RemoveFromClassWhitelist removes account as whitelist for the entire class NOTE: class whitelist does not affect the individual nft whitelisting. ie. if specific whitelist is granted for an NFT, that whitelist will still be valid, ater we add and remove it from the class whitelist.` |  |
+| `RemoveFromClassWhitelist` | [MsgRemoveFromClassWhitelist](#coreum.asset.nft.v1.MsgRemoveFromClassWhitelist) | [EmptyResponse](#coreum.asset.nft.v1.EmptyResponse) | `RemoveFromClassWhitelist removes account as whitelist for the entire class NOTE: class whitelist does not affect the individual nft whitelisting. ie. if specific whitelist is granted for an NFT, that whitelist will still be valid, after we add and remove it from the class whitelist.` |  |
 | `ClassFreeze` | [MsgClassFreeze](#coreum.asset.nft.v1.MsgClassFreeze) | [EmptyResponse](#coreum.asset.nft.v1.EmptyResponse) | `ClassFreeze freezes all NFTs of a class held by an account.` |  |
 | `ClassUnfreeze` | [MsgClassUnfreeze](#coreum.asset.nft.v1.MsgClassUnfreeze) | [EmptyResponse](#coreum.asset.nft.v1.EmptyResponse) | `ClassUnfreeze removes class-freeze on an account for an NFT class. NOTE: class unfreeze does not affect the individual nft freeze.` |  |
 | `UpdateParams` | [MsgUpdateParams](#coreum.asset.nft.v1.MsgUpdateParams) | [EmptyResponse](#coreum.asset.nft.v1.EmptyResponse) | `UpdateParams is a governance operation that sets the parameters of the module. NOTE: all parameters must be provided.` |  |
@@ -5999,7 +5999,7 @@ EventGrant is emitted on Msg/Grant
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| `msg_type_url` | [string](#string) |  |  `Msg type URL for which an autorization is granted`  |
+| `msg_type_url` | [string](#string) |  |  `Msg type URL for which an authorization is granted`  |
 | `granter` | [string](#string) |  |  `Granter account address`  |
 | `grantee` | [string](#string) |  |  `Grantee account address`  |
 
@@ -6020,7 +6020,7 @@ EventRevoke is emitted on Msg/Revoke
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| `msg_type_url` | [string](#string) |  |  `Msg type URL for which an autorization is revoked`  |
+| `msg_type_url` | [string](#string) |  |  `Msg type URL for which an authorization is revoked`  |
 | `granter` | [string](#string) |  |  `Granter account address`  |
 | `grantee` | [string](#string) |  |  `Grantee account address`  |
 
@@ -8193,7 +8193,7 @@ AppDescriptor describes a cosmos-sdk based application
 | `chain` | [ChainDescriptor](#cosmos.base.reflection.v2alpha1.ChainDescriptor) |  |  `chain provides the chain descriptor`  |
 | `codec` | [CodecDescriptor](#cosmos.base.reflection.v2alpha1.CodecDescriptor) |  |  `codec provides metadata information regarding codec related types`  |
 | `configuration` | [ConfigurationDescriptor](#cosmos.base.reflection.v2alpha1.ConfigurationDescriptor) |  |  `configuration provides metadata information regarding the sdk.Config type`  |
-| `query_services` | [QueryServicesDescriptor](#cosmos.base.reflection.v2alpha1.QueryServicesDescriptor) |  |  `query_services provides metadata information regarding the available queriable endpoints`  |
+| `query_services` | [QueryServicesDescriptor](#cosmos.base.reflection.v2alpha1.QueryServicesDescriptor) |  |  `query_services provides metadata information regarding the available queryable endpoints`  |
 | `tx` | [TxDescriptor](#cosmos.base.reflection.v2alpha1.TxDescriptor) |  |  `tx provides metadata information regarding how to send transactions to the given application`  |
 
 
@@ -8605,7 +8605,7 @@ QueryServiceDescriptor describes a cosmos-sdk queryable service
 ### QueryServicesDescriptor
 
 ```
-QueryServicesDescriptor contains the list of cosmos-sdk queriable services
+QueryServicesDescriptor contains the list of cosmos-sdk queryable services
 ```
 
 
@@ -12689,10 +12689,10 @@ GenesisState defines the gov module's genesis state.
 | `deposits` | [Deposit](#cosmos.gov.v1.Deposit) | repeated |  `deposits defines all the deposits present at genesis.`  |
 | `votes` | [Vote](#cosmos.gov.v1.Vote) | repeated |  `votes defines all the votes present at genesis.`  |
 | `proposals` | [Proposal](#cosmos.gov.v1.Proposal) | repeated |  `proposals defines all the proposals present at genesis.`  |
-| `deposit_params` | [DepositParams](#cosmos.gov.v1.DepositParams) |  | **Deprecated.**  `Deprecated: Prefer to use params instead. deposit_params defines all the paramaters of related to deposit.`  |
-| `voting_params` | [VotingParams](#cosmos.gov.v1.VotingParams) |  | **Deprecated.**  `Deprecated: Prefer to use params instead. voting_params defines all the paramaters of related to voting.`  |
-| `tally_params` | [TallyParams](#cosmos.gov.v1.TallyParams) |  | **Deprecated.**  `Deprecated: Prefer to use params instead. tally_params defines all the paramaters of related to tally.`  |
-| `params` | [Params](#cosmos.gov.v1.Params) |  |  `params defines all the paramaters of x/gov module.  Since: cosmos-sdk 0.47`  |
+| `deposit_params` | [DepositParams](#cosmos.gov.v1.DepositParams) |  | **Deprecated.**  `Deprecated: Prefer to use params instead. deposit_params defines all the parameters of related to deposit.`  |
+| `voting_params` | [VotingParams](#cosmos.gov.v1.VotingParams) |  | **Deprecated.**  `Deprecated: Prefer to use params instead. voting_params defines all the parameters of related to voting.`  |
+| `tally_params` | [TallyParams](#cosmos.gov.v1.TallyParams) |  | **Deprecated.**  `Deprecated: Prefer to use params instead. tally_params defines all the parameters of related to tally.`  |
+| `params` | [Params](#cosmos.gov.v1.Params) |  |  `params defines all the parameters of x/gov module.  Since: cosmos-sdk 0.47`  |
 
 
 
@@ -12815,7 +12815,7 @@ Proposal defines the core field members of a governance proposal.
 | `metadata` | [string](#string) |  |  `metadata is any arbitrary metadata attached to the proposal.`  |
 | `title` | [string](#string) |  |  `title is the title of the proposal  Since: cosmos-sdk 0.47`  |
 | `summary` | [string](#string) |  |  `summary is a short summary of the proposal  Since: cosmos-sdk 0.47`  |
-| `proposer` | [string](#string) |  |  `Proposer is the address of the proposal sumbitter  Since: cosmos-sdk 0.47`  |
+| `proposer` | [string](#string) |  |  `Proposer is the address of the proposal submitter  Since: cosmos-sdk 0.47`  |
 
 
 
@@ -13101,7 +13101,7 @@ QueryParamsResponse is the response type for the Query/Params RPC method.
 | `voting_params` | [VotingParams](#cosmos.gov.v1.VotingParams) |  | **Deprecated.**  `Deprecated: Prefer to use params instead. voting_params defines the parameters related to voting.`  |
 | `deposit_params` | [DepositParams](#cosmos.gov.v1.DepositParams) |  | **Deprecated.**  `Deprecated: Prefer to use params instead. deposit_params defines the parameters related to deposit.`  |
 | `tally_params` | [TallyParams](#cosmos.gov.v1.TallyParams) |  | **Deprecated.**  `Deprecated: Prefer to use params instead. tally_params defines the parameters related to tally.`  |
-| `params` | [Params](#cosmos.gov.v1.Params) |  |  `params defines all the paramaters of x/gov module.  Since: cosmos-sdk 0.47`  |
+| `params` | [Params](#cosmos.gov.v1.Params) |  |  `params defines all the parameters of x/gov module.  Since: cosmos-sdk 0.47`  |
 
 
 
@@ -19619,7 +19619,7 @@ multiplied by exchange rate.
 | `commission` | [Commission](#cosmos.staking.v1beta1.Commission) |  |  `commission defines the commission parameters.`  |
 | `min_self_delegation` | [string](#string) |  |  `min_self_delegation is the validator's self declared minimum self delegation.  Since: cosmos-sdk 0.46`  |
 | `unbonding_on_hold_ref_count` | [int64](#int64) |  |  `strictly positive if this validator's unbonding has been stopped by external modules`  |
-| `unbonding_ids` | [uint64](#uint64) | repeated |  `list of unbonding ids, each uniquely identifing an unbonding of this validator`  |
+| `unbonding_ids` | [uint64](#uint64) | repeated |  `list of unbonding ids, each uniquely identifying an unbonding of this validator`  |
 
 
 
@@ -19672,7 +19672,7 @@ BondStatus is the status of a validator.
 ### Infraction
 
 ```
-Infraction indicates the infraction a validator commited.
+Infraction indicates the infraction a validator committed.
 ```
 
 
@@ -22280,7 +22280,7 @@ offers a snapshot to the application
 | `codespace` | [string](#string) |  |    |
 | `sender` | [string](#string) |  |    |
 | `priority` | [int64](#int64) |  |    |
-| `mempool_error` | [string](#string) |  |  `mempool_error is set by CometBFT. ABCI applictions creating a ResponseCheckTX should not set mempool_error.`  |
+| `mempool_error` | [string](#string) |  |  `mempool_error is set by CometBFT. ABCI applications creating a ResponseCheckTX should not set mempool_error.`  |
 
 
 
@@ -22816,7 +22816,7 @@ PublicKey defines the keys available for use with Validators
 
 ```
 ProofOp defines an operation used for calculating Merkle root
-The data could be arbitrary format, providing nessecary data
+The data could be arbitrary format, providing necessary data
 for example neighbouring node hash
 ```
 
@@ -23550,7 +23550,7 @@ consensus.
 ### BlockIDFlag
 
 ```
-BlockIdFlag indicates which BlcokID the signature is for
+BlockIdFlag indicates which BlockID the signature is for
 ```
 
 
@@ -25005,7 +25005,7 @@ Since: 0.40
 | `instantiate_permission` | [AccessConfig](#cosmwasm.wasm.v1.AccessConfig) |  |  `InstantiatePermission to apply on contract creation, optional`  |
 | `unpin_code` | [bool](#bool) |  |  `UnpinCode code on upload, optional. As default the uploaded contract is pinned to cache.`  |
 | `admin` | [string](#string) |  |  `Admin is an optional address that can execute migrations`  |
-| `label` | [string](#string) |  |  `Label is optional metadata to be stored with a constract instance.`  |
+| `label` | [string](#string) |  |  `Label is optional metadata to be stored with a contract instance.`  |
 | `msg` | [bytes](#bytes) |  |  `Msg json encoded message to be passed to the contract on instantiation`  |
 | `funds` | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  `Funds coins that are transferred from the authority account to the contract on instantiation`  |
 | `source` | [string](#string) |  |  `Source is the URL where the code is hosted`  |

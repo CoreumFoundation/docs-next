@@ -2,7 +2,7 @@ import { isBrowser } from '@/helpers/isBrowser';
 import { useCallback, useEffect, useState } from 'react';
 
 export const useSetMobileDevice = (
-    isHorizonal = false,
+    isHorizontal = false,
     maxWidth = 768,
     maxHeight = 600
 ) => {
@@ -16,7 +16,7 @@ export const useSetMobileDevice = (
                     : definedWindow.innerWidth;
             const height = definedWindow.innerHeight;
 
-            if (isHorizonal) {
+            if (isHorizontal) {
                 const query = definedWindow.matchMedia(
                     `(max-height: ${maxHeight}px)`
                 );
@@ -27,7 +27,7 @@ export const useSetMobileDevice = (
             );
             return query.matches && width < maxWidth;
         },
-        [isHorizonal, maxWidth, maxHeight]
+        [isHorizontal, maxWidth, maxHeight]
     );
 
     useEffect(() => {
