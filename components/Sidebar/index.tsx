@@ -122,13 +122,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
     if (routePrefix.includes('next')) {
       return [
         ...OVERVIEW_ITEMS,
-        ...TUTORIAL_ITEMS,
         ...MODULES_ITEMS,
-        ...XRPL_BRIDGE_ITEMS,
-        ...DEX_API,
-        ...VALIDATORS_ITEMS,
-        ...API_ITEMS,
         ...TOOLS_ITEMS,
+        ...XRPL_BRIDGE_ITEMS,
+        ...VALIDATORS_ITEMS,
+        ...TUTORIAL_ITEMS,
+        ...DEX_API,
+        ...API_ITEMS,
         ...HELP_ITEMS,
         ...BUG_BOUNTY_ITEMS,
       ];
@@ -136,12 +136,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
 
     return [
       ...OVERVIEW_ITEMS,
-      ...TUTORIAL_ITEMS,
       ...MODULES_ITEMS,
+      ...TOOLS_ITEMS,
       ...XRPL_BRIDGE_ITEMS,
       ...VALIDATORS_ITEMS,
+      ...TUTORIAL_ITEMS,
       ...API_ITEMS,
-      ...TOOLS_ITEMS,
       ...HELP_ITEMS,
       ...BUG_BOUNTY_ITEMS,
     ];

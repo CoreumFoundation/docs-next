@@ -107,7 +107,7 @@ export const TUTORIAL_ITEMS = [
                 href: '/tutorials/get-started/typescript/transfer-funds',
               },
               {
-                name: 'Using CosmJS',
+                name: 'Using cosmjs',
                 href: '/tutorials/get-started/typescript/cosmjs',
               },
               {
@@ -116,6 +116,34 @@ export const TUTORIAL_ITEMS = [
               },
             ],
           },
+        ],
+      },
+      {
+        name: 'Smart Tokens',
+        href: '/tutorials/smart-tokens',
+        children: [
+          {
+            name: 'Create and Manage Fungible Tokens',
+            href: '/tutorials/smart-tokens/create-and-manage-ft',
+          },
+          {
+            name: 'Create and Manage Non-Fungible Tokens',
+            href: '/tutorials/smart-tokens/create-and-manage-nft',
+          },
+          {
+            name: 'Asset FT Extension',
+            href: '/tutorials/smart-tokens/asset-ft-extension'
+          },
+          {
+            name: 'Use Cases',
+            href: '/tutorials/smart-tokens/use-cases',
+            children: [
+              {
+                name: 'Airdrop Token',
+                href: '/tutorials/smart-tokens/use-cases/airdrop-token',
+              },
+            ],
+          }
         ],
       },
       {
@@ -145,6 +173,24 @@ export const TUTORIAL_ITEMS = [
         ],
       },
       {
+        name: 'Build Apps',
+        href: '/tutorials/build-apps',
+        children: [
+          {
+            name: 'Web App',
+            href: '/tutorials/build-apps/web-app',
+          },
+          {
+            name: 'Automated Market Maker (AMM)',
+            href: '/tutorials/build-apps/amm',
+          },
+          {
+            name: 'Development Environment',
+            href: '/tutorials/crust-for-development',
+          },
+        ],
+      },
+      {
         name: 'Integrate Coreum',
         href: '/tutorials/integrate-coreum',
         children: [
@@ -163,24 +209,6 @@ export const TUTORIAL_ITEMS = [
           {
             name: "XRPL Bridge Integration",
             href: '/tutorials/integrate-coreum/xrpl-bridge-integration',
-          },
-        ],
-      },
-      {
-        name: 'Build Apps',
-        href: '/tutorials/build-apps',
-        children: [
-          {
-            name: 'Web App',
-            href: '/tutorials/build-apps/web-app',
-          },
-          {
-            name: 'Automated Market Maker (AMM)',
-            href: '/tutorials/build-apps/amm',
-          },
-          {
-            name: 'Crust for Development',
-            href: '/tutorials/crust-for-development',
           },
         ],
       },
@@ -225,34 +253,6 @@ export const TUTORIAL_ITEMS = [
           {
             name: 'ISO20022 Client',
             href: '/tutorials/ISO20022/ISO20022-client',
-          }
-        ],
-      },
-      {
-        name: 'Smart Tokens',
-        href: '/tutorials/smart-tokens',
-        children: [
-          {
-            name: 'Create and Manage FT',
-            href: '/tutorials/smart-tokens/create-and-manage-ft',
-          },
-          {
-            name: 'Create and Manage NFT',
-            href: '/tutorials/smart-tokens/create-and-manage-nft',
-          },
-          {
-            name: 'Asset FT Extension',
-            href: '/tutorials/smart-tokens/asset-ft-extension'
-          },
-          {
-            name: 'Use cases',
-            href: '/tutorials/smart-tokens/use-cases',
-            children: [
-              {
-                name: 'Airdrop Token',
-                href: '/tutorials/smart-tokens/use-cases/airdrop-token',
-              },
-            ],
           }
         ],
       },
@@ -311,24 +311,24 @@ export const XRPL_BRIDGE_ITEMS = [
         href: '/xrpl-bridge/introduction',
       },
       {
-        name: 'Install Relayer',
-        href: '/xrpl-bridge/install-relayer',
-      },
-      {
-        name: 'Run Relayer',
-        href: '/xrpl-bridge/run-relayer',
-      },
-      {
         name: 'Asset flow',
         href: '/xrpl-bridge/asset-flow',
+      },
+      {
+        name: 'Fees',
+        href: '/xrpl-bridge/fees',
       },
       {
         name: 'Register New Token',
         href: '/xrpl-bridge/register-new-token',
       },
       {
-        name: 'Fees',
-        href: '/xrpl-bridge/fees',
+        name: 'Install Relayer',
+        href: '/xrpl-bridge/install-relayer',
+      },
+      {
+        name: 'Run Relayer',
+        href: '/xrpl-bridge/run-relayer',
       },
       {
         name: 'Update Relayer',
@@ -352,6 +352,18 @@ export const DEX_API = [
         href: '/core-dex/introduction',
       },
       {
+        name: 'Data Aggregator',
+        href: '/core-dex/data-aggregator',
+      },
+      {
+        name: 'Store',
+        href: '/core-dex/store',
+      },
+      {
+        name: 'Frontend',
+        href: '/core-dex/frontend',
+      },
+      {
         name: 'API Server',
         href: '/core-dex/api-server',
         children: [
@@ -364,18 +376,6 @@ export const DEX_API = [
             href: '/core-dex/api-server/update-service',
           },
         ],
-      },
-      {
-        name: 'Data Aggregator',
-        href: '/core-dex/data-aggregator',
-      },
-      {
-        name: 'Store',
-        href: '/core-dex/store',
-      },
-      {
-        name: 'Frontend',
-        href: '/core-dex/frontend',
       },
     ],
   },
@@ -391,12 +391,12 @@ export const VALIDATORS_ITEMS = [
         href: '/nodes-and-validators/overview'
       },
       {
-        name: 'Run Full Node',
-        href: '/nodes-and-validators/run-full-node',
-      },
-      {
         name: 'Run Validator',
         href: '/nodes-and-validators/run-validator',
+      },
+      {
+        name: 'Run Full Node',
+        href: '/nodes-and-validators/run-full-node',
       },
       {
         name: 'Run Sentry Node',
@@ -411,11 +411,11 @@ export const VALIDATORS_ITEMS = [
             href: '/nodes-and-validators/essentials/system-requirements',
           },
           {
-            name: 'How much fund do I need to create a validator?',
+            name: 'How Much Fund Do I Need to Create a Validator?',
             href: '/nodes-and-validators/essentials/how-much-fund-to-create-validator',
           },
           {
-            name: 'Node prerequisites',
+            name: 'Node Prerequisites',
             href: '/nodes-and-validators/essentials/node-prerequisites',
           },
           {
@@ -423,11 +423,11 @@ export const VALIDATORS_ITEMS = [
             href: '/nodes-and-validators/essentials/install-cored',
           },
           {
-            name: 'Setup network variables',
+            name: 'Setup Network Variables',
             href: '/nodes-and-validators/essentials/network-variables',
           },
           {
-            name: 'Set connection config',
+            name: 'Set Connection Config',
             href: '/nodes-and-validators/essentials/connection-config',
           },
         ],
@@ -456,7 +456,7 @@ export const VALIDATORS_ITEMS = [
 
 export const API_ITEMS = [
   {
-    name: 'API',
+    name: 'Protobuf',
     href: '/api',
     children: [
       {
@@ -518,13 +518,13 @@ export const HELP_ITEMS = [
         href: '/help/faq',
       },
       {
+        name: 'Support',
+        href: '/help/support'
+      },
+      {
         name: 'How to Unjail My Validator',
         href: '/help/how-to-unjail-my-validator',
       },
-      {
-        name: 'Support',
-        href: '/help/support'
-      }
     ],
   },
 ];
