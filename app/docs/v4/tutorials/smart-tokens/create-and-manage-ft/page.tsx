@@ -1,5 +1,5 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './create-and-manage-ft-with-cli.mdx';
+import Component from './create-and-manage-ft.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
