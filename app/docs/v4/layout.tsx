@@ -1,5 +1,4 @@
 import { Batch } from "@/components/Batch";
-import { Breadcrumb } from "@/components/Breadcrumb";
 import { WarningBlock } from "@/components/Warning";
 
 export default function RootLayout({
@@ -14,9 +13,6 @@ export default function RootLayout({
         <Batch label="Mainnet" />
         <Batch label="Testnet" />
         <Batch label="Devnet" />
-      </div>
-      <div className="mt-3">
-        <Breadcrumb />
       </div>
       <div className="flex items-center w-full mt-6 mb-12">
         <WarningBlock />
