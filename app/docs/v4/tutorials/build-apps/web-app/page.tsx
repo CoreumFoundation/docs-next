@@ -1,4 +1,3 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './web-app.mdx';
 import { Metadata } from 'next';

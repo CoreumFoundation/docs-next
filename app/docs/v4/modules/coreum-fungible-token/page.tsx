@@ -1,7 +1,5 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-fungible-token.mdx';
-
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -30,15 +28,14 @@ export const metadata: Metadata = {
   },
 };
 
-
 const Page = () => {
   const prevNavigationItem = {
     label: 'Modules Overview',
-    href: '/docs/v4/overview/modules',
+    href: `/docs/v4/overview/modules`,
   };
   const nextNavigationItem = {
     label: 'Non-Fungible Tokens',
-    href: '/docs/v4/modules/coreum-non-fungible-token',
+    href: `/docs/v4/modules/coreum-non-fungible-token`,
   };
 
   return (

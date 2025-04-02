@@ -1,7 +1,5 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './coreum-fee-model.mdx';
-
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -33,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Coreum Deterministic Gas',
-    href: '/docs/v4/modules/coreum-deterministic-gas',
+    href: `/docs/v4/modules/coreum-deterministic-gas`,
   };
   const nextNavigationItem = {
     label: 'Cosmos Non-Fungible Token',
-    href: '/docs/v4/modules/cosmos-non-fungible-token',
+    href: `/docs/v4/modules/cosmos-non-fungible-token`,
   };
 
   return (

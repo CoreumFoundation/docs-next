@@ -1,4 +1,3 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './cosmos-non-fungible-token.mdx';
 import { Metadata } from 'next';
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Coreum Fee Model',
-    href: '/docs/v4/modules/coreum-fee-model',
+    href: `/docs/v4/modules/coreum-fee-model`,
   };
 
   return (

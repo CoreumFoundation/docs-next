@@ -1,4 +1,3 @@
-
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './ledger-nano.mdx';
 import { Metadata } from 'next';

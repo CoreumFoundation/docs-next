@@ -61,7 +61,7 @@ const renderNavigationItems = (items: NavigationItem[], pathname: string, routeP
   if (!items) return null;
 
   return items.map((item: NavigationItem) => {
-    const isActive = pathname.includes(item.href);
+    const isActive = pathname.split(routePrefix)[1] === item.href;
 
     const cx = classNames('flex items-center w-full rounded-lg p-3 pr-2 gap-x-6 text-base font-normal capitalize', {
       'text-[#25D695] font-medium bg-sidebar-active': isActive,

@@ -1,5 +1,4 @@
 import { ProtobufPageContent } from './ProtobufPageContent';
-import { Batch } from '@/components/Batch';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -29,15 +28,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <>
-      <div className="flex items-center gap-2 mt-10">
-        <Batch label="v4" />
-        <Batch label="mainnet" />
-        <Batch label="testnet" />
-        <Batch label="devnet" />
-      </div>
-      <ProtobufPageContent />
-    </>
+    <ProtobufPageContent />
   );
 };
 
