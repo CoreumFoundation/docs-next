@@ -7,10 +7,6 @@ export const OVERVIEW_ITEMS = [
     href: '/overview',
     children: [
       {
-        name: 'General Overview',
-        href: '/overview/general',
-      },
-      {
         name: 'Introduction',
         href: '/overview/introduction',
       },
@@ -21,30 +17,6 @@ export const OVERVIEW_ITEMS = [
       {
         name: 'Smart Tokens',
         href: '/overview/smart-tokens'
-      },
-      {
-        name: 'Modules',
-        href: '/overview/modules',
-      },
-      {
-        name: 'Tutorials',
-        href: '/overview/tutorials',
-      },
-      {
-        name: 'Become Validator',
-        href: '/overview/validator',
-      },
-      {
-        name: 'Tools/Ecosystem',
-        href: '/overview/tools',
-      },
-      {
-        name: 'XRPL Bridge',
-        href: '/overview/xrpl-bridge',
-      },
-      {
-        name: 'Help',
-        href: '/overview/help',
       },
       {
         name: 'Technical White Paper',
@@ -61,6 +33,18 @@ export const TUTORIAL_ITEMS = [
     href: '/tutorials',
     children: [
       {
+        name: 'Overview',
+        href: '/tutorials/overview',
+      },
+      {
+        name: 'Gas Price',
+        href: '/tutorials/gas-price',
+      },
+      {
+        name: 'Special Addresses',
+        href: '/tutorials/special-addresses',
+      },
+      {
         name: 'Get Started',
         href: '/tutorials/get-started',
         children: [
@@ -75,27 +59,12 @@ export const TUTORIAL_ITEMS = [
             children: [],
           },
           {
-            name: 'Set Up cored Using Docker',
-            href: '/tutorials/get-started/setup-cored-using-docker',
-            children: [],
-          },
-          {
-            name: 'Install prebuild macOS',
-            href: '/tutorials/get-started/install-prebuild-macos',
-            children: [],
-          },
-          {
-            name: 'Install prebuild windows',
-            href: '/tutorials/get-started/install-prebuild-windows',
-            children: [],
-          },
-          {
             name: 'CLI',
             href: '/tutorials/get-started/cli',
             children: [
               {
                 name: 'Transfer Funds with CLI',
-                href: '/tutorials/get-started/cli/transfer-funds-cli',
+                href: '/tutorials/get-started/cli/transfer-funds-with-cli',
               },
               {
                 name: 'Send Multisig Transaction',
@@ -147,53 +116,31 @@ export const TUTORIAL_ITEMS = [
               },
             ],
           },
-          {
-            name: 'WASM',
-            href: '/tutorials/get-started/wasm',
-            children: [
-              {
-                name: 'Deploy First WASM Contract',
-                href: '/tutorials/get-started/wasm/deploy-wasm-contract',
-              },
-              {
-                name: 'Smart FT with WASM',
-                href: '/tutorials/get-started/wasm/smart-ft-with-wasm',
-              },
-              {
-                name: 'Testing Multiple Contracts',
-                href: '/tutorials/get-started/wasm/testing-multiple-contracts',
-              },
-              {
-                name: 'Using CosmJS with WASM Contracts',
-                href: '/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
-              },
-            ],
-          },
         ],
       },
       {
-        name: 'Use Tokens',
-        href: '/tutorials/use-tokens',
+        name: 'Smart Contracts',
+        href: '/tutorials/get-started/wasm',
         children: [
           {
-            name: 'Create and Manage FT with CLI',
-            href: '/tutorials/use-tokens/create-and-manage-ft-with-cli',
-          },
-          {
-            name: 'Create and Manage FT with Golang',
-            href: '/tutorials/use-tokens/create-and-manage-ft-with-golang',
-          },
-          {
-            name: 'Create and Manage NFT with CLI',
-            href: '/tutorials/use-tokens/create-and-manage-nft-with-cli',
-          },
-          {
-            name: 'Create and Manage NFT with Golang',
-            href: '/tutorials/use-tokens/create-and-manage-nft-with-golang',
+            name: 'Deploy First WASM Contract',
+            href: '/tutorials/get-started/smart-contracts/deploy-wasm-contract',
           },
           {
             name: 'Smart FT with WASM',
-            href: '/tutorials/use-tokens/smart-ft-with-wasm',
+            href: '/tutorials/get-started/smart-contracts/smart-ft-with-wasm',
+          },
+          {
+            name: 'Testing Multiple Contracts',
+            href: '/tutorials/get-started/smart-contracts/testing-multiple-contracts',
+          },
+          {
+            name: 'Using CosmJS with WASM Contracts',
+            href: '/tutorials/get-started/smart-contracts/using-cosmjs-with-wasm-contracts',
+          },
+          {
+            name: 'Coreum WASM SDK',
+            href: '/tutorials/get-started/smart-contracts/coreum-wasm-sdk',
           },
         ],
       },
@@ -213,6 +160,10 @@ export const TUTORIAL_ITEMS = [
             name: 'Explorer API - Beta',
             href: '/tutorials/integrate-coreum/explorer-api',
           },
+          {
+            name: "XRPL Bridge Integration",
+            href: '/tutorials/integrate-coreum/xrpl-bridge-integration',
+          },
         ],
       },
       {
@@ -224,9 +175,13 @@ export const TUTORIAL_ITEMS = [
             href: '/tutorials/build-apps/web-app',
           },
           {
-            name: 'AMM (Automated Market Maker)',
+            name: 'Automated Market Maker (AMM)',
             href: '/tutorials/build-apps/amm',
-          }
+          },
+          {
+            name: 'Crust for Development',
+            href: '/tutorials/crust-for-development',
+          },
         ],
       },
       {
@@ -269,33 +224,37 @@ export const TUTORIAL_ITEMS = [
           },
           {
             name: 'ISO20022 Client',
-            href: '/tutorials/ISO20022/ISO20022-Client',
+            href: '/tutorials/ISO20022/ISO20022-client',
           }
         ],
       },
       {
-        name: 'Gas Price',
-        href: '/tutorials/gas-price',
-      },
-      {
-        name: 'Coreum WASM SDK',
-        href: '/tutorials/coreum-wasm-sdk',
-      },
-      {
-        name: 'Coreum TS Protobuf',
-        href: '/tutorials/coreum-ts-protobuf',
-      },
-      {
-        name: 'Crust for Development',
-        href: '/tutorials/crust-for-development',
-      },
-      {
-        name: 'Special Addresses',
-        href: '/tutorials/special-addresses',
-      },
-      {
-        name: "Coreum XRPL Bridge",
-        href: '/tutorials/xrpl-bridge-integration',
+        name: 'Smart Tokens',
+        href: '/tutorials/smart-tokens',
+        children: [
+          {
+            name: 'Create and Manage FT',
+            href: '/tutorials/smart-tokens/create-and-manage-ft',
+          },
+          {
+            name: 'Create and Manage NFT',
+            href: '/tutorials/smart-tokens/create-and-manage-nft',
+          },
+          {
+            name: 'Asset FT Extension',
+            href: '/tutorials/smart-tokens/asset-ft-extension'
+          },
+          {
+            name: 'Use cases',
+            href: '/tutorials/smart-tokens/use-cases',
+            children: [
+              {
+                name: 'Airdrop Token',
+                href: '/tutorials/smart-tokens/use-cases/airdrop-token',
+              },
+            ],
+          }
+        ],
       },
     ],
   },
@@ -306,6 +265,10 @@ export const MODULES_ITEMS = [
     name: 'Modules',
     href: '/modules',
     children: [
+      {
+        name: 'Overview',
+        href: '/modules/overview',
+      },
       {
         name: 'Coreum Fungible Token',
         href: '/modules/coreum-fungible-token',
@@ -340,6 +303,14 @@ export const XRPL_BRIDGE_ITEMS = [
     href: '/xrpl-bridge',
     children: [
       {
+        name: 'Overview',
+        href: '/xrpl-bridge/overview',
+      },
+      {
+        name: 'Introduction',
+        href: '/xrpl-bridge/introduction',
+      },
+      {
         name: 'Install Relayer',
         href: '/xrpl-bridge/install-relayer',
       },
@@ -370,37 +341,41 @@ export const XRPL_BRIDGE_ITEMS = [
 export const DEX_API = [
   {
     name: 'DEX API',
-    href: '/core_dex',
+    href: '/core-dex',
     children: [
       {
         name: 'Overview',
-        href: '/core_dex/overview',
+        href: '/core-dex/overview',
+      },
+      {
+        name: 'Introduction',
+        href: '/core-dex/introduction',
       },
       {
         name: 'API Server',
-        href: '/core_dex/api-server',
+        href: '/core-dex/api-server',
         children: [
           {
             name: 'Overview',
-            href: '/core_dex/api-server/overview',
+            href: '/core-dex/api-server/overview',
           },
           {
             name: 'Update service',
-            href: '/core_dex/api-server/update-service',
+            href: '/core-dex/api-server/update-service',
           },
         ],
       },
       {
         name: 'Data Aggregator',
-        href: '/core_dex/data-aggregator',
+        href: '/core-dex/data-aggregator',
       },
       {
         name: 'Store',
-        href: '/core_dex/store',
+        href: '/core-dex/store',
       },
       {
         name: 'Frontend',
-        href: '/core_dex/frontend',
+        href: '/core-dex/frontend',
       },
     ],
   },
@@ -408,79 +383,73 @@ export const DEX_API = [
 
 export const VALIDATORS_ITEMS = [
   {
-    name: 'Become Validator',
-    href: '/become-validator',
+    name: 'Nodes And Validators',
+    href: '/nodes-and-validators',
     children: [
       {
-        name: 'Run Full Node',
-        href: '/become-validator/run-full-node',
+        name: 'Overview',
+        href: '/nodes-and-validators/overview'
       },
       {
-        name: 'Validator',
-        href: '/become-validator/validator',
+        name: 'Run Full Node',
+        href: '/nodes-and-validators/run-full-node',
+      },
+      {
+        name: 'Run Validator',
+        href: '/nodes-and-validators/run-validator',
+      },
+      {
+        name: 'Run Sentry Node',
+        href: '/nodes-and-validators/run-sentry',
+      },
+      {
+        name: 'Essentials',
+        href: '/nodes-and-validators/essentials',
         children: [
           {
-            name: 'Validator',
-            href: '/become-validator/validator/run-validator',
+            name: 'System Requirements',
+            href: '/nodes-and-validators/essentials/system-requirements',
           },
           {
-            name: 'Sentry',
-            href: '/become-validator/validator/run-sentry',
+            name: 'How much fund do I need to create a validator?',
+            href: '/nodes-and-validators/essentials/how-much-fund-to-create-validator',
           },
           {
-            name: 'How to Unjail My Validator',
-            href: '/become-validator/validator/unjail-validator',
+            name: 'Node prerequisites',
+            href: '/nodes-and-validators/essentials/node-prerequisites',
+          },
+          {
+            name: 'Install cored',
+            href: '/nodes-and-validators/essentials/install-cored',
+          },
+          {
+            name: 'Setup network variables',
+            href: '/nodes-and-validators/essentials/network-variables',
+          },
+          {
+            name: 'Set connection config',
+            href: '/nodes-and-validators/essentials/connection-config',
           },
         ],
       },
       {
-        name: 'Essentials',
-        href: '/become-validator/essentials',
+        name: 'Upgrades',
+        href: '/nodes-and-validators/upgrades',
         children: [
           {
-            name: 'System Requirements',
-            href: '/become-validator/essentials/system-requirements',
+            name: 'How to Upgrade My Node',
+            href: '/nodes-and-validators/upgrades/upgrades-history',
           },
           {
-            name: 'How much fund do I need to create a validator?',
-            href: '/become-validator/essentials/how-much-fund-to-create-validator',
-          },
-          {
-            name: 'Node prerequisites',
-            href: '/become-validator/essentials/node-prerequisites',
-          },
-          {
-            name: 'Install cored',
-            href: '/become-validator/essentials/install-cored',
-          },
-          {
-            name: 'Setup network variables',
-            href: '/become-validator/essentials/network-variables',
-          },
-          {
-            name: 'Set connection config',
-            href: '/become-validator/essentials/connection-config',
+            name: 'Upgrades History',
+            href: '/nodes-and-validators/upgrades/upgrades-instructions',
           },
         ],
       },
       {
         name: 'Troubleshooting',
-        href: '/become-validator/troubleshooting',
+        href: '/nodes-and-validators/troubleshooting',
       },
-      {
-        name: 'Upgrades',
-        href: '/become-validator/upgrades',
-        children: [
-          {
-            name: 'How to Upgrade My Node',
-            href: '/become-validator/upgrades/main-info',
-          },
-          {
-            name: 'Upgrades History',
-            href: '/become-validator/upgrades/history',
-          },
-        ],
-      }
     ],
   },
 ];
@@ -491,37 +460,45 @@ export const API_ITEMS = [
     href: '/api',
     children: [
       {
+        name: 'Overview',
+        href: '/api/overview',
+      },
+      {
         name: 'Protobuf',
         href: '/api/protobuf',
       },
       {
-        name: 'Protobuf v5',
-        href: '/api/protobuf-v5',
-      },
-      {
         name: 'Rust Protobuf',
         href: '/api/rust-protobuf',
-      }
+      },
+      {
+        name: 'Coreum TS Protobuf',
+        href: '/api/coreum-ts-protobuf',
+      },
     ]
   },
 ];
 
 export const TOOLS_ITEMS = [
   {
-    name: 'Tools/Ecosystem',
-    href: '/tools',
+    name: 'Tools And Ecosystem',
+    href: '/tools-and-ecosystem',
     children: [
       {
+        name: 'Overview',
+        href: '/tools-and-ecosystem/overview',
+      },
+      {
         name: 'Wallets',
-        href: '/tools/wallets',
+        href: '/tools-and-ecosystem/wallets',
       },
       {
         name: 'Faucet',
-        href: '/tools/faucet',
+        href: '/tools-and-ecosystem/faucet',
       },
       {
         name: 'Blockchain Explorers',
-        href: '/tools/blockchain-explorers',
+        href: '/tools-and-ecosystem/blockchain-explorers',
       },
     ],
   },
@@ -533,13 +510,21 @@ export const HELP_ITEMS = [
     href: '/help',
     children: [
       {
+        name: 'Overview',
+        href: '/help/overview',
+      },
+      {
         name: 'FAQ',
         href: '/help/faq',
       },
       {
-        name: 'Useful links',
-        href: '/help/useful-links',
+        name: 'How to Unjail My Validator',
+        href: '/help/how-to-unjail-my-validator',
       },
+      {
+        name: 'Support',
+        href: '/help/support'
+      }
     ],
   },
 ];
