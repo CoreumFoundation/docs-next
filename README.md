@@ -37,7 +37,7 @@ The output displays information about each route:
 - `Size` – The number of assets downloaded when navigating to the page client-side. The size for each route only includes its dependencies.
 - `First Load JS` – The number of assets downloaded when visiting the page from the server. The amount of JS shared by all is shown as a separate metric.
 
-## Start the applicaiton in production mode
+## Start the application in production mode
 
 To start the application in production mode, run `npm run start`.
 
