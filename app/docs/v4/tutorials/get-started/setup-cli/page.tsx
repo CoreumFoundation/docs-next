@@ -29,8 +29,8 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Tutorials Overview',
-    href: '/docs/v4/overview/tutorials',
+    label: 'Special addresses',
+    href: '/docs/v4/tutorials/special-addresses',
   };
   const nextNavigationItem = {
     label: 'Install cored',

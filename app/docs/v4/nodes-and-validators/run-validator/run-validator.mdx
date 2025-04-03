@@ -1,6 +1,6 @@
 # Run validator node
 
-* Follow instructions in [full node instruction](/docs/v4/become-validator/run-full-node) first, but set the following config before
+* Follow instructions in [full node instruction](/docs/v4/nodes-and-validators/run-full-node) first, but set the following config before
 you start the node. These configurations will reduce the storage size and in turn will make
 upgrades faster, and the downside is that the node will not have historical data, and cannot be used
 as a state-sync server.
@@ -80,8 +80,8 @@ crudini --set $COREUM_NODE_CONFIG consensus double_sign_check_height 10
   ```
 
 * Fund the account.
-  * You can find the recommended amount with calculation at [this page](/docs/v4/become-validator/essentials/how-much-fund-to-create-validator).
-  * For the Testnet and Devnet you can request test tokens in the <a className="text-[#24D494] font-bold" href="/docs/v4/tools/faucet" target="_blank">faucet</a>
+  * You can find the recommended amount with calculation at [this page](/docs/v4/nodes-and-validators/essentials/how-much-fund-to-create-validator).
+  * For the Testnet and Devnet you can request test tokens in the <a className="text-[#24D494] font-bold" href="/docs/v4/tools-and-ecosystem/faucet" target="_blank">faucet</a>
 
 * Check that you have enough to create the validator(minimum self delegation is 20k)
 
@@ -148,7 +148,7 @@ crudini --set $COREUM_NODE_CONFIG consensus double_sign_check_height 10
 
 * (Optional) You will receive tx hash, the final status of which you can check at block explorer.
 
-* If you have done everything right, you can see your validator at [Block Explorer](/docs/v4/tools/blockchain-explorers) validators section
+* If you have done everything right, you can see your validator at [Block Explorer](/docs/v4/tools-and-ecosystem/blockchain-explorers) validators section
 
 ## Change Pruning Config of Running Node
 **Attention!** *It possible to be jailed doing this operation, if you run a duplicate node
@@ -165,6 +165,6 @@ If you have started a validator node with a non-optimized pruning config, you mu
 4. sync up using state-sync snapshot.
 ## What is next?
 
-- If your validator was jailed, you can find instructions how to unjail my validator [here](/docs/v4/become-validator/validator/unjail-validator)
+- If your validator was jailed, you can find instructions how to unjail my validator [here](/docs/v4/nodes-and-validators/validator/unjail-validator)
 - If you don't want to expose your validator node to the internet, but still want to interact with the network,
-  rou can [run sentry node](/docs/v4/become-validator/validator/run-sentry).
+  rou can [run sentry node](/docs/v4/nodes-and-validators/validator/run-sentry).

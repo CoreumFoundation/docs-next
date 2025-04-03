@@ -34,12 +34,17 @@ const Page = () => {
     label: 'IBC WASM Transfer Tutorial',
     href: '/docs/v4/tutorials/ibc/ibc-wasm-transfer',
   };
+  const nextNavigationItem = {
+    label: 'Introduction to ISO20022',
+    href: '/docs/v4/tutorials/ISO20022/intro-to-ISO20022',
+  };
 
   return (
     <div className="flex flex-col w-full">
       <Component />
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
         <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
+        <NavigatonItem href={nextNavigationItem.href} label={nextNavigationItem.label} mode={NavigatonItemMode.Next} />
       </div>
     </div>
   );

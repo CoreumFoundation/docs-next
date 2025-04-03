@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Faucet',
-    href: '/docs/v4/tools/faucet',
+    href: '/docs/v4/tools-and-ecosystem/faucet',
   };
 
   return (

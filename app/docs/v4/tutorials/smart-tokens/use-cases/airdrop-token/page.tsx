@@ -31,12 +31,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Create and Manage NFT with Golang',
-    href: '/docs/v4/tutorials/use-tokens/create-and-manage-nft-with-golang',
+    label: 'Asset FT Extension',
+    href: '/docs/v4/tutorials/smart-tokens/asset-ft-extension',
   };
   const nextNavigationItem = {
-    label: 'Asset FT Extension',
-    href: '/docs/v4/tutorials/use-tokens/asset-ft-extension',
+    label: 'Deploy first WASM contract',
+    href: '/docs/v4/tutorials/smart-contracts/deploy-wasm-contract',
   };
 
   return (

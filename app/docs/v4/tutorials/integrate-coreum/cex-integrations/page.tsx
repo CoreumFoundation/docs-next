@@ -28,11 +28,11 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Smart FT with WASM',
-    href: '/docs/v4/tutorials/use-tokens/smart-ft-with-wasm',
+    label: 'Crust for Development',
+    href: '/docs/v4/tutorials/build-apps/development-environment',
   };
   const nextNavigationItem = {
-    label: 'Wallet Integration',
+    label: 'Wallet integration',
     href: '/docs/v4/tutorials/integrate-coreum/wallet-integration',
   };
 

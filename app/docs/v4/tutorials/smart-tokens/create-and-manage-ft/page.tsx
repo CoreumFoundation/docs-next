@@ -29,12 +29,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Using CosmJS with WASM Contracts',
-    href: '/docs/v4/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
+    label: 'Using coreum-js SDK to interact with Coreum network',
+    href: '/docs/v4/tutorials/get-started/typescript/coreum-js',
   };
   const nextNavigationItem = {
-    label: 'Create and Manage FT with Golang',
-    href: '/docs/v4/tutorials/use-tokens/create-and-manage-ft-with-golang',
+    label: 'Create and manage my first NFT',
+    href: '/docs/v4/tutorials/smart-tokens/create-and-manage-nft',
   };
 
   return (

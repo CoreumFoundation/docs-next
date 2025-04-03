@@ -1,3 +1,4 @@
+import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './troubleshooting.mdx';
 import { Metadata } from 'next';
 
@@ -24,8 +25,18 @@ export const metadata: Metadata = {
 
 
 const Page = () => {
+  const prevNavigationItem = {
+    label: 'Upgrade history',
+    href: '/docs/v4/nodes-and-validators/upgrades/upgrades-history',
+  };
+
   return (
-    <Component />
+    <div className="flex flex-col w-full">
+      <Component />
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
+        <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
+      </div>
+    </div>
   );
 };
 

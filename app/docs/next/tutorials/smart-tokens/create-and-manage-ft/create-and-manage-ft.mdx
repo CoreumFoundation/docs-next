@@ -21,7 +21,7 @@ Please note that each subsequent section depends on the previous one.
 -   [Install cored binary](/docs/next/tutorials/get-started/install-cored)
 
 -   You should have two accounts on your local keychain. If you do not have them, you can go to the
-    [faucet page](/docs/next/tools/faucet) and generate funded accounts for the testnet.
+    [faucet page](/docs/next/tools-and-ecosystem/faucet) and generate funded accounts for the testnet.
     Once you have their mnemonics, import them by running the following command:
 
     ```bash
@@ -72,7 +72,7 @@ Please note that each subsequent section depends on the previous one.
   </details>
 
   The output of the command should provide a transaction hash.
-  Copy this hash and go to the [Block explorer](/docs/next/tools/blockchain-explorers) to see the transaction's status.
+  Copy this hash and go to the [Block explorer](/docs/next/tools-and-ecosystem/blockchain-explorers) to see the transaction's status.
   Remember that your transaction may appear in block explorer with some delay since it should be indexed first.
 
   Please note that you can only issue one unique FT within one account address.
@@ -269,7 +269,7 @@ The send commission rate determines the commission applied to tokens transferred
 except when one of the participants is the token admin. To illustrate how this works, follow the
 steps below:
 
--   First, we need a third account to transfer tokens to, let's [generate](/docs/next/tools/faucet) it and prepare:
+-   First, we need a third account to transfer tokens to, let's [generate](/docs/next/tools-and-ecosystem/faucet) it and prepare:
     ```bash
     # import the third account
     cored keys add ft-receiver-2 --recover --chain-id=$CHAIN_ID

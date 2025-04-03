@@ -33,8 +33,8 @@ const Page = () => {
     href: '/docs/v4/tutorials/get-started/typescript/cosmjs',
   };
   const nextNavigationItem = {
-    label: 'Deploy First WASM Contract',
-    href: '/docs/v4/tutorials/get-started/wasm/deploy-wasm-contract',
+    label: 'Create and manage my first FT',
+    href: '/docs/v4/tutorials/smart-tokens/create-and-manage-ft',
   };
 
   return (

@@ -28,12 +28,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Using coreum-js',
-    href: '/docs/v4/tutorials/get-started/typescript/coreum-js',
+    label: 'Smart FT with WASM',
+    href: '/docs/v4/tutorials/smart-tokens/use-cases/airdrop-token',
   };
   const nextNavigationItem = {
-    label: 'Smart FT with WASM',
-    href: '/docs/v4/tutorials/get-started/wasm/smart-ft-with-wasm',
+    label: 'Testing multiple contracts',
+    href: '/docs/v4/tutorials/smart-contracts/testing-multiple-contracts',
   };
 
   return (

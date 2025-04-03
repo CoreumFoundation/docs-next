@@ -32,8 +32,8 @@ const Page = () => {
     href: '/docs/v4/tutorials/get-started/setup-cli',
   };
   const nextNavigationItem = {
-    label: 'Setup Cored Using Docker',
-    href: '/docs/v4/tutorials/get-started/setup-cored-using-docker',
+    label: 'Transfer funds with CLI',
+    href: '/docs/v4/tutorials/get-started/cli/transfer-funds-with-cli',
   };
 
   return (

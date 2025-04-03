@@ -6,13 +6,13 @@ This document describes the procedure of creating and running a sentry node.
 
 <a href="https://docs.tendermint.com/v0.34/tendermint-core/validators.html" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Here</a> you can find additional information about this node type.
 
-* <a href="/docs/v4/become-validator/essentials/system-requirements" className="text-[#25D695] hover:opacity-80 text-base font-bold">Check requirements</a>.
+* <a href="/docs/v4/nodes-and-validators/essentials/system-requirements" className="text-[#25D695] hover:opacity-80 text-base font-bold">Check requirements</a>.
 
-* <a href="/docs/v4/become-validator/essentials/install-cored" className="text-[#25D695] hover:opacity-80 text-base font-bold">Install cored binary</a>.
+* <a href="/docs/v4/nodes-and-validators/essentials/install-cored" className="text-[#25D695] hover:opacity-80 text-base font-bold">Install cored binary</a>.
 
-* Verify that <a href="/docs/v4/become-validator/essentials/network-variables" className="text-[#25D695] hover:opacity-80 text-base font-bold">network variables</a> are set up correctly.
+* Verify that <a href="/docs/v4/nodes-and-validators/essentials/network-variables" className="text-[#25D695] hover:opacity-80 text-base font-bold">network variables</a> are set up correctly.
 
-* <a href="/docs/v4/become-validator/essentials/node-prerequisites" className="text-[#25D695] hover:opacity-80 text-base font-bold">Set up node prerequisites</a>
+* <a href="/docs/v4/nodes-and-validators/essentials/node-prerequisites" className="text-[#25D695] hover:opacity-80 text-base font-bold">Set up node prerequisites</a>
 
 * Set the moniker variable to reuse it in the following instructions.
   ```bash
@@ -28,12 +28,12 @@ This document describes the procedure of creating and running a sentry node.
 
 * Install the required util: `crudini`.
 
-* Set the common connection config using the [doc](/docs/v4/become-validator/essentials/connection-config).
+* Set the common connection config using the [doc](/docs/v4/nodes-and-validators/essentials/connection-config).
 
 * Capture the validator peer and ip that this node will connect to.
 
   **Attention!** *This command must be executed on the validator node.
-  The "$COREUM_EXTERNAL_IP" is configured in the [doc](/docs/v4/become-validator/essentials/connection-config)",
+  The "$COREUM_EXTERNAL_IP" is configured in the [doc](/docs/v4/nodes-and-validators/essentials/connection-config)",
   If it isn't set, set it for the node.*
 
   ```bash
@@ -65,7 +65,7 @@ This document describes the procedure of creating and running a sentry node.
 * Capture the sentry peer that other nodes will use to connect to this sentry.
 
   **Attention!** *This command must be executed on the sentry node.
-  The "$COREUM_EXTERNAL_IP" is configured in the [doc](/docs/v4/become-validator/essentials/connection-config)",
+  The "$COREUM_EXTERNAL_IP" is configured in the [doc](/docs/v4/nodes-and-validators/essentials/connection-config)",
   If it isn't set, set it for the node.*
 
   ```bash

@@ -33,8 +33,8 @@ const Page = () => {
     href: '/docs/v4/tutorials/integrate-coreum/wallet-integration',
   };
   const nextNavigationItem = {
-    label: 'Web App',
-    href: '/docs/v4/tutorials/build-apps/web-app',
+    label: 'XRPL Bridge Integration',
+    href: '/docs/v4/tutorials/integrate-coreum/xrpl-bridge-integration',
   };
 
   return (

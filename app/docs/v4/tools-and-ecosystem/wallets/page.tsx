@@ -27,12 +27,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Tools/Ecosystem Overview',
-    href: '/docs/v4/overview/tools',
+    label: 'Tools and Ecosystem Overview',
+    href: '/docs/v4/tools-and-ecosystem/overview',
   };
   const nextNavigationItem = {
     label: 'Faucet',
-    href: '/docs/v4/tools/faucet',
+    href: '/docs/v4/tools-and-ecosystem/faucet',
   };
 
   return (

@@ -67,17 +67,17 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/docs/become-validator',
+        source: '/docs/nodes-and-validators',
         destination: '/docs/next/overview/validator',
         permanent: true,
       },
       {
-        source: '/docs/next/become-validator',
+        source: '/docs/next/nodes-and-validators',
         destination: '/docs/next/overview/validator',
         permanent: true,
       },
       {
-        source: '/docs/v4/become-validator',
+        source: '/docs/v4/nodes-and-validators',
         destination: '/docs/v4/overview/validator',
         permanent: true,
       },
@@ -107,13 +107,13 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/docs/become-validator/upgrades',
-        destination: '/docs/next/become-validator/upgrades/main-info',
+        source: '/docs/nodes-and-validators/upgrades',
+        destination: '/docs/next/nodes-and-validators/upgrades/main-info',
         permanent: true,
       },
       {
-        source: '/docs/next/become-validator/upgrades',
-        destination: '/docs/next/become-validator/upgrades/main-info',
+        source: '/docs/next/nodes-and-validators/upgrades',
+        destination: '/docs/next/nodes-and-validators/upgrades/main-info',
         permanent: true,
       },
       {
@@ -132,12 +132,12 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/docs/next/become-validator',
+        source: '/docs/next/nodes-and-validators',
         destination: '/docs/next/overview/validator',
         permanent: true,
       },
       {
-        source: '/docs/next/become-validator',
+        source: '/docs/next/nodes-and-validators',
         destination: '/docs/next/overview/validator',
         permanent: true,
       },
@@ -178,12 +178,12 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/docs/v4/become-validator',
+        source: '/docs/v4/nodes-and-validators',
         destination: '/docs/v4/overview/validator',
         permanent: true,
       },
       {
-        source: '/docs/v4/become-validator',
+        source: '/docs/v4/nodes-and-validators',
         destination: '/docs/v4/overview/validator',
         permanent: true,
       },
@@ -219,8 +219,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/docs/become-validator/:slug',
-        destination: '/docs/next/become-validator/:slug',
+        source: '/docs/nodes-and-validators/:slug',
+        destination: '/docs/next/nodes-and-validators/:slug',
         permanent: true,
       },
       {
@@ -239,8 +239,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/docs/tools/:slug',
-        destination: '/docs/next/tools/:slug',
+        source: '/docs/tools-and-ecosystem/:slug',
+        destination: '/docs/next/tools-and-ecosystem/:slug',
         permanent: true,
       },
       {

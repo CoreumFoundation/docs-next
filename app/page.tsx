@@ -23,7 +23,7 @@ export default function Home() {
       image: <CardImage type="validators" />,
       title: 'Validators',
       content: 'Guides and updates on node set up for deploying on devnet, testnet, or mainnet.',
-      href: `/docs/next/become-validator/run-full-node`,
+      href: `/docs/next/nodes-and-validators/run-full-node`,
     },
     {
       image: <CardImage type="developers" />,

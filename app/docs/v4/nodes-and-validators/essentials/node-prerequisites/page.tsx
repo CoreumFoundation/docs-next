@@ -1,3 +1,4 @@
+import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './node-prerequisites.mdx';
 import { Metadata } from 'next';
 
@@ -25,8 +26,23 @@ export const metadata: Metadata = {
 
 
 const Page = () => {
+  const prevNavigationItem = {
+    label: 'How much fund do I need to create a validator?',
+    href: '/docs/v4/nodes-and-validators/essentials/how-much-fund-to-create-validator',
+  };
+  const nextNavigationItem = {
+    label: 'Install Cored',
+    href: '/docs/v4/nodes-and-validators/essentials/install-cored',
+  };
+
   return (
-    <Component />
+    <div className="flex flex-col w-full">
+      <Component />
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
+        <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
+        <NavigatonItem href={nextNavigationItem.href} label={nextNavigationItem.label} mode={NavigatonItemMode.Next} />
+      </div>
+    </div>
   );
 };
 

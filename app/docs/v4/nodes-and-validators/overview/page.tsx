@@ -107,7 +107,10 @@ const TUTORIALS_ITEMS = {
 };
 
 const ValidatorMainPage = () => {
-  const nextNavigationItem = TUTORIALS_ITEMS.section_1.items[0];
+  const nextNavigationItem = {
+    label: 'Run a validator node',
+    href: '/docs/v4/nodes-and-validators/run-validator',
+  };
 
   return (
     <div className="flex flex-col w-full gap-6 max-w-[900px] px-2 pt-6 pb-10">

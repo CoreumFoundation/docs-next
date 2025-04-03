@@ -30,12 +30,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Smart FT with WASM',
-    href: '/docs/v4/tutorials/get-started/wasm/smart-ft-with-wasm',
+    label: 'Deploy first WASM contract',
+    href: '/docs/v4/tutorials/smart-contracts/deploy-wasm-contract',
   };
   const nextNavigationItem = {
-    label: 'Using CosmJS with WASM Contracts',
-    href: '/docs/v4/tutorials/get-started/wasm/using-cosmjs-with-wasm-contracts',
+    label: 'Using CosmJS with WASM contracts',
+    href: '/docs/v4/tutorials/smart-contracts/using-cosmjs-with-wasm-contracts',
   };
 
   return (

@@ -28,12 +28,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Create and Manage FT with Golang',
-    href: '/docs/v4/tutorials/use-tokens/create-and-manage-ft-with-golang',
+    label: 'Create and manage my first FT',
+    href: '/docs/v4/tutorials/smart-tokens/create-and-manage-ft',
   };
   const nextNavigationItem = {
-    label: 'Create and Manage NFT with Golang',
-    href: '/docs/v4/tutorials/use-tokens/create-and-manage-nft-with-golang',
+    label: 'Asset FT Extension',
+    href: '/docs/v4/tutorials/smart-tokens/asset-ft-extension',
   };
 
   return (

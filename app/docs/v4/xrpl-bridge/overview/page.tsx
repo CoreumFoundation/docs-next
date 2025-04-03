@@ -44,13 +44,13 @@ const XRPL_BRIDGE_ITEMS: DocLinkItemProps[] = [
     external: false,
   },
   {
-    label: 'Install Relayer',
-    href: '/docs/v4/xrpl-bridge/install-relayer',
+    label: 'Register New Token',
+    href: '/docs/v4/xrpl-bridge/register-new-token',
     external: false,
   },
   {
-    label: 'Register New Token',
-    href: '/docs/v4/xrpl-bridge/register-new-token',
+    label: 'Install Relayer',
+    href: '/docs/v4/xrpl-bridge/install-relayer',
     external: false,
   },
   {
