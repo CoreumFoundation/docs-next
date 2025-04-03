@@ -29,12 +29,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Web App',
+    label: 'Web app',
     href: '/docs/next/tutorials/build-apps/web-app',
   };
   const nextNavigationItem = {
-    label: 'IBC Channels',
-    href: '/docs/next/tutorials/ibc/ibc-channels',
+    label: 'Crust for Development',
+    href: '/docs/next/tutorials/build-apps/development-environment',
   };
 
   return (

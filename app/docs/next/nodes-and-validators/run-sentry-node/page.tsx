@@ -26,12 +26,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Run Validator Node',
-    href: `/docs/next/become-validator/validator/run-validator`,
+    label: 'Run a full node',
+    href: '/docs/next/nodes-and-validators/run-full-node',
   };
   const nextNavigationItem = {
     label: 'System Requirements',
-    href: `/docs/next/become-validator/essentials/system-requirements`,
+    href: '/docs/next/nodes-and-validators/essentials/system-requirements',
   };
 
   return (

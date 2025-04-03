@@ -126,17 +126,12 @@ const TUTORIALS_ITEMS = {
     items: [
       {
         label: 'Coreum WASM SDK',
-        href: '/docs/next/tutorials/smart-contracts/deploy-wasm-contract',
+        href: '/docs/next/tutorials/smart-contracts/coreum-wasm-sdk',
         external: false,
       },
       {
         label: 'Deploy first WASM contract',
         href: '/docs/next/tutorials/smart-contracts/deploy-wasm-contract',
-        external: false,
-      },
-      {
-        label: 'Smart FT with WASM',
-        href: '/docs/next/tutorials/smart-contracts/smart-ft-with-wasm',
         external: false,
       },
       {
@@ -271,7 +266,7 @@ const TUTORIALS_ITEMS = {
       },
       {
         label: 'ISO20022 Client',
-        href: '/docs/next/tutorials/ISO20022/ISO2022-client',
+        href: '/docs/next/tutorials/ISO20022/ISO20022-client',
         external: false,
       },
     ],
@@ -279,7 +274,10 @@ const TUTORIALS_ITEMS = {
 };
 
 const TutorialsMainPage = () => {
-  const nextNavigationItem = TUTORIALS_ITEMS.get_started.items[0];
+  const nextNavigationItem = {
+    label: 'Gas Price',
+    href: '/docs/next/tutorials/gas-price',
+  };
 
   return (
     <div className="flex flex-col w-full gap-6 max-w-[900px] px-2 pt-6 pb-[5.5rem]">

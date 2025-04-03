@@ -29,12 +29,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Set Connection config',
-    href: `/docs/next/become-validator/essentials/connection-config`,
+    label: 'Install Cored',
+    href: '/docs/next/nodes-and-validators/essentials/install-cored',
   };
   const nextNavigationItem = {
-    label: 'Troubleshooting',
-    href: `/docs/next/become-validator/troubleshooting`,
+    label: 'Set Connection Config',
+    href: '/docs/next/nodes-and-validators/essentials/connection-config',
   };
 
   return (

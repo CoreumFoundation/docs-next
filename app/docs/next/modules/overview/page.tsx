@@ -62,6 +62,10 @@ const MODULES_ITEMS: DocLinkItemProps[] = [
 
 const ModulesMainPage = () => {
   const nextNavigationItem = MODULES_ITEMS[0];
+  const prevNavigationItem = {
+    label: 'Smart Tokens',
+    href: '/docs/next/overview/smart-tokens',
+  };
 
   return (
     <div className="flex flex-col w-full gap-6 max-w-[900px] px-2 pt-6 pb-[5.5rem]">
@@ -80,7 +84,7 @@ const ModulesMainPage = () => {
         ))}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
-        <div />
+        <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
         <NavigatonItem href={nextNavigationItem.href} label={nextNavigationItem.label} mode={NavigatonItemMode.Next} />
       </div>
     </div>

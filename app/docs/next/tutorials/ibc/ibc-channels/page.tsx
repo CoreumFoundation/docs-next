@@ -29,8 +29,8 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'AMM (Automated Market Maker)',
-    href: '/docs/next/tutorials/build-apps/amm',
+    label: 'XRPL Bridge Integration',
+    href: '/docs/next/tutorials/integrate-coreum/xrpl-bridge-integration',
   };
   const nextNavigationItem = {
     label: 'IBC Transfer to Osmosis Using Keplr Wallet',

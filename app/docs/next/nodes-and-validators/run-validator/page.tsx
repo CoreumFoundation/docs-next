@@ -26,12 +26,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Run Full Node',
-    href: `/docs/next/become-validator/run-full-node`,
+    label: 'Nodes and Validators Overview',
+    href: `/docs/next/nodes-and-validators/overview`,
   };
   const nextNavigationItem = {
-    label: 'Run Sentry Node',
-    href: `/docs/next/become-validator/validator/run-sentry`,
+    label: 'Run a full node',
+    href: '/docs/next/nodes-and-validators/run-full-node',
   };
 
   return (

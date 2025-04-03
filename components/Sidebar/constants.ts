@@ -7,6 +7,10 @@ export const OVERVIEW_ITEMS = [
     href: '/overview',
     children: [
       {
+        name: 'General Overview',
+        href: '/overview/general',
+      },
+      {
         name: 'Introduction',
         href: '/overview/introduction',
       },
@@ -148,27 +152,23 @@ export const TUTORIAL_ITEMS = [
       },
       {
         name: 'Smart Contracts',
-        href: '/tutorials/get-started/wasm',
+        href: '/tutorials/smart-contracts',
         children: [
           {
             name: 'Deploy First WASM Contract',
-            href: '/tutorials/get-started/smart-contracts/deploy-wasm-contract',
-          },
-          {
-            name: 'Smart FT with WASM',
-            href: '/tutorials/get-started/smart-contracts/smart-ft-with-wasm',
+            href: '/tutorials/smart-contracts/deploy-wasm-contract',
           },
           {
             name: 'Testing Multiple Contracts',
-            href: '/tutorials/get-started/smart-contracts/testing-multiple-contracts',
+            href: '/tutorials/smart-contracts/testing-multiple-contracts',
           },
           {
             name: 'Using CosmJS with WASM Contracts',
-            href: '/tutorials/get-started/smart-contracts/using-cosmjs-with-wasm-contracts',
+            href: '/tutorials/smart-contracts/using-cosmjs-with-wasm-contracts',
           },
           {
             name: 'Coreum WASM SDK',
-            href: '/tutorials/get-started/smart-contracts/coreum-wasm-sdk',
+            href: '/tutorials/smart-contracts/coreum-wasm-sdk',
           },
         ],
       },
@@ -186,7 +186,7 @@ export const TUTORIAL_ITEMS = [
           },
           {
             name: 'Development Environment',
-            href: '/tutorials/crust-for-development',
+            href: '/tutorials/build-apps/development-environment',
           },
         ],
       },
@@ -400,7 +400,7 @@ export const VALIDATORS_ITEMS = [
       },
       {
         name: 'Run Sentry Node',
-        href: '/nodes-and-validators/run-sentry',
+        href: '/nodes-and-validators/run-sentry-node',
       },
       {
         name: 'Essentials',
@@ -438,11 +438,11 @@ export const VALIDATORS_ITEMS = [
         children: [
           {
             name: 'How to Upgrade My Node',
-            href: '/nodes-and-validators/upgrades/upgrades-history',
+            href: '/nodes-and-validators/upgrades/upgrades-instructions',
           },
           {
             name: 'Upgrades History',
-            href: '/nodes-and-validators/upgrades/upgrades-instructions',
+            href: '/nodes-and-validators/upgrades/upgrades-history',
           },
         ],
       },

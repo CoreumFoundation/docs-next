@@ -31,12 +31,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Testing Multiple Contracts',
-    href: '/docs/next/tutorials/get-started/wasm/testing-multiple-contracts',
+    label: 'Testing multiple contracts',
+    href: '/docs/next/tutorials/smart-contracts/testing-multiple-contracts',
   };
   const nextNavigationItem = {
-    label: 'Create and Manage FT with CLI',
-    href: '/docs/next/tutorials/use-tokens/create-and-manage-ft-with-cli',
+    label: 'Coreum WASM SDK',
+    href: '/docs/next/tutorials/smart-contracts/coreum-wasm-sdk',
   };
 
   return (

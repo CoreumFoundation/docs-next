@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Component from './ISO20022-Client.mdx';
+import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 
 export const metadata: Metadata = {
   title: "ISO20022 Client: Decentralized Financial Messaging",
@@ -31,8 +32,18 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
+  const prevNavigationItem = {
+    label: 'Financial simulator',
+    href: '/docs/next/tutorials/ISO20022/financial-simulator',
+  };
+
   return (
-    <Component />
+    <div className="flex flex-col w-full">
+      <Component />
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
+        <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
+      </div>
+    </div>
   );
 };
 

@@ -30,12 +30,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Become Validator Overview',
-    href: `/docs/next/overview/validator`,
+    label: 'Run a validator node',
+    href: '/docs/next/nodes-and-validators/run-validator',
   };
   const nextNavigationItem = {
-    label: 'Run Validator Node',
-    href: `/docs/next/become-validator/validator/run-validator`,
+    label: 'Run a sentry node',
+    href: '/docs/next/nodes-and-validators/run-sentry-node',
   };
 
   return (

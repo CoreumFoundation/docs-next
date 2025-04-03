@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Explorer API - Beta',
-    href: '/docs/next/tutorials/integrate-coreum/explorer-api',
+    label: 'Coreum WASM SDK',
+    href: '/docs/next/tutorials/smart-contracts/coreum-wasm-sdk',
   };
   const nextNavigationItem = {
-    label: 'AMM (Automated Market Maker)',
+    label: 'Automated Market Maker (AMM)',
     href: '/docs/next/tutorials/build-apps/amm',
   };
 

@@ -30,8 +30,8 @@ const Page = () => {
     href: `/docs/next/overview/help`,
   };
   const nextNavigationItem = {
-    label: 'Useful links',
-    href: `/docs/next/help/useful-links`,
+    label: 'How to unjail my validator',
+    href: '/docs/next/help/how-to-unjail-my-validator',
   };
 
   return (

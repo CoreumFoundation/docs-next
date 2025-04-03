@@ -26,12 +26,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'How to Unjail My Validator',
-    href: `/docs/next/become-validator/validator/unjail-validator`,
+    label: 'Set Connection Config',
+    href: '/docs/next/nodes-and-validators/essentials/connection-config',
   };
   const nextNavigationItem = {
-    label: 'Upgrades History',
-    href: `/docs/next/become-validator/upgrades/history`,
+    label: 'Upgrade history',
+    href: '/docs/next/nodes-and-validators/upgrades/upgrades-history',
   };
 
   return (

@@ -1,3 +1,4 @@
+import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import { ProtobufPageContent } from './ProtobufPageContent';
 import { Metadata } from 'next';
 
@@ -27,8 +28,23 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
+  const prevNavigationItem = {
+    label: 'Coreum Protobuf Overview',
+    href: '/docs/next/api/overview',
+  };
+  const nextNavigationItem = {
+    label: 'Rust Protobuf',
+    href: '/docs/next/api/rust-protobuf',
+  };
+
   return (
-    <ProtobufPageContent />
+    <div className="flex flex-col w-full">
+      <ProtobufPageContent />
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
+        <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
+        <NavigatonItem href={nextNavigationItem.href} label={nextNavigationItem.label} mode={NavigatonItemMode.Next} />
+      </div>
+    </div>
   );
 };
 

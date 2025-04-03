@@ -30,12 +30,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Smart FT with WASM',
-    href: '/docs/next/tutorials/use-tokens/smart-ft-with-wasm',
+    label: 'Create and manage my first NFT',
+    href: '/docs/next/tutorials/smart-tokens/create-and-manage-nft',
   };
   const nextNavigationItem = {
-    label: 'CEX Integration',
-    href: '/docs/next/tutorials/integrate-coreum/cex-integrations',
+    label: 'Smart FT with WASM',
+    href: '/docs/next/tutorials/smart-tokens/use-cases/airdrop-token',
   };
 
   return (

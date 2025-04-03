@@ -27,12 +27,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Run Sentry Node',
-    href: `/docs/next/become-validator/validator/run-sentry`,
+    label: 'Run a sentry node',
+    href: '/docs/next/nodes-and-validators/run-sentry-node',
   };
   const nextNavigationItem = {
     label: 'How much fund do I need to create a validator?',
-    href: `/docs/next/become-validator/essentials/how-much-fund-to-create-validator`,
+    href: '/docs/next/nodes-and-validators/essentials/how-much-fund-to-create-validator',
   };
 
   return (

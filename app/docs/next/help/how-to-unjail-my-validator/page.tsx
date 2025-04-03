@@ -28,12 +28,8 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'How much fund do I need to create a validator?',
-    href: `/docs/next/become-validator/essentials/how-much-fund-to-create-validator`,
-  };
-  const nextNavigationItem = {
-    label: 'How to Upgrade My Node',
-    href: `/docs/next/become-validator/upgrades/main-info`,
+    label: 'FAQ',
+    href: '/docs/next/help/faq',
   };
 
   return (
@@ -41,7 +37,6 @@ const Page = () => {
       <Component />
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
         <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
-        <NavigatonItem href={nextNavigationItem.href} label={nextNavigationItem.label} mode={NavigatonItemMode.Next} />
       </div>
     </div>
   );

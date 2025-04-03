@@ -34,8 +34,8 @@ const Page = () => {
     href: `/docs/next/modules/coreum-deterministic-gas`,
   };
   const nextNavigationItem = {
-    label: 'Cosmos Non-Fungible Token',
-    href: `/docs/next/modules/cosmos-non-fungible-token`,
+    label: 'Coreum DEX',
+    href: `/docs/next/modules/coreum-dex`,
   };
 
   return (

@@ -30,17 +30,17 @@ export const metadata: Metadata = {
 const TOOLS_ITEMS: DocLinkItemProps[] = [
   {
     label: 'Wallets',
-    href: '/docs/next/tools/wallets',
+    href: '/docs/next/tools-and-ecosystem/wallets',
     external: false,
   },
   {
     label: 'Faucet',
-    href: '/docs/next/tools/faucet',
+    href: '/docs/next/tools-and-ecosystem/faucet',
     external: false,
   },
   {
     label: 'Blockchain Explorers',
-    href: '/docs/next/tools/blockchain-explorers',
+    href: '/docs/next/tools-and-ecosystem/blockchain-explorers',
     external: false,
   },
   // {

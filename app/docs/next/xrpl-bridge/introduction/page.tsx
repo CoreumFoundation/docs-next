@@ -29,8 +29,12 @@ export const metadata: Metadata = {
 
 const XRPLBridgeMainPage = () => {
   const prevNavigationItem = {
-    label: 'Tools/Ecosystem',
-    href: '/docs/next/overview/smart-contracts',
+    label: 'XRPL Bridge Overview',
+    href: '/docs/next/xrpl-bridge/overview',
+  };
+  const nextNavigationItem = {
+    label: 'Asset Flow',
+    href: '/docs/next/xrpl-bridge/asset-flow',
   };
 
   return (
@@ -38,6 +42,7 @@ const XRPLBridgeMainPage = () => {
       <Component />
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
         <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
+        <NavigatonItem href={nextNavigationItem.href} label={nextNavigationItem.label} mode={NavigatonItemMode.Next} />
       </div>
     </div>
   );
