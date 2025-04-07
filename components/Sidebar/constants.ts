@@ -252,7 +252,7 @@ export const TUTORIAL_ITEMS = [
           },
           {
             name: 'ISO20022 Client',
-            href: '/tutorials/ISO20022/ISO20022-client',
+            href: '/tutorials/ISO20022/ISO20022-Client',
           }
         ],
       },

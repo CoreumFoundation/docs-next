@@ -33,7 +33,7 @@ const Page = () => {
   };
   const nextNavigationItem = {
     label: 'ISO20022 Client',
-    href: '/docs/next/tutorials/ISO20022/ISO20022-client',
+    href: '/docs/next/tutorials/ISO20022/ISO20022-Client',
   };
 
   return (
