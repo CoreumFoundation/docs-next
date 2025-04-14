@@ -28,8 +28,8 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'FAQ',
-    href: '/docs/next/help/faq',
+    label: 'Support',
+    href: '/docs/next/help/support',
   };
 
   return (

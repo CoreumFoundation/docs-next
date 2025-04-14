@@ -38,11 +38,11 @@ const HELP_ITEMS: DocLinkItemProps[] = [
     href: '/docs/next/help/how-to-unjail-my-validator',
     external: false,
   },
-  // {
-  //   label: 'Support',
-  //   href: '/docs/next/help/support',
-  //   external: false,
-  // },
+  {
+    label: 'Support',
+    href: '/docs/next/help/support',
+    external: false,
+  },
 ];
 
 const HelpMainPage = () => {

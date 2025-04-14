@@ -517,10 +517,10 @@ export const HELP_ITEMS = [
         name: 'FAQ',
         href: '/help/faq',
       },
-      // {
-      //   name: 'Support',
-      //   href: '/help/support'
-      // },
+      {
+        name: 'Support',
+        href: '/help/support'
+      },
       {
         name: 'How to Unjail My Validator',
         href: '/help/how-to-unjail-my-validator',

@@ -1,6 +1,7 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './faq.mdx';
 import { Metadata } from 'next';
+import { HelpCard } from '@/components/HelpCard';
 
 export const metadata: Metadata = {
   title: "Coreum Blockchain FAQ: Common Issues and Solutions | Coreum Docs",
@@ -23,20 +24,51 @@ export const metadata: Metadata = {
   },
 };
 
+const CARDS = [
+  {
+    title: 'GitHub Issues',
+    description: 'Explore, discuss, and report technical issues on our GitHub repository. Our community actively collaborates to resolve problems and provide assistance.',
+    linkLabel: 'Github Issue',
+    linkHref: 'https://github.com/CoreumFoundation/coreum/issues',
+  },
+  {
+    title: 'Ask the Community',
+    description: 'Explore, discuss, and report technical issues on our GitHub repository. Our community actively collaborates to resolve problems and provide assistance.',
+    linkLabel: 'Coreum Community',
+    linkHref: 'https://discord.com/invite/VgkhYeWmTd',
+  },
+  {
+    title: 'GitHub Discussion',
+    description: 'Explore, discuss, and report technical issues on our GitHub repository. Our community actively collaborates to resolve problems and provide assistance.',
+    linkLabel: 'Github Discussion',
+    linkHref: '#',
+  },
+];
 
 const Page = () => {
   const prevNavigationItem = {
-    label: 'Help Overview',
-    href: `/docs/next/overview/help`,
+    label: 'FAQ',
+    href: '/docs/next/help/faq',
   };
   const nextNavigationItem = {
-    label: 'Support',
-    href: '/docs/next/help/support',
+    label: 'How to unjail my validator',
+    href: '/docs/next/help/how-to-unjail-my-validator',
   };
 
   return (
     <div className="flex flex-col w-full">
-      <Component />
+      <div className="flex flex-col py-10">
+        <h1 className="text-[#eee] font-['space grotesk'] text-[32px] font-medium leading-10 tracking-[-0.64px]">
+          Get the support you need
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {CARDS.map((card, index) => {
+            return (
+              <HelpCard {...card} key={`help-card-${index}`} />
+            );
+          })}
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
         <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
         <NavigatonItem href={nextNavigationItem.href} label={nextNavigationItem.label} mode={NavigatonItemMode.Next} />
