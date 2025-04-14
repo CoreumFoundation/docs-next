@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Transfer Funds with CLI',
-    href: '/docs/v4/tutorials/get-started/cli/transfer-funds-cli',
+    href: '/docs/v4/tutorials/get-started/cli/transfer-funds-with-cli',
   };
   const nextNavigationItem = {
     label: 'Smart FT with Access Control List (ACL)',

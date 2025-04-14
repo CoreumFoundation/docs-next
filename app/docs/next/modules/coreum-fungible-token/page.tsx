@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Modules Overview',
-    href: `/docs/next/overview/modules`,
+    href: `/docs/next/modules/overview`,
   };
   const nextNavigationItem = {
     label: 'Non-Fungible Tokens',
