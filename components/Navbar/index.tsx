@@ -42,6 +42,12 @@ export const Navbar = () => {
     return currentRoute.toUpperCase();
   }, [route]);
 
+  const isBridgeDocs = useMemo(() => {
+    const currentRoute = route.split('/')[1];
+
+    return currentRoute === 'docs-bridge';
+  }, [route]);
+
   return (
     <>
       <AskCookbook apiKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWZiNGM1MTQ5YjZiODQ0ZDY4NWY3NjIiLCJpYXQiOjE3MTA5Njc4ODksImV4cCI6MjAyNjU0Mzg4OX0.oBQsTKgd3fsmkTG0WR3RVcigQkUFgKE5A0WA031Ju8E" />
@@ -53,7 +59,7 @@ export const Navbar = () => {
                 <Link href="/">
                   <Image
                     className="h-5 w-auto"
-                    src="/images/logo.svg"
+                    src={isBridgeDocs ? '/images/logo-bridge.svg' : '/images/logo.svg'}
                     alt="Your Company"
                     width={200}
                     height={20}
@@ -61,11 +67,28 @@ export const Navbar = () => {
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center gap-3">
-                <div className="flex items-center gap-2">
-                  <Dropdown
-                    label={versionRoute}
-                    items={versionDropdownItems}
-                  />
+                <Link className="flex items-center cursor-pointer" href={isBridgeDocs ? '/docs/next/overview/general' : '/docs-bridge/overview'}>
+                  <p className="text-[#9FA2AC] text-sm font-['space grotesk'] leading-[21px] tracking-[-0.14px] text-nowrap">
+                    {isBridgeDocs ? 'Coreum Docs' : 'Bridge Docs'}
+                  </p>
+                  <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M12.0754 8.3908H7.02604V7.1665H14.1678V14.3082H12.9435V9.25411L6.69774 15.4998L5.83203 14.6341L12.0754 8.3908Z"
+                      fill="#5E6773"
+                    />
+                  </svg>
+                </Link>
+                {!isBridgeDocs && (
+                  <div className="flex items-center mr-2">
+                    <Dropdown
+                      label={versionRoute}
+                      items={versionDropdownItems}
+                    />
+                  </div>
+                )}
+                <div className="flex items-center">
                   <div className="algolia-search flex items-center">
                     <Suspense fallback={<div>Loading...</div>}>
                       <AutocompleteComponent />
@@ -102,12 +125,28 @@ export const Navbar = () => {
             </div>
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-4 px-6 py-4 bg-[#080908]">
+
                 <AutocompleteComponent />
                 <div className="flex items-center w-full justify-between gap-4">
-                  <Dropdown
-                    label={versionRoute}
-                    items={versionDropdownItems}
-                  />
+                  <Link className="flex items-center cursor-pointer" href={isBridgeDocs ? '/docs/next/overview/general' : '/docs-bridge/overview'}>
+                    <p className="text-[#9FA2AC] text-sm font-['space grotesk'] leading-[21px] tracking-[-0.14px] text-nowrap">
+                      {isBridgeDocs ? 'Coreum Docs' : 'Bridge Docs'}
+                    </p>
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M12.0754 8.3908H7.02604V7.1665H14.1678V14.3082H12.9435V9.25411L6.69774 15.4998L5.83203 14.6341L12.0754 8.3908Z"
+                        fill="#5E6773"
+                      />
+                    </svg>
+                  </Link>
+                  {!isBridgeDocs && (
+                    <Dropdown
+                      label={versionRoute}
+                      items={versionDropdownItems}
+                    />
+                  )}
                   <Link href="/docs" className="flex items-center justify-between gap-2 px-2 py-1 text-nowrap rounded-lg text-[#1B1D23] text-sm bg-green-gradient">
                     Get Started
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
