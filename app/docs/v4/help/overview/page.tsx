@@ -34,15 +34,15 @@ const HELP_ITEMS: DocLinkItemProps[] = [
     external: false,
   },
   {
+    label: 'Support',
+    href: '/docs/v4/help/support',
+    external: false,
+  },
+  {
     label: 'How to unjail my validator',
     href: '/docs/v4/help/how-to-unjail-my-validator',
     external: false,
   },
-  // {
-  //   label: 'Support',
-  //   href: '/docs/v4/help/support',
-  //   external: false,
-  // },
 ];
 
 const HelpMainPage = () => {

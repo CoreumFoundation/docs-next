@@ -48,11 +48,11 @@ const CARDS = [
 const Page = () => {
   const prevNavigationItem = {
     label: 'FAQ',
-    href: '/docs/next/help/faq',
+    href: '/docs/v4/help/faq',
   };
   const nextNavigationItem = {
     label: 'How to unjail my validator',
-    href: '/docs/next/help/how-to-unjail-my-validator',
+    href: '/docs/v4/help/how-to-unjail-my-validator',
   };
 
   return (
