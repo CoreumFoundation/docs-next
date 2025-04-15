@@ -28,7 +28,7 @@ const CARDS = [
   {
     title: 'GitHub Issues',
     description: 'Explore, discuss, and report technical issues on our GitHub repository. Our community actively collaborates to resolve problems and provide assistance.',
-    linkLabel: 'Github Issue',
+    linkLabel: 'Github Issues',
     linkHref: 'https://github.com/CoreumFoundation/coreum/issues',
   },
   {
