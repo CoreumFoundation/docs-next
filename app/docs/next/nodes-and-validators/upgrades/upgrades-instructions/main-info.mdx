@@ -116,7 +116,7 @@ mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/core
 ```
 
 
-### Testnet v4patch2 upgrade
+### Testnet v5 upgrade
 
 #### Steps
 
@@ -125,8 +125,8 @@ mv $HOME/$COREUM_BINARY_NAME "$COREUM_HOME/cosmovisor/upgrades/$UPGRADE/bin/core
 ```bash
 export COREUM_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
 export COREUM_CHAIN_ID="coreum-testnet-1"
-export NEW_CORED_VERSION="v4.1.2"
-export UPGRADE="v4patch2"
+export NEW_CORED_VERSION="v5.0.0"
+export UPGRADE="v5"
 
 # If you used your custom path to coreum, change it correspondingly
 export COREUM_HOME=$HOME/.core/"$COREUM_CHAIN_ID"
@@ -147,7 +147,7 @@ chmod a+x $HOME/$COREUM_BINARY_NAME
 $HOME/$COREUM_BINARY_NAME version
 ```
 
-The printed version should match `v4.1.2`. If the version doesn't match stop following this tutorial immediately!
+The printed version should match `v5`. If the version doesn't match stop following this tutorial immediately!
 Continuing will lead to serious problems.
 
 [//]: # (The printed version should match the one specified in the `cored q upgrade plan` `info` field.)
