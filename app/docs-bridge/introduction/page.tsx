@@ -30,11 +30,11 @@ export const metadata: Metadata = {
 const XRPLBridgeMainPage = () => {
   const prevNavigationItem = {
     label: 'XRPL Bridge Overview',
-    href: '/docs/v4/xrpl-bridge/overview',
+    href: '/docs-bridge/overview',
   };
   const nextNavigationItem = {
     label: 'Asset Flow',
-    href: '/docs/v4/xrpl-bridge/asset-flow',
+    href: '/docs-bridge/asset-flow',
   };
 
   return (

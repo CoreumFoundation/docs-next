@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Asset Flow',
-    href: '/docs/v4/xrpl-bridge/asset-flow',
+    href: '/docs-bridge/asset-flow',
   };
   const nextNavigationItem = {
     label: 'Register New Token',
-    href: '/docs/v4/xrpl-bridge/register-new-token',
+    href: '/docs-bridge/register-new-token',
   };
 
   return (

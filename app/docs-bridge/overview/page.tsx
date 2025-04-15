@@ -30,37 +30,37 @@ export const metadata: Metadata = {
 const XRPL_BRIDGE_ITEMS: DocLinkItemProps[] = [
   {
     label: 'Introduction',
-    href: '/docs/v4/xrpl-bridge/introduction',
+    href: '/docs-bridge/introduction',
     external: false,
   },
   {
     label: 'Asset Flow',
-    href: '/docs/v4/xrpl-bridge/asset-flow',
+    href: '/docs-bridge/asset-flow',
     external: false,
   },
   {
     label: 'Fees',
-    href: '/docs/v4/xrpl-bridge/fees',
+    href: '/docs-bridge/fees',
     external: false,
   },
   {
     label: 'Register New Token',
-    href: '/docs/v4/xrpl-bridge/register-new-token',
+    href: '/docs-bridge/register-new-token',
     external: false,
   },
   {
     label: 'Install Relayer',
-    href: '/docs/v4/xrpl-bridge/install-relayer',
+    href: '/docs-bridge/install-relayer',
     external: false,
   },
   {
     label: 'Run Relayer',
-    href: '/docs/v4/xrpl-bridge/run-relayer',
+    href: '/docs-bridge/run-relayer',
     external: false,
   },
   {
     label: 'Update Relayer',
-    href: '/docs/v4/xrpl-bridge/update-relayer',
+    href: '/docs-bridge/update-relayer',
     external: false,
   },
 ];

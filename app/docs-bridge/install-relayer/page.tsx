@@ -32,11 +32,11 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Register New Token',
-    href: '/docs/v4/xrpl-bridge/register-new-token',
+    href: '/docs-bridge/register-new-token',
   };
   const nextNavigationItem = {
     label: 'Run Relayer',
-    href: '/docs/v4/xrpl-bridge/run-relayer',
+    href: '/docs-bridge/run-relayer',
   };
 
   return (

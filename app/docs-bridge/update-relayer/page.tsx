@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 const Page = () => {
   const prevNavigationItem = {
     label: 'Run Relayer',
-    href: '/docs/next/xrpl-bridge/run-relayer',
+    href: '/docs-bridge/run-relayer',
   };
 
   return (
