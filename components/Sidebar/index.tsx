@@ -16,7 +16,6 @@ import {
   TOOLS_ITEMS,
   TUTORIAL_ITEMS,
   VALIDATORS_ITEMS,
-  XRPL_BRIDGE_ITEMS,
 } from './constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -124,7 +123,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         ...OVERVIEW_ITEMS,
         ...MODULES_ITEMS,
         ...TOOLS_ITEMS,
-        ...XRPL_BRIDGE_ITEMS,
         ...VALIDATORS_ITEMS,
         ...TUTORIAL_ITEMS,
         ...DEX_API,
@@ -138,7 +136,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
       ...OVERVIEW_ITEMS,
       ...MODULES_ITEMS,
       ...TOOLS_ITEMS,
-      ...XRPL_BRIDGE_ITEMS,
       ...VALIDATORS_ITEMS,
       ...TUTORIAL_ITEMS,
       ...API_ITEMS,

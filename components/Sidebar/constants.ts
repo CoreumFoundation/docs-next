@@ -297,47 +297,6 @@ export const MODULES_ITEMS = [
   },
 ];
 
-export const XRPL_BRIDGE_ITEMS = [
-  {
-    name: 'XRPL Bridge',
-    href: '/xrpl-bridge',
-    children: [
-      {
-        name: 'Overview',
-        href: '/xrpl-bridge/overview',
-      },
-      {
-        name: 'Introduction',
-        href: '/xrpl-bridge/introduction',
-      },
-      {
-        name: 'Asset flow',
-        href: '/xrpl-bridge/asset-flow',
-      },
-      {
-        name: 'Fees',
-        href: '/xrpl-bridge/fees',
-      },
-      {
-        name: 'Register New Token',
-        href: '/xrpl-bridge/register-new-token',
-      },
-      {
-        name: 'Install Relayer',
-        href: '/xrpl-bridge/install-relayer',
-      },
-      {
-        name: 'Run Relayer',
-        href: '/xrpl-bridge/run-relayer',
-      },
-      {
-        name: 'Update Relayer',
-        href: '/xrpl-bridge/update-relayer',
-      }
-    ],
-  },
-];
-
 export const DEX_API = [
   {
     name: 'DEX API',
@@ -437,7 +396,7 @@ export const VALIDATORS_ITEMS = [
         href: '/nodes-and-validators/upgrades',
         children: [
           {
-            name: 'How to Upgrade My Node',
+            name: 'Upgrades instructions',
             href: '/nodes-and-validators/upgrades/upgrades-instructions',
           },
           {
