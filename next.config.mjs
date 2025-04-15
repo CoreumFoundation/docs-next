@@ -80,6 +80,11 @@ const nextConfig = {
         destination: '/docs/v4/overview/general',
         permanent: true,
       },
+      {
+        source: '/docs/overview/:slug',
+        destination: '/docs/next/overview/:slug',
+        permanent: true,
+      },
 
       {
         source: '/docs/api',
@@ -94,11 +99,6 @@ const nextConfig = {
       {
         source: '/docs/v4/api',
         destination: '/docs/v4/api/overview',
-        permanent: true,
-      },
-      {
-        source: '/docs/api/:slug',
-        destination: '/docs/next/api/:slug',
         permanent: true,
       },
       {
