@@ -10,6 +10,7 @@ export default function RootLayout({
       <div className="flex items-center gap-2 mt-10">
         <Batch label="Next" />
         <Batch label="Devnet" />
+        <Batch label="Testnet" />
       </div>
       {children}
     </>
