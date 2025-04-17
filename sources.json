@@ -73,7 +73,7 @@
       "source": ""
     }
   ],
-  "core_dex": [
+  "core-dex": [
     {
       "page": "data-aggregator",
       "source": ""
@@ -91,7 +91,7 @@
       "source": ""
     }
   ],
-  "core_dex/api-server": [
+  "core-dex/api-server": [
     {
       "page": "overview",
       "source": ""
