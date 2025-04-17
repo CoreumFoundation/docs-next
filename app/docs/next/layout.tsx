@@ -9,7 +9,7 @@ export default function RootLayout({
   return (
     <>
       <div className="flex items-center gap-2 mt-10">
-        <Batch label="v.NEXT" />
+        <Batch label="v5 (LATEST)" />
         <Batch label="Devnet" />
         <Batch label="Testnet" />
       </div>
