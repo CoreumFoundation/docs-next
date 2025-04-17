@@ -14,9 +14,6 @@ export default function RootLayout({
         <Batch label="Testnet" />
         <Batch label="Devnet" />
       </div>
-      <div className="flex items-center w-full mt-6 mb-12">
-        <WarningBlock />
-      </div>
       {children}
     </>
   );
