@@ -9,28 +9,44 @@ import AskCookbook from '@cookbookdev/coreum/react';
 import "../index.css";
 
 import dynamic from 'next/dynamic';
-import { Suspense, useMemo } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { ThemeSwitch } from '../ThemeSwitch';
+import { VERSION_DROPDOWN_ITEMS } from '@/constants';
 
 const AutocompleteComponent = dynamic(() => import('@/components/AlgoliaSearch'), {
   ssr: false,
 });
 
 export const Navbar = () => {
-  const versionDropdownItems = [
-    {
-      label: 'v4',
-      href: '/docs/v4/overview/general',
-      external: false,
-    },
-    {
-      label: 'Next',
-      href: '/docs/next/overview/general',
-      external: false,
-    }
-  ];
+  const [activeTheme, setActiveTheme] = useState<'dark' | 'light'>('dark');
 
   const route = usePathname();
+
+  const applyTheme = useCallback((theme: string) => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else if (theme === 'light') {
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  const handleThemeChange = useCallback((newTheme: 'dark' | 'light') => {
+    setActiveTheme(newTheme)
+    applyTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+  }, [applyTheme]);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+      applyTheme(savedTheme);
+      setActiveTheme(savedTheme as ('dark' | 'light'));
+    } else {
+      handleThemeChange('dark');
+    }
+  }, [applyTheme, handleThemeChange]);
 
   const versionRoute = useMemo(() => {
     const currentRoute = route.split('/')[2];
@@ -84,7 +100,7 @@ export const Navbar = () => {
                   <div className="flex items-center mr-2">
                     <Dropdown
                       label={versionRoute}
-                      items={versionDropdownItems}
+                      items={VERSION_DROPDOWN_ITEMS}
                     />
                   </div>
                 )}
@@ -110,6 +126,7 @@ export const Navbar = () => {
                     </div>
                   ))}
                 </div>
+                <ThemeSwitch activeTheme={activeTheme} toggleTheme={handleThemeChange} />
               </div>
               <div className="-mr-2 flex items-center sm:hidden">
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 bg-[#080908] focus:outline-none">
@@ -144,7 +161,7 @@ export const Navbar = () => {
                   {!isBridgeDocs && (
                     <Dropdown
                       label={versionRoute}
-                      items={versionDropdownItems}
+                      items={VERSION_DROPDOWN_ITEMS}
                     />
                   )}
                   <Link href="/docs" className="flex items-center justify-between gap-2 px-2 py-1 text-nowrap rounded-lg text-[#1B1D23] text-sm bg-green-gradient">
@@ -178,6 +195,7 @@ export const Navbar = () => {
                     </Disclosure.Button>
                   ))}
                 </div>
+                <ThemeSwitch activeTheme={activeTheme} toggleTheme={handleThemeChange} />
               </div>
             </Disclosure.Panel>
           </>

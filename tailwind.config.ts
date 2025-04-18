@@ -15,9 +15,11 @@ const config: Config = {
       },
       backgroundColor: {
         'warning-block': "rgba(255, 160, 46, 0.10)",
+        'custom-green-bg': "rgba(37, 214, 149, 0.10)",
       }
     },
   },
   plugins: [],
+  darkMode: 'class',
 };
 export default config;

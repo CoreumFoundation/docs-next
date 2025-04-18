@@ -5,6 +5,8 @@ import classNames from "classnames";
 import "./globals.css";
 
 import "highlight.js/styles/github-dark.css";
+import { useMemo } from "react";
+import { THEME_MODE } from "@/constants";
 
 const notoSans = Noto_Sans({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
@@ -30,6 +32,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const currentTheme = useMemo(() => {
+  //   const theme = localStorage.getItem(THEME_MODE);
+
+  //   return theme && theme === 'dark' ? 'dark' : 'light';
+  // }, []);
+
   return (
     <html lang="en">
       <body className={classNames(notoSans.className, spaceGrotesk.className, 'h-full m-0')}>
