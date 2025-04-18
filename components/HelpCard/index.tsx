@@ -17,7 +17,7 @@ export const HelpCard: FC<HelpCardProps> = ({
   return (
     <div className="flex flex-col p-6 bg-gradient-help-card rounded-xl gap-6 h-full w-full relative overflow-hidden">
       <div className="flex flex-col gap-2 z-10">
-        <p className="font-['space grotesk'] text-base font-medium tracking-[-0.32px] text-[#eee]">
+        <p className="font-space-grotesk text-base font-medium tracking-[-0.32px] text-[#eee]">
           {title}
         </p>
         <p className="text-[#9FA2AC] text-sm leading-[21px] tracking-[-0.14px]">

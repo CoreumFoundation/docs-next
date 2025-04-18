@@ -22,7 +22,7 @@ export const ThemeSwitch: FC<ThemeSwitcherProps> = ({
 
   return (
     <div
-      className="bg-[#0E0F10] flex items-center p-1 rounded-[10px]"
+      className="bg-theme-switch-light dark:bg-theme-switch-dark flex items-center p-1 rounded-[10px] cursor-pointer"
       onClick={() => toggleTheme(activeTheme === 'dark' ? 'light' : 'dark')}
     >
       <div className={sunCx}>

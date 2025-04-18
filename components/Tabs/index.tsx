@@ -25,7 +25,7 @@ export const Tabs: FC<TabsProps> = ({
           onClick={() => setCurrentTab(tab)}
           className={classNames(
             currentTab.id === tab.id ? 'bg-sidebar-active text-[#25D695] rounded-lg font-medium' : 'text-[#5E6773] rounded-md font-normal',
-            "text-base px-20 py-3 font-['space grotesk'] cursor-pointer"
+            "text-base px-20 py-3 font-space-grotesk cursor-pointer"
           )}
           aria-current={currentTab.id === tab.id ? 'page' : undefined}
         >

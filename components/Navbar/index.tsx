@@ -70,7 +70,7 @@ export const Navbar = () => {
       <Disclosure as="nav" className="shadow w-full">
         {({ open }) => (
           <>
-            <div className="flex py-3 px-6 justify-between w-full bg-[#080908]">
+            <div className="flex py-3 px-6 justify-between w-full bg-main-light dark:bg-main-dark border-b-sidebar-light dark:border-b-sidebar-dark border-b-2">
               <div className="flex flex-shrink-0 items-center">
                 <Link href="/">
                   <Image
@@ -84,7 +84,7 @@ export const Navbar = () => {
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center gap-3">
                 <Link className="flex items-center cursor-pointer" href={isBridgeDocs ? '/docs/next/overview/general' : '/docs-bridge/overview'}>
-                  <p className="text-[#9FA2AC] text-sm font-['space grotesk'] leading-[21px] tracking-[-0.14px] text-nowrap">
+                  <p className="text-[#9FA2AC] text-sm font-space-grotesk leading-[21px] tracking-[-0.14px] text-nowrap">
                     {isBridgeDocs ? 'Coreum Docs' : 'Bridge Docs'}
                   </p>
                   <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -129,7 +129,7 @@ export const Navbar = () => {
                 <ThemeSwitch activeTheme={activeTheme} toggleTheme={handleThemeChange} />
               </div>
               <div className="-mr-2 flex items-center sm:hidden">
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 bg-[#080908] focus:outline-none">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 bg-main-light dark:bg-main-dark focus:outline-none">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -141,12 +141,12 @@ export const Navbar = () => {
               </div>
             </div>
             <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-4 px-6 py-4 bg-[#080908]">
+              <div className="space-y-4 px-6 py-4 bg-main-light dark:bg-main-dark">
 
                 <AutocompleteComponent />
                 <div className="flex items-center w-full justify-between gap-4">
                   <Link className="flex items-center cursor-pointer" href={isBridgeDocs ? '/docs/next/overview/general' : '/docs-bridge/overview'}>
-                    <p className="text-[#9FA2AC] text-sm font-['space grotesk'] leading-[21px] tracking-[-0.14px] text-nowrap">
+                    <p className="text-[#9FA2AC] text-sm font-space-grotesk leading-[21px] tracking-[-0.14px] text-nowrap">
                       {isBridgeDocs ? 'Coreum Docs' : 'Bridge Docs'}
                     </p>
                     <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -226,7 +226,7 @@ export const Faucets = () => {
           <div className="flex flex-col w-full gap-4">
             <div className="flex flex-col md:flex-row w-full items-center gap-6">
               <div
-                className="relative flex w-full md:w-[280px] overflow-hidden py-4 px-6 bg-sidebar-active text-[#25D695] hover:opacity-60 text-base font-medium font-['space grotesk'] rounded-xl cursor-pointer"
+                className="relative flex w-full md:w-[280px] overflow-hidden py-4 px-6 bg-sidebar-active text-[#25D695] hover:opacity-60 text-base font-medium font-space-grotesk rounded-xl cursor-pointer"
                 onClick={handleGenerateWallet}
               >
                 Generate Funded Wallet
@@ -234,7 +234,7 @@ export const Faucets = () => {
                 <Image className="absolute right-1 top-0 select-none" alt="faucet-coin-top" src="/images/tools-and-ecosystem/faucet/top.svg" width={21} height={21} />
                 <Image className="absolute right-0 bottom-0 select-none" alt="faucet-coin-bottom" src="/images/tools-and-ecosystem/faucet/bottom.svg" width={53} height={53} />
               </div>
-              <div className="flex-none text-[#9FA2AC] text-base font-['space grotesk'] font-normal">
+              <div className="flex-none text-[#9FA2AC] text-base font-space-grotesk font-normal">
                 Or
               </div>
               <div className="w-full md:w-auto flex-1">

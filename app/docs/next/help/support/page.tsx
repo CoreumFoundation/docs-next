@@ -58,7 +58,7 @@ const Page = () => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col py-10">
-        <h1 className="text-[#eee] font-['space grotesk'] text-[32px] font-medium leading-10 tracking-[-0.64px]">
+        <h1 className="text-[#eee] font-space-grotesk text-[32px] font-medium leading-10 tracking-[-0.64px]">
           Get the support you need
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

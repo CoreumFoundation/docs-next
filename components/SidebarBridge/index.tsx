@@ -113,7 +113,7 @@ export const SidebarBridge: React.FC<SidebarProps> = ({ children }) => {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row w-full h-auto min-h-full flex-1 font-['space grotesk']">
+      <div className="flex flex-col lg:flex-row w-full h-auto min-h-full flex-1 font-space-grotesk">
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 w-full lg:hidden" onClose={setSidebarOpen}>
             <Transition.Child
@@ -125,7 +125,7 @@ export const SidebarBridge: React.FC<SidebarProps> = ({ children }) => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-[#080908] w-full" />
+              <div className="fixed inset-0 bg-main-light dark:bg-main-dark w-full" />
             </Transition.Child>
 
             <div className="fixed inset-0 flex w-full">
@@ -156,7 +156,7 @@ export const SidebarBridge: React.FC<SidebarProps> = ({ children }) => {
                     </div>
                   </Transition.Child>
                   {/* Sidebar component, swap this element with another sidebar if you like */}
-                  <div className="flex grow flex-col  gap-y-5 overflow-y-auto bg-[#080908] px-6 pb-4 ring-0">
+                  <div className="flex grow flex-col  gap-y-5 overflow-y-auto bg-main-light dark:bg-main-dark px-6 pb-4 ring-0">
                     <nav className="flex flex-1 flex-col">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
@@ -174,7 +174,7 @@ export const SidebarBridge: React.FC<SidebarProps> = ({ children }) => {
         </Transition.Root>
 
         <div className="flex lg:hidden w-full">
-          <div className="sticky top-0 z-40 flex w-full px-6 py-3 shrink-0 items-center gap-x-4 border-b border-[#17191e] bg-[#080908] px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className="sticky top-0 z-40 flex w-full px-6 py-3 shrink-0 items-center gap-x-4 border-b border-[#17191e] bg-main-light dark:bg-main-dark px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button type="button" className="-m-2.5 p-2.5 text-gray-700 flex items-center lg:hidden gap-1" onClick={() => setSidebarOpen(true)}>
               <span className="sr-only">Open sidebar</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" /> Menu
