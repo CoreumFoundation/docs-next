@@ -22,13 +22,13 @@ export const Input: FC<InputProps> = ({
   placeholder,
 }) => {
   return (
-    <div className="flex rounded-md shadow-sm border border-[#17191E] bg-[#090909] py-4 pl-5 pr-4 gap-2 sm:gap-4">
+    <div className="flex rounded-md shadow-sm border border-input-light dark:border-input-dark bg-transparent py-4 pl-5 pr-4 gap-2 sm:gap-4">
       <div className="relative flex flex-grow items-stretch gap-2">
         <input
           type={inputType}
           name={inputName}
           id={inputId}
-          className="bg-transparent w-full rounded-none rounded-l-md text-[#eee] outline-none placeholder:text-[#5E6773] sm:text-sm sm:leading-6"
+          className="bg-transparent w-full rounded-none rounded-l-md text-input-light dark:text-input-dark outline-none placeholder:text-input-placeholder-light placeholder:dark:input-placeholder-dark sm:text-sm sm:leading-6"
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}

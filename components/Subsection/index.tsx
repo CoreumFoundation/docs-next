@@ -35,7 +35,7 @@ const SubsectionComponent: React.FC<SubsectionComponentProps> = ({
   };
 
   return (
-    <div className="ml-4 mb-2">
+    <div className="ml-4 mb-2 ">
       <h3
         className="text-md font-semibold text-green-500 mb-1 flex items-center cursor-pointer hover:underline"
         onClick={handleCategoryClick}

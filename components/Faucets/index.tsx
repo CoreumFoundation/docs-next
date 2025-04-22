@@ -136,7 +136,7 @@ export const Faucets = () => {
   const renderErrorOrTxHash = useMemo(() => {
     if (errorMessage) {
       return (
-        <span className="text-[#eee] text-base font-light">{getErrorMessage(errorMessage)}</span>
+        <span className="text-main-title-light dark:text-main-title-dark text-base font-light">{getErrorMessage(errorMessage)}</span>
       );
     }
 
@@ -158,22 +158,22 @@ export const Faucets = () => {
 
     if (fundLoading) {
       return (
-        <div className="flex flex-col w-full gap-2 bg-[#0E0F10] py-4 px-6 rounded-xl text-[#5E6773] text-sm text-nowrap overflow-auto">
+        <div className="flex flex-col w-full gap-2 bg-faucet-light dark:bg-faucet-dark py-4 px-6 rounded-xl text-faucet-light dark:text-faucet-dark text-sm text-nowrap overflow-auto">
           <div className="flex flex-col sm:flex-row sm:items-baseline w-full gap-2 text-wrap break-words">
             <span className="text-nowrap min-w-[120px] w-[120px]">Tx Hash:</span>
             <Spinner />
           </div>
           <div className="flex flex-col sm:flex-row sm:items-baseline w-full gap-2 text-wrap break-words">
-            <span className="text-nowrap min-w-[120px]  w-[120px]">Wallet Address:</span>
-            <span className="text-[#eee] text-base font-light">{walletAddress}</span>
+            <span className="text-nowrap min-w-[120px] w-[120px]">Wallet Address:</span>
+            <span className="text-main-title-light dark:text-main-title-dark text-base font-light">{walletAddress}</span>
           </div>
           {mnemonic.length ? (
             <>
               <div className="flex flex-col sm:flex-row sm:items-baseline w-full gap-2 text-wrap break-words">
                 <span className="text-nowrap min-w-[120px] w-[120px]">Wallet Mnemonic:</span>
-                <span className="flex text-[#eee] text-base font-light text-wrap">{mnemonic}</span>
+                <span className="flex text-main-title-light dark:text-main-title-dark text-base font-light text-wrap">{mnemonic}</span>
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-center w-full gap-2 text-wrap break-words text-[#eee] text-base">
+              <div className="flex flex-col sm:flex-row sm:items-center w-full gap-2 text-wrap break-words text-main-title-light dark:text-main-title-dark text-base">
                 ⚠️ Mnemonic is the only way to restore you wallet, save it in a safe place.
               </div>
             </>
@@ -183,22 +183,22 @@ export const Faucets = () => {
     }
 
     return (
-      <div className="flex flex-col w-full gap-4 bg-[#0E0F10] py-4 px-6 rounded-xl text-[#5E6773] text-sm text-nowrap overflow-hidden">
+      <div className="flex flex-col w-full gap-4 bg-faucet-light dark:bg-faucet-dark py-4 px-6 rounded-xl text-faucet-light dark:text-faucet-dark text-sm text-nowrap overflow-hidden">
         <div className="flex flex-col sm:flex-row sm:items-baseline w-full gap-2 text-wrap break-words">
           <span className="text-nowrap min-w-[120px] w-[120px]">Tx Hash:</span>
           {renderErrorOrTxHash}
         </div>
         <div className="flex flex-col sm:flex-row sm:items-baseline w-full gap-2 text-wrap break-words">
-          <span className="text-nowrap min-w-[120px]  w-[120px]">Wallet Address:</span>
-          <span className="text-[#eee] text-base font-light">{walletAddress}</span>
+          <span className="text-nowrap min-w-[120px] w-[120px]">Wallet Address:</span>
+          <span className="text-main-title-light dark:text-main-title-dark text-base font-light">{walletAddress}</span>
         </div>
         {mnemonic.length ? (
           <>
             <div className="flex flex-col sm:flex-row sm:items-baseline w-full gap-2 text-wrap break-words">
               <span className="text-nowrap min-w-[120px] w-[120px]">Wallet Mnemonic:</span>
-              <span className="flex text-[#eee] text-base font-light text-wrap">{mnemonic}</span>
+              <span className="flex text-main-title-light dark:text-main-title-dark text-base font-light text-wrap">{mnemonic}</span>
             </div>
-            <div className="flex flex-col sm:flex-row sm:items-center w-full gap-2 text-wrap break-words text-[#eee] text-base">
+            <div className="flex flex-col sm:flex-row sm:items-center w-full gap-2 text-wrap break-words text-main-title-light dark:text-main-title-dark text-base">
               ⚠️ Mnemonic is the only way to restore you wallet, save it in a safe place.
             </div>
           </>

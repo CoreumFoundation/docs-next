@@ -1649,7 +1649,7 @@ function isSet(value: any): boolean {
 ```ts
 import { GasPrice, QueryClient, calculateFee, createProtobufRpcClient, decodeCosmosSdkDecFromProto } from "@cosmjs/stargate";
 
-const tendermintClient = <define tendermint client>;
+const tendermintClient = ...; // define tendermint client
 
 const getFeeModel = () => {
   if (!tendermintClient) {

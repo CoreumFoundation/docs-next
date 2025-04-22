@@ -36,19 +36,28 @@ body {
   }
 }
 
-.bg-footer {
-  background: #080908;
-}
-
-.bg-main {
-  background: #080908;
-}
-
 .bg-landing {
-  background-image: url("/images/landing-bg.png");
+  background-image: url("/images/landing-bg-light.png");
   background-repeat: no-repeat;
   background-clip: border-box;
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
+}
+
+.dark .bg-landing {
+  background-image: url("/images/landing-bg.png");
+}
+
+.bg-footer {
+  background-image: url("/images/bg-footer-light.png");
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  background-size: cover;
+  background-position: center;
+}
+
+.dark .bg-footer {
+  background-image: url("/images/bg-footer.png");
 }
 
 .text-grey-gradient {
@@ -86,7 +95,7 @@ body {
   letter-spacing: -0.16px;
   padding: 6px 8px;
   border-radius: 4px;
-  background-color: #17191E;
+  /* background-color: #17191E; */
 }
 
 .table td a {
@@ -94,6 +103,10 @@ body {
 }
 
 .bg-green-gradient {
+  background: linear-gradient(225deg, #25D695 0%, #179B69 100%);
+}
+
+.dark .bg-green-gradient {
   background: linear-gradient(180deg, #25D695 0%, #046C44 100%);
 }
 
@@ -109,7 +122,10 @@ body {
 }
 
 .card {
-  border-radius: 16px;
+  background: #f3f3f3;
+}
+
+.dark .card {
   background: linear-gradient(90deg, rgba(69, 69, 69, 0.10) 0%, rgba(255, 255, 255, 0.10) 100%);
   box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.16) inset;
   backdrop-filter: blur(5px);
@@ -138,7 +154,11 @@ body {
   margin-bottom: 8px;
 }
 
-.mdx-pre {
+.bg-code {
+  background: #FCFCFC;
+}
+
+.dark .bg-code {
   background: #1d1d1d;
 }
 
@@ -268,9 +288,10 @@ svg {
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   position: relative;
-  background-color: #0e0f10;
+  background-color: #F9F9F9;
   background-image: none;
   text-decoration: none;
+  cursor: pointer;
 
   &:hover {
     background: linear-gradient(90deg, rgba(69, 69, 69, 0.10) 0%, rgba(255, 255, 255, 0.10) 100%);
@@ -278,6 +299,10 @@ svg {
     backdrop-filter: blur(5px);
     background-color: transparent;
   }
+}
+
+.dark .bg-gradient-help-card {
+  background-color: #0e0f10;
 }
 
 .bg-gradient-help-card span {
@@ -336,4 +361,40 @@ svg {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+
+.bg-table-head {
+  background: #FCFCFC;
+}
+
+.dark .bg-table-head {
+  background: #0E0F10;
+}
+
+.text-table {
+  color: #5E6773;
+}
+
+.dark .text-table {
+  color: #9FA2AC;
+}
+
+#ask-cookbook-button {
+  background-color: #fff !important;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+
+}
+
+.dark #ask-cookbook-button {
+  background-color: #1B1D23 !important;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+#ask-cookbook-button span {
+  color: #1B1D23 !important;
+}
+
+.dark #ask-cookbook-button span {
+  color: #fff !important;
 }

@@ -9,7 +9,7 @@ export interface DocLinkItemProps {
 
 export const DocLinkItem: FC<DocLinkItemProps> = ({ label, href, external }) => {
   const props = {
-    className: "flex items-center p-6 text-base font-medium text-[#9FA2AC] hover:text-[#eee] rounded-xl bg-[#0E0F10]",
+    className: "flex items-center p-6 text-base font-medium text-overview-link-light dark:text-overview-link-dark hover:text-overview-link-light-hover dark:hover:text-overview-link-dark-hover rounded-xl bg-overview-link-light dark:bg-overview-link-dark",
     label,
     href,
     ...( external && { target: 'blank' }),

@@ -944,7 +944,7 @@ import { EncodeObject } from "@cosmjs/proto-signing";
 const nftClassSymbol = `kittens${Date.now()}`
 
 const generateKittenURL = () => {
-    return `https://placekitten.com/${200 + Math.floor(Math.random() * 100)`}/${200 + Math.floor(Math.random() * 100)}`
+    return `https://placekitten.com/${200 + Math.floor(Math.random() * 100)}/${200 + Math.floor(Math.random() * 100)}`
 }
 
 const NFT: NextPage = () => {
@@ -1083,7 +1083,7 @@ const NFT: NextPage = () => {
             setError(`Error! ${error}`)
             return false
         }
-    }
+    };
 
     return (
         <WalletLoader loading={loading}>

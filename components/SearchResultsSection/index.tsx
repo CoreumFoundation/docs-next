@@ -41,7 +41,7 @@ const SearchResultsSection: React.FC<SearchResultsSectionProps> = ({
   let currentIndex = startIndex;
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 bg-search-light dark:bg-search-dark text-search-light dark:text-search-dark">
       <h2
         className="text-lg font-bold text-green-500 mb-2 flex items-center cursor-pointer hover:underline"
         onClick={handleMainCategoryClick}

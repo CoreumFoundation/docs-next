@@ -54,8 +54,8 @@ const OverviewMainPage = () => {
   const nextNavigationItem = OVERVIEW_ITEMS[0];
 
   return (
-    <div className="flex flex-col w-full gap-6 max-w-[900px] px-2 pt-6 pb-[5.5rem]">
-      <div className="text-[2rem] font-medium text-[#EEE] tracking-[-0.64px]">
+    <div className="flex flex-col w-full gap-6 px-2 pt-6 pb-[5.5rem]">
+      <div className="text-[2rem] font-medium text-main-title-light dark:text-main-title-dark tracking-[-0.64px]">
         Coreum Overview
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-3">

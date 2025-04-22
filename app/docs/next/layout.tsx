@@ -1,4 +1,4 @@
-import { Batch } from "@/components/Batch";
+import { Badge } from "@/components/Badge";
 import { WarningBlock } from "@/components/Warning";
 
 export default function RootLayout({
@@ -9,9 +9,9 @@ export default function RootLayout({
   return (
     <>
       <div className="flex items-center gap-2 mt-10">
-        <Batch label="v5 (LATEST)" />
-        <Batch label="Devnet" />
-        <Batch label="Testnet" />
+        <Badge label="v5 (LATEST)" />
+        <Badge label="Devnet" />
+        <Badge label="Testnet" />
       </div>
       <div className="flex items-center w-full mt-6 mb-12">
         <WarningBlock />

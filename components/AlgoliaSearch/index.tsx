@@ -248,7 +248,7 @@ const SearchBarModal: React.FC = () => {
       {/* Mobile search button */}
       <button
         onClick={openModal}
-        className="md:hidden flex items-center justify-center w-12 h-12 text-white"
+        className="md:hidden flex items-center justify-center w-12 h-12 bg-search-light dark:bg-search-dark text-search-light dark:text-search-dark"
         aria-label="Search"
       >
         <Search size={24} />
@@ -257,13 +257,13 @@ const SearchBarModal: React.FC = () => {
       {/* Desktop search button */}
       <button
         onClick={openModal}
-        className="hidden md:flex items-center space-x-2 bg-gray-800 text-white rounded-md px-3 py-1.5 hover:bg-green-600 transition-colors duration-200 focus:outline-none"
+        className="hidden md:flex items-center space-x-2 bg-search-light dark:bg-search-dark text-search-light dark:text-search-dark rounded-md px-4 py-2 focus:outline-none"
       >
         <Search size={16} />
         <span className="text-sm">Search</span>
         <div className="flex space-x-1">
-          <span className="bg-gray-700 text-xs px-1 py-0.5 rounded">⌘</span>
-          <span className="bg-gray-700 text-xs px-1 py-0.5 rounded">K</span>
+          <span className="bg-search-light dark:bg-search-dark text-xs px-1 py-0.5 rounded">⌘</span>
+          <span className="bg-search-light dark:bg-search-dark text-xs px-1 py-0.5 rounded">K</span>
         </div>
       </button>
 
@@ -272,18 +272,18 @@ const SearchBarModal: React.FC = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-4 sm:pt-10">
           <div
             ref={modalRef}
-            className="bg-[#1B1D23] w-full max-w-xl rounded-lg shadow-lg flex flex-col mx-4"
+            className="bg-search-light dark:bg-search-dark w-full max-w-xl rounded-lg shadow-lg flex flex-col mx-4"
             style={{ maxHeight: '90vh' }}
           >
             <div className="flex justify-between items-center p-4 border-b border-gray-700">
-              <h2 className="text-xl sm:text-2xl font-semibold text-white">Search docs</h2>
-              <button onClick={closeModal} className="text-gray-400 hover:text-white transition-colors duration-150 p-2">
+              <h2 className="text-xl sm:text-2xl font-semibold text-search-light dark:text-search-dark">Search docs</h2>
+              <button onClick={closeModal} className="text-search-light dark:text-search-dark p-2">
                 <X size={28} />
               </button>
             </div>
 
             <div className="p-4">
-              <div className="flex items-center space-x-2 bg-black rounded-full p-1 border border-gray-700">
+              <div className="flex items-center space-x-2 rounded-full p-1 border border-input-light dark:border-input-dark bg-transparent">
                 <div className="flex items-center justify-center w-10 h-10">
                   {isLoading ? (
                     <Loader size={20} className="text-gray-400 animate-spin" />
@@ -293,13 +293,13 @@ const SearchBarModal: React.FC = () => {
                 </div>
                 <div className="relative flex-grow">
                 <input
-                ref={inputRef}
-                className="w-full pl-2 pr-10 py-2 bg-black text-gray-300 placeholder-gray-500 rounded-full focus:outline-none text-base sm:text-sm"
-                value={query}
-                onChange={handleInputChange}
-                placeholder="Search docs"
-                onKeyDown={handleKeyDown}
-                maxLength={MAX_QUERY_LENGTH}
+                  ref={inputRef}
+                  className="w-full pl-2 pr-10 py-2 bg-transparent text-input-light dark:text-input-dark placeholder:text-input-placeholder-light placeholder:dark:input-placeholder-dark rounded-full focus:outline-none text-base sm:text-sm"
+                  value={query}
+                  onChange={handleInputChange}
+                  placeholder="Search docs"
+                  onKeyDown={handleKeyDown}
+                  maxLength={MAX_QUERY_LENGTH}
                 />
 
                   {query && (
@@ -331,15 +331,15 @@ const SearchBarModal: React.FC = () => {
               )}
             </div>
 
-            <div className="px-4 py-3 bg-[#1B1D23] text-sm text-gray-400 flex justify-between items-center border-t border-gray-700">
+            <div className="px-4 py-3 bg-search-light dark:bg-search-dark text-search-light dark:text-search-dark text-sm flex justify-between items-center border-t border-gray-700">
               <div className="hidden sm:block">
                 Press
-                <span className="bg-gray-700 text-xs px-2 py-1 rounded mx-1">↓</span>
-                <span className="bg-gray-700 text-xs px-2 py-1 rounded mr-1">↑</span>
+                <span className="bg-gray-700 text-search-dark text-xs px-2 py-1 rounded mx-1">↓</span>
+                <span className="bg-gray-700 text-search-dark text-xs px-2 py-1 rounded mr-1">↑</span>
                 to navigate,
-                <span className="bg-gray-700 text-xs px-2 py-1 rounded mx-1">enter</span>
+                <span className="bg-gray-700 text-search-dark text-xs px-2 py-1 rounded mx-1">enter</span>
                 to select,
-                <span className="bg-gray-700 text-xs px-2 py-1 rounded mx-1">esc</span>
+                <span className="bg-gray-700 text-search-dark text-xs px-2 py-1 rounded mx-1">esc</span>
                 to close
               </div>
               <div className="sm:hidden">

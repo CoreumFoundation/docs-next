@@ -23,7 +23,7 @@ const renderLink = (item: NavigationItem, isActive: boolean) => {
     return (
       <a
         href={item.href}
-        className="group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6 text-[#5E6773] font-normal hover:text-white"
+        className="group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6 text-sidebar-light dark:text-sidebar-dark font-normal hover:bg-sidebar-light-hover hover:dark:bg-sidebar-dark-hover"
         target='blank'
       >
         {item.name}
@@ -39,7 +39,7 @@ const renderLink = (item: NavigationItem, isActive: boolean) => {
       href={item.href}
       prefetch={false}
       className={classNames(
-        isActive ? 'text-[#25D695] font-medium bg-sidebar-active' : 'text-[#5E6773] font-normal hover:text-white',
+        isActive ? 'text-sidebar-active font-medium bg-sidebar-active' : 'text-sidebar-light dark:text-sidebar-dark font-normal hover:bg-sidebar-light-hover hover:dark:bg-sidebar-dark-hover',
         'group flex gap-x-3 rounded-md p-2 text-sm leading-6'
       )}
     >
@@ -55,7 +55,7 @@ const renderNavigationItems = (items: NavigationItem[], pathname: string) => {
     const isActive = pathname === item.href;
 
     const cx = classNames('flex items-center w-full rounded-lg p-3 pr-2 gap-x-6 text-base font-normal capitalize', {
-      'text-[#25D695] font-medium bg-sidebar-active': isActive,
+      'text-sidebar-active font-medium bg-sidebar-active': isActive,
     });
 
     return (
@@ -66,18 +66,18 @@ const renderNavigationItems = (items: NavigationItem[], pathname: string) => {
               <>
                 <Disclosure.Button
                   className={classNames(cx,
-                    isActive ? 'text-[#25D695] font-medium bg-sidebar-active' : 'text-[#868991]',
-                    open && !isActive ? 'md:bg-[#17191E] text-[#eeeeee]' : '',
+                    isActive ? 'text-sidebar-active font-medium bg-sidebar-active' : 'text-sidebar-light dark:text-sidebar-dark',
+                    open && !isActive ? 'text-sidebar-tab-light-active dark:text-sidebar-tab-dark-active' : '',
                     'flex items-center w-full rounded-lg p-3 pr-2 gap-x-6 text-base font-normal capitalize'
                   )}
                 >
                   {item.name}
                   <ChevronRightIcon
                     className={`
-                    w-3 h-3 ml-auto ${open ? 'transform rotate-90 text-[#25D695]' : 'transform rotate-0 text-[#868991]'}`}
+                    w-3 h-3 ml-auto ${open ? 'transform rotate-90 text-sidebar-tab-light-active dark:text-sidebar-tab-dark-active' : 'transform rotate-0 text-sidebar-light dark:text-sidebar-dark'}`}
                   />
                 </Disclosure.Button>
-                <Disclosure.Panel as="ul" className="my-2 ml-4 px-2 border-l border-l-1 border-[#17191E]">
+                <Disclosure.Panel as="ul" className="my-2 ml-4 px-2 border-l border-l-1 border-sidebar-internal-light dark:border-sidebar-internal-dark">
                   {renderNavigationItems(item.children || [], pathname)}
                 </Disclosure.Panel>
               </>
@@ -174,7 +174,7 @@ export const SidebarBridge: React.FC<SidebarProps> = ({ children }) => {
         </Transition.Root>
 
         <div className="flex lg:hidden w-full">
-          <div className="sticky top-0 z-40 flex w-full px-6 py-3 shrink-0 items-center gap-x-4 border-b border-[#17191e] bg-main-light dark:bg-main-dark px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className="sticky top-0 z-40 flex w-full py-3 shrink-0 items-center gap-x-4 border-b border-main-light dark:border-main-dark bg-main-light dark:bg-main-dark px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button type="button" className="-m-2.5 p-2.5 text-gray-700 flex items-center lg:hidden gap-1" onClick={() => setSidebarOpen(true)}>
               <span className="sr-only">Open sidebar</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" /> Menu
@@ -185,7 +185,7 @@ export const SidebarBridge: React.FC<SidebarProps> = ({ children }) => {
         </div>
 
         <div className="hidden lg:flex flex-none w-72 main-content">
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#101216] p-6">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-main-light dark:bg-main-dark p-6">
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
@@ -197,14 +197,14 @@ export const SidebarBridge: React.FC<SidebarProps> = ({ children }) => {
             </nav>
           </div>
         </div>
-        <main className="relative px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] grow max-w-full overflow-hidden main-content overflow-y-scroll scroll-smooth" ref={scrollContainerRef}>
+        <main className="relative px-4 sm:px-6 lg:px-8 bg-main-light dark:bg-main-dark grow max-w-full overflow-hidden main-content overflow-y-scroll scroll-smooth" ref={scrollContainerRef}>
           <TransitionDiv>
             {children}
           </TransitionDiv>
         </main>
         <div className="text-white fixed right-10 bottom-24" onClick={scrollToTop}>
-          <div className="w-10 h-10 flex items-center justify-center rounded-full p-2 border-2 border-[#25D695] bg-[#0a0a0a] cursor-pointer">
-            <ArrowUpIcon className="w-4 h-4 text-[#25D695]" />
+          <div className="w-10 h-10 flex items-center justify-center rounded-full p-2 border-2 border-[#25D695] bg-main-light dark:bg-main-dark cursor-pointer">
+            <ArrowUpIcon className="w-4 h-4 text-sidebar-tab-light-active dark:text-sidebar-tab-dark-active" />
           </div>
         </div>
       </div>

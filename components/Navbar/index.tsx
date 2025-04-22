@@ -9,44 +9,20 @@ import AskCookbook from '@cookbookdev/coreum/react';
 import "../index.css";
 
 import dynamic from 'next/dynamic';
-import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { Suspense, useContext, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
 import { ThemeSwitch } from '../ThemeSwitch';
 import { VERSION_DROPDOWN_ITEMS } from '@/constants';
+import { ThemeContext } from '@/providers/ThemeProvider';
 
 const AutocompleteComponent = dynamic(() => import('@/components/AlgoliaSearch'), {
   ssr: false,
 });
 
 export const Navbar = () => {
-  const [activeTheme, setActiveTheme] = useState<'dark' | 'light'>('dark');
+  const { theme: activeTheme, setTheme: handleThemeChange } = useContext(ThemeContext);
 
   const route = usePathname();
-
-  const applyTheme = useCallback((theme: string) => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else if (theme === 'light') {
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
-
-  const handleThemeChange = useCallback((newTheme: 'dark' | 'light') => {
-    setActiveTheme(newTheme)
-    applyTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-  }, [applyTheme]);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme) {
-      applyTheme(savedTheme);
-      setActiveTheme(savedTheme as ('dark' | 'light'));
-    } else {
-      handleThemeChange('dark');
-    }
-  }, [applyTheme, handleThemeChange]);
 
   const versionRoute = useMemo(() => {
     const currentRoute = route.split('/')[2];
@@ -55,7 +31,7 @@ export const Navbar = () => {
       return 'Select Version';
     }
 
-    return currentRoute.toUpperCase();
+    return currentRoute === 'v4' ? 'v4' : 'v5';
   }, [route]);
 
   const isBridgeDocs = useMemo(() => {
@@ -63,6 +39,14 @@ export const Navbar = () => {
 
     return currentRoute === 'docs-bridge';
   }, [route]);
+
+  const currentLogoRoute = useMemo(() => {
+    if (activeTheme === 'dark') {
+      return isBridgeDocs ? '/images/logo-bridge.svg' : '/images/logo.svg';
+    }
+
+    return isBridgeDocs ? '/images/logo-bridge-light.svg' : '/images/logo-light.svg';
+  }, [activeTheme, isBridgeDocs]);
 
   return (
     <>
@@ -75,7 +59,7 @@ export const Navbar = () => {
                 <Link href="/">
                   <Image
                     className="h-5 w-auto"
-                    src={isBridgeDocs ? '/images/logo-bridge.svg' : '/images/logo.svg'}
+                    src={currentLogoRoute}
                     alt="Your Company"
                     width={200}
                     height={20}
@@ -133,16 +117,15 @@ export const Navbar = () => {
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon className="text-[#eee] block h-6 w-6" aria-hidden="true" />
+                    <XMarkIcon className="text-main-title-light dark:text-main-title-dark block h-6 w-6" aria-hidden="true" />
                   ) : (
-                    <Bars3Icon className="text-[#eee] block h-6 w-6" aria-hidden="true" />
+                    <Bars3Icon className="text-main-title-light dark:text-main-title-dark block h-6 w-6" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
             </div>
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-4 px-6 py-4 bg-main-light dark:bg-main-dark">
-
                 <AutocompleteComponent />
                 <div className="flex items-center w-full justify-between gap-4">
                   <Link className="flex items-center cursor-pointer" href={isBridgeDocs ? '/docs/next/overview/general' : '/docs-bridge/overview'}>

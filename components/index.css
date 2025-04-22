@@ -1,82 +1,111 @@
-/* Style the entire search bar container */
 .algolia-search {
-    display: flex;
-    align-items: center;
-    background-color: #000; /* Black background */
-    border-radius: 4px; /* Rounded corners */
-    padding: 4px 6px; /* Smaller padding around the elements */
-    width: 100%; /* Ensure it takes up the full width available */
-    max-width: 400px; /* Optional: set a max width to prevent it from stretching too much */
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Optional: add a slight shadow */
-    position: relative; /* Ensure the search bar stays in place */
-    margin: 0 auto; /* Center align within its container */
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 4px 6px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin: 0 auto; /* Center align within its container */
+}
+
+.dark .algolia-search {
+  background-color: #1B1D23;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Style the search bar input */
 .algolia-search input[type="search"] {
-    background-color: #000; /* Black background */
-    color: #eee; /* Light text color */
-    border: none; /* Remove border */
-    padding: 6px 10px; /* Smaller padding inside the input */
-    border-radius: 4px; /* Rounded corners */
-    font-size: 14px; /* Font size */
-    width: 100%; /* Take up full available width */
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+  background-color: #fff; /* Black background */
+  color: #1B1D23; /* Light text color */
+  border: none; /* Remove border */
+  padding: 6px 10px; /* Smaller padding inside the input */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 14px; /* Font size */
+  width: 100%; /* Take up full available width */
+}
+
+.dark .algolia-search input[type="search"] {
+  background-color: #000;
+  color: #eee;
 }
 
 /* Adjust the placeholder text color */
 .algolia-search input[type="search"]::placeholder {
-    color: #888; /* Placeholder text color */
+  color: #9FA2AC; /* Placeholder text color */
+}
+
+.dark .algolia-search input[type="search"]::placeholder {
+  color: #5E6773;
 }
 
 /* Style the search icon */
 .algolia-search svg {
-    fill: #eee; /* Light color for the search icon */
-    margin-right: 6px; /* Smaller space between the icon and input */
+  fill: #EEE; /* Light color for the search icon */
+  margin-right: 6px; /* Smaller space between the icon and input */
 }
 
-/* Style the surrounding container to match the black color */
+.dark .algolia-search svg {
+  fill: #1B1D23;
+}
+
 .algolia-search button {
-    background-color: #000; /* Match the black background */
-    color: #eee; /* Light color for any buttons */
-    border: none; /* Remove default border */
-    cursor: pointer; /* Pointer cursor for buttons */
-    padding: 3px 6px; /* Smaller button padding */
-    border-radius: 4px; /* Ensure rounded corners */
+  background-color: #FFF;
+  color: #1B1D23;
+  border: none;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
 }
 
-/* Ensure the entire search bar aligns with surrounding elements */
+.dark .algolia-search button {
+  background-color: #1B1D23;
+  color: #eee;
+}
+
 .algolia-search-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center; /* Center align the search bar */
-    padding: 0; /* Remove padding to fill the entire space */
-    background-color: #000; /* Match the background color */
-    position: relative; /* Keep the header in position */
-    z-index: 10; /* Ensure it's above other elements */
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center align the search bar */
+  padding: 0; /* Remove padding to fill the entire space */
+  background-color: #1B1D23; /* Match the background color */
+  position: relative; /* Keep the header in position */
+  z-index: 10; /* Ensure it's above other elements */
 }
 
+.dark .algolia-search-wrapper {
+  background-color:  #FFF;
+}
 
 .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modalContent {
-    background: #1e1e2f;
-    width: 60%;
-    max-width: 600px;
-    border-radius: 10px;
-    overflow: hidden;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dark .modalOverlay {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.modalContent {
+  background: #1e1e2f;
+  width: 60%;
+  max-width: 600px;
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.dark .modalContent {
+  background: #fff;
+}

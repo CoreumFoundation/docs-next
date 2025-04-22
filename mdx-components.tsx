@@ -25,7 +25,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h1
           id={anchor}
-          className="font-medium capitalize text-grey-gradient !text-[2rem]"
+          className="font-medium capitalize text-main-title-light dark:text-main-title-dark !text-[2rem]"
           style={{
             fontSize: '32px',
             marginTop: '40px',
@@ -43,7 +43,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h2
           id={anchor}
-          className="font-medium text-[#EEE]"
+          className="font-medium text-main-title-light dark:text-main-title-dark"
           style={{
             fontSize: '24px',
             marginTop: '12px',
@@ -62,7 +62,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h3
           id={anchor}
-          className="font-medium text-[#EEE]"
+          className="font-medium text-main-title-light dark:text-main-title-dark"
           style={{
             fontSize: '18px',
             marginBottom: '12px',
@@ -80,7 +80,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h4
           id={anchor}
-          className="font-medium text-[#EEE]"
+          className="font-medium text-main-title-light dark:text-main-title-dark"
           style={{
             fontSize: '16px',
             marginBottom: '12px',
@@ -98,7 +98,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h5
           id={anchor}
-          className="font-medium text-[#EEE]"
+          className="font-medium text-main-title-light dark:text-main-title-dark"
           style={{
             fontSize: '14px',
             marginBottom: '12px',
@@ -116,7 +116,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <h6
           id={anchor}
-          className="font-medium text-[#EEE]"
+          className="font-medium text-main-title-light dark:text-main-title-dark"
           style={{
             fontSize: '12px',
             marginBottom: '12px',
@@ -171,12 +171,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     th: ({ children }) => (
       <th
-        className="font-normal"
+        className="font-normal bg-table-head"
         style={{
           padding: '16px 12px',
           fontFamily: spaceGrotesk.style.fontFamily,
           letterSpacing: '-0.32px',
-          backgroundColor: '#0d110f',
           minWidth: 180,
           textAlign: 'left',
         }}
@@ -186,13 +185,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     td: ({ children }) => (
       <td
-        className="font-normal text-[#9FA2AC]"
+        className="font-normal text-table bg-table-head"
         style={{
           padding: '16px 12px',
           fontFamily: notoSans.style.fontFamily,
           letterSpacing: '-0.16px',
-          backgroundColor: '#0d110f',
-          // borderBottom: '12px solid #101216',
           minWidth: 180,
         }}
       >
@@ -222,7 +219,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     pre: ({ children }) => (
       <pre
-        className="mdx-pre rounded-lg p-4 overflow-auto whitespace-pre-wrap break-words"
+        className="bg-code rounded-lg p-4 overflow-auto whitespace-pre-wrap break-words"
         style={{
           fontSize: '14px',
           marginTop: '12px',
@@ -236,7 +233,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     code: ({ children }) => (
       <code
-        className="text-[#eee] text-sm font-normal"
+        className="text-main-title-light dark:text-main-title-dark  text-sm font-normal"
         style={{
           fontSize: '14px',
           letterSpacing: '-0.14px',
@@ -248,7 +245,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     ol: ({ children }) => <ol style={{ listStyleType: 'decimal', marginLeft: '16px', marginBottom: '20px' }}>{children}</ol>,
     ul: ({ children }) => <ul className="mdx-ul" style={{ marginLeft: '20px', marginBottom: '20px' }}>{children}</ul>,
-    li: ({ children }) => <li className="text-[#EEE]" style={{ fontSize: '14px', wordWrap: 'break-word' }}>{children}</li>,
+    li: ({ children }) => <li className="text-main-title-light dark:text-main-title-dark" style={{ fontSize: '14px', wordWrap: 'break-word' }}>{children}</li>,
     details: ({ children }) => <details className="mdx-details">{children}</details>,
     summary: ({ children }) => <summary className="mdx-summary">{children}</summary>,
   }

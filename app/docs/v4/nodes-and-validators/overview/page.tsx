@@ -113,14 +113,14 @@ const ValidatorMainPage = () => {
   };
 
   return (
-    <div className="flex flex-col w-full gap-6 max-w-[900px] px-2 pt-6 pb-10">
-      <div className="text-[2rem] font-medium text-[#EEE] tracking-[-0.64px]">
+    <div className="flex flex-col w-full gap-6 px-2 pt-6 pb-10">
+      <div className="text-[2rem] font-medium text-main-title-light dark:text-main-title-dark tracking-[-0.64px]">
         Run Coreum node
       </div>
       <div className="flex flex-col w-full gap-20 pb-20">
         {Object.values(TUTORIALS_ITEMS).map((tutorialItem, index) => (
           <div key={`tutorial-map-${index}`} className="flex flex-col gap-6">
-            <div className="mt-4 text-base font-medium tracking-[-0.48px] text-[#eee]">
+            <div className="mt-4 text-base font-medium tracking-[-0.48px] text-main-title-light dark:text-main-title-dark">
               {tutorialItem.label}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-3">

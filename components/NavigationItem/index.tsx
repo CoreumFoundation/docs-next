@@ -14,7 +14,7 @@ interface NavigatonItem {
 }
 
 export const NavigatonItem: FC<NavigatonItem> = ({ label, href, mode }) => {
-  const cx = classNames('flex flex-col gap-2 w-full p-4 rounded-md bg-[#0E0F10]', {
+  const cx = classNames('flex flex-col gap-2 w-full p-4 rounded-md bg-navigation-item-light dark:bg-navigation-item-dark', {
     'items-start text-left': mode === NavigatonItemMode.Previous,
     'items-end text-right': mode === NavigatonItemMode.Next,
   });

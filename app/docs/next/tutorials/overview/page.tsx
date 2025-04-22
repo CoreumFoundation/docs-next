@@ -4,6 +4,7 @@ import classNames from "classnames";
 import React from "react";
 import Image from 'next/image';
 import { Metadata } from 'next';
+import { TutorialOverviewIcon } from "@/components/TutorialOverviewIcon";
 
 export const metadata: Metadata = {
   title: "Coreum Tutorials | Coreum Docs",
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
 const TUTORIALS_ITEMS = {
   get_started: {
     logo: '',
+    lightLogo: '',
     label: 'Get Started:',
     items: [
       {
@@ -54,6 +56,7 @@ const TUTORIALS_ITEMS = {
   },
   cli: {
     logo: '/images/tutorials/cli.svg',
+    lightLogo: '/images/tutorials/lightCli.svg',
     label: 'CLI:',
     items: [
       {
@@ -80,6 +83,7 @@ const TUTORIALS_ITEMS = {
   },
   golang: {
     logo: '/images/tutorials/golang.svg',
+    lightLogo: '/images/tutorials/golang.svg',
     label: 'Golang:',
     items: [
       {
@@ -101,6 +105,7 @@ const TUTORIALS_ITEMS = {
   },
   ts_js: {
     logo: '/images/tutorials/ts-js.svg',
+    lightLogo: '/images/tutorials/ts-js.svg',
     label: 'TS/JS:',
     items: [
       {
@@ -122,6 +127,7 @@ const TUTORIALS_ITEMS = {
   },
   wasm: {
     logo: '/images/tutorials/wasm.svg',
+    lightLogo: '/images/tutorials/wasm.svg',
     label: 'Smart Contracts:',
     items: [
       {
@@ -148,6 +154,7 @@ const TUTORIALS_ITEMS = {
   },
   use_tokens: {
     logo: '',
+    lightLogo: '',
     label: 'Smart Tokens:',
     items: [
       {
@@ -174,6 +181,7 @@ const TUTORIALS_ITEMS = {
   },
   integrate_coreum: {
     logo: '',
+    lightLogo: '',
     label: 'Integrate Coreum:',
     items: [
       {
@@ -200,6 +208,7 @@ const TUTORIALS_ITEMS = {
   },
   build_apps: {
     logo: '',
+    lightLogo: '',
     label: 'Build Apps:',
     items: [
       {
@@ -221,6 +230,7 @@ const TUTORIALS_ITEMS = {
   },
   ibc: {
     logo: '',
+    lightLogo: '',
     label: 'IBC:',
     items: [
       {
@@ -252,6 +262,7 @@ const TUTORIALS_ITEMS = {
   },
   iso: {
     logo: '',
+    lightLogo: '',
     label: 'ISO20022',
     items: [
       {
@@ -280,30 +291,24 @@ const TutorialsMainPage = () => {
   };
 
   return (
-    <div className="flex flex-col w-full gap-6 max-w-[900px] px-2 pt-6 pb-[5.5rem]">
-      <div className="text-[2rem] font-medium text-[#EEE] tracking-[-0.64px]">
+    <div className="flex flex-col w-full gap-6 px-2 pt-6 pb-[5.5rem]">
+      <div className="text-[2rem] font-medium text-main-title-light dark:text-main-title-dark tracking-[-0.64px]">
         Coreum Tutorials
       </div>
       {Object.values(TUTORIALS_ITEMS).map((tutorialItem, index) => {
         const labelCx = classNames('mt-4', {
-          'text-2xl font-medium tracking-[-0.48px] text-[#eee]': !tutorialItem.logo.length,
+          'text-2xl font-medium tracking-[-0.48px] text-main-title-light dark:text-main-title-dark': !tutorialItem.logo.length,
           'flex items-center gap-2 text-base font-normal tracking-[-0.16px] text-[#868991]': tutorialItem.logo.length,
         });
 
         return (
           <React.Fragment key={`tutorial-map-${index}`}>
             <div className={labelCx}>
-              {tutorialItem.logo.length
-                ? (
-                  <Image
-                    alt={tutorialItem.label}
-                    src={tutorialItem.logo}
-                    width={36}
-                    height={36}
-                  />
-                )
-                : ''
-              }
+              <TutorialOverviewIcon
+                label={tutorialItem.label}
+                logo={tutorialItem.logo}
+                lightLogo={tutorialItem.lightLogo}
+              />
               {tutorialItem.label}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-3">
