@@ -4,11 +4,7 @@ import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import classNames from 'classnames';
 import { ArrowUpIcon, Bars3Icon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavigationItem } from '@/utils/types';
-import {
-  ROUTE_NEXT_PREFIX,
-  ROUTE_V4_PREFIX,
-  XRPL_BRIDGE_ITEMS,
-} from './constants';
+import { XRPL_BRIDGE_ITEMS } from './constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';

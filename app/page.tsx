@@ -12,8 +12,6 @@ interface CardItem {
 }
 
 export default function Home() {
-
-
   const CARDS: CardItem[] = [
     {
       image: <CardImage type="features" />,
