@@ -59,6 +59,9 @@ array. The `DataDynamic` contains the list of the `DataDynamicItem` which can be
 Currently supported `DataEditors` are  `admin` and `owner`. If only one editor is set for the item, only that editor can update the 
 item's `data` using the`MsgUpdateData`. If both, both can update the `data`. If the `editors` list is empty no one can update the `data`.
 
+#### Mint Fee
+The code implements a mint fee that is charged when an NFT is minted. This fee is configurable via parameters and is burned. the current value is zero, but it is configurable via governance proposals.
+
 ### Burning
 
 If this feature is enabled, it allows the holders of the token to burn the tokens they hold. It
@@ -92,3 +95,12 @@ NFT is not transferred to anyone else.
 
 ## Update Data
 update the data of the specified NFT with the information provided in the data file
+
+## Proto Definitions
+
+For detailed information about the structure and fields of the messages, please refer to the proto definitions in the Coreum codebase:
+
+- [`events.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/nft/v1/event.proto)
+- [`tx.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/nft/v1/tx.proto)
+- [`query.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/nft/v1/query.proto)
+- [`params.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/nft/v1/params.proto)

@@ -12,7 +12,7 @@ bidirectional and permissionless, allowing for flexible and open trading.
 
 Users can place orders with the following attributes:
 
-* `order_id` - unique order identifier of the order.
+* `order_id` - unique order identifier of the order. the order id matches against regular expression `^[a-zA-Z0-9/+:._-]{1,40}$`.
 * `base_denom` - when you buy, you are buying the `base_denom`, when you sell, you are selling the `base_denom`.
 * `quote_denom` - when you buy, you are selling the `quote_denom`, when you sell, you are buying the `quote_denom`.
 * `price` - value of one unit of the `base_denom` expressed in terms of the `quote_denom`. It indicates how much of the
@@ -234,7 +234,7 @@ The default reserve amount is `10 CORE` and can be updated by the governance.
 ### Max orders limit
 
 The number of active orders a user can have for each denom is limited by a value called `max_orders_per_denom`,
-which is determined by DEX governance. The default value is 100.
+which is determined by DEX governance. The default value is 100 but the parameter can be change with governance proposal, to check the current value visit [block explorer](https://explorer.devnet-1.coreum.dev/coreum/params).
 
 ### Events
 
@@ -261,6 +261,10 @@ The users can cancel their orders within the DEX. Or The token admin or gov can 
 It grants specific administrative or governance roles the power to manage and oversee active orders, providing a
 safeguard against potential issues such as erroneous trades, malicious activity, or market manipulation. For the token
 admin to cancel the user's orders, the `dex_order_cancellation` feature must be enabled.
+
+### Order Sequence
+
+The order sequence is a unique identifier assigned to each order within the system. It is used to maintain the order's position in the order book and ensure proper ordering and execution of trades. The sequence is critical for tracking, managing, and retrieving orders efficiently.
 
 ### Block DEX
 
@@ -373,3 +377,13 @@ pub fn sudo(deps: DepsMut, env: Env, msg: SudoMsg) -> CoreumResult<ContractError
 
 - Acts as the main function that handles incoming messages.
 - Delegates to specific helper functions based on the message type.
+
+
+## Proto Definitions
+
+For detailed information about the structure and fields of the messages, please refer to the proto definitions in the Coreum codebase:
+
+- [`events.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/event.proto)
+- [`tx.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/tx.proto)
+- [`query.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/query.proto)
+- [`params.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/params.proto)
