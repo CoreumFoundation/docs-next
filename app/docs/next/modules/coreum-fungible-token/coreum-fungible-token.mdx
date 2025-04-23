@@ -272,3 +272,24 @@ The fields are:
 
 _**Note**: The extension feature is not compatible with ibc and block smart contract feature. It will error out if you try
 to enable those features at the same time._
+
+### DEX Extension
+FtAsset integrates with the DEX module to enable or restrict trading of these tokens on decentralized exchanges (DEX) check [DEX spec](https://github.com/CoreumFoundation/coreum/tree/master/x/dex/spec#extension) for more details.
+
+#### DEX Block
+This feature is enforced to validate whether a token can participate in DEX orders. neither for `sell` nor for `buy` orders.
+
+#### DEX whitelisted Denoms
+Allows token admins to specify a list of denoms that the token can be traded against. this feature can be updated by the token admin or chain governance.
+
+#### DEX Unified Ref Amount
+Defines a reference amount for DEX trading. this setting can be updated by the token admin or governance. It is validated during DEX operations to ensure compliance with the token's configuration. Check [DEX spec](https://github.com/CoreumFoundation/coreum/tree/master/x/dex/spec#Unified-ref-amount) for more details.
+
+## Proto Definitions
+
+For detailed information about the structure and fields of the messages, please refer to the proto definitions in the Coreum codebase:
+
+- [`events.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/ft/v1/event.proto)
+- [`tx.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/ft/v1/tx.proto)
+- [`query.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/ft/v1/query.proto)
+- [`params.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/asset/ft/v1/params.proto)

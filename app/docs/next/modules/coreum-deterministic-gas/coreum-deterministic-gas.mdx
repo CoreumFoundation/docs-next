@@ -191,6 +191,13 @@ Real examples of special case tests could be found [here](https://github.com/Cor
 
 `msgGas` is currently equal to `39000`.
 
+##### `/coreum.asset.ft.v1.MsgUpdateDEXWhitelistedDenoms`
+
+`DeterministicGasForMsg = DEXUpdateWhitelistedDenomBaseGas + DEXWhitelistedPerDenomGas * NumberOfDenom`
+
+`DEXWhitelistedPerDenomGas` is currently equal to `10000`.
+`DEXUpdateWhitelistedDenomBaseGas` is currently equal to `10000`.
+
 ### Nondeterministic messages
 
 | Message Type |
@@ -257,3 +264,10 @@ Real examples of special case tests could be found [here](https://github.com/Cor
 | `/ibc.core.connection.v1.MsgConnectionOpenInit`                        |
 | `/ibc.core.connection.v1.MsgConnectionOpenTry`                         |
 | `/packetforward.v1.MsgUpdateParams`                                    |
+
+
+## Proto Definitions
+
+For detailed information about the structure and fields of the messages, please refer to the proto definitions in the Coreum codebase:
+
+- [`events.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/deterministicgas/v1/event.proto)
