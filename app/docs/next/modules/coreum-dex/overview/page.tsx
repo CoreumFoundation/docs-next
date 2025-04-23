@@ -7,8 +7,8 @@ const Page = () => {
     href: '/docs/next/modules/coreum-fee-model',
   };
   const nextNavigationItem = {
-    label: 'Cosmos Non-Fungible Tokens',
-    href: '/docs/next/modules/cosmos-non-fungible-token',
+    label: 'Coreum DEX: Prices and Limits',
+    href: '/docs/next/modules/coreum-dex/prices-and-limits',
   };
 
   return (

@@ -288,6 +288,16 @@ export const MODULES_ITEMS = [
       {
         name: 'Coreum DEX',
         href: '/modules/coreum-dex',
+        children: [
+          {
+            name: 'Overview',
+            href: '/modules/coreum-dex/overview',
+          },
+          {
+            name: 'Prices and limits',
+            href: '/modules/coreum-dex/prices-and-limits',
+          },
+        ],
       },
       {
         name: 'Cosmos Non-Fungible Token',

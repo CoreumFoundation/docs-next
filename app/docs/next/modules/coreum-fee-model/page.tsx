@@ -35,7 +35,7 @@ const Page = () => {
   };
   const nextNavigationItem = {
     label: 'Coreum DEX',
-    href: `/docs/next/modules/coreum-dex`,
+    href: `/docs/next/modules/coreum-dex/overview`,
   };
 
   return (

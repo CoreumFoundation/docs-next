@@ -45,7 +45,7 @@ export const Navbar = () => {
       return isBridgeDocs ? '/images/logo-bridge.svg' : '/images/logo.svg';
     }
 
-    return isBridgeDocs ? '/images/logo-bridge-light.svg' : '/images/logo-light.svg';
+    return isBridgeDocs ? '/images/l.svg' : '/images/logo-light.svg';
   }, [activeTheme, isBridgeDocs]);
 
   return (

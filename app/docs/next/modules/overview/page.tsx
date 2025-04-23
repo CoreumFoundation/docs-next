@@ -49,8 +49,13 @@ const MODULES_ITEMS: DocLinkItemProps[] = [
     external: false,
   },
   {
-    label: 'DEX',
-    href: '/docs/next/modules/coreum-dex',
+    label: 'Coreum DEX: Overview',
+    href: '/docs/next/modules/coreum-dex/overview',
+    external: false,
+  },
+  {
+    label: 'Coreum DEX: Prices and Limits',
+    href: '/docs/next/modules/coreum-dex/prices-and-limits',
     external: false,
   },
   {
