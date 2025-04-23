@@ -19,7 +19,7 @@ export const Dropdown: FC<DropdownProps> = ({
   items,
 }) => {
   return (
-    <Menu as="div" className="relative inline-block text-left w-full">
+    <Menu as="div" className="relative inline-block text-left w-full max-w-fit">
       <div>
         <Menu.Button className="inline-flex w-full sm:justify-center gap-x-1.5 rounded-md bg-main-light dark:bg-main-dark px-3 py-2 text-sm font-medium text-[#9FA2AC] shadow-sm ring-0">
           {label}

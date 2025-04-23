@@ -128,25 +128,27 @@ export const Navbar = () => {
               <div className="space-y-4 px-6 py-4 bg-main-light dark:bg-main-dark">
                 <AutocompleteComponent />
                 <div className="flex items-center w-full justify-between gap-4">
-                  <Link className="flex items-center cursor-pointer" href={isBridgeDocs ? '/docs/next/overview/general' : '/docs-bridge/overview'}>
-                    <p className="text-[#9FA2AC] text-sm font-space-grotesk leading-[21px] tracking-[-0.14px] text-nowrap">
-                      {isBridgeDocs ? 'Coreum Docs' : 'Bridge Docs'}
-                    </p>
-                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M12.0754 8.3908H7.02604V7.1665H14.1678V14.3082H12.9435V9.25411L6.69774 15.4998L5.83203 14.6341L12.0754 8.3908Z"
-                        fill="#5E6773"
+                  <div className="flex items-center gap-4 flex-1">
+                    <Link className="flex items-center cursor-pointer" href={isBridgeDocs ? '/docs/next/overview/general' : '/docs-bridge/overview'}>
+                      <p className="text-[#9FA2AC] text-sm font-space-grotesk leading-[21px] tracking-[-0.14px] text-nowrap">
+                        {isBridgeDocs ? 'Coreum Docs' : 'Bridge Docs'}
+                      </p>
+                      <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M12.0754 8.3908H7.02604V7.1665H14.1678V14.3082H12.9435V9.25411L6.69774 15.4998L5.83203 14.6341L12.0754 8.3908Z"
+                          fill="#5E6773"
+                        />
+                      </svg>
+                    </Link>
+                    {!isBridgeDocs && (
+                      <Dropdown
+                        label={versionRoute}
+                        items={VERSION_DROPDOWN_ITEMS}
                       />
-                    </svg>
-                  </Link>
-                  {!isBridgeDocs && (
-                    <Dropdown
-                      label={versionRoute}
-                      items={VERSION_DROPDOWN_ITEMS}
-                    />
-                  )}
+                    )}
+                  </div>
                   <Link href="/docs" className="flex items-center justify-between gap-2 px-2 py-1 text-nowrap rounded-lg text-[#1B1D23] text-sm bg-green-gradient">
                     Get Started
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
