@@ -132,9 +132,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
       ];
     }
 
+    const modulesItems = MODULES_ITEMS.map(item => {
+      return {
+        ...item,
+        children: item.children.filter(childItem => childItem.href !== '/modules/coreum-dex'),
+      };
+    });
+
     return [
       ...OVERVIEW_ITEMS,
-      ...MODULES_ITEMS,
+      ...modulesItems,
       ...TOOLS_ITEMS,
       ...VALIDATORS_ITEMS,
       ...TUTORIAL_ITEMS,
