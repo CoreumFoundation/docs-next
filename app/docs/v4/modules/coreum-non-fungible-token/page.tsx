@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: 'Unlock the power of non-fungible tokens on the Coreum blockchain. Learn about creating NFTs, implementing custom features, and managing your digital assets effectively.',
     siteName: 'Coreum Non-Fungible Token Creation and Features | Coreum Developers',
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

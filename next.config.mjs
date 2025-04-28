@@ -226,6 +226,16 @@ const nextConfig = {
         destination: '/docs/next/modules/:slug',
         permanent: true,
       },
+      {
+        source: '/docs/modules/coreum-dex',
+        destination: '/docs/next/modules/coreum-dex/overview',
+        permanent: true,
+      },
+      {
+        source: '/docs/next/modules/coreum-dex',
+        destination: '/docs/next/modules/coreum-dex/overview',
+        permanent: true,
+      },
 
       {
         source: '/docs/tools-and-ecosystem',

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Discover how to create and manage fungible tokens on the Coreum blockchain using Go. Includes complete code examples and detailed instructions for a smooth start.",
     siteName: "Create and Manage Fungible Tokens on Coreum with Go | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

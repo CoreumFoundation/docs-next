@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Master Coreum blockchain development with Crust. Learn how to set up, build, and run applications for efficient blockchain development and testing.",
     siteName: "Crust: Coreum Development and Testing Environment Tool | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

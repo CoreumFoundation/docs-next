@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Access essential tools for engaging with the Coreum ecosystem including wallets, faucets, and block explorers. Start interacting with the Coreum blockchain now.",
     siteName: "Tools/Ecosystem | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

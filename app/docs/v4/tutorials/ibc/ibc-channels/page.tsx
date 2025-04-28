@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Discover Coreum's IBC channels, enabling interoperability with Osmosis, Axelar, Evmos, and GravityBridge. Learn about the Cosmos Chain Registry and how Coreum connects within the Cosmos ecosystem.",
     siteName: "Coreum IBC Channels: Connecting the Cosmos Ecosystem | Coreum Documentation",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

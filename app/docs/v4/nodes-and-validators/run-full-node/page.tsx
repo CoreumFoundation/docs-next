@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Learn the step-by-step process of running a full node on the Coreum blockchain. Join the network and contribute to the decentralization and security of Coreum.",
     siteName: "How to Run a Full Node on Coreum Blockchain | Coreum Network Participation",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

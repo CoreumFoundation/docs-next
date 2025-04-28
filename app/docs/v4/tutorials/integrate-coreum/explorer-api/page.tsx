@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Explore the step-by-step tutorial on utilizing the Explorer API for Coreum Blockchain. Learn how to access GraphQL Query endpoints and leverage the API for development.",
     siteName: "Using Explorer API for Coreum Blockchain | Coreum Documentation",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

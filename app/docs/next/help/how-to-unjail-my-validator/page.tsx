@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Master the setup and optimization of a validator node in the Coreum blockchain network. Learn how to secure your node, optimize storage, and unjail your validator.",
     siteName: "Unjailing Your Validator Node on Coreum Network | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

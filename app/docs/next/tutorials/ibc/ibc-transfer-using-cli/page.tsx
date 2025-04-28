@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Master the steps for executing IBC transfers between Coreum and Osmosis using CLI tools. Learn how to send and receive tokens across blockchains efficiently.",
     siteName: "IBC Transfer Using CLI: Coreum to Osmosis and Back | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

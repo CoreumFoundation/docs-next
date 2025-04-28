@@ -1,5 +1,43 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './data-aggregator.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum | DEX Data",
+  description: "All the documentation you need to launch Coreum powerful real time data aggregator",
+  keywords: [
+    'consolidate',
+    'real time data',
+    'aggregate',
+    'build',
+    'launch',
+    'run',
+    'analytics',
+    'sources',
+    'exact',
+    'coreum',
+    'blockchain',
+    'smart contract',
+    'token',
+    'dapps',
+    'defi',
+    'decentralized',
+    'bitcoin',
+    'crypto',
+    'network',
+    'nft',
+    'build',
+    'launch',
+  ],
+  openGraph: {
+    type: 'website',
+    description: "All the documentation you need to launch Coreum powerful real time data aggregator",
+    siteName: "Coreum | DEX Data",
+    images: [{
+      url: 'http://docs.coreum.dev/images/og.jpg',
+    }],
+  },
+};
 
 const Page = () => {
   const prevNavigationItem = {

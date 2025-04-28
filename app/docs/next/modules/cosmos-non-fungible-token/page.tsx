@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: 'Master the Cosmos NFT module for creating, transferring, and managing non-fungible tokens on the Cosmos blockchain. Follow our guide for comprehensive insights.',
     siteName: 'Cosmos Non-Fungible Tokens: Create, Transfer, and Manage NFTs | Cosmos Developers',
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

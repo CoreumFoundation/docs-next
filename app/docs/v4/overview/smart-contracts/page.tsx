@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: "Explore the advanced Smart Contract capabilities of Coreum using WebAssembly (WASM) for enhanced security, efficiency, and cross-language compatibility. Learn how CosmWasm integrates with the Cosmos SDK.",
     siteName: "Smart Contracts on Coreum: WASM-Powered Contract Execution | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

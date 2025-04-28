@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Comprehensive guide to developing, deploying, and managing WASM-based extension for fungible tokens on the Coreum blockchain. Includes detailed instructions and code snippets.",
     siteName: "Developing Smart FT Extension with WASM on Coreum | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

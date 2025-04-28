@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Explore the seamless asset flow between Coreum and the XRP Ledger (XRPL) through the Coreum Bridge XRPL Relayer. Discover the decentralized and non-custodial transfer mechanism.",
     siteName: "Understanding Asset Flow in Coreum Bridge XRPL Relayer | Coreum and XRPL Integration",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

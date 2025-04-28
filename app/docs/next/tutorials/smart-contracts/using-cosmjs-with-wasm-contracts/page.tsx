@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: "Explore how to use CosmJS to instantiate, execute, and query CosmWASM smart contracts on the Coreum blockchain. A complete guide for developers.",
     siteName: "Interact with CosmWASM Contracts on Coreum using CosmJS | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

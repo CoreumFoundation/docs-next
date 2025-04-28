@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Discover Coreum's Fee Model, a dynamic approach to blockchain transaction gas pricing. Understand the mechanisms behind minimum gas price calculations and how it impacts your transactions.",
     siteName: "Coreum Fee Model: Dynamic Gas Pricing for Blockchain Transactions | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

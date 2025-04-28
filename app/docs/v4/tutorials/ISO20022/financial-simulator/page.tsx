@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Dive into the details of ISO 20022, the advanced financial messaging standard revolutionizing how data is exchanged across global financial institutions.",
     siteName: "Understanding ISO 20022: Revolutionizing Financial Messaging",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

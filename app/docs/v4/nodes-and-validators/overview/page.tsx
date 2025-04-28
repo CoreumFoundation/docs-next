@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Learn how to run different types of Coreum nodes including full, sentry, and validator nodes. Each guide provides detailed instructions and links to all necessary dependencies.",
     siteName: "Run Coreum Node | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

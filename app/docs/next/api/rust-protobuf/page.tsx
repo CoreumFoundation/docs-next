@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Master the generation of Rust protobuf structures with the Coreum Rust Protobuf tool, enabling efficient communication with the Coreum blockchain via gRPC and Rust.",
     siteName: "Coreum Rust Protobuf Generator | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

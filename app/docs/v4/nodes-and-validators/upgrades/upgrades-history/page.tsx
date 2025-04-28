@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: "Explore the comprehensive history of Coreum blockchain upgrades. Understand the key milestones, including genesis and major version updates, for Mainnet and Testnet.",
     siteName: "Coreum Blockchain Upgrade History: Detailed Guide | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: "Learn how to set up and run a validator node on the Coreum blockchain network. This guide covers everything from initial setup to advanced configuration options.",
     siteName: "Setting Up a Validator Node | Coreum Blockchain Network Guide",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

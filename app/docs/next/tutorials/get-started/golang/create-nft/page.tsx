@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Step-by-step guide to creating and managing non-fungible tokens (NFTs) on the Coreum blockchain using Go. Learn how to mint, transfer, and freeze NFTs with code examples.",
     siteName: "Create and Manage Non-Fungible Tokens on Coreum with Go | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

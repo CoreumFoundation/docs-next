@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: "Browse a comprehensive range of Coreum Tutorials to get started with CLI and Golang for blockchain development. Learn to set up network variables, transfer funds, work with smart contracts, and more.",
     siteName: "Coreum Tutorials | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

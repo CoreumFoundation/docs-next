@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Step-by-step guide on executing IBC transfers to Osmosis using the Keplr wallet. Learn how to send assets cross-chain securely and efficiently.",
     siteName: "IBC Transfer to Osmosis Using Keplr Wallet | Coreum Guide",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

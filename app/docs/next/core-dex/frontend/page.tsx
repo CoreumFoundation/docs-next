@@ -1,5 +1,40 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import Component from './frontend.mdx';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Coreum | DEX API Docs",
+  description: "Dive into the documentation you need to build using Coreum DEX API",
+  keywords: [
+    'DEX',
+    'exchange',
+    'API',
+    'documentation',
+    'tools',
+    'developers',
+    'launch',
+    'coreum',
+    'blockchain',
+    'smart contract',
+    'token',
+    'dapps',
+    'defi',
+    'decentralized',
+    'bitcoin',
+    'crypto',
+    'network',
+    'nft',
+    'build',
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Dive into the documentation you need to build using Coreum DEX API",
+    siteName: "Coreum | DEX API Docs",
+    images: [{
+      url: 'http://docs.coreum.dev/images/og.jpg',
+    }],
+  },
+};
 
 const Page = () => {
   const prevNavigationItem = {

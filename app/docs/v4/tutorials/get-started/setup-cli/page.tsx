@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Step-by-step guide on setting up Coreum CLI network variables for mainnet, testnet, devnet, and localnet environments. Learn how to configure your CLI for Coreum blockchain interactions.",
     siteName: "Setting Up Coreum CLI Network Variables for Different Environments | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

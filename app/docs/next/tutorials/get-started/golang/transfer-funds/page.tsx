@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Learn how to use the Go programming language to broadcast transactions and query the Coreum blockchain. A complete guide with examples and a full code snippet.",
     siteName: "Transferring Funds on Coreum Blockchain with Go | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

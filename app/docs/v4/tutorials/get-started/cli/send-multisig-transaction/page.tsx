@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Step-by-step guide on creating a multisig account and sending a multisig transaction using the Coreum cored CLI. Learn how to securely manage multisig transactions on the Coreum blockchain.",
     siteName: "Creating and Broadcasting Multisig Transactions with Coreum CLI | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

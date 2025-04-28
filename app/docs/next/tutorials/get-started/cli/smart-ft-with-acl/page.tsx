@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Learn how to create a multisig account, issue a fungible token (FT), and manage permissions with the Authz module on the Coreum blockchain for enhanced asset control.",
     siteName: "Creating Smart FT with ACL on Coreum Blockchain | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

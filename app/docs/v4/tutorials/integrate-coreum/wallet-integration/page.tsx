@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Learn how to integrate Coreum into your wallet. This guide covers differences in gas price, gas estimation, and fungible tokens handling specific to Coreum, built with Cosmos SDK.",
     siteName: "Coreum Wallet Integration Guide | Official Coreum Documentation",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

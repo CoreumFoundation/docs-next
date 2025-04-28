@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "An introduction to Coreum, providing a general overview of the blockchain's capabilities, including Smart Tokens, Smart Contracts, and key technical information. Ideal for developers and enthusiasts starting with Coreum.",
     siteName: "Coreum Overview | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Step-by-step guide on updating the Coreum Bridge XRPL Relayer software. Ensure your relayer operations remain efficient and secure with the latest software version.",
     siteName: "How to Update Coreum Bridge XRPL Relayer Software | Coreum Tutorials",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

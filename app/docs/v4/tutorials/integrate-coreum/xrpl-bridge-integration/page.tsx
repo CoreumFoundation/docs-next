@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: "Learn how to prepare the client side of application to interact with XRPL-Coreum Bridge",
     siteName: "Client integration guide for XRPL-Coreum Bridge | Coreum Guides",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

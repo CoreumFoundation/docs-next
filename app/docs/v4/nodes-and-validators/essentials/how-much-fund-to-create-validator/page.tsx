@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'Discover how much funding you need to launch a validator node on the Coreum blockchain. Learn about self-delegation, slashing risks, and how to secure your spot in the active set.',
     siteName: 'Understanding Funding Requirements for a Coreum Validator Node | Coreum Docs',
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

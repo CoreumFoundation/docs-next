@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Find answers to frequently asked questions and explore a collection of useful links to support your experience with Coreum. Get the help you need to navigate the Coreum ecosystem.",
     siteName: "Help | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

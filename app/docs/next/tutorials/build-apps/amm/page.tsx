@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Learn how to set up an Automated Market Maker (AMM) on the Coreum blockchain using the Astroport protocol with our comprehensive development guide.",
     siteName: "Setting Up an AMM on Coreum with Astroport | Coreum Development Guide",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

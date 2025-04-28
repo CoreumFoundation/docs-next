@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Discover the system requirements for running Coreum nodes on Mainnet, Testnet, and Devnet. Learn about the recommended hardware specifications for validators, full nodes, and default nodes.",
     siteName: "Coreum Node System Requirements for Mainnet, Testnet, and Devnet | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

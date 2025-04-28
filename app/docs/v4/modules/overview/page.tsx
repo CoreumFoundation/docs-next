@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Dive into the Coreum Modules, offering a variety of functionalities including Fungible Tokens, Non-Fungible Tokens, Deterministic Gas, and more. Understand how these modules form the building blocks of the Coreum ecosystem.",
     siteName: "Coreum Modules | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

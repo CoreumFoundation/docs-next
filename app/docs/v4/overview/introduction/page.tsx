@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: "Discover Coreum, a layer-1 enterprise-grade blockchain with ISO20022, IBC interoperability, and Smart Tokens. Learn about $COREUM token, smart contracts, DEX, and cross-chain bridges.",
     siteName: "Coreum: Advanced Layer-1 Blockchain for Decentralized Applications | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

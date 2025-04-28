@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Learn how to create and manage fungible tokens on the Coreum blockchain. Explore issuing, minting, burning, and other token functionalities with Coreum's assetft module.",
     siteName: "Coreum Fungible Token Creation and Management | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

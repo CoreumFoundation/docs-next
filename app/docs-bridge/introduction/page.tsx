@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Explore the XRPL-Coreum Bridge that facilitates asset transfers between the XRPL and Coreum blockchains, enhancing blockchain interoperability with a robust, decentralized architecture.",
     siteName: "XRPL-Coreum Bridge: Enabling Blockchain Interoperability | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

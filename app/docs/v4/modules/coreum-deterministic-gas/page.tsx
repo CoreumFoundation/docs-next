@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Dive into the deterministic gas model of Coreum for precise transaction cost estimation. Learn how it enhances blockchain development with fixed gas costs for specific transaction types.",
     siteName: "Understanding Coreum's Deterministic Gas Model for Efficient Blockchain Transactions | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

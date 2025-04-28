@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Prepare your system for Coreum node setup with these prerequisites. Learn how to configure system limits and install necessary utilities for optimal node operation.",
     siteName: "Coreum Node Setup Prerequisites | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

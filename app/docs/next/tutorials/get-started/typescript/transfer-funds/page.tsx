@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Learn to transfer funds on the Coreum blockchain using TypeScript. This tutorial covers the essentials of setting up CosmJS and executing transactions efficiently.",
     siteName: "Fund Transfer Using TypeScript and CosmJS | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

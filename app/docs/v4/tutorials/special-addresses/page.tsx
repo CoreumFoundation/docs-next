@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Explore the special addresses on the Coreum blockchain that manage critical functions like governance, asset distribution, and inter-blockchain communications. These addresses ensure decentralized control and operational efficiency.",
     siteName: "Special Addresses on Coreum Blockchain | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

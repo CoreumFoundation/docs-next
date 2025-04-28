@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Learn how to run the Coreum Bridge XRPL Relayer, ensuring seamless interoperability between Coreum and the XRPL. Follow our comprehensive guide for a smooth setup.",
     siteName: "Running Coreum Bridge XRPL Relayer: A Step-by-Step Guide | Coreum Integration",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Explore the Coreum gas price calculation methods including the minimum gas price dynamics and fee model. Use provided tools to efficiently manage and predict transaction costs.",
     siteName: "Gas Price Calculation Guide for Coreum Blockchain | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

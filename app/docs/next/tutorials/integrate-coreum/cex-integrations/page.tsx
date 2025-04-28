@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "A comprehensive guide for exchanges on how to integrate trading of CORE tokens. Includes technical details, project information, and code examples in Golang and TypeScript.",
     siteName: "CEX Integration Guide for Coreum | Coreum Official Documentation",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

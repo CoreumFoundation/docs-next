@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Learn how to create and manage Non-Fungible Tokens (NFTs) on the Coreum blockchain using the command-line interface (CLI). This tutorial covers everything from issuing NFT classes to minting, sending, freezing, and burning NFTs.",
     siteName: "Creating Non-Fungible Tokens on Coreum with CLI | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

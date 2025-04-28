@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Learn how to enable smart contracts on Coreum to communicate across chains with IBC. This tutorial covers setting up CosmWasm contracts for cross-chain messaging.",
     siteName: "IBC Smart Contract Communication Tutorial | Coreum Documentation",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

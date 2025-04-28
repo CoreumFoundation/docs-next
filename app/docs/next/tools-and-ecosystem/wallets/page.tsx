@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Explore the best wallets for Coreum blockchain with our detailed comparison. Find out which wallets support staking, mobile apps, browser extensions, hardware wallets, and more.",
     siteName: "Compare Coreum Blockchain Wallets: Features and Support Guide",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

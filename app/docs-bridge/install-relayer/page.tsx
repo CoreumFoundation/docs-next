@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: "Master XRPL-Coreum relayer setup for cross-chain functionality. Our guide covers CLI network variables and Docker configuration for seamless XRPL bridge installation.",
     siteName: "XRPL-Coreum Relayer Setup: A Developer's Guide | Coreum and XRP Ledger Integration",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

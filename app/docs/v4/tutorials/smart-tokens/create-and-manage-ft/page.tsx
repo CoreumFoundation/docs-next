@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Learn to create, manage, and interact with fungible tokens on the Coreum blockchain using the command-line interface. Follow our step-by-step guide.",
     siteName: "Create and Manage Fungible Tokens on Coreum Blockchain with CLI | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

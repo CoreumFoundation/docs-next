@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Master the art of building a Coreum web application using TypeScript. This tutorial covers essential tools like Next.js, React, CosmWasm, and Keplr integration.",
     siteName: "Building a Coreum Web Application with TypeScript | Coreum Development Tutorial",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: "Follow our step-by-step guide to upgrade your Coreum node seamlessly. Learn about prerequisites, downloading binaries, and verifying upgrades for Mainnet and Testnet.",
     siteName: "How to Upgrade Your Coreum Node: A Complete Guide | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

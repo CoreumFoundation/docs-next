@@ -1,25 +1,34 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './faq.mdx';
 import { Metadata } from 'next';
 import { HelpCard } from '@/components/HelpCard';
 
 export const metadata: Metadata = {
-  title: "Coreum Blockchain FAQ: Common Issues and Solutions | Coreum Docs",
-  description: "Find answers to frequently asked questions about Coreum blockchain, including how to connect `cored` to specific networks, resolve account errors, and more.",
+  title: "Coreum Help",
+  description: "Help by topic: Github issues, Ask the community, FAQ, unjail a validator",
   keywords: [
-    'Coreum blockchain FAQ',
-    'Cored network connection',
-    'Account not found error',
-    'Key not found error',
-    'Coreum blockchain solutions',
-    'Blockchain troubleshooting'
+    'help center',
+    'validator',
+    'FAQ',
+    'contact us',
+    'coreum',
+    'blockchain',
+    'smart contract',
+    'token',
+    'dapps',
+    'defi',
+    'decentralized',
+    'bitcoin',
+    'crypto',
+    'network',
+    'nft',
+    'build',
   ],
   openGraph: {
     type: 'website',
-    description: "Find answers to frequently asked questions about Coreum blockchain, including how to connect `cored` to specific networks, resolve account errors, and more.",
-    siteName: "Coreum Blockchain FAQ: Common Issues and Solutions | Coreum Docs",
+    description: "Help by topic: Github issues, Ask the community, FAQ, unjail a validator",
+    siteName: "Coreum Help",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

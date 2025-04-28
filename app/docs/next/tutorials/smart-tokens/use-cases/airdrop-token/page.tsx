@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Comprehensive guide to developing, deploying, and managing WASM-based fungible tokens with airdrop functionality on the Coreum blockchain. Includes detailed instructions and code snippets.",
     siteName: "Developing Smart FT with WASM on Coreum | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

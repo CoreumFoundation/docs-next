@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Complete guide on installing the Coreum 'cored' binary. Choose between installing a prebuilt version for Linux or building from sources. Ensure your CLI is ready for Coreum blockchain.",
     siteName: "How to Install Coreum's cored: Prebuilt and From Sources | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

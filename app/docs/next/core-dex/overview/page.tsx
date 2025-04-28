@@ -3,16 +3,35 @@ import { NavigatonItem, NavigatonItemMode } from "@/components/NavigationItem";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "",
-  description: "",
+  title: "Coreum | DEX API Docs",
+  description: "Dive into the documentation you need to build using Coreum DEX API",
   keywords: [
+    'DEX',
+    'exchange',
+    'API',
+    'documentation',
+    'tools',
+    'developers',
+    'launch',
+    'coreum',
+    'blockchain',
+    'smart contract',
+    'token',
+    'dapps',
+    'defi',
+    'decentralized',
+    'bitcoin',
+    'crypto',
+    'network',
+    'nft',
+    'build',
   ],
   openGraph: {
     type: 'website',
-    description: "",
-    siteName: "",
+    description: "Dive into the documentation you need to build using Coreum DEX API",
+    siteName: "Coreum | DEX API Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

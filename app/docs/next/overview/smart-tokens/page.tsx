@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "Learn about Coreum's Smart Tokens, the flexible and secure on-chain assets wrapped around Smart Contracts. Discover their unique features like IBC compatibility, minting, and ACL for superior asset management.",
     siteName: "Coreum Smart Tokens: Customizable & Secure On-Chain Assets | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

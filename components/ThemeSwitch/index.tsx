@@ -20,8 +20,6 @@ export const ThemeSwitch: FC<ThemeSwitcherProps> = ({
     'bg-transparent': activeTheme === 'light',
   });
 
-  console.log({ activeTheme });
-
   return (
     <div
       className="bg-theme-switch-light dark:bg-theme-switch-dark flex items-center p-1 rounded-[10px] cursor-pointer max-w-fit"

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Learn how to transfer funds and stake tokens on the Coreum blockchain using the cored CLI. Follow our step-by-step guide for testnet transactions and staking operations.",
     siteName: "Transferring Funds and Staking with Coreum CLI | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

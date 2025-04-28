@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Explore detailed Protobuf documentation for Coreum, providing essential information on how to interact with Coreum's blockchain protocols and services using gRPC and Protobuf interfaces.",
     siteName: "Coreum Protobuf Documentation | Coreum Developers",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Explore detailed instructions on installing Coreum's core daemon (cored) through various methods including cosmovisor for Linux, prebuilt binaries, and building from sources.",
     siteName: "Install Coreum's Core Daemon (cored): Comprehensive Guide | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

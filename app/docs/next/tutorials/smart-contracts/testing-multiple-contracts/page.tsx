@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Learn how to test multiple contract interactions within a CosmWasm workspace on Coreum. A comprehensive guide for developers using Rust.",
     siteName: "Testing Interactions Between Multiple Contracts on Coreum with CosmWasm | Coreum Docs",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };

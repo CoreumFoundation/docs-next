@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Learn how to manage bridging fees for tokens on the XRPL-Coreum Bridge and the process for relayers to claim these fees. Essential information for seamless cross-chain transactions.",
     siteName: "Managing and Claiming Bridging Fees for XRPL-Coreum Bridge | Coreum Guides",
     images: [{
-      url: 'https://test.docs.coreum.dev/images/og.jpg',
+      url: 'http://docs.coreum.dev/images/og.jpg',
     }],
   },
 };
