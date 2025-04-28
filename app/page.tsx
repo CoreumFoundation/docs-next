@@ -1,6 +1,7 @@
 import { CardImage } from "@/components/CardImage";
 import { ChainImage } from "@/components/ChainImage";
 import Transition from "@/components/Transition";
+import { Metadata } from "next";
 import Link from 'next/link';
 
 interface CardItem {
@@ -10,6 +11,50 @@ interface CardItem {
   href: string;
   external?: boolean;
 }
+
+export const metadata: Metadata = {
+  title: "Coreum Documentation",
+  description: "Access the resources necessary to start building on Coreum, the world\'s first super ledger",
+  keywords: [
+    'technical documentation',
+    'specifications',
+    'notes',
+    'manual',
+    'design',
+    'memo',
+    'scope',
+    'developer',
+    'mainnet',
+    'devnet',
+    'tools',
+    'applications',
+    'command',
+    'node',
+    'validator',
+    'language',
+    'coreum',
+    'blockchain',
+    'smart contract',
+    'token',
+    'dapps',
+    'defi',
+    'decentralized',
+    'bitcoin',
+    'crypto',
+    'network',
+    'nft',
+    'build',
+    'launch',
+  ],
+  openGraph: {
+    type: 'website',
+    description: "Access the resources necessary to start building on Coreum, the world\'s first super ledger",
+    siteName: "Coreum Documentation",
+    images: [{
+      url: 'http://docs.coreum.dev/images/og.jpg',
+    }],
+  },
+};
 
 export default function Home() {
   const CARDS: CardItem[] = [
