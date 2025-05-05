@@ -10,9 +10,6 @@ export default function RootLayout({
     <>
       <div className="flex items-center gap-2 mt-10">
         <Badge label="v4" />
-        <Badge label="Mainnet" />
-        <Badge label="Testnet" />
-        <Badge label="Devnet" />
       </div>
       {children}
     </>

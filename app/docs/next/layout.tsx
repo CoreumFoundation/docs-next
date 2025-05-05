@@ -12,6 +12,7 @@ export default function RootLayout({
         <Badge label="v5 (LATEST)" />
         <Badge label="Devnet" />
         <Badge label="Testnet" />
+        <Badge label="Mainnet" />
       </div>
       <div className="flex items-center w-full mt-6 mb-12">
         <WarningBlock />
