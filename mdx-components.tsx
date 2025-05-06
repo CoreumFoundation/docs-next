@@ -233,7 +233,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     code: ({ children }) => (
       <code
-        className="text-main-title-light dark:text-main-title-dark  text-sm font-normal"
+        className="text-main-title-light dark:text-main-title-dark text-sm font-normal"
         style={{
           fontSize: '14px',
           letterSpacing: '-0.14px',

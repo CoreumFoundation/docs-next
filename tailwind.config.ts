@@ -50,6 +50,9 @@ const config: Config = {
 
         'search-dark': '#0E0F10',
         'search-light': '#FCFCFC',
+
+        'faq-dark': '#121212',
+        'faq-light': '#FAFAFA',
       },
       borderColor: {
         'main-dark': '#17191E',
@@ -137,6 +140,9 @@ const config: Config = {
 
         'search-placeholder-dark': '#5E6773',
         'search-placeholder-light': '#9FA2AC',
+
+        'faq-dark': '#EEE',
+        'faq-light': '#1B1D23',
       },
       fill: {
         'landing-button-dark': '#1B1D23',
