@@ -4,9 +4,9 @@ const generatePage = (pageName: string, categoryName: string, subcategory?: stri
   let pageDir: string;
 
   if (subcategory) {
-    pageDir = `./app/docs/${categoryName}/${subcategory}/${pageName}`;
+    pageDir = `./app/docs/next/${categoryName}/${subcategory}/${pageName}`;
   } else {
-    pageDir = `./app/docs/${categoryName}/${pageName}`;
+    pageDir = `./app/docs/next/${categoryName}/${pageName}`;
   }
 
   const pagePath = `${pageDir}/${pageName}.mdx`;

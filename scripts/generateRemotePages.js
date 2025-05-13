@@ -64,7 +64,7 @@ var generatePages = function () { return __awaiter(void 0, void 0, void 0, funct
                 if (!(_d < pages_1.length)) return [3 /*break*/, 8];
                 page = pages_1[_d];
                 pageName = page.page, source = page.source;
-                pageDir = "./app/docs/".concat(categoryName, "/").concat(pageName);
+                pageDir = "./app/docs/next/".concat(categoryName, "/").concat(pageName);
                 pagePath = "".concat(pageDir, "/").concat(pageName, ".mdx");
                 pageComponentPath = "".concat(pageDir, "/page.tsx");
                 pageContent = '';
@@ -101,7 +101,7 @@ var generatePages = function () { return __awaiter(void 0, void 0, void 0, funct
                 fs.mkdirSync(pageDir, { recursive: true });
                 // Create MDX file
                 fs.writeFileSync(pagePath, pageContent);
-                pageTSXContent = "\nimport Component from './".concat(pageName, ".mdx';\n\nconst Page = () => {\n  return (\n    <Component />\n  );\n};\n\nexport default Page;\n        ");
+                pageTSXContent = "import Component from './".concat(pageName, ".mdx';\n\nconst Page = () => {\n  return (\n    <Component />\n  );\n};\n\nexport default Page;\n        g");
                 fs.writeFileSync(pageComponentPath, pageTSXContent);
                 console.log("Page '".concat(pageName, "' created successfully in category '").concat(categoryName, "'"));
                 _e.label = 7;

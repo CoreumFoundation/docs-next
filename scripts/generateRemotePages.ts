@@ -23,7 +23,7 @@ const generatePages = async () => {
       // Iterate over pages in each category
       for (const page of pages) {
         const { page: pageName, source } = page;
-        const pageDir = `./app/docs/${categoryName}/${pageName}`;
+        const pageDir = `./app/docs/next/${categoryName}/${pageName}`;
         const pagePath = `${pageDir}/${pageName}.mdx`;
         const pageComponentPath = `${pageDir}/page.tsx`;
 
@@ -65,8 +65,7 @@ const generatePages = async () => {
         fs.writeFileSync(pagePath, pageContent);
 
         // Create page.tsx file
-        const pageTSXContent = `
-import Component from './${pageName}.mdx';
+        const pageTSXContent = `import Component from './${pageName}.mdx';
 
 const Page = () => {
   return (
@@ -75,7 +74,7 @@ const Page = () => {
 };
 
 export default Page;
-        `;
+        g`;
         fs.writeFileSync(pageComponentPath, pageTSXContent);
 
         console.log(`Page '${pageName}' created successfully in category '${categoryName}'`);
