@@ -32,6 +32,7 @@ const SearchBarModal: React.FC = () => {
 
   const pathname = usePathname();
   const routePrefix = pathname.includes('/docs/v4') ? '/docs/v4' : '/docs/next';
+  const versionPrefix = pathname.includes('/docs/v4') ? 'v4' : 'next';
 
   // Debounce search to avoid unnecessary API calls on every keystroke
   const debouncedSearch = useCallback(
@@ -86,6 +87,7 @@ const SearchBarModal: React.FC = () => {
                       optionalFilters: [
                         'importance:high<score=3>',
                         'importance:medium<score=2>',
+                        `version:${versionPrefix}<score=2>`,
                         'hierarchy.lvl0:Overview<score=2>',
                         'hierarchy.lvl0:Tutorials<score=2>'
                       ],

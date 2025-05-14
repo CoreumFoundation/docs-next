@@ -34,7 +34,6 @@ function convertFilePathToUrl(filePath) {
     }, []);
 
     const finalPath = pathSegments.join('/');
-
     // Return the final URL
     return `${basePath}/${finalPath}`.replace(/\/+/g, '/');  // Ensure no duplicate slashes
 }
@@ -96,6 +95,7 @@ function processContent(content, data, filePath) {
                     title: title.replace(/\n/g, '').trim(),
                     content: chunk,
                     description: chunk.slice(0, 150) + '...',
+                    version: path.relative(CONTENT_PATH, filePath).replace(/\\/g, '/').replace(/\..+$/, '').split('/')[0],
                     url: convertFilePathToUrl(filePath) + `#${title.replace(/\n|\/|\.|#|\?|\`|\(|\)|\:|\*|\,/g, '').trim().toLowerCase().replace(/\s+/g, '-')}`,
                     ...data,
                     hierarchy: {
@@ -140,7 +140,7 @@ async function configureAlgoliaIndex() {
                 'unordered(content)'
             ],
             attributesToSnippet: ['description:50', 'content:50'],
-            attributesForFaceting: ['hierarchy.lvl0', 'hierarchy.lvl1', 'hierarchy.lvl2'],
+            attributesForFaceting: ['hierarchy.lvl0', 'hierarchy.lvl1', 'hierarchy.lvl2','filterOnly(version)'],
             distinct: true,
             attributeForDistinct: 'url'
         });
