@@ -1,6 +1,5 @@
 # Coreum DEX Specification
 
-
 ## Overview
 
 The Coreum DEX allows any Coreum user to create orders for trading any token pair. This means the order book is
@@ -12,7 +11,7 @@ bidirectional and permissionless, allowing for flexible and open trading.
 
 Users can place orders with the following attributes:
 
-* `order_id` - unique order identifier of the order. the order id matches against regular expression `^[a-zA-Z0-9/+:._-]{1,40}$`.
+* `order_id` - unique order identifier of the order.
 * `base_denom` - when you buy, you are buying the `base_denom`, when you sell, you are selling the `base_denom`.
 * `quote_denom` - when you buy, you are selling the `quote_denom`, when you sell, you are buying the `quote_denom`.
 * `price` - value of one unit of the `base_denom` expressed in terms of the `quote_denom`. It indicates how much of the
@@ -109,6 +108,8 @@ The `Qb'` is the opposite order's `max_execution_quantity` (the amount by which 
 opposite_execution_quantity = floor(remaining_quantity / price_denominator) * price_numerator
 ```
 
+This method is implemented inside `x/dex`. The func name is `func computeMaxExecutionQuantity`
+
 Let's return back to the example with the [Rounding issue](#Rounding-issue) :
 
 | order_id | base_denom | quote_denom | side | remaining_quantity | price |
@@ -136,36 +137,7 @@ it simultaneously checks the corresponding opposite order book (e.g., BBB/AAA) t
 price. This 2-way order book matching ensures that orders are filled at the most favorable rates available,
 whether within the same trading pair or its inverse, optimizing the trading experience.
 
-### Price tick and precision
-
-To provide a better trading experience we define the [price_tick](https://www.investopedia.com/terms/t/tick.asp) for
-each order book. The `price_tick` mostly depends on the price of the assets traded, that's why we can define the
-variable for a token used to define the order book `price_tick`. This variable is named `unified_ref_amount`.
-`unified_ref_amount` for token represents the amount of the token subunit you need to pay to buy 1 USD dollar. If the
-token is issued on the Coreum chain, that variable can be set/updated by the token admin. If the token is IBC token,
-or the token doesn't have and admin this variable can be set/updated by the chain governance. If the
-`unified_ref_amount` is not set for a token, the `unified_ref_amount` is equal to 10^6.
-
-The formula taken for the price tick is:
-
-```
-price_tick(base_denom/quote_denom) = 10^(floor(log10((unified_ref_amount(quote_denom) / unified_ref_amount(base_denom)))) + price_tick_exponent)
-```
-
-The `price_tick_exponent` is the coefficient used to give better price precision for the token orders. The default
-`price_tick_exponent` is `-8`, and can be updated by the governance.
-
-Tick size example:
-
-| unified_ref_amount(AAA) | unified_ref_amount(BBB) | price_tick(AAA/BBB) | price_tick(BBB/AAA) |
-|-------------------------|-------------------------|---------------------|---------------------|
-| 10000.0                 | 10000.0                 | 10^-8               | 10^-8               |
-| 3000.0                  | 20.0                    | 10^-11              | 10^-6               |
-| 3100000.0               | 8.0                     | 10^-14              | 10^-3               |
-| 0.00017                 | 100.0                   | 10^-3               | 10^-14              |
-| 0.000001                | 10000000                | 10^5                | 10^-21              |
-
-The update of the `unified_ref_amount` doesn't affect the created orders.
+### <a href="/docs/next/modules/coreum-dex/prices-and-limits" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Price And Amount Limits</a>
 
 #### Price type
 
@@ -234,12 +206,12 @@ The default reserve amount is `10 CORE` and can be updated by the governance.
 ### Max orders limit
 
 The number of active orders a user can have for each denom is limited by a value called `max_orders_per_denom`,
-which is determined by DEX governance. The default value is 100 but the parameter can be change with governance proposal, to check the current value visit [block explorer](https://explorer.devnet-1.coreum.dev/coreum/params).
+which is determined by DEX governance. The default value is 100.
 
 ### Events
 
 The DEX module emits events at the time of the matching to notify the interested parties of the changes caused by the
-matching. The events are defined in the <a target="_blank" href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/event.proto" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">event.proto</a>. The events are emitted
+matching. The events are defined in the <a href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/event.proto" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">event.proto</a>. The events are emitted
 for each order that was placed. The events are:
 
 1. `EventOrderPlaced` is emitted when the order is placed.
@@ -261,10 +233,6 @@ The users can cancel their orders within the DEX. Or The token admin or gov can 
 It grants specific administrative or governance roles the power to manage and oversee active orders, providing a
 safeguard against potential issues such as erroneous trades, malicious activity, or market manipulation. For the token
 admin to cancel the user's orders, the `dex_order_cancellation` feature must be enabled.
-
-### Order Sequence
-
-The order sequence is a unique identifier assigned to each order within the system. It is used to maintain the order's position in the order book and ensure proper ordering and execution of trades. The sequence is critical for tracking, managing, and retrieving orders efficiently.
 
 ### Block DEX
 
@@ -328,8 +296,8 @@ pub enum SudoMsg {
     },
     ExtensionPlaceOrder {
         order: DEXOrder,
-        expected_to_spend: Coin,
-        expected_to_receive: Coin,
+        spent: Coin,
+        received: Coin,
     },
 }
 
@@ -355,14 +323,14 @@ pub fn sudo(deps: DepsMut, env: Env, msg: SudoMsg) -> CoreumResult<ContractError
         ),
         SudoMsg::ExtensionPlaceOrder {
             order,
-            expected_to_spend,
-            expected_to_receive,
+            spent,
+            received,
         } => sudo_extension_place_order(
             deps,
             env,
             order,
-            expected_to_spend,
-            expected_to_receive,
+            spent,
+            received,
         ),
     }
 }
@@ -377,13 +345,3 @@ pub fn sudo(deps: DepsMut, env: Env, msg: SudoMsg) -> CoreumResult<ContractError
 
 - Acts as the main function that handles incoming messages.
 - Delegates to specific helper functions based on the message type.
-
-
-## Proto Definitions
-
-For detailed information about the structure and fields of the messages, please refer to the proto definitions in the Coreum codebase:
-
-- [`events.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/event.proto)
-- [`tx.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/tx.proto)
-- [`query.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/query.proto)
-- [`params.proto`](https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/params.proto)

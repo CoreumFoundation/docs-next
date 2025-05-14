@@ -43,14 +43,13 @@ By enforcing these constraints, we eliminate precision mismatches, simplify orde
 
 # Price Tick
 
-To provide a better trading experience, avoid rounding issues, and minimize remainders during order execution, we use [`price_tick`](https://www.investopedia.com/terms/t/tick.asp). A tick is the minimum price movement an asset price can make, either upward or downward.
+To provide a better trading experience, avoid rounding issues, and minimize remainders during order execution, we use <a href="https://www.investopedia.com/terms/t/tick.asp" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">price_tick</a>. A tick is the minimum price movement an asset price can make, either upward or downward.
 
 Since tick size is set by the exchange where an asset is traded and is primarily based on its price (though it also depends on asset type and market conditions), we can derive a formula to calculate `price_tick` for any market. This calculation is based on the relationship of both assets against a common instrument. For example, to determine the `price_tick` for the **ETH/BTC** pair, we can use the prices of **ETH/USD** and **BTC/USD**.
 
 To define an asset’s price on-chain, we introduce a parameter called `unified_ref_amount`. This represents the quantity of the token’s **subunit** that corresponds to **1 USD**.
 
 For instance, if BTC is issued on Coreum with satoshi as its subunit (where **1 BTC = 100,000,000 satoshis**) and its market price is **$90,000**, then `unified_ref_amount` should be **0.0000111 BTC (or 1110 satoshis)**, since **1 BTC / 90,000 = 0.0000111 BTC**, which approximates **1 USD** in satoshi terms.
-
 
 ## How `unified_ref_amount` is Defined
 
@@ -93,6 +92,12 @@ Where:
 This approach ensures that minimum trade sizes scale appropriately with asset value while maintaining a consistent precision level.
 
 For more details on the logic behind this formula and the constants used, refer to the [Theoretical Justification](#Theoretical-Justification) section.
+
+## Interactive Spreadsheet
+
+For a practical understanding and to experiment with different values, refer to the following Google Sheet where all formulas are implemented:
+
+<a href="https://docs.google.com/spreadsheets/d/1UL9Ni6VP_fmrXw4lv6snPcNyBTGYFFF085jGheivs9A" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">🔗 Price Tick Calculator Spreadsheet</a>
 
 ## **Important**
 

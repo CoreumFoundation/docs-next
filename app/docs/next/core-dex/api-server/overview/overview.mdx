@@ -44,6 +44,7 @@ The API server provides the following routes:
 - GET /api/trades : Returns trade data (filterable)
 - GET /api/tickers?symbols=base64encoded : Returns the latest price for one or more trading pairs
 - GET /api/currencies : Returns the currencies
+- GET /api/market : Returns the market data (provides information for trade tick size)
 - GET /api/ws : Websocket for real-time updates
 - POST /api/order/create : Create an order
 - POST /api/order/cancel : Cancel an order
@@ -99,8 +100,8 @@ curl "https://coredex.test.coreum.dev/api/ohlc?symbol=dextestdenom9-devcore1p0ed
 Params:
 
 - `symbol` _required_ - symbol for which trades should be returned. NOTE: `symbol` should be urlsafe encoded.
-- `from` _required_ - unix timestamp of trades start
-- `to` _required_ - unix timestamp of trades end
+- `from` _optional_ - unix timestamp of trades start. If not set, the last 50 trades are returned.
+- `to` _optional_ - unix timestamp of trades end. Only optional if `from` is not set.
 - `account` _optional_ - account address for which trades should be returned
 - `side` _optional_ - side of the trade (1 - buy, 2 - sell (see enum domain/order-properties))
 
@@ -165,7 +166,7 @@ The tickers endpoint returns the latest price for all trading pairs.
 
 Params:
 
-- symbols _mandatory_ - a base64 encoded list of symbols for which the ticker should be returned.
+- `symbols` _mandatory_ - a base64 encoded list of symbols for which the ticker should be returned.
 
 Maximum 20 symbols. Watch out for overflow of the URL in certain browsers: The symbol strings are quite long, so most likely the queries should be limited to 10 symbols or even less
 
@@ -266,6 +267,48 @@ curl -H "Network: devnet" \
 -X "GET" "https://coredex.test.coreum.dev/api/currencies"
 ```
 
+#### /market
+
+Returns the market data for a certain symbol.
+
+Params:
+- `symbol` _required_ - symbol for which market data should be returned. NOTE: `symbol` should be urlsafe encoded.
+
+Returns:
+
+```json5
+{
+    "Denom1": {
+        "Currency": "alb",
+        "Issuer": "devcore19p7572k4pj00szx36ehpnhs8z2gqls8ky3ne43",
+        "Precision": 6,
+        "Denom": "alb-devcore19p7572k4pj00szx36ehpnhs8z2gqls8ky3ne43"
+    },
+    "Denom2": {
+        "Currency": "nor",
+        "Issuer": "devcore19p7572k4pj00szx36ehpnhs8z2gqls8ky3ne43",
+        "Precision": 6,
+        "Denom": "nor-devcore19p7572k4pj00szx36ehpnhs8z2gqls8ky3ne43"
+    },
+    "MetaData": {
+        "Network": 3,
+        "UpdatedAt": {
+            "seconds": 1746050943,
+            "nanos": 326356000
+        },
+        "CreatedAt": {
+            "seconds": 1746050943,
+            "nanos": 325398000
+        }
+    },
+    "PriceTick": {
+        "Value": 1,
+        "Exp": -6
+    },
+    "QuantityStep": 10000
+}
+```
+
 #### /order/create
 
 The order create uses a POST request to create an order. The function returns a to-be-signed transaction. The function does not persist the order in the order book (persistence is done only after submitting the order to the blockchain).
@@ -337,6 +380,8 @@ Example response:
 
 ```json
 {
+  "Sequence":126378,
+  "OrderData":{
     "sender": "devcore1878pk82zlndhldglx26r606qcd886562mad59y",
     "type": 1,
     "baseDenom": "dextestdenom5-devcore1p0edzyzpazpt68vdrjy20c42lvwsjpvfzahygs",
@@ -354,6 +399,7 @@ Example response:
     "good_til": {
         "good_til_block_time": "2025-12-30T12:00:00Z"
     }
+  }
 }
 ```
 
@@ -378,8 +424,11 @@ The response object is:
 
 ```json
 {
-  "sender": "devcore1p0edzyzpazpt68vdrjy20c42lvwsjpvfzahygs",
-  "id": "8b341e25-482e-487f-b9e2-9467d98c16ac"
+  "Sequence":126378,
+  "OrderCancel":{
+    "sender": "devcore1p0edzyzpazpt68vdrjy20c42lvwsjpvfzahygs",
+    "id": "8b341e25-482e-487f-b9e2-9467d98c16ac"
+  }
 }
 ```
 
@@ -519,7 +568,13 @@ The networks are configured in a JSON array which depending on usage might requi
       "Network": "devnet",
       "GRPCHost": "full-node.devnet-1.coreum.dev:9090",
       "RPCHost": "https://full-node.devnet-1.coreum.dev:26657"
+    },
+    {
+      "Network": "testnet",
+      "GRPCHost": "full-node.testnet-1.coreum.dev:9090",
+      "RPCHost": "https://full-node.testnet-1.coreum.dev:26657"
     }
+
   ]
 }
 ```

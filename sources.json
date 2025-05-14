@@ -2,20 +2,20 @@
   "api": [
     {
       "page": "protobuf",
-      "source": ""
-    },
-    {
-      "page": "protobuf-v5",
-      "source": ""
-    },
-    {
-      "page": "rust-protobuf",
-      "source": ""
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum/refs/heads/master/docs/api.md"
     }
   ],
-  "become-validator": [
+  "nodes-and-validators": [
     {
       "page": "run-full-node",
+      "source": ""
+    },
+    {
+      "page": "run-sentry-node",
+      "source": ""
+    },
+    {
+      "page": "run-validator",
       "source": ""
     },
     {
@@ -23,7 +23,7 @@
       "source": ""
     }
   ],
-  "become-validator/essentials": [
+  "nodes-and-validators/essentials": [
     {
       "page": "connection-config",
       "source": ""
@@ -49,65 +49,47 @@
       "source": ""
     }
   ],
-  "become-validator/upgrades": [
+  "nodes-and-validators/upgrades": [
     {
-      "page": "history",
+      "page": "upgrades-history",
       "source": ""
     },
     {
-      "page": "main-info",
-      "source": ""
-    }
-  ],
-  "become-validator/validator": [
-    {
-      "page": "run-sentry",
-      "source": ""
-    },
-    {
-      "page": "run-validator",
-      "source": ""
-    },
-    {
-      "page": "unjain-validator",
+      "page": "upgrades-instructions",
       "source": ""
     }
   ],
   "core-dex": [
     {
       "page": "data-aggregator",
-      "source": ""
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/CoreDEX-API/refs/heads/main/apps/data-aggregator/README.md"
     },
     {
       "page": "frontend",
-      "source": ""
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/CoreDEX-API/refs/heads/main/apps/frontend/README.md"
     },
     {
-      "page": "overview",
-      "source": ""
+      "page": "introduction",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/CoreDEX-API/refs/heads/main/README.md"
     },
     {
       "page": "store",
-      "source": ""
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/CoreDEX-API/refs/heads/main/apps/store/README.md"
     }
   ],
   "core-dex/api-server": [
     {
       "page": "overview",
-      "source": ""
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/CoreDEX-API/refs/heads/main/apps/api-server/README.md"
     },
     {
       "page": "update-service",
-      "source": ""
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/CoreDEX-API/refs/heads/main/apps/api-server/README-update-service.md"
     }
   ],
   "help": [
     {
-      "page": "faq",
-      "source": ""
-    },
-    {
-      "page": "useful-links",
+      "page": "how-to-unjail-my-validator",
       "source": ""
     }
   ],
@@ -137,7 +119,17 @@
       "source": ""
     }
   ],
-  "tools": [
+  "modules/coreum-dex": [
+    {
+      "page": "overview",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum/refs/heads/master/x/dex/spec/README.md"
+    },
+    {
+      "page": "prices-and-limits",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum/refs/heads/master/x/dex/spec/price-and-amount-limits.md"
+    }
+  ],
+  "tools-and-ecosystem": [
     {
       "page": "blockchain-explorers",
       "source": ""
@@ -153,27 +145,11 @@
   ],
   "tutorials": [
     {
-      "page": "coreum-ts-protobuf",
-      "source": ""
-    },
-    {
-      "page": "coreum-wasm-sdk",
-      "source": ""
-    },
-    {
-      "page": "crust-for-development",
-      "source": ""
-    },
-    {
       "page": "gas-price",
       "source": ""
     },
     {
       "page": "special-addresses",
-      "source": ""
-    },
-    {
-      "page": "xrpl-bridge-integration",
       "source": ""
     }
   ],
@@ -185,6 +161,10 @@
     {
       "page": "web-app",
       "source": ""
+    },
+    {
+      "page": "development-environment",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/crust/master/README.md"
     }
   ],
   "tutorials/get-started": [
@@ -193,19 +173,7 @@
       "source": ""
     },
     {
-      "page": "install-prebuild-macos",
-      "source": ""
-    },
-    {
-      "page": "install-prebuild-windows",
-      "source": ""
-    },
-    {
       "page": "setup-cli",
-      "source": ""
-    },
-    {
-      "page": "setup-cored-using-docker",
       "source": ""
     }
   ],
@@ -255,13 +223,13 @@
       "source": ""
     }
   ],
-  "tutorials/get-started/wasm": [
+  "tutorials/smart-contracts": [
     {
-      "page": "deploy-wasm-contract",
-      "source": ""
+      "page": "coreum-wasm-sdk",
+      "source": "https://raw.githubusercontent.com/CoreumFoundation/coreum-wasm-sdk/main/README.md"
     },
     {
-      "page": "smart-ft-with-wasm",
+      "page": "deploy-wasm-contract",
       "source": ""
     },
     {
@@ -307,6 +275,10 @@
     {
       "page": "wallet-integration",
       "source": ""
+    },
+    {
+      "page": "xrpl-bridge-integration",
+      "source": ""
     }
   ],
   "tutorials/ISO20022": [
@@ -323,55 +295,23 @@
       "source": ""
     }
   ],
-  "tutorials/use-tokens": [
+  "tutorials/smart-tokens": [
     {
       "page": "asset-ft-extension",
       "source": ""
     },
     {
-      "page": "create-and-manage-ft-with-cli",
+      "page": "create-and-manage-ft",
       "source": ""
     },
     {
-      "page": "create-and-manage-ft-with-golang",
-      "source": ""
-    },
-    {
-      "page": "create-and-manage-nft-with-cli",
-      "source": ""
-    },
-    {
-      "page": "create-and-manage-nft-with-golang",
-      "source": ""
-    },
-    {
-      "page": "smart-ft-with-wasm",
+      "page": "create-and-manage-nft",
       "source": ""
     }
   ],
-  "xrpl-bridge": [
+  "tutorials/smart-tokens/use-cases": [
     {
-      "page": "asset-flow",
-      "source": ""
-    },
-    {
-      "page": "fees",
-      "source": ""
-    },
-    {
-      "page": "install-relayer",
-      "source": ""
-    },
-    {
-      "page": "register-new-token",
-      "source": ""
-    },
-    {
-      "page": "run-relayer",
-      "source": ""
-    },
-    {
-      "page": "update-relayer",
+      "page": "aidrop-token",
       "source": ""
     }
   ]

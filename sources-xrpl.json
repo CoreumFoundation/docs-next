@@ -1,0 +1,28 @@
+{
+  "xrpl-bridge": [
+    {
+      "page": "asset-flow",
+      "source": ""
+    },
+    {
+      "page": "fees",
+      "source": ""
+    },
+    {
+      "page": "install-relayer",
+      "source": ""
+    },
+    {
+      "page": "register-new-token",
+      "source": ""
+    },
+    {
+      "page": "run-relayer",
+      "source": ""
+    },
+    {
+      "page": "update-relayer",
+      "source": ""
+    }
+  ]
+}

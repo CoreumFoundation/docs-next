@@ -47,8 +47,8 @@ Getting the CoreDEX running on your local (unix or linux) system takes just a fe
 
 To run the CoreDEX, you need to have the following installed:
 
-* Go lang 1.23 or higher (https://golang.org/dl/)
-* MySQL (https://dev.mysql.com/downloads/)
+* Go lang 1.23 or higher <a href="https://golang.org/dl/" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">https://golang.org/dl/</a>
+* MySQL <a href="https://dev.mysql.com/downloads/" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">https://dev.mysql.com/downloads/</a>
 
 In MySQL create a database called `friendly_dex` and a user `testuser` with password `password`:
 
@@ -100,7 +100,7 @@ You should see the following processes:
 ### Optional requirements
 
 The configuration provided uses the devnet public node of the Coreum blockchain. While there is a public node for Coreum available, that node does not have a guaranteed performance and the installation of a local node is recommended.
-See the [Coreum](/docs/next/nodes-and-validators/run-full-node) for more information on how to install a local node.
+See the <a href="/docs/next/nodes-and-validators/run-full-node" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">Coreum</a> for more information on how to install a local node.
 
 ### Running the Friendly DEX with Docker-compose
 
@@ -143,6 +143,16 @@ docker build -t coreumfoundation/frontend:latest -f Dockerfile.frontend .
 ```
 
 There are also sample deployment files for Kubernetes in the `apps/kubernetes` directory.
+
+## Market simulator
+
+For purposes of demonstration, there is a market simulator in the `apps/market-simulator` directory. This simulator can be used to simulate trading on the CoreDEX API. The checked in mnemonics are there for demonstration purposes only and should not be used in a production environment.
+
+To build the market simulator, run:
+
+```bash
+docker build -t coreumfoundation/market-simulator:latest -f Dockerfile.market-simulator .
+```
 
 ## Application documentation
 
