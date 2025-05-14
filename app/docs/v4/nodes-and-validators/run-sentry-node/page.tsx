@@ -1,5 +1,5 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './run-sentry.mdx';
+import Component from './run-sentry-node.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

@@ -1,5 +1,5 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './unjail-validator.mdx';
+import Component from './how-to-unjail-my-validator.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

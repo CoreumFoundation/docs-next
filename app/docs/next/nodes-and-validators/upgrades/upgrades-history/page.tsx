@@ -1,5 +1,5 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './history.mdx';
+import Component from './upgrades-history.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

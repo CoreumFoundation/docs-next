@@ -1,5 +1,5 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './transfer-funds-cli.mdx';
+import Component from './transfer-funds-with-cli.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

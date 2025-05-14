@@ -1,5 +1,5 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './crust-for-development.mdx';
+import Component from './development-environment.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

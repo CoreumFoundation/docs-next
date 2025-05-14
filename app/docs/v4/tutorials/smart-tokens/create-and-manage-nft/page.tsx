@@ -1,6 +1,6 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './create-and-manage-nft-with-cli.mdx';
+import Component from './create-and-manage-nft.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
