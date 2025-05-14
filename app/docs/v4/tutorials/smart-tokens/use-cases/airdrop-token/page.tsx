@@ -1,6 +1,6 @@
 
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './smart-ft-with-wasm.mdx';
+import Component from './airdrop-token.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
