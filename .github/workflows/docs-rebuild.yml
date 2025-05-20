@@ -1,0 +1,27 @@
+
+name: Rebuild and Commit Docs
+
+on:
+  repository_dispatch:
+    types: [update-docs]
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Docs Repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Rebuild Documentation
+        run: |
+          node scripts/generateRemotePages.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.email "ci@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -m "Auto-rebuild from ${{ github.event.client_payload.source_repo }}" || echo "No changes"
+          git push
