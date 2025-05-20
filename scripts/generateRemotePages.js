@@ -93,10 +93,10 @@ var generatePages = function () { return __awaiter(void 0, void 0, void 0, funct
                 return [3 /*break*/, 6];
             case 6:
                 // Check if the page already exists
-                if (fs.existsSync(pagePath) || fs.existsSync(pageComponentPath)) {
-                    console.error("Error: Page with name '".concat(pageName, "' already exists in category '").concat(categoryName, "'"));
-                    return [3 /*break*/, 7];
-                }
+                // if (fs.existsSync(pagePath) || fs.existsSync(pageComponentPath)) {
+                //     console.error("Error: Page with name '".concat(pageName, "' already exists in category '").concat(categoryName, "'"));
+                //     return [3 /*break*/, 7];
+                // }
                 // Create page directory
                 fs.mkdirSync(pageDir, { recursive: true });
                 // Create MDX file
