@@ -16,4 +16,5 @@ jobs:
 
       - name: Rebuild Documentation
         run: |
+          npm i
           node scripts/generateRemotePages.js
