@@ -24,5 +24,5 @@ jobs:
           git config --global user.email "ci@github.com"
           git config --global user.name "GitHub Actions"
           git add .
-          git commit -m "Auto-rebuild from ${{ github.event.client_payload.source_repo }}" || echo "No changes"
+          git commit -m "Auto-rebuild for commit ${GITHUB_SHA::7} from ${{ github.event.client_payload.source_repo }}" || echo "No changes"
           git push
