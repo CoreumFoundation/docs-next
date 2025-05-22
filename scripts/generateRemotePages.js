@@ -39,6 +39,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var axios_1 = require("axios");
 var generatePages = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var args = process.argv.slice(2);
+    var overrideIndex = args.indexOf('--override');
     var sourcesData, categories, _a, _b, _c, _i, categoryName, pages, _d, pages_1, page, pageName, source, pageDir, pagePath, pageComponentPath, pageContent, pageContentResponse, err_1, pageTSXContent, error_1;
     return __generator(this, function (_e) {
         switch (_e.label) {
@@ -93,7 +95,7 @@ var generatePages = function () { return __awaiter(void 0, void 0, void 0, funct
                 return [3 /*break*/, 6];
             case 6:
                 // Check if the page already exists
-                if (fs.existsSync(pagePath) || fs.existsSync(pageComponentPath)) {
+                if ((fs.existsSync(pagePath) || fs.existsSync(pageComponentPath)) && overrideIndex == -1) {
                     console.error("Error: Page with name '".concat(pageName, "' already exists in category '").concat(categoryName, "'"));
                     return [3 /*break*/, 7];
                 }
