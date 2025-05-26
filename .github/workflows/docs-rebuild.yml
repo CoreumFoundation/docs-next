@@ -17,4 +17,12 @@ jobs:
       - name: Rebuild Documentation
         run: |
           npm i
-          node scripts/generateRemotePages.js
+          node scripts/generateRemotePages.js --override
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.email "ci@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -m "Auto-rebuild for commit ${GITHUB_SHA::7} from ${{ github.event.client_payload.source_repo }}" || echo "No changes"
+          git push
