@@ -104,9 +104,9 @@ export const Footer = () => {
         <h2 id="footer-heading" className="sr-only">
           Footer
         </h2>
-        <div className="flex w-full justify-between gap-10 flex-col md:flex-row py-3 px-6 md:py-16 md:px-28">
+        <div className="flex w-full justify-between gap-10 flex-col md:flex-row py-3 px-6 md:py-6 md:px-28">
           <div className="flex flex-col justify-between">
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
               <LogoFooter />
               <div className="flex items-center gap-x-6">
                 {navigation.social.map((item) => (
@@ -121,9 +121,9 @@ export const Footer = () => {
               &copy; 2021 - 2025 Coreum Development Foundation Limited. All rights reserved
             </p>
           </div>
-          <div className="flex flex-col gap-5 min-w-full md:min-w-[40%]">
+          <div className="flex flex-col gap-2 min-w-full md:min-w-[40%]">
             <h3 className="text-xs font-semibold leading-6 text-footer-main-light dark:text-footer-main-dark uppercase">Products</h3>
-            <ul role="list" className="space-y-3">
+            <ul role="list" className="space-y-2">
               {navigation.products.map((item) => (
                 <li key={item.name}>
                   <Link
