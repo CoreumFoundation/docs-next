@@ -75,6 +75,36 @@ const FAQ_ITEMS = [
       </>
     ),
   },
+  // {
+  //   id: 4,
+  //   label: 'How can I integrate Coreum into my real estate brokerage?',
+  //   description: null,
+  // },
+  // {
+  //   id: 5,
+  //   label: 'What makes Coreum unique blockchain? How does Coreum handle slashing for misbehaving validators?',
+  //   description: null,
+  // },
+  // {
+  //   id: 6,
+  //   label: 'How does Coreum handle misbehaving validators?',
+  //   description: null,
+  // },
+  // {
+  //   id: 7,
+  //   label: 'How can I delegate my tokens to a validator?',
+  //   description: null,
+  // },
+  // {
+  //   id: 8,
+  //   label: 'What is the process for creating a new token on Coreum?',
+  //   description: null,
+  // },
+  // {
+  //   id: 9,
+  //   label: 'How can I report bugs or issues in Coreum?',
+  //   description: null,
+  // },
 ];
 
 export const FAQList = () => {
