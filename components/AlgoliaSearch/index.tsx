@@ -106,7 +106,7 @@ const SearchBarModal: React.FC = () => {
     });
 
     setIsModalOpen(true);
-  }, []);
+  }, [versionPrefix]);
 
   const closeModal = useCallback(() => {
     setIsModalOpen(false);
