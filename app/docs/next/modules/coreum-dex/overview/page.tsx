@@ -1,5 +1,5 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './coreum-dex.mdx';
+import Component from './overview.mdx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

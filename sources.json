@@ -99,10 +99,6 @@
       "source": ""
     },
     {
-      "page": "coreum-dex",
-      "source": ""
-    },
-    {
       "page": "coreum-fee-model",
       "source": ""
     },
@@ -191,7 +187,7 @@
       "source": ""
     },
     {
-      "page": "transfer-funds-cli",
+      "page": "transfer-funds-with-cli",
       "source": ""
     }
   ],
@@ -311,7 +307,7 @@
   ],
   "tutorials/smart-tokens/use-cases": [
     {
-      "page": "aidrop-token",
+      "page": "airdrop-token",
       "source": ""
     }
   ]
