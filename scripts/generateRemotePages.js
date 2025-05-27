@@ -39,13 +39,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var axios_1 = require("axios");
 var generatePages = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var args = process.argv.slice(2);
-    var overrideIndex = args.indexOf('--override');
-    var sourcesData, categories, _a, _b, _c, _i, categoryName, pages, _d, pages_1, page, pageName, source, pageDir, pagePath, pageComponentPath, pageContent, pageContentResponse, err_1, pageTSXContent, error_1;
+    var args, override, sourcesData, categories, _a, _b, _c, _i, categoryName, pages, _d, pages_1, page, pageName, source, pageDir, pagePath, pageComponentPath, pageContent, pageContentResponse, err_1, mdxExists, tsxExists, pageTSXContent, error_1;
     return __generator(this, function (_e) {
         switch (_e.label) {
             case 0:
-                _e.trys.push([0, 10, , 11]);
+                args = process.argv.slice(2);
+                override = args.includes('--override') || args.includes('-o');
+                _e.label = 1;
+            case 1:
+                _e.trys.push([1, 13, , 14]);
                 sourcesData = fs.readFileSync('./sources.json', 'utf-8');
                 categories = JSON.parse(sourcesData);
                 _a = categories;
@@ -53,72 +55,91 @@ var generatePages = function () { return __awaiter(void 0, void 0, void 0, funct
                 for (_c in _a)
                     _b.push(_c);
                 _i = 0;
-                _e.label = 1;
-            case 1:
-                if (!(_i < _b.length)) return [3 /*break*/, 9];
+                _e.label = 2;
+            case 2:
+                if (!(_i < _b.length)) return [3 /*break*/, 12];
                 _c = _b[_i];
-                if (!(_c in _a)) return [3 /*break*/, 8];
+                if (!(_c in _a)) return [3 /*break*/, 11];
                 categoryName = _c;
                 pages = categories[categoryName];
                 _d = 0, pages_1 = pages;
-                _e.label = 2;
-            case 2:
-                if (!(_d < pages_1.length)) return [3 /*break*/, 8];
+                _e.label = 3;
+            case 3:
+                if (!(_d < pages_1.length)) return [3 /*break*/, 11];
                 page = pages_1[_d];
                 pageName = page.page, source = page.source;
                 pageDir = "./app/docs/next/".concat(categoryName, "/").concat(pageName);
                 pagePath = "".concat(pageDir, "/").concat(pageName, ".mdx");
                 pageComponentPath = "".concat(pageDir, "/page.tsx");
                 pageContent = '';
-                if (!source.length) return [3 /*break*/, 6];
-                _e.label = 3;
-            case 3:
-                _e.trys.push([3, 5, , 6]);
-                return [4 /*yield*/, axios_1.default.get(source)];
+                if (!source.length) return [3 /*break*/, 8];
+                _e.label = 4;
             case 4:
+                _e.trys.push([4, 6, , 7]);
+                return [4 /*yield*/, axios_1.default.get(source)];
+            case 5:
                 pageContentResponse = _e.sent();
                 pageContent = pageContentResponse.data;
-                // Replace <!-- to {/*
                 pageContent = pageContent.replace(/<!--/g, '{/*');
-                // Replace --> to */}
                 pageContent = pageContent.replace(/-->/g, '*/}');
                 pageContent = pageContent.replace(/\/{/g, '/{`');
                 pageContent = pageContent.replace(/}\//g, '`}/');
-                // pageContent = pageContent.replace('}/', '`}/');
                 pageContent = pageContent.replace(/} \|/g, '`} |');
-                pageContent = pageContent.replace(/<=/g, '{\<\=}');
+                pageContent = pageContent.replace(/<=/g, '`\<\=`');
                 pageContent = pageContent.replace('<this-command>', '\<this-command\>');
-                return [3 /*break*/, 6];
-            case 5:
+                // custom link handle
+                pageContent = pageContent.replace(/\[README-update-service\.md\]\(README-update-service\.md\)/g, '<a href="/docs/next/core-dex/api-server/update-service" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">Update service</a>');
+                pageContent = pageContent.replace(/\(https:\/\/golang\.org\/dl\/\)/g, '<a href="https://golang.org/dl/" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">https://golang.org/dl/</a>');
+                pageContent = pageContent.replace(/\(https:\/\/dev\.mysql\.com\/downloads\/\)/g, '<a href="https://dev.mysql.com/downloads/" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">https://dev.mysql.com/downloads/</a>');
+                pageContent = pageContent.replace(/\[Coreum\]\(https:\/\/docs\.coreum\.dev\/docs\/next\/nodes-and-validators\/run-full-node\)/g, '<a href="/docs/next/nodes-and-validators/run-full-node" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">Coreum</a>q');
+                pageContent = pageContent.replace(/\[Price And Amount Limits\]\(price-and-amount-limits\.md\)/g, '<a href="/docs/next/modules/coreum-dex/prices-and-limits" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Price And Amount Limits</a>');
+                pageContent = pageContent.replace(/\[event\.proto\]\(\.\.\/\.\.\/\.\.\/proto\/coreum\/dex\/v1\/event\.proto\)/g, '<a href="https://github.com/CoreumFoundation/coreum/blob/master/proto/coreum/dex/v1/event.proto" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">event.proto</a>');
+                pageContent = pageContent.replace(/\[\`price_tick\`\]\(https:\/\/www\.investopedia\.com\/terms\/t\/tick\.asp\)/g, '<a href="https://www.investopedia.com/terms/t/tick.asp" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">price_tick</a>');
+                pageContent = pageContent.replace(/\[🔗 Price Tick Calculator Spreadsheet\]\(https:\/\/docs\.google\.com\/spreadsheets\/d\/1UL9Ni6VP_fmrXw4lv6snPcNyBTGYFFF085jGheivs9A\)/g, '<a href="https://docs.google.com/spreadsheets/d/1UL9Ni6VP_fmrXw4lv6snPcNyBTGYFFF085jGheivs9A" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">🔗 Price Tick Calculator Spreadsheet</a>');
+                pageContent = pageContent.replace(/\[Investopedia: Price Tick\]\(https:\/\/www\.investopedia\.com\/terms\/t\/tick\.asp\)/g, '<a href="https://www.investopedia.com/terms/t/tick.asp" target="_blank" className="text-[#25D695] hover:opacity-80 text-base font-bold">Investopedia: Price Tick</a>');
+                pageContent = pageContent.replace(/- \[Binance Trading Limits\]\(https:\/\/www\.binance\.us\/trade-limits\)/g, '');
+                pageContent = pageContent.replace(/\[link\]\(https:\/\/docs\.docker\.com\/engine\/install\/\)/g, '<a href="https://docs.docker.com/engine/install/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">link</a>');
+                pageContent = pageContent.replace(/\[\!\[coreum-wasm-sdk on crates\.io\]\(https:\/\/img\.shields\.io\/crates\/v\/coreum-wasm-sdk\.svg\)\]\(https:\/\/crates\.io\/crates\/coreum-wasm-sdk\) \[\!\[Docs\]\(https:\/\/docs\.rs\/coreum-wasm-sdk\/badge\.svg\)\]\(https:\/\/docs\.rs\/coreum-wasm-sdk\)/g, "<div className=\"flex items-center gap-2 my-2\">\n    <a href=\"https://crates.io/crates/coreum-wasm-sdk\" target=\"_blank\">\n        <img src=\"https://img.shields.io/crates/v/coreum-wasm-sdk.svg\" alt=\"coreum-wasm-sdk on crates.io\" />\n    </a>\n    <a href=\"https://docs.rs/coreum-wasm-sdk\" target=\"_blank\">\n        <img src=\"https://docs.rs/coreum-wasm-sdk/badge.svg\" alt=\"Docs\" />\n    </a>\n</div>");
+                pageContent = pageContent.replace(/\[coreum-rust-protobuf\]\(https:\/\/github\.com\/CoreumFoundation\/coreum-rust-protobuf\)/g, '<a href="https://github.com/CoreumFoundation/coreum-rust-protobuf" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">coreum-rust-protobuf</a>');
+                pageContent = pageContent.replace(/\[coreum-test-tube\]\(https:\/\/github\.com\/CoreumFoundation\/test-tube\)/g, '<a href="https://github.com/CoreumFoundation/test-tube" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">coreum-test-tube</a>');
+                pageContent = pageContent.replace(/\[Coreum Website\]\(https:\/\/coreum\.com\)/g, '<a href="https://coreum.com" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Coreum Website</a>');
+                pageContent = pageContent.replace(/\[Coreum Documentation\]\(https:\/\/docs\.coreum\.dev\)/g, '[Coreum Documentation](/)');
+                pageContent = pageContent.replace(/\[Smart contract examples\]\(https:\/\/github\.com\/CoreumFoundation\/coreum\/tree\/master\/integration-tests\/contracts\)/g, '<a href="https://github.com/CoreumFoundation/coreum/tree/master/integration-tests/contracts" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 text-base font-bold">Smart contract examples</a>');
+                return [3 /*break*/, 7];
+            case 6:
                 err_1 = _e.sent();
                 console.log('err');
-                return [3 /*break*/, 6];
-            case 6:
-                // Check if the page already exists
-                if ((fs.existsSync(pagePath) || fs.existsSync(pageComponentPath)) && overrideIndex == -1) {
-                    console.error("Error: Page with name '".concat(pageName, "' already exists in category '").concat(categoryName, "'"));
-                    return [3 /*break*/, 7];
+                return [3 /*break*/, 7];
+            case 7: return [3 /*break*/, 9];
+            case 8: return [3 /*break*/, 10];
+            case 9:
+                mdxExists = fs.existsSync(pagePath);
+                tsxExists = fs.existsSync(pageComponentPath);
+                if (!override && (mdxExists || tsxExists)) {
+                    console.error("Skipping '".concat(pageName, "' in '").concat(categoryName, "': files already exist. ") +
+                        "Use --override to overwrite.");
+                    return [3 /*break*/, 10];
                 }
-                // Create page directory
                 fs.mkdirSync(pageDir, { recursive: true });
-                // Create MDX file
                 fs.writeFileSync(pagePath, pageContent);
-                pageTSXContent = "import Component from './".concat(pageName, ".mdx';\n\nconst Page = () => {\n  return (\n    <Component />\n  );\n};\n\nexport default Page;\n        g");
-                fs.writeFileSync(pageComponentPath, pageTSXContent);
-                console.log("Page '".concat(pageName, "' created successfully in category '").concat(categoryName, "'"));
-                _e.label = 7;
-            case 7:
-                _d++;
-                return [3 /*break*/, 2];
-            case 8:
-                _i++;
-                return [3 /*break*/, 1];
-            case 9: return [3 /*break*/, 11];
+                if (!tsxExists) {
+                    pageTSXContent = "import Component from './".concat(pageName, ".mdx';\n\nconst Page = () => {\n  return (\n    <Component />\n  );\n};\n\nexport default Page;");
+                    fs.writeFileSync(pageComponentPath, pageTSXContent);
+                    console.log("Page '".concat(pageName, "' created successfully in category '").concat(categoryName, "'"));
+                }
+                _e.label = 10;
             case 10:
+                _d++;
+                return [3 /*break*/, 3];
+            case 11:
+                _i++;
+                return [3 /*break*/, 2];
+            case 12: return [3 /*break*/, 14];
+            case 13:
                 error_1 = _e.sent();
                 console.error('An error occurred:', error_1.message);
-                return [3 /*break*/, 11];
-            case 11: return [2 /*return*/];
+                return [3 /*break*/, 14];
+            case 14: return [2 /*return*/];
         }
     });
 }); };

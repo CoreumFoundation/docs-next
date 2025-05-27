@@ -9,6 +9,7 @@
     "lint": "next lint",
     "generate": "tsc scripts/generate.ts && node scripts/generate.js",
     "generate-pages": "tsc scripts/generateRemotePages.ts && node scripts/generateRemotePages.js",
+    "generate-pages:override": "tsc scripts/generateRemotePages.ts && node scripts/generateRemotePages.js --override",
     "check:links": "node scripts/check-links.js"
   },
   "dependencies": {
