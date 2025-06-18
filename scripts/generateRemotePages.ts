@@ -43,7 +43,7 @@ const generatePages = async () => {
             pageContent = pageContent.replace(/}\//g, '`}/');
             pageContent = pageContent.replace(/} \|/g, '`} |');
 
-            pageContent = pageContent.replace(/<=/g, '`\<\=`');
+            // pageContent = pageContent.replace(/<=/g, '`\<\=`');
             pageContent = pageContent.replace('<this-command>', '\<this-command\>');
 
             // custom link handle
