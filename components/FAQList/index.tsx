@@ -62,7 +62,7 @@ const FAQ_ITEMS = [
       <>
         <p className="text-base font-normal text-[#868991] leading-7 mb-2">If you see the next message:</p>
         <pre className="bg-code rounded-lg p-4 overflow-auto whitespace-pre-wrap break-words">
-          <code className="text-main-title-light dark:text-main-title-dark text-sm font-normal text-sm">
+          <code className="text-main-title-light dark:text-main-title-dark text-sm font-normal">
             Error: testcore1f2dyj8dhdv62ytrkuvn832ezzjdcpg2jhrtzvy.info: key not found
           </code>
         </pre>
@@ -75,37 +75,75 @@ const FAQ_ITEMS = [
       </>
     ),
   },
-  // {
-  //   id: 4,
-  //   label: 'How can I integrate Coreum into my real estate brokerage?',
-  //   description: null,
-  // },
-  // {
-  //   id: 5,
-  //   label: 'What makes Coreum unique blockchain? How does Coreum handle slashing for misbehaving validators?',
-  //   description: null,
-  // },
-  // {
-  //   id: 6,
-  //   label: 'How does Coreum handle misbehaving validators?',
-  //   description: null,
-  // },
-  // {
-  //   id: 7,
-  //   label: 'How can I delegate my tokens to a validator?',
-  //   description: null,
-  // },
-  // {
-  //   id: 8,
-  //   label: 'What is the process for creating a new token on Coreum?',
-  //   description: null,
-  // },
-  // {
-  //   id: 9,
-  //   label: 'How can I report bugs or issues in Coreum?',
-  //   description: null,
-  // },
+  {
+    id: 4,
+    label: 'How can I integrate Coreum into my real estate brokerage?',
+    description: (
+       <p className="text-base font-normal text-[#868991] leading-7 mb-2">
+          Coreum is designed specifically to tokenize real-world assets like real estate. Depending on whether your property is rental, commercial, or residential, the integration details may vary. We recommend reaching out to our team <a href="https://www.coreum.com/contact-partnership" className="text-[#25D695] hover:opacity-80 font-semibold">here</a> so we can guide you through a tailored implementation.
+      </p>
+    ),
+  },
+  {
+    id: 5,
+    label: 'What makes the Coreum blockchain unique?',
+    description: (
+      <ul className="list-disc ml-5 text-[#868991] list-inside">
+        <li>Cross-Chain Routing Across IBC & XRPL.</li>
+        <li>Native Asset Programmability with Smart Tokens (WASM).</li>
+        <li>Compliance-First Design with Proven Stability & 1 Second Finality.</li>
+        <li>Organic Orderbook DEX with AMM Liquidity Routing.</li>
+      </ul>
+    ),
+  },
+  {
+    id: 6,
+    label: 'How can I delegate my tokens to a validator?',
+    description: (
+      <p className="text-base font-normal text-[#868991] leading-7 mb-2">
+        You can delegate your $COREUM tokens to a validator directly through any supported wallet, including Leap, Cosmostation, Fox Wallet & more. Most wallets offer delegation as a built-in feature, making it easy to participate in securing the network and earning rewards. Alternatively, you can connect any supported wallet to a third party dashboard such as <a href="https://restake.app" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 font-semibold">Restake.app</a> to stake your $COREUM. See the full list of supported wallets <a href="https://docs.coreum.dev/docs/next/tools-and-ecosystem/wallets" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 font-semibold">here</a>.
+      </p>
+    ),
+  },
+  {
+    id: 7,
+    label: 'What is the process for creating a new token on Coreum?',
+    description: (
+      <p className="text-base font-normal text-[#868991] leading-7 mb-2">
+        You can issue a new token on Coreum using the <a href="https://token-hub.coreum.dev/" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 font-semibold">TokenHub</a> in just a few clicks. For advanced users, the CLI is also available to use by following this <a href="https://docs.coreum.dev/docs/next/tutorials/smart-tokens/create-and-manage-ft" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 font-semibold">guide</a>. The Coreum Foundation recommends deploying your token on the testnet first to test its functionality before launching it on the mainnet.
+      </p>
+    ),
+  },
+  {
+    id: 8,
+    label: 'How can I report bugs or issues in Coreum?',
+    description: (
+      <p className="text-base font-normal text-[#868991] leading-7 mb-2">
+        You can report bugs or issues on the <a href="https://github.com/CoreumFoundation/coreum/issues" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 font-semibold">Coreum GitHub page</a>. Alternatively, join the Coreum Foundation <a href="https://discord.com/invite/VgkhYeWmTd" target="_blank" rel="noopener noreferrer" className="text-[#25D695] hover:opacity-80 font-semibold">Discord Server</a> to share issues directly with the community and core team.
+      </p>
+    ),
+  },
+  {
+    id: 9,
+    label: 'How does Coreum handle misbehaving validators?',
+    description: (
+      <>
+        <p className="text-base font-normal text-[#868991] leading-7 mb-2">
+          There are 2 types of misbehaviour:
+        </p>
+        <ul className="list-disc ml-5 text-[#868991] list-inside">
+          <li className="mb-2">
+            <strong>Uptime misbehaviour:</strong> If the validator starts missing more than 50% of blocks in a period of 34,000 blocks, it will get jailed for 60 seconds. During this time, the operator cannot unjail it. The punishment is burning 0.5% of the validator&quot;s stake. Once resolved, an unjail transaction is required.
+          </li>
+          <li>
+            <strong>Double signing misbehaviour:</strong> A validator that signs two blocks at the same height will be slashed 5% of total delegations and permanently removed from the validator set (&quot;tombstoned&quot;). A new validator must be created with a new consensus key.
+          </li>
+        </ul>
+      </>
+    ),
+  },
 ];
+
 
 export const FAQList = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
