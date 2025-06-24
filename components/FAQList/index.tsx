@@ -133,7 +133,7 @@ const FAQ_ITEMS = [
         </p>
         <ul className="list-disc ml-5 text-[#868991] list-inside">
           <li className="mb-2">
-            <strong>Uptime misbehaviour:</strong> If the validator starts missing more than 50% of blocks in a period of 34,000 blocks, it will get jailed for 60 seconds. During this time, the operator cannot unjail it. The punishment is burning 0.5% of the validator&quot;s stake. Once resolved, an unjail transaction is required.
+            <strong>Uptime misbehaviour:</strong> If the validator starts missing more than 50% of blocks in a period of 34,000 blocks, it will get jailed for 60 seconds. During this time, the operator cannot unjail it. The punishment is burning 0.5% of the validator&apos;s stake. Once resolved, an unjail transaction is required.
           </li>
           <li>
             <strong>Double signing misbehaviour:</strong> A validator that signs two blocks at the same height will be slashed 5% of total delegations and permanently removed from the validator set (&quot;tombstoned&quot;). A new validator must be created with a new consensus key.
