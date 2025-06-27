@@ -1,6 +1,6 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
 import { Metadata } from 'next';
-import { FAQList } from '@/components/FAQList';
+import { FAQList } from './FAQList';
 
 export const metadata: Metadata = {
   title: "Coreum Blockchain FAQ: Common Issues and Solutions | Coreum Docs",

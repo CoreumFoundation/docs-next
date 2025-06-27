@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { ExpandedQuestion } from "../ExpandedQuestion";
+import { ExpandedQuestion } from "@/components/ExpandedQuestion";
 
 const FAQ_ITEMS = [
   {

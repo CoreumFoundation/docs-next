@@ -1,6 +1,6 @@
 import { NavigatonItem, NavigatonItemMode } from '@/components/NavigationItem';
-import Component from './faq.mdx';
 import { Metadata } from 'next';
+import { FAQList } from './FAQList';
 
 export const metadata: Metadata = {
   title: "Coreum Blockchain FAQ: Common Issues and Solutions | Coreum Docs",
@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 const Page = () => {
   const prevNavigationItem = {
     label: 'Help Overview',
@@ -36,7 +35,10 @@ const Page = () => {
 
   return (
     <div className="flex flex-col w-full">
-      <Component />
+      <h1 className="font-medium capitalize text-main-title-light dark:text-main-title-dark !text-[2rem] my-10 scroll-mt-14">
+        FAQ
+      </h1>
+      <FAQList />
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10 py-10">
         <NavigatonItem href={prevNavigationItem.href} label={prevNavigationItem.label} mode={NavigatonItemMode.Previous} />
         <NavigatonItem href={nextNavigationItem.href} label={nextNavigationItem.label} mode={NavigatonItemMode.Next} />
