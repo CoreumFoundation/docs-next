@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
@@ -15,7 +16,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <InfoBanner />
         <Navbar />
         <div className="flex flex-1 flex-col h-full w-full relative bg-landing items-center">
-          <ScrollToTop />
+          <Suspense fallback={null}>
+            <ScrollToTop />
+          </Suspense>
           {children}
         </div>
         <Footer />
