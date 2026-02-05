@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type BannerType = 'upgrade_complete' | 'proposal_passed' | 'voting_started' | 'new_proposal' | 'none';
+type BannerType = 'announce' | 'approved' | 'executed' | 'none';
 
 interface BannerContent {
   title: string;
@@ -11,53 +11,38 @@ interface BannerContent {
 
 const getBannerContent = (type: BannerType): BannerContent | null => {
   switch (type) {
-    case 'upgrade_complete':
+    case 'announce':
       return {
-        title: 'Upgrade Complete: Coreum is now TX',
+        title: 'New Proposal: Coreum to join TX.',
         description: (
           <>
-            The network migration has been successfully executed. Head to{' '}
-            <a href="https://tx.org" target="_blank" rel="noopener noreferrer" className="text-[#B1FC03] font-medium underline">
-              tx.org
-            </a>{' '}
-            to access the new ecosystem of RWA products running on the Coreum blockchain legacy.
+            A unified ecosystem, infrastructure, and marketplace for real-world assets, supported by globally regulated partners. Voting starts <span className="text-black dark:text-white font-figtree text-sm font-medium leading-5 tracking-[-0.14px]">February 5th</span>. Learn more at{' '}
+            <a href="https://tx.org/vote" target="_blank" rel="noopener noreferrer" className="dark:text-[#B1FC03] font-figtree text-sm font-medium leading-5 tracking-[-0.14px] underline">
+              tx.org/vote
+            </a>
           </>
         ),
       };
-    case 'proposal_passed':
+    case 'approved':
       return {
         title: 'Update: The proposal for Coreum to join TX has passed!',
         description: (
           <>
-            The network migration will take effect at <span className="text-black dark:text-white font-medium">00:00:00 EST</span> on{' '}
-            <span className="text-black dark:text-white font-medium">February 14</span>. Learn more about the details{' '}
-            <a href="#" target="_blank" rel="noopener noreferrer" className="dark:text-[#B1FC03] font-medium underline">
+            The network migration will take effect at <span className="text-black dark:text-white font-figtree text-sm font-medium leading-5 tracking-[-0.14px]">00:00:00 EST</span> on <span className="text-black dark:text-white font-figtree text-sm font-medium leading-5 tracking-[-0.14px]">March 6th</span>. Learn more about the details{' '}
+            <a href="#" target="_blank" rel="noopener noreferrer" className="dark:text-[#B1FC03] font-figtree text-sm font-medium leading-5 tracking-[-0.14px] underline">
               here
             </a>.
           </>
         ),
       };
-    case 'voting_started':
+    case 'executed':
       return {
-        title: 'Update: Voting has officially started for Coreum to join TX',
+        title: 'Upgrade complete: Coreum is now TX',
         description: (
           <>
-            Read the full proposal and cast your vote by <span className="text-black dark:text-white font-medium">February 8</span>{' '}
-            <a href="#" target="_blank" rel="noopener noreferrer" className="dark:text-[#B1FC03] font-medium underline">
-              here
-            </a>.
-          </>
-        ),
-      };
-    case 'new_proposal':
-      return {
-        title: 'New Proposal: Coreum to Become TX',
-        description: (
-          <>
-            A unified ecosystem, infrastructure, and marketplace for real-world assets, supported by globally regulated partners.
-            Voting starts <span className="text-black dark:text-white font-medium">February 2</span>. Learn more at{' '}
-            <a href="#" target="_blank" rel="noopener noreferrer" className="dark:text-[#B1FC03] font-medium underline">
-              here
+            The network migration has been successfully executed. Head to{' '}
+            <a href="https://tx.org" target="_blank" rel="noopener noreferrer" className="dark:text-[#B1FC03] font-figtree text-sm font-medium leading-5 tracking-[-0.14px] underline">
+              tx.org
             </a>.
           </>
         ),
@@ -81,10 +66,10 @@ export const InfoBanner = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full p-6">
       <div className="flex flex-col gap-0.5 w-full px-5 py-3 relative backdrop-blur-xs bg-radial-green-gradient rounded-xl border border-banner-border-color">
-        <p className="text-black dark:text-white text-sm font-bold leading-[165%] font-manrope pr-4">
+        <p className="text-black dark:text-white font-figtree text-sm font-semibold leading-[165%] pr-4">
           {content.title}
         </p>
-        <p className="text-black/75 dark:text-white/75 text-sm leading-5 tracking-[-0.14px] font-manrope">
+        <p className="text-black/75 dark:text-white/75 font-figtree text-sm font-normal leading-5 tracking-[-0.14px]">
           {content.description}
         </p>
         <div

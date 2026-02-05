@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans, Space_Grotesk } from "next/font/google";
+import { Noto_Sans, Space_Grotesk, Figtree } from "next/font/google";
 import { Layout } from "@/components/Layout";
 import classNames from "classnames";
 import "./globals.css";
@@ -15,6 +15,11 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-space-grotesk',
+});
+const figtree = Figtree({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-figtree',
 });
 
 export const metadata: Metadata = {
@@ -40,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={classNames(notoSans.variable, spaceGrotesk.variable, 'h-full m-0')}>
+      <body className={classNames(notoSans.variable, spaceGrotesk.variable, figtree.variable, 'h-full m-0')}>
         <Layout>
           {children}
         </Layout>

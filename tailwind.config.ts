@@ -11,6 +11,7 @@ const config: Config = {
       fontFamily: {
         'space-grotesk': ['var(--font-space-grotesk)'],
         'noto-sans': ['var(--font-noto-sans)'],
+        'figtree': ['var(--font-figtree)'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
