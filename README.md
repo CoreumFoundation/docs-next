@@ -1,4 +1,4 @@
-# Coreum Documentation
+# Coreum Documentation 
 
 Coreum is a 3rd-generation layer-1 enterprise-grade blockchain
 built to serve as a core infrastructure for decentralized applications with ISO20022 compatibility,
