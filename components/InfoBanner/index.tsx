@@ -53,6 +53,7 @@ const getBannerContent = (type: BannerType): BannerContent | null => {
   }
 };
 
+
 export const InfoBanner = () => {
   const [isOpen, setIsOpen] = useState(true);
 
