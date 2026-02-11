@@ -29,7 +29,7 @@ const getBannerContent = (type: BannerType): BannerContent | null => {
         description: (
           <>
             The network migration will take effect at <span className="text-black dark:text-white font-figtree text-sm font-medium leading-5 tracking-[-0.14px]">00:00:00 EST</span> on <span className="text-black dark:text-white font-figtree text-sm font-medium leading-5 tracking-[-0.14px]">March 6th</span>. Learn more about the details{' '}
-            <a href="#" target="_blank" rel="noopener noreferrer" className="dark:text-[#B1FC03] font-figtree text-sm font-medium leading-5 tracking-[-0.14px] underline">
+            <a href="https://coreum.medium.com/coreum-proposal-29-official-results-interpretation-and-outcome-report-fcd780295217" target="_blank" rel="noopener noreferrer" className="dark:text-[#B1FC03] font-figtree text-sm font-medium leading-5 tracking-[-0.14px] underline">
               here
             </a>.
           </>
